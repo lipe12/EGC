@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSets>
+  <dataSet>
+    <datasetname>Anhui</datasetname>
+    <north>201755.005033</north>
+    <south>199755.005033</south>
+    <west>199255.005033</west>
+    <east>202255.005033</east>
+    <kmlpath>kml\zcy19880520@163.com\Anhui.kml</kmlpath>
+  </dataSet>
+</dataSets>

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tasks>
+  <Task TaskName="PitRemoving;Slope;Sample Based Mapping22">
+    <WsdlLocation>Egc1373940628963/1373940628735CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="Sample Based Mapping2">
+    <WsdlLocation>Egc1373940835975/1373940835790CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="PitRemoving;Slope;FlowDirectionCal;FlowAC;TWI;Sample Based Mapping2">
+    <WsdlLocation>Egc1373940937444/1373940937232CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="PitRemoving;Profile Curvature;Sample Based Mapping2">
+    <WsdlLocation>Egc1373941106562/1373941106443CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="PitRemoving;Plan Curvature;Sample Based Mapping2">
+    <WsdlLocation>Egc1373941201727/1373941201612CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="PitRemoving;Plan Curvature;Slope;FlowDirectionCal;FlowAC;TWI;Sample Based Mapping2">
+    <WsdlLocation>Egc1373941308391/1373941308176CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="PitRemoving;Plan Curvature;Slope;FlowDirectionCal;FlowAC;TWI;Profile Curvature;Sample Based Mapping2">
+    <WsdlLocation>Egc1373941352220/1373941352010CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="PitRemoving;Slope;Profile Curvature;Plan Curvature;FlowDirectionCal;FlowAC;TWI;Sample Based Mapping2">
+    <WsdlLocation>Egc1373941433561/1373941433339CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="PitRemoving;Slope;Profile Curvature;FlowDirectionCal;FlowAC;TWI;Sample Based Mapping2">
+    <WsdlLocation>Egc1373941465611/1373941465433CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="PitRemoving;Slope;Profile Curvature;Sample Based Mapping2">
+    <WsdlLocation>Egc1373941780709/1373941780586CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="PitRemoving;Slope;Profile Curvature;Plan Curvature;Sample Based Mapping2">
+    <WsdlLocation>Egc1373941967569/1373941967439CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="PitRemoving;Profile Curvature;Slope;FlowDirectionCal;FlowAC;TWI;Sample Based Mapping2">
+    <WsdlLocation>Egc1373942344894/1373942344716CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="PitRemoving;Profile Curvature;Slope;FlowDirectionCal;FlowAC;TWI;Plan Curvature;Sample Based Mapping2">
+    <WsdlLocation>Egc1373948700192/1373948700050CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="Frequency Sampler;Cumulative Visibility Caculator;Habitat Mapping">
+    <WsdlLocation>Egc1373948783151/1373948783071CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="PitRemoving;Profile Curvature;Plan Curvature;Sample Based Mapping2">
+    <WsdlLocation>Egc1373951743753/1373951743648CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="PitRemoving">
+    <WsdlLocation>Egc1373954275188/1373954275142CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="PitRemoving;FlowDirectionCal">
+    <WsdlLocation>Egc1373954310728/1373954310661CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="PitRemoving;Slope;FlowDirectionCal;FlowAC;TWI">
+    <WsdlLocation>Egc1373954518787/1373954518670CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="PitRemoving;FlowDirectionCal;FlowAC;StreamLE;WatershedD">
+    <WsdlLocation>Egc1373954561469/1373954561304CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="PitRemoving;FlowDirectionCal;FlowAC;Slope;TWI;Sample Based Mapping2">
+    <WsdlLocation>Egc1373956510556/1373956510412CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="PitRemoving;FlowDirectionCal;FlowAC;Slope;TWI">
+    <WsdlLocation>Egc1373964294341/1373964292212CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="Frequency Sampler;Cumulative Visibility Caculator;PitRemoving;Slope;Habitat Mapping">
+    <WsdlLocation>Egc1373966856886/1373966856641CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="Cumulative Visibility Caculator;PitRemoving;Slope;Frequency Sampler;Habitat Mapping">
+    <WsdlLocation>Egc1373967157138/1373967156855CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="Cumulative Visibility Caculator;Frequency Sampler;Habitat Mapping">
+    <WsdlLocation>Egc1373967816121/1373967815992CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="PitRemoving;Slope;Frequency Sampler;Cumulative Visibility Caculator;Habitat Mapping">
+    <WsdlLocation>Egc1373968158071/1373968157898CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="Frequency Sampler;PitRemoving;Slope;Cumulative Visibility Caculator;Habitat Mapping">
+    <WsdlLocation>Egc1373969486763/1373969486492CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="PitRemoving;FlowDirectionCal;FlowAC;Slope;TWI;Profile Curvature;Plan Curvature;Sample Based Mapping2">
+    <WsdlLocation>Egc1377155055286/1377155054818CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="PitRemoving;Profile Curvature;Slope;Plan Curvature;FlowDirectionCal;FlowAC;TWI;Sample Based Mapping2">
+    <WsdlLocation>Egc1377318277777/1377318277528CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="PitRemoving;Profile Curvature;Plan Curvature;Slope;FlowDirectionCal;FlowAC;TWI;Sample Based Mapping2">
+    <WsdlLocation>Egc1377606458662/1377606458366CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="PitRemoving;Plan Curvature;Profile Curvature;Slope;FlowDirectionCal;FlowAC;TWI;Sample Based Mapping2">
+    <WsdlLocation>Egc1377606673459/1377606673225CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="PitRemoving;Slope;FlowDirectionCal;FlowAC;StreamLE;WatershedD;Sample Based Mapping2">
+    <WsdlLocation>Egc1377612917975/1377612917757CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="PitRemoving;Profile Curvature;Slope;Plan Curvature;Sample Based Mapping2">
+    <WsdlLocation>Egc1377670968406/1377670968204CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="PitRemoving;Plan Curvature;Profile Curvature;Sample Based Mapping2">
+    <WsdlLocation>Egc1378129316280/1378129315001CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="PitRemoving;SlopeCal;FlowDirectionCal;SCACal;TWICal">
+    <WsdlLocation>Egc1383554590313/1383554589938CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="PitRemoving;SlopeCal;Sample Based Mapping2">
+    <WsdlLocation>Egc1383568380799/1383568380581CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="PitRemoving;FlowDirectionCal;SCACal;extractStream;extractWatershed">
+    <WsdlLocation>Egc1383572158003/1383572157051CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="PitRemoving;FlowDirectionCal;SCACal;SlopeCal;TWICal;Sample Based Mapping2">
+    <WsdlLocation>Egc1391124319467/1391124318055CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="PitRemoving;FlowDirectionCal;SCACal;SlopeCal;TWICal;ProfileCurvCal;Sample Based Mapping2">
+    <WsdlLocation>Egc1395121327116/1395121326811CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="PitRemoving;SlopeCal;ProfileCurvCal;FlowDirectionCal;SCACal;TWICal;Sample Based Mapping2">
+    <WsdlLocation>Egc1395140971018/1395140969685CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="PitRemoving;ProfileCurvCal;SlopeCal;FlowDirectionCal;SCACal;TWICal;Sample Based Mapping2">
+    <WsdlLocation>Egc1395143080209/1395143079974CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="PitRemoving;SlopeCal;FlowDirectionCal;SCACal;TWICal;ProfileCurvCal;PlanCurvCal;Sample Based Mapping2">
+    <WsdlLocation>Egc1395148160487/1395148160225CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="PitRemoving;SlopeCal;PlanCurvCal;ProfileCurvCal;FlowDirectionCal;SCACal;TWICal;Sample Based Mapping2">
+    <WsdlLocation>Egc1395210142274/1395210142050CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="PitRemoving;SlopeCal;ProfileCurvCal;PlanCurvCal;FlowDirectionCal;SCACal;TWICal;Sample Based Mapping2">
+    <WsdlLocation>Egc1395221025448/1395221025212CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="PitRemoving;ProfileCurvCal;PlanCurvCal;FlowDirectionCal;SCACal;TWICal;Sample Based Mapping2">
+    <WsdlLocation>Egc1402014425499/1402014425108CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="PitRemoving;SCACal;SlopeCal;TWICal">
+    <WsdlLocation>Egc1402142753099/1402142752745CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="PitRemoving;SlopeCal;FlowDirectionCal;SCACal;TWICal;Sample Based Mapping2">
+    <WsdlLocation>Egc1403658361857/1403658361574CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="Cumulative Visibility Caculator;PitRemoving;SlopeCal;Frequency Sampler;Habitat Mapping">
+    <WsdlLocation>Egc1403674735070/1403674734817CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="PitRemoving;ProfileCurvCal;PlanCurvCal;Sample Based Mapping2">
+    <WsdlLocation>Egc1414656346599/1414656346293CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="PitRemoving;FlowDirectionCal;SCACal;SlopeCal;TWICal">
+    <WsdlLocation>Egc1429540107263/1429540106920CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="PitRemoving;ProfileCurvCal;Sample Based Mapping2">
+    <WsdlLocation>Egc1430553755798/1430553755581CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="PitRemoving;FlowDirectionCal;SCACal;TWICal;Sample Based Mapping2">
+    <WsdlLocation>Egc1430557971677/1430557971499CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="PitRemoving;FlowDirectionCal;SCACal;ProfileCurvCal;SlopeCal;TWICal;Sample Based Mapping2">
+    <WsdlLocation>Egc1430854811018/1430854810770CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="PitRemoving;FlowDirectionCal;SCACal;SlopeCal;TWICal;ProfileCurvCal;PlanCurvCal;Sample Based Mapping2">
+    <WsdlLocation>Egc1430859331621/1430859331389CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="PitRemoving;PlanCurvCal;SlopeCal;ProfileCurvCal;FlowDirectionCal;SCACal;TWICal;extractStream;extractWatershed;Sample Based Mapping2">
+    <WsdlLocation>Egc1434068576069/1434068575691CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="PitRemoving;SlopeCal;ProfileCurvCal;PlanCurvCal;FlowDirectionCal;SCACal;TWICal;extractStream;extractWatershed;Sample Based Mapping2">
+    <WsdlLocation>Egc1434090478096/1434090477830CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="PitRemoving;SlopeCal;FlowDirectionCal;SCACal;TWICal;extractStream;extractWatershed;Sample Based Mapping2">
+    <WsdlLocation>Egc1434120600277/1434120599809CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="PitRemoving;FlowDirectionCal;SCACal;extractStream">
+    <WsdlLocation>Egc1435202257719/1435202257610CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+  <Task TaskName="PitRemoving;PlanCurvCal;FlowDirectionCal;SCACal;TWICal;Sample Based Mapping2">
+    <WsdlLocation>Egc1435653374057/1435653373883CaculatorProcessArtifacts.wsdl</WsdlLocation>
+  </Task>
+</Tasks>

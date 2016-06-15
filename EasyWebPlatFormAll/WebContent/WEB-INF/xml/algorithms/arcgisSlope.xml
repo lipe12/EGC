@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Algorithm AlgorithmName = "ArcgisSlope" Task = "Slope" author = "JJC" WsdlBasePath = "C:/Wsdl" WsdlName = "arcgisSlope.wsdl" WsdlUrl = "http://localhost/WS_ArcgisSlope/WebService.asmx?WSDL">
+	<Data>
+		<DataKind>InputData</DataKind>
+		<DataName>FilledDEM</DataName>
+		<DataType>Grid</DataType>
+		<DataSematic>FilledDEM</DataSematic>
+	</Data>
+	<Data>
+		<DataKind>OutputData</DataKind>
+		<DataName>Slope Gradient</DataName>
+		<DataType>Grid</DataType>
+		<DataSematic>Slope Gradient</DataSematic>
+	</Data>
+</Algorithm>

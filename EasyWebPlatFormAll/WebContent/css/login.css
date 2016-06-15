@@ -1,0 +1,111 @@
+@CHARSET "UTF-8";
+body{
+	background-color: #E0EEE0;
+	font-family:Arial;
+	font-size:11px;
+	line-height: 20px;
+}
+.loginborder
+{
+	width: 910px;
+	height: 360px;
+	margin: 0 auto;  
+	border: 2px #dddddd solid;
+	background-color: #fff;
+
+}
+.registerborder
+{
+	width: 460px;
+	height: 360px;
+	margin: 0 auto;  
+	border: 1px #dddddd solid;
+	background-color: #fff;
+}
+.login{
+	background-color: #9ecbec;
+	margin: 10px 10px 10px 0px;
+	
+	width: 440px;
+	height: 340px;
+	float: left;
+
+}
+.register{
+	background-color: #9ecbec;
+	margin: 10px;
+	width: 440px;
+	height: 340px;
+}
+#top{
+	height: 100px;
+}
+
+.text{
+	margin-left: 50px;
+	font-weight:bold;
+	}
+	.redtext{
+	color: #b51433;
+	}
+.welcomtext{
+	margin-left:1px;
+	margin-top:5px;
+	font-size:20px;
+	
+	}
+.character{
+	margin-left:20px;
+	font-size:17px;
+	
+	}
+.guide{
+    font-size:20px;
+	margin-left:25px;
+	  }
+	
+input{
+	margin-left: 50px;
+	line-height: 20px;
+	}
+	
+button{
+	margin-left: 50px;
+	margin-top: 5px;
+	margin-bottom: 5px;	
+	line-height: 18px;
+}
+.bluetext{
+	color: #1099df;
+	cursor: pointer; 
+	}
+.graytext{
+	color: #3e4a51;
+	}
+.yellowtext
+	{
+	color: #faecaf;
+	font-size:24px;
+	line-height: 50px;
+	}
+.yellowsmalltext
+	{
+	color: #edfaff;
+	font-size:14px;
+	line-height: 30px;
+	}
+.register_title
+      {
+	  height: 80px;
+	  padding-top: 20px;
+   }	
+.title
+	{
+	height: 80px;
+	padding-top: 20px;
+	}
+.buttom
+	{
+	height: 50px;
+	padding-top: 10px;
+	}

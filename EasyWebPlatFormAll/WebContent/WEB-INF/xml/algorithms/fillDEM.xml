@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Algorithm AlgorithmName = "Fill" Task = "PitRemoving" author = "JJC" WsdlBasePath = "C:/Wsdl" WsdlName = "fillDeps.wsdl" WsdlUrl = "http://localhost/WS_FillDep/WebService.asmx?WSDL">
+	<Data>
+		<DataKind>InputData</DataKind>
+		<DataName>DEM</DataName>
+		<DataType>Grid</DataType>
+		<DataSematic>DEM</DataSematic>
+	</Data>
+	<Data>
+		<DataKind>OutputData</DataKind>
+		<DataName>FilledDEM</DataName>
+		<DataType>Grid</DataType>
+		<DataSematic>FilledDEM</DataSematic>
+	</Data>
+</Algorithm>

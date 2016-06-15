@@ -1,0 +1,37 @@
+[{
+    "text": "Digital Terrain Analysis", 
+    "cls": "folder",
+    "expanded": true,
+	"id":"DTA",
+    "children": [{
+        "text": "Pit-removing",
+        "leaf": true
+    },{ 
+        "text": "TWI",
+        "leaf": true
+    },{ 
+        "text": "Stream Extraction",
+        "leaf": true
+    },{ 
+        "text": "Watershed Delimitation",
+        "leaf": true  
+    }]
+},{
+    "text": "Predictive Mapping", 
+    "cls": "folder",
+    "expanded": true,
+    "id":"PM",	
+    "children": [{
+        "text": "Sample Based Mapping",
+        "leaf": true
+    }]
+},{
+    "text": "Habitat Mapping", 
+    "cls": "folder",
+    "expanded": true, 
+    "id":"HM",	
+    "children": [{  
+        "text": "Habitat Mapping",
+        "leaf": true
+    }]
+}]

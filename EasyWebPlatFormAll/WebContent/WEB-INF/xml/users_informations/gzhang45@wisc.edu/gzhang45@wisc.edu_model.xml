@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<models>
+  <model name="HabitatMapping">
+    <data>
+      <x>286</x>
+      <y>353</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Presence Sites</label>
+      <value>PresenceSites1403676142296.shp</value>
+    </data>
+    <data>
+      <x>530</x>
+      <y>521</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Cumulative Visibility</label>
+      <value>CumulativeVisibility1403676189774.asc</value>
+    </data>
+    <data>
+      <x>50</x>
+      <y>319</y>
+      <a>40</a>
+      <b>25</b>
+      <label>HM Env.Layers ManageMent</label>
+      <value>lasha/monkey_elevation.asc#SlopeGradient1403676239411.asc#lasha/monkey_aspect.asc#lasha/monkey_dist2river.asc#lasha/monkey_planttype.asc#lasha/monkey_dist2vilroad.asc</value>
+    </data>
+    <data>
+      <x>292</x>
+      <y>631</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Habitat Suitability Map</label>
+      <value>HabitatSuitabilityMap1403676129353.asc</value>
+    </data>
+    <task>
+      <x>291</x>
+      <y>498</y>
+      <width>100</width>
+      <height>50</height>
+      <label>Habitat Mapping</label>
+      <algorithm>Monkey Habitat Mapping</algorithm>
+      <parameter>Environment Variable Measurement Level:Terrain?scale?100#Terrain?scale?5#Terrain?scale?45#Water?scale?5000#Shelter?nominal?1#Human?scale?5000</parameter>
+      <inputdata>DEM$Slope Gradient$Aspect$Distance To Rivers$Plant Type$Distance To Villages/Roads$Presence Sites$Cumulative Visibility$HM Env.Layers ManageMent</inputdata>
+      <outputdata>Habitat Suitability Map</outputdata>
+    </task>
+    <task>
+      <x>289</x>
+      <y>193</y>
+      <width>100</width>
+      <height>50</height>
+      <label>Frequency Sampler</label>
+      <algorithm>ZgmFrequencySampler</algorithm>
+      <parameter>Environment Variable Measurement Level:Terrain?scale?100#Terrain?scale?5#Terrain?scale?45#Water?scale?5000#Shelter?nominal?1#Human?scale?5000</parameter>
+      <inputdata>DEM$Slope Gradient$Aspect$Distance To Rivers$Plant Type$Distance To Villages/Roads$Presence Polygons$HM Env.Layers ManageMent</inputdata>
+      <outputdata>Presence Sites</outputdata>
+    </task>
+    <data>
+      <x>287</x>
+      <y>84</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Presence Polygons</label>
+      <value />
+    </data>
+    <task>
+      <x>822</x>
+      <y>500</y>
+      <width>100</width>
+      <height>50</height>
+      <label>Cumulative Visibility Caculator</label>
+      <algorithm>ZgmCumulativeVisibility</algorithm>
+      <parameter />
+      <inputdata>DEM$Routes</inputdata>
+      <outputdata>Cumulative Visibility</outputdata>
+    </task>
+    <data>
+      <x>929</x>
+      <y>252</y>
+      <a>40</a>
+      <b>25</b>
+      <label>DEM</label>
+      <value />
+    </data>
+    <data>
+      <x>988</x>
+      <y>441</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Routes</label>
+      <value />
+    </data>
+    <data>
+      <x>533</x>
+      <y>278</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Slope Gradient</label>
+      <value>SlopeGradient1403676239411.asc</value>
+    </data>
+    <data>
+      <x>436</x>
+      <y>313</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Aspect</label>
+      <value />
+    </data>
+    <data>
+      <x>151</x>
+      <y>314</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Distance To Rivers</label>
+      <value />
+    </data>
+    <data>
+      <x>348</x>
+      <y>311</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Plant Type</label>
+      <value />
+    </data>
+    <data>
+      <x>234</x>
+      <y>295</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Distance To Villages/Roads</label>
+      <value />
+    </data>
+    <task>
+      <x>519</x>
+      <y>356</y>
+      <width>100</width>
+      <height>50</height>
+      <label>SlopeCal</label>
+      <algorithm>ArcgisSlope</algorithm>
+      <parameter />
+      <inputdata>FilledDEM</inputdata>
+      <outputdata>Slope Gradient</outputdata>
+    </task>
+    <data>
+      <x>629</x>
+      <y>300</y>
+      <a>40</a>
+      <b>25</b>
+      <label>FilledDEM</label>
+      <value>FilledDEM1403676247389.asc</value>
+    </data>
+    <task>
+      <x>740</x>
+      <y>269</y>
+      <width>100</width>
+      <height>50</height>
+      <label>PitRemoving</label>
+      <algorithm>Fill</algorithm>
+      <parameter />
+      <inputdata>DEM</inputdata>
+      <outputdata>FilledDEM</outputdata>
+    </task>
+  </model>
+</models>

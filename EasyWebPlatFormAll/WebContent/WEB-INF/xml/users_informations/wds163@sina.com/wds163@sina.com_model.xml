@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<models>
+  <model name="222">
+    <data>
+      <x>100</x>
+      <y>200</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Env.Layers ManageMent</label>
+      <value>undefined</value>
+    </data>
+    <data>
+      <x>256</x>
+      <y>179</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Sample Data</label>
+      <value />
+    </data>
+    <data>
+      <x>500</x>
+      <y>200</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Property Map</label>
+      <value>PropertyMap1415681007962.asc</value>
+    </data>
+    <data>
+      <x>550</x>
+      <y>200</y>
+      <a>0</a>
+      <b>0</b>
+      <label>Uncertainty Map</label>
+      <value>UncertaintyMap1415681007962.asc</value>
+    </data>
+    <task>
+      <x>311</x>
+      <y>397</y>
+      <width>100</width>
+      <height>50</height>
+      <label>Sample Based Mapping</label>
+      <algorithm>Sample Based Inference</algorithm>
+      <parameter>SoilProperty:Y$Environmental Attribute Parameter:Climate?Gower#Geology?Boolean#Terrain?Gower#Vegetation?Gower#Others?Boolean$Category Similarity Integration Method:LimitingFactor$Sample Similarity Integration Method:LimitingFactor$Uncertainty Threshold:0.3</parameter>
+      <inputdata>Env.Layers ManageMent$Sample Data</inputdata>
+      <outputdata>Property Map$Uncertainty Map</outputdata>
+    </task>
+  </model>
+  <model name="222">
+    <data>
+      <x>100</x>
+      <y>200</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Env.Layers ManageMent</label>
+      <value>undefined</value>
+    </data>
+    <data>
+      <x>256</x>
+      <y>179</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Sample Data</label>
+      <value />
+    </data>
+    <data>
+      <x>500</x>
+      <y>200</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Property Map</label>
+      <value>PropertyMap1415681007962.asc</value>
+    </data>
+    <data>
+      <x>550</x>
+      <y>200</y>
+      <a>0</a>
+      <b>0</b>
+      <label>Uncertainty Map</label>
+      <value>UncertaintyMap1415681007962.asc</value>
+    </data>
+    <task>
+      <x>311</x>
+      <y>397</y>
+      <width>100</width>
+      <height>50</height>
+      <label>Sample Based Mapping</label>
+      <algorithm>Sample Based Inference</algorithm>
+      <parameter>SoilProperty:Y$Environmental Attribute Parameter:Climate?Gower#Geology?Boolean#Terrain?Gower#Vegetation?Gower#Others?Boolean$Category Similarity Integration Method:LimitingFactor$Sample Similarity Integration Method:LimitingFactor$Uncertainty Threshold:0.3</parameter>
+      <inputdata>Env.Layers ManageMent$Sample Data</inputdata>
+      <outputdata>Property Map$Uncertainty Map</outputdata>
+    </task>
+  </model>
+</models>

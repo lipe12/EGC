@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<models>
+  <model name="bbb">
+    <data>
+      <x>100</x>
+      <y>200</y>
+      <a>40</a>
+      <b>25</b>
+      <label>StreamLine</label>
+      <value />
+    </data>
+    <data>
+      <x>150</x>
+      <y>200</y>
+      <a>40</a>
+      <b>25</b>
+      <label>FlowDirection</label>
+      <value />
+    </data>
+    <data>
+      <x>500</x>
+      <y>200</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Watershed</label>
+      <value>Watershed1428671618644.asc</value>
+    </data>
+    <task>
+      <x>300</x>
+      <y>400</y>
+      <width>100</width>
+      <height>50</height>
+      <label>extractWatershed</label>
+      <algorithm>WatershedD</algorithm>
+      <parameter />
+      <inputdata>StreamLine$FlowDirection</inputdata>
+      <outputdata>Watershed</outputdata>
+    </task>
+  </model>
+</models>

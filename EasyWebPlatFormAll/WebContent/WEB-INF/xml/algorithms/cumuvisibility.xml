@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Algorithm AlgorithmName = "Cumulative Visibility Caculator" Task = "Cumulative Visibility Caculator" author = "JJC" WsdlBasePath = "C:/Wsdl" WsdlName = "Cumuvisibility.wsdl" WsdlUrl = "http://localhost/WS_CumuVisibility/wsCumuVisibility.asmx?wsdl">
+	<Data>
+		<DataKind>InputData</DataKind>
+		<DataName>DEM</DataName>
+		<DataType>Grid</DataType>
+		<DataSematic>DEM</DataSematic>
+	</Data>
+    <Data>
+		<DataKind>InputData</DataKind>
+		<DataName>Routes</DataName>
+		<DataType>SHP</DataType>
+		<DataSematic>Routes</DataSematic>
+	</Data>
+	<Data>
+		<DataKind>OutputData</DataKind>
+		<DataName>Cumulative Visibility</DataName>
+		<DataType>Grid</DataType>
+		<DataSematic>Cumulative Visibility</DataSematic>
+	</Data>
+</Algorithm>

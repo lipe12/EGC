@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Algorithm AlgorithmName = "Sample Based Inference" Task = "Sample Based Mapping" author = "JJC" WsdlBasePath = "C:/Wsdl" WsdlName = "SampleBasedMapping.wsdl" WsdlUrl = "http://localhost/WS_SampleBasedMapping/SampleBasedMapping.asmx">
+	<Data>
+		<DataKind>InputData</DataKind>
+		<DataName>Env.Layers ManageMent</DataName>
+		<DataType>Manager</DataType>
+		<DataSematic>Env.Layers ManageMent</DataSematic>
+	</Data>
+    <Data>
+		<DataKind>InputData</DataKind>
+		<DataName>Sample Data</DataName>
+		<DataType>Table</DataType>
+		<DataSematic>Soil Sample</DataSematic>
+	</Data>
+	<Data>
+		<DataKind>Parameter</DataKind>
+		<DataName>SoilProperty</DataName>
+		<DataType>String</DataType>
+		<DataSematic>SoilProperty Field</DataSematic>
+	</Data>
+	<Data>
+		<DataKind>Parameter</DataKind>
+		<DataName>Environmental Attribute Parameter</DataName>
+		<DataType>Attribute Rule</DataType>
+		<DataSematic>Attribute Rule Array</DataSematic>
+	</Data>
+    <Data>
+		<DataKind>Parameter</DataKind>
+		<DataName>Category Similarity Integration Method</DataName>
+		<DataType>Attribute Rule</DataType>
+		<DataSematic>Attribute Rule Array</DataSematic>
+	</Data>
+	<Data>
+		<DataKind>Parameter</DataKind>
+		<DataName>Sample Similarity Integration Method</DataName>
+		<DataType>Sample Integration</DataType>
+		<DataSematic>Sample Integration</DataSematic>
+	</Data>
+    <Data>
+		<DataKind>Parameter</DataKind>
+		<DataName>Uncertainty Threshold</DataName>
+		<DataType>float</DataType>
+		<DataSematic>Uncertainty Threshold</DataSematic>
+	</Data>
+	<Data>
+		<DataKind>OutputData</DataKind>
+		<DataName>Property Map</DataName>
+		<DataType>Grid</DataType>
+		<DataSematic>Property Map</DataSematic>
+	</Data>
+	<Data>
+		<DataKind>OutputData</DataKind>
+		<DataName>Uncertainty Map</DataName>
+		<DataType>Grid</DataType>
+		<DataSematic>Uncertainty Map</DataSematic>
+	</Data>
+</Algorithm>

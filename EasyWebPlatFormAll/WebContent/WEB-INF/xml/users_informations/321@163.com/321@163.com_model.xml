@@ -1,0 +1,792 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<models>
+  <model name="Anhui">
+    <data>
+      <x>73</x>
+      <y>516</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Env.Layers ManageMent</label>
+      <value>xinjiang/landcover.asc#TWI1434036822220.asc#SlopeGradient1434036827987.asc#ProfileCurvature1434036833388.asc#PlanCurvature1434036826668.asc#Watershed1434036830595.asc</value>
+    </data>
+    <data>
+      <x>298</x>
+      <y>391</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Sample Data</label>
+      <value />
+    </data>
+    <data>
+      <x>497</x>
+      <y>517</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Property Map</label>
+      <value>PropertyMap1434035255079.asc</value>
+    </data>
+    <data>
+      <x>550</x>
+      <y>200</y>
+      <a>0</a>
+      <b>0</b>
+      <label>Uncertainty Map</label>
+      <value>UncertaintyMap1434035255079.asc</value>
+    </data>
+    <task>
+      <x>297</x>
+      <y>518</y>
+      <width>100</width>
+      <height>50</height>
+      <label>Sample Based Mapping</label>
+      <algorithm>Sample Based Inference</algorithm>
+      <parameter>SoilProperty:ORGNIC$Environmental Attribute Parameter:Geology?Boolean#Terrain?Gower#Terrain?Gower#Terrain?Gower#Terrain?Gower#Others?Gower$Category Similarity Integration Method:LimitingFactor$Sample Similarity Integration Method:LimitingFactor$Uncertainty Threshold:0.3</parameter>
+      <inputdata>Parent Material$TWI$Slope Gradient$Profile Curvature$Plan Curvature$Watershed$Env.Layers ManageMent$Sample Data</inputdata>
+      <outputdata>Property Map$Uncertainty Map</outputdata>
+    </task>
+    <data>
+      <x>63</x>
+      <y>327</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Parent Material</label>
+      <value />
+    </data>
+    <data>
+      <x>155</x>
+      <y>327</y>
+      <a>40</a>
+      <b>25</b>
+      <label>TWI</label>
+      <value>TWI1434036822220.asc</value>
+    </data>
+    <data>
+      <x>246</x>
+      <y>328</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Slope Gradient</label>
+      <value>SlopeGradient1434036827987.asc</value>
+    </data>
+    <data>
+      <x>530</x>
+      <y>332</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Profile Curvature</label>
+      <value>ProfileCurvature1434036833388.asc</value>
+    </data>
+    <data>
+      <x>340</x>
+      <y>329</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Plan Curvature</label>
+      <value>PlanCurvature1434036826668.asc</value>
+    </data>
+    <data>
+      <x>433</x>
+      <y>330</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Watershed</label>
+      <value>Watershed1434036830595.asc</value>
+    </data>
+    <task>
+      <x>182</x>
+      <y>233</y>
+      <width>100</width>
+      <height>50</height>
+      <label>TWICal</label>
+      <algorithm>QinTWI</algorithm>
+      <parameter />
+      <inputdata>SCA$Slope Gradient</inputdata>
+      <outputdata>TWI</outputdata>
+    </task>
+    <data>
+      <x>211</x>
+      <y>148</y>
+      <a>40</a>
+      <b>25</b>
+      <label>SCA</label>
+      <value>SCA1434036840220.asc</value>
+    </data>
+    <task>
+      <x>469</x>
+      <y>239</y>
+      <width>100</width>
+      <height>50</height>
+      <label>PlanCurvCal</label>
+      <algorithm>PlanCurv</algorithm>
+      <parameter />
+      <inputdata>FilledDEM</inputdata>
+      <outputdata>Plan Curvature</outputdata>
+    </task>
+    <data>
+      <x>676</x>
+      <y>167</y>
+      <a>40</a>
+      <b>25</b>
+      <label>FilledDEM</label>
+      <value>FilledDEM1434036845363.asc</value>
+    </data>
+    <task>
+      <x>328</x>
+      <y>236</y>
+      <width>100</width>
+      <height>50</height>
+      <label>SlopeCal</label>
+      <algorithm>ArcgisSlope</algorithm>
+      <parameter />
+      <inputdata>FilledDEM</inputdata>
+      <outputdata>Slope Gradient</outputdata>
+    </task>
+    <task>
+      <x>607</x>
+      <y>242</y>
+      <width>100</width>
+      <height>50</height>
+      <label>extractWatershed</label>
+      <algorithm>WatershedD</algorithm>
+      <parameter />
+      <inputdata>StreamLine$FlowDirection</inputdata>
+      <outputdata>Watershed</outputdata>
+    </task>
+    <data>
+      <x>473</x>
+      <y>156</y>
+      <a>40</a>
+      <b>25</b>
+      <label>StreamLine</label>
+      <value>StreamLine1434036867708.asc</value>
+    </data>
+    <data>
+      <x>472</x>
+      <y>83</y>
+      <a>40</a>
+      <b>25</b>
+      <label>FlowDirection</label>
+      <value>FlowDirection1434036858355.asc</value>
+    </data>
+    <task>
+      <x>680</x>
+      <y>330</y>
+      <width>100</width>
+      <height>50</height>
+      <label>ProfileCurvCal</label>
+      <algorithm>ProfileCurv</algorithm>
+      <parameter />
+      <inputdata>FilledDEM</inputdata>
+      <outputdata>Profile Curvature</outputdata>
+    </task>
+    <task>
+      <x>327</x>
+      <y>81</y>
+      <width>100</width>
+      <height>50</height>
+      <label>SCACal</label>
+      <algorithm>SFD</algorithm>
+      <parameter />
+      <inputdata>FlowDirection</inputdata>
+      <outputdata>SCA</outputdata>
+    </task>
+    <task>
+      <x>805</x>
+      <y>167</y>
+      <width>100</width>
+      <height>50</height>
+      <label>PitRemoving</label>
+      <algorithm>Fill</algorithm>
+      <parameter />
+      <inputdata>DEM</inputdata>
+      <outputdata>FilledDEM</outputdata>
+    </task>
+    <data>
+      <x>803</x>
+      <y>54</y>
+      <a>40</a>
+      <b>25</b>
+      <label>DEM</label>
+      <value />
+    </data>
+    <task>
+      <x>673</x>
+      <y>77</y>
+      <width>100</width>
+      <height>50</height>
+      <label>FlowDirectionCal</label>
+      <algorithm>D8</algorithm>
+      <parameter />
+      <inputdata>FilledDEM</inputdata>
+      <outputdata>FlowDirection</outputdata>
+    </task>
+    <task>
+      <x>328</x>
+      <y>157</y>
+      <width>100</width>
+      <height>50</height>
+      <label>extractStream</label>
+      <algorithm>StreamLE</algorithm>
+      <parameter>Threshold:500000</parameter>
+      <inputdata>SCA$FlowDirection</inputdata>
+      <outputdata>StreamLine</outputdata>
+    </task>
+  </model>
+  <model name="xinjiang">
+    <data>
+      <x>73</x>
+      <y>516</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Env.Layers ManageMent</label>
+      <value>xinjiang/landcover.asc#TWI1434036822220.asc#SlopeGradient1434036827987.asc#ProfileCurvature1434036833388.asc#PlanCurvature1434036826668.asc#Watershed1434036830595.asc</value>
+    </data>
+    <data>
+      <x>530</x>
+      <y>423</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Sample Data</label>
+      <value />
+    </data>
+    <data>
+      <x>530</x>
+      <y>516</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Property Map</label>
+      <value>PropertyMap1434035255079.asc</value>
+    </data>
+    <data>
+      <x>550</x>
+      <y>200</y>
+      <a>0</a>
+      <b>0</b>
+      <label>Uncertainty Map</label>
+      <value>UncertaintyMap1434035255079.asc</value>
+    </data>
+    <data>
+      <x>63</x>
+      <y>327</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Parent Material</label>
+      <value />
+    </data>
+    <data>
+      <x>155</x>
+      <y>327</y>
+      <a>40</a>
+      <b>25</b>
+      <label>TWI</label>
+      <value>TWI1434036822220.asc</value>
+    </data>
+    <data>
+      <x>246</x>
+      <y>328</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Slope Gradient</label>
+      <value>SlopeGradient1434036827987.asc</value>
+    </data>
+    <data>
+      <x>530</x>
+      <y>332</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Profile Curvature</label>
+      <value>ProfileCurvature1434036833388.asc</value>
+    </data>
+    <data>
+      <x>340</x>
+      <y>329</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Plan Curvature</label>
+      <value>PlanCurvature1434036826668.asc</value>
+    </data>
+    <data>
+      <x>433</x>
+      <y>330</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Watershed</label>
+      <value>Watershed1434036830595.asc</value>
+    </data>
+    <data>
+      <x>211</x>
+      <y>148</y>
+      <a>40</a>
+      <b>25</b>
+      <label>SCA</label>
+      <value>SCA1434036840220.asc</value>
+    </data>
+    <data>
+      <x>676</x>
+      <y>167</y>
+      <a>40</a>
+      <b>25</b>
+      <label>FilledDEM</label>
+      <value>FilledDEM1434036845363.asc</value>
+    </data>
+    <data>
+      <x>473</x>
+      <y>156</y>
+      <a>40</a>
+      <b>25</b>
+      <label>StreamLine</label>
+      <value>StreamLine1434036867708.asc</value>
+    </data>
+    <data>
+      <x>472</x>
+      <y>83</y>
+      <a>40</a>
+      <b>25</b>
+      <label>FlowDirection</label>
+      <value>FlowDirection1434036858355.asc</value>
+    </data>
+    <data>
+      <x>803</x>
+      <y>54</y>
+      <a>40</a>
+      <b>25</b>
+      <label>DEM</label>
+      <value />
+    </data>
+    <task>
+      <x>297</x>
+      <y>518</y>
+      <width>100</width>
+      <height>50</height>
+      <label>Sample Based Mapping</label>
+      <algorithm>Sample Based Inference</algorithm>
+      <parameter>SoilProperty:ORGNIC$Environmental Attribute Parameter:Geology?Boolean#Terrain?Gower#Terrain?Gower#Terrain?Gower#Terrain?Gower#Others?Gower$Category Similarity Integration Method:LimitingFactor$Sample Similarity Integration Method:LimitingFactor$Uncertainty Threshold:0.3</parameter>
+      <inputdata>Parent Material$TWI$Slope Gradient$Profile Curvature$Plan Curvature$Watershed$Env.Layers ManageMent$Sample Data</inputdata>
+      <outputdata>Property Map$Uncertainty Map</outputdata>
+    </task>
+    <task>
+      <x>182</x>
+      <y>233</y>
+      <width>100</width>
+      <height>50</height>
+      <label>TWICal</label>
+      <algorithm>QinTWI</algorithm>
+      <parameter />
+      <inputdata>SCA$Slope Gradient</inputdata>
+      <outputdata>TWI</outputdata>
+    </task>
+    <task>
+      <x>469</x>
+      <y>239</y>
+      <width>100</width>
+      <height>50</height>
+      <label>PlanCurvCal</label>
+      <algorithm>PlanCurv</algorithm>
+      <parameter />
+      <inputdata>FilledDEM</inputdata>
+      <outputdata>Plan Curvature</outputdata>
+    </task>
+    <task>
+      <x>328</x>
+      <y>236</y>
+      <width>100</width>
+      <height>50</height>
+      <label>SlopeCal</label>
+      <algorithm>ArcgisSlope</algorithm>
+      <parameter />
+      <inputdata>FilledDEM</inputdata>
+      <outputdata>Slope Gradient</outputdata>
+    </task>
+    <task>
+      <x>607</x>
+      <y>242</y>
+      <width>100</width>
+      <height>50</height>
+      <label>extractWatershed</label>
+      <algorithm>WatershedD</algorithm>
+      <parameter />
+      <inputdata>StreamLine$FlowDirection</inputdata>
+      <outputdata>Watershed</outputdata>
+    </task>
+    <task>
+      <x>680</x>
+      <y>330</y>
+      <width>100</width>
+      <height>50</height>
+      <label>ProfileCurvCal</label>
+      <algorithm>ProfileCurv</algorithm>
+      <parameter />
+      <inputdata>FilledDEM</inputdata>
+      <outputdata>Profile Curvature</outputdata>
+    </task>
+    <task>
+      <x>327</x>
+      <y>81</y>
+      <width>100</width>
+      <height>50</height>
+      <label>SCACal</label>
+      <algorithm>SFD</algorithm>
+      <parameter />
+      <inputdata>FlowDirection</inputdata>
+      <outputdata>SCA</outputdata>
+    </task>
+    <task>
+      <x>805</x>
+      <y>167</y>
+      <width>100</width>
+      <height>50</height>
+      <label>PitRemoving</label>
+      <algorithm>Fill</algorithm>
+      <parameter />
+      <inputdata>DEM</inputdata>
+      <outputdata>FilledDEM</outputdata>
+    </task>
+    <task>
+      <x>673</x>
+      <y>77</y>
+      <width>100</width>
+      <height>50</height>
+      <label>FlowDirectionCal</label>
+      <algorithm>D8</algorithm>
+      <parameter />
+      <inputdata>FilledDEM</inputdata>
+      <outputdata>FlowDirection</outputdata>
+    </task>
+    <task>
+      <x>328</x>
+      <y>157</y>
+      <width>100</width>
+      <height>50</height>
+      <label>extractStream</label>
+      <algorithm>StreamLE</algorithm>
+      <parameter>Threshold:500000</parameter>
+      <inputdata>SCA$FlowDirection</inputdata>
+      <outputdata>StreamLine</outputdata>
+    </task>
+  </model>
+  <model name="Raffelson">
+    <data>
+      <x>94</x>
+      <y>399</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Env.Layers ManageMent</label>
+      <value>undefined#undefined#undefined#undefined#undefined#undefined</value>
+    </data>
+    <data>
+      <x>533</x>
+      <y>323</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Sample Data</label>
+      <value />
+    </data>
+    <data>
+      <x>529</x>
+      <y>401</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Property Map</label>
+      <value>PropertyMap1434086336819.asc</value>
+    </data>
+    <data>
+      <x>550</x>
+      <y>200</y>
+      <a>0</a>
+      <b>0</b>
+      <label>Uncertainty Map</label>
+      <value>UncertaintyMap1434086336819.asc</value>
+    </data>
+    <task>
+      <x>300</x>
+      <y>400</y>
+      <width>100</width>
+      <height>50</height>
+      <label>Sample Based Mapping</label>
+      <algorithm>Sample Based Inference</algorithm>
+      <parameter>SoilProperty:$Environmental Attribute Parameter:Geology?Boolean#Terrain?Gower#Terrain?Gower#Terrain?Gower#Terrain?Gower#Others?Gower$Category Similarity Integration Method:LimitingFactor$Sample Similarity Integration Method:LimitingFactor$Uncertainty Threshold:0.3</parameter>
+      <inputdata>Parent Material$TWI$Slope Gradient$Profile Curvature$Plan Curvature$Watershed$Env.Layers ManageMent$Sample Data</inputdata>
+      <outputdata>Property Map$Uncertainty Map</outputdata>
+    </task>
+    <data>
+      <x>92</x>
+      <y>245</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Parent Material</label>
+      <value />
+    </data>
+    <data>
+      <x>184</x>
+      <y>243</y>
+      <a>40</a>
+      <b>25</b>
+      <label>TWI</label>
+      <value />
+    </data>
+    <data>
+      <x>272</x>
+      <y>242</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Slope Gradient</label>
+      <value />
+    </data>
+    <data>
+      <x>356</x>
+      <y>245</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Profile Curvature</label>
+      <value />
+    </data>
+    <data>
+      <x>445</x>
+      <y>242</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Plan Curvature</label>
+      <value />
+    </data>
+    <data>
+      <x>535</x>
+      <y>243</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Watershed</label>
+      <value />
+    </data>
+  </model>
+  <model name="Raffelson">
+    <data>
+      <x>73</x>
+      <y>516</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Env.Layers ManageMent</label>
+      <value>321@163.com/Raffelson/parentMat.asc#TWI1434036822220.asc#SlopeGradient1434036827987.asc#ProfileCurvature1434036833388.asc#PlanCurvature1434036826668.asc#Watershed1434036830595.asc</value>
+    </data>
+    <data>
+      <x>530</x>
+      <y>423</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Sample Data</label>
+      <value />
+    </data>
+    <data>
+      <x>530</x>
+      <y>516</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Property Map</label>
+      <value>PropertyMap1434035255079.asc</value>
+    </data>
+    <data>
+      <x>550</x>
+      <y>200</y>
+      <a>0</a>
+      <b>0</b>
+      <label>Uncertainty Map</label>
+      <value>UncertaintyMap1434035255079.asc</value>
+    </data>
+    <data>
+      <x>63</x>
+      <y>327</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Parent Material</label>
+      <value />
+    </data>
+    <data>
+      <x>155</x>
+      <y>327</y>
+      <a>40</a>
+      <b>25</b>
+      <label>TWI</label>
+      <value>TWI1434036822220.asc</value>
+    </data>
+    <data>
+      <x>246</x>
+      <y>328</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Slope Gradient</label>
+      <value>SlopeGradient1434036827987.asc</value>
+    </data>
+    <data>
+      <x>530</x>
+      <y>332</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Profile Curvature</label>
+      <value>ProfileCurvature1434036833388.asc</value>
+    </data>
+    <data>
+      <x>340</x>
+      <y>329</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Plan Curvature</label>
+      <value>PlanCurvature1434036826668.asc</value>
+    </data>
+    <data>
+      <x>433</x>
+      <y>330</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Watershed</label>
+      <value>Watershed1434036830595.asc</value>
+    </data>
+    <data>
+      <x>211</x>
+      <y>148</y>
+      <a>40</a>
+      <b>25</b>
+      <label>SCA</label>
+      <value>SCA1434036840220.asc</value>
+    </data>
+    <data>
+      <x>676</x>
+      <y>167</y>
+      <a>40</a>
+      <b>25</b>
+      <label>FilledDEM</label>
+      <value>FilledDEM1434036845363.asc</value>
+    </data>
+    <data>
+      <x>473</x>
+      <y>156</y>
+      <a>40</a>
+      <b>25</b>
+      <label>StreamLine</label>
+      <value>StreamLine1434036867708.asc</value>
+    </data>
+    <data>
+      <x>472</x>
+      <y>83</y>
+      <a>40</a>
+      <b>25</b>
+      <label>FlowDirection</label>
+      <value>FlowDirection1434036858355.asc</value>
+    </data>
+    <data>
+      <x>803</x>
+      <y>54</y>
+      <a>40</a>
+      <b>25</b>
+      <label>DEM</label>
+      <value />
+    </data>
+    <task>
+      <x>297</x>
+      <y>518</y>
+      <width>100</width>
+      <height>50</height>
+      <label>Sample Based Mapping</label>
+      <algorithm>Sample Based Inference</algorithm>
+      <parameter>SoilProperty:sand$Environmental Attribute Parameter:Geology?Boolean#Terrain?Gower#Terrain?Gower#Terrain?Gower#Terrain?Gower#Others?Gower$Category Similarity Integration Method:LimitingFactor$Sample Similarity Integration Method:LimitingFactor$Uncertainty Threshold:0.3</parameter>
+      <inputdata>Parent Material$TWI$Slope Gradient$Profile Curvature$Plan Curvature$Watershed$Env.Layers ManageMent$Sample Data</inputdata>
+      <outputdata>Property Map$Uncertainty Map</outputdata>
+    </task>
+    <task>
+      <x>182</x>
+      <y>233</y>
+      <width>100</width>
+      <height>50</height>
+      <label>TWICal</label>
+      <algorithm>QinTWI</algorithm>
+      <parameter />
+      <inputdata>SCA$Slope Gradient</inputdata>
+      <outputdata>TWI</outputdata>
+    </task>
+    <task>
+      <x>469</x>
+      <y>239</y>
+      <width>100</width>
+      <height>50</height>
+      <label>PlanCurvCal</label>
+      <algorithm>PlanCurv</algorithm>
+      <parameter />
+      <inputdata>FilledDEM</inputdata>
+      <outputdata>Plan Curvature</outputdata>
+    </task>
+    <task>
+      <x>328</x>
+      <y>236</y>
+      <width>100</width>
+      <height>50</height>
+      <label>SlopeCal</label>
+      <algorithm>ArcgisSlope</algorithm>
+      <parameter />
+      <inputdata>FilledDEM</inputdata>
+      <outputdata>Slope Gradient</outputdata>
+    </task>
+    <task>
+      <x>607</x>
+      <y>242</y>
+      <width>100</width>
+      <height>50</height>
+      <label>extractWatershed</label>
+      <algorithm>WatershedD</algorithm>
+      <parameter />
+      <inputdata>StreamLine$FlowDirection</inputdata>
+      <outputdata>Watershed</outputdata>
+    </task>
+    <task>
+      <x>680</x>
+      <y>330</y>
+      <width>100</width>
+      <height>50</height>
+      <label>ProfileCurvCal</label>
+      <algorithm>ProfileCurv</algorithm>
+      <parameter />
+      <inputdata>FilledDEM</inputdata>
+      <outputdata>Profile Curvature</outputdata>
+    </task>
+    <task>
+      <x>327</x>
+      <y>81</y>
+      <width>100</width>
+      <height>50</height>
+      <label>SCACal</label>
+      <algorithm>SFD</algorithm>
+      <parameter />
+      <inputdata>FlowDirection</inputdata>
+      <outputdata>SCA</outputdata>
+    </task>
+    <task>
+      <x>805</x>
+      <y>167</y>
+      <width>100</width>
+      <height>50</height>
+      <label>PitRemoving</label>
+      <algorithm>Fill</algorithm>
+      <parameter />
+      <inputdata>DEM</inputdata>
+      <outputdata>FilledDEM</outputdata>
+    </task>
+    <task>
+      <x>673</x>
+      <y>77</y>
+      <width>100</width>
+      <height>50</height>
+      <label>FlowDirectionCal</label>
+      <algorithm>D8</algorithm>
+      <parameter />
+      <inputdata>FilledDEM</inputdata>
+      <outputdata>FlowDirection</outputdata>
+    </task>
+    <task>
+      <x>328</x>
+      <y>157</y>
+      <width>100</width>
+      <height>50</height>
+      <label>extractStream</label>
+      <algorithm>StreamLE</algorithm>
+      <parameter>Threshold:500000</parameter>
+      <inputdata>SCA$FlowDirection</inputdata>
+      <outputdata>StreamLine</outputdata>
+    </task>
+  </model>
+</models>

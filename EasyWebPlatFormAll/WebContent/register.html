@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>EGC Register</title>
+<link href="css/login.css" rel="stylesheet" type="text/css" />
+<script src="js/json.js" type="text/javascript"></script>   
+<script language="javascript">
+	var Ajax = function () {
+		try {
+			req = new XMLHttpRequest(); /* e.g. Firefox */
+		} catch (e) {
+			try {
+				req = new ActiveXObject("Msxml2.XMLHTTP");
+				/* some versions IE */
+			} catch (e) {
+				try {
+					req = new ActiveXObject("Microsoft.XMLHTTP");
+					/* some versions IE */
+				} catch (E) {
+					req = false;
+				}
+			}
+		}
+		return req;
+	};
+	
+	function isEmail(str){
+		//var reg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/;
+		var reg = /^([a-zA-Z0-9]+[_|-|.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|-|.]?)*[a-zA-Z0-9]+.[a-zA-Z]{2,3}$/;     
+		return reg.test(str);
+	};
+	var isOrganize = function(str){       
+	    var reg = /^[0-9a-zA-Z_\-,\s\.]{3,}$/;   
+	    return reg.test(str);             
+	
+   }; 
+   var isValidPasswd = function(str){
+       var reg = /^[0-9a-zA-Z_]{3,}$/;
+       return reg.test(str);
+    }
+	function register(){
+		var email = document.getElementById("user_emailadress").value;
+		var password = document.getElementById("user_password").value;
+		var confirmpassword = document.getElementById("user_confirmpassword").value;
+		var organization = document.getElementById("user_organization").value;
+		if(!isEmail(email)){
+		   alert("email format is wrong!");
+		   return;
+		}else if(!isValidPasswd(password)){
+		   alert("password format is wrong, only english, number and underscore character is allowable");
+		   return;
+		}else if(!isOrganize(organization)){
+		   alert("organization format is wrong, only english, number, underscore character, comma and period is allowable");
+		   return;
+		}else if(email==""||password==""||confirmpassword==""){
+		   alert("email or password cannot be empty!");
+		   return;
+		}else if(password!=confirmpassword){
+		   alert("confirmpassword is not the same as password!");
+		   return;
+		}else{  
+           
+			var xmlUrl = "egcRegister.action?name=" + email + "&password=" + password + "&organization=" +organization;
+		    var ajax = new Ajax();   
+		    ajax.open("GET",xmlUrl,true);
+		    ajax.onreadystatechange=function(){  
+				if(ajax.readyState==4){
+					if(ajax.status==200){                
+						var tag=ajax.responseText.pJSON().tag;
+						if(tag == "0"){  
+							window.location.href = "easyGeoComputing.html"; 
+						}else{
+						    alert("The account has exited,please try another one!"); 
+						}          
+					}
+				 }    
+			};
+			ajax.send(null);
+			
+		}
+    };
+	
+</script>
+</head>
+<body>
+	<div id="top"></div>
+	<div class="registerborder">
+		<div class="register">		
+			<div class="register_title">
+				<span class="text yellowtext">SIGN UP INTO EGC</span><br>
+				<span class="text yellowsmalltext">Please fill out this form to have an account</span><br>
+			</div>			
+			<span class="text">Your email adress:<span class="redtext">*</span></span><br>
+			<input id="user_emailadress"></input><br>
+			<span class="text">Organization:</span><br>
+			<input id="user_organization"></input><br>
+			<span class="text">Password:<span class="redtext">*</span></span><br>
+			<input type="password" id="user_password"></input><br>
+			<span class="text">Confirm password:<span class="redtext">*</span></span><br>
+			<input type="password" id="user_confirmpassword"></input><br>
+			
+			<button onclick="register();">Sign up</button><br>
+			
+		</div>
+	</div>
+</body>
+</html>

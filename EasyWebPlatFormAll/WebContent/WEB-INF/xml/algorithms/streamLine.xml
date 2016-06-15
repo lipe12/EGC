@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Algorithm AlgorithmName = "StreamLE" Task = "StreamLE" author = "JJC" WsdlBasePath = "C:/Wsdl" WsdlName = "streamLineImpl.wsdl" WsdlUrl = "http://localhost/WS_StreamLE/WebService.asmx?WSDL">
+	<Data>
+		<DataKind>InputData</DataKind>
+		<DataName>SCA</DataName>
+		<DataType>Grid</DataType>
+		<DataSematic>SCA</DataSematic>
+	</Data>
+	<Data>
+		<DataKind>InputData</DataKind>
+		<DataName>FlowDirection</DataName>
+		<DataType>Grid</DataType>
+		<DataSematic>FlowDirection</DataSematic>
+	</Data>
+	<Data>
+		<DataKind>Parameter</DataKind>
+		<DataName>Threshold</DataName>
+		<DataType>String</DataType>
+		<DataSematic>Threshold</DataSematic>
+	</Data>
+	<Data>
+		<DataKind>OutputData</DataKind>
+		<DataName>StreamLine</DataName>
+		<DataType>Grid</DataType>
+		<DataSematic>StreamLine</DataSematic>
+	</Data>
+</Algorithm>

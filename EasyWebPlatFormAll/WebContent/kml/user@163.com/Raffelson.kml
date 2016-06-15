@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+	<name>usa.KMZ</name>
+	<open>1</open>
+	<Style id="area14">
+		<LineStyle>
+			<color>ff000000</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>bf000000</color>
+			<fill>0</fill>
+		</PolyStyle>
+	</Style>
+	<Folder>
+		<name>Area Features</name>
+		<description>Area Features</description>
+		<Placemark>
+			<description>Unknown Area Type</description>
+			<styleUrl>#area14</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-90.94861953489999,43.9833119226,0 -90.94812960689998,43.9975283566,0 -90.97555146959999,43.9980176991,0 -90.976034861,43.9838010237,0 -90.94861953489999,43.9833119226,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+	</Folder>
+</Document>
+</kml>

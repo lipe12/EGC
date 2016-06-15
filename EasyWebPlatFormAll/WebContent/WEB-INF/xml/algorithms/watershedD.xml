@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Algorithm AlgorithmName = "WatershedD" Task = "WatershedD" author = "JJC" WsdlBasePath = "C:/Wsdl" WsdlName = "waterShedDImpl.wsdl" WsdlUrl = "http://localhost/WS_WaterShedD/WebService.asmx?WSDL">
+	<Data>
+		<DataKind>InputData</DataKind>
+		<DataName>FlowDirection</DataName>
+		<DataType>Grid</DataType>
+		<DataSematic>FlowDirection</DataSematic>
+	</Data>
+	<Data>
+		<DataKind>InputData</DataKind>
+		<DataName>StreamLine</DataName>
+		<DataType>Grid</DataType>
+		<DataSematic>StreamLine</DataSematic>
+	</Data>
+	<Data>
+		<DataKind>OutputData</DataKind>
+		<DataName>Watershed</DataName>
+		<DataType>Grid</DataType>  
+		<DataSematic>Watershed</DataSematic>
+	</Data>
+</Algorithm>

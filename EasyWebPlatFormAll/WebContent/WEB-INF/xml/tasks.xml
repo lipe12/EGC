@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Tasks>
+<Task TaskName = "extractStream" id = "extractStream">
+	<Algorithms>
+		<Algorithm id = "StreamLE"> 
+			<AlgorithmName>StreamLE</AlgorithmName>
+			<Inputs id = "In_StreamLE">
+				<Input>
+					<DataSematic>SCA</DataSematic>
+				</Input>
+				<Input>
+					<DataSematic>FlowDirection</DataSematic>
+				</Input>
+			</Inputs>
+			<Parameters id = "Para_StreamLE">
+				<Parameter>
+					<ParaSematic>Threshold</ParaSematic>
+					<DefaultValue>500000</DefaultValue>
+				</Parameter>
+			</Parameters>
+			<FilePath>streamLine.xml</FilePath>
+		</Algorithm>
+	</Algorithms>
+	<Outputs id ="Out_extractStream">
+		<Output id ="StreamLine">
+			<DataSematic>StreamLine</DataSematic>
+		</Output>
+	</Outputs>
+</Task>
+<Task TaskName = "extractWatershed" id = "extractWatershed">
+	<Algorithms>
+		<Algorithm id = "WatershedD"> 
+			<AlgorithmName>WatershedD</AlgorithmName>
+			<Inputs id = "In_WatershedD">
+				<Input>
+					<DataSematic>StreamLine</DataSematic>
+				</Input>
+				<Input>
+					<DataSematic>FlowDirection</DataSematic>
+				</Input>
+			</Inputs>
+			<Parameters id = "Para_WatershedD"></Parameters>
+			<FilePath>watershedD.xml</FilePath>
+		</Algorithm>
+	</Algorithms>
+	<Outputs id ="Out_extractWatershed">
+		<Output id ="Watershed">
+			<DataSematic>Watershed</DataSematic>
+		</Output>
+	</Outputs>
+</Task>
+<Task TaskName = "FlowDirectionCal" id = "FlowDirectionCal">
+	<Algorithms>
+		<Algorithm id = "D8"> 
+			<AlgorithmName>D8</AlgorithmName>
+			<Inputs id = "In_D8">
+				<Input>
+					<DataSematic>FilledDEM</DataSematic>
+				</Input>
+			</Inputs>
+			<Parameters id = "Para_D8"></Parameters>
+			<FilePath>D8.xml</FilePath>
+		</Algorithm>
+	</Algorithms>
+	<Outputs id ="Out_FlowDirectionCal">
+		<Output id ="FlowDirection">
+			<DataSematic>FlowDirection</DataSematic>
+		</Output>
+	</Outputs>
+</Task>
+<Task TaskName = "PitRemoving" id = "PitRemoving">
+	<Algorithms>
+		<Algorithm id = "Fill"> 
+			<AlgorithmName>Fill</AlgorithmName>
+			<Inputs id = "In_Fill">
+				<Input>
+					<DataSematic>DEM</DataSematic>
+				</Input>
+			</Inputs>
+			<Parameters id = "Para_Fill"></Parameters>
+			<FilePath>fillDEM.xml</FilePath>
+		</Algorithm>
+	</Algorithms>
+	<Outputs id ="Out_PitRemoving">
+		<Output id ="FilledDEM">
+			<DataSematic>FilledDEM</DataSematic>
+		</Output>
+	</Outputs>
+</Task>
+<Task TaskName = "SCACal" id = "SCACal">
+	<Algorithms>
+		<Algorithm id = "SFD"> 
+			<AlgorithmName>SFD</AlgorithmName>
+			<Inputs id = "In_SFD">
+				<Input>
+					<DataSematic>FlowDirection</DataSematic>
+				</Input>
+			</Inputs>
+			<Parameters id = "Para_SFD"></Parameters>
+			<FilePath>flowAC.xml</FilePath>
+		</Algorithm>
+		<Algorithm id = "MFD"> 
+			<AlgorithmName>MFD</AlgorithmName>
+			<Inputs id = "In_MFD">
+				<Input>
+					<DataSematic>FilledDEM</DataSematic>
+				</Input>
+			</Inputs>
+			<Parameters id = "Para_MFD"></Parameters>
+			<FilePath>flowACMFD.xml</FilePath>
+		</Algorithm>
+	</Algorithms>
+	<Outputs id ="Out_SCACal">
+		<Output id ="SCA">
+			<DataSematic>SCA</DataSematic>
+		</Output>
+	</Outputs>
+</Task>
+<Task TaskName = "Sample Based Mapping" id = "Sample Based Mapping">
+	<Algorithms>
+		<Algorithm id = "Sample Based Inference"> 
+			<AlgorithmName>Sample Based Inference</AlgorithmName>
+			<Inputs id = "In_Sample Based Inference">
+				<Input>
+					<DataSematic>Env.Layers ManageMent</DataSematic>
+				</Input>
+				<Input>
+					<DataSematic>Sample Data</DataSematic>
+				</Input>
+			</Inputs>
+			<Parameters id = "Para_Sample Based Inference">
+				<Parameter>
+					<ParaSematic>SoilProperty</ParaSematic>
+					<DefaultValue></DefaultValue>
+				</Parameter>
+				<Parameter>
+					<ParaSematic>Environmental Attribute Parameter</ParaSematic>
+					<DefaultValue></DefaultValue>
+				</Parameter>
+				<Parameter>
+					<ParaSematic>Category Similarity Integration Method</ParaSematic>
+					<DefaultValue>LimitingFactor</DefaultValue>
+				</Parameter>
+				<Parameter>
+					<ParaSematic>Sample Similarity Integration Method</ParaSematic>
+					<DefaultValue>LimitingFactor</DefaultValue>
+				</Parameter>
+				<Parameter>
+					<ParaSematic>Uncertainty Threshold</ParaSematic>
+					<DefaultValue>0.3</DefaultValue>
+				</Parameter>				
+			</Parameters>
+			<FilePath>sampleBaseMapping.xml</FilePath>
+		</Algorithm>
+	</Algorithms>
+	<Outputs id ="Out_Sample Based Mapping">
+		<Output id ="Property Map">
+			<DataSematic>Property Map</DataSematic>
+		</Output>
+		<Output id ="Uncertainty Map">
+			<DataSematic>Uncertainty Map</DataSematic>
+		</Output>
+	</Outputs>
+</Task>
+<Task TaskName = "Habitat Mapping" id ="Habitat Mapping">
+	<Algorithms>
+		<Algorithm id = "Monkey Habitat Mapping"> 
+			<AlgorithmName>Monkey Habitat Mapping</AlgorithmName>
+			<Inputs id = "In_Monkey Habitat Mapping">
+				<Input>
+					<DataSematic>Presence Sites</DataSematic>
+				</Input>
+				<Input>
+					<DataSematic>Cumulative Visibility</DataSematic>
+				</Input>
+				<Input>
+					<DataSematic>HM Env.Layers ManageMent</DataSematic>
+				</Input>
+			</Inputs>
+			<Parameters id = "Para_Monkey Habitat Mapping">
+				<Parameter>
+					<ParaSematic>Environment Variable Measurement Level</ParaSematic>
+					<DefaultValue></DefaultValue>
+				</Parameter>			
+			</Parameters>
+			<FilePath>habitatMapping.xml</FilePath>
+		</Algorithm>
+	</Algorithms>
+	<Outputs id ="Out_Habitat Mapping">
+		<Output id ="Habitat Suitability Map">
+			<DataSematic>Habitat Suitability Map</DataSematic>
+		</Output>
+	</Outputs>
+</Task>
+<Task TaskName = "Cumulative Visibility Caculator" id = "Cumulative Visibility Caculator">
+	<Algorithms>
+		<Algorithm id = "ZgmCumulativeVisibility"> 
+			<AlgorithmName>ZgmCumulativeVisibility</AlgorithmName>
+			<Inputs id = "In_ZgmCumulativeVisibility">
+				<Input>
+					<DataSematic>DEM</DataSematic>
+				</Input>
+				<Input>
+					<DataSematic>Routes</DataSematic>
+				</Input>
+			</Inputs>
+			<Parameters id = "Para_ZgmCumulativeVisibility"></Parameters>
+			<FilePath>cumuvisibility.xml</FilePath>
+		</Algorithm>
+	</Algorithms>
+	<Outputs id ="Out_Cumulative Visibility Caculator">
+		<Output id ="Cumulative Visibility">
+			<DataSematic>Cumulative Visibility</DataSematic>
+		</Output>
+	</Outputs>
+</Task>
+<Task TaskName = "Frequency Sampler" id = "Frequency Sampler">
+	<Algorithms>
+		<Algorithm id = "ZgmFrequencySampler"> 
+			<AlgorithmName>ZgmFrequencySampler</AlgorithmName>
+			<Inputs id = "In_ZgmFrequencySampler">
+				<Input>
+					<DataSematic>Presence Polygons</DataSematic>
+				</Input>
+				<Input>
+					<!--<DataSematic>FS Env.Layers ManageMent</DataSematic>-->
+					<DataSematic>HM Env.Layers ManageMent</DataSematic>
+				</Input>
+			</Inputs>
+			<Parameters id = "Para_ZgmFrequencySampler">
+				<Parameter>
+					<ParaSematic>Environment Variable Measurement Level</ParaSematic>
+					<DefaultValue></DefaultValue>
+				</Parameter>	
+			</Parameters>
+			<FilePath>frequencySampler.xml</FilePath>
+		</Algorithm>
+	</Algorithms>
+	<Outputs id ="Out_Frequency Sampler">
+		<Output id ="Presence Sites">
+			<DataSematic>Presence Sites</DataSematic>
+		</Output>
+	</Outputs>
+</Task>
+<Task TaskName = "SlopeCal" id= "SlopeCal">
+	<Algorithms>
+		<Algorithm id = "ArcgisSlope"> 
+			<AlgorithmName>ArcgisSlope</AlgorithmName>
+			<Inputs id = "In_ArcgisSlope">
+				<Input>
+					<DataSematic>FilledDEM</DataSematic>
+				</Input>
+			</Inputs>
+			<Parameters id = "Para_ArcgisSlope"></Parameters>
+			<FilePath>arcgisSlope.xml</FilePath>
+		</Algorithm>
+	</Algorithms>
+	<Outputs id ="Out_SlopeCal">
+		<Output id ="Slope Gradient">
+			<DataSematic>Slope Gradient</DataSematic>
+		</Output>
+	</Outputs>
+</Task>
+<Task TaskName = "TWICal" id = "TWICal">
+	<Algorithms>
+		<Algorithm id = "QinTWI"> 
+			<AlgorithmName>QinTWI</AlgorithmName>
+			<Inputs id = "In_QinTWI">
+				<Input>
+					<DataSematic>SCA</DataSematic>
+				</Input>
+				<Input>
+					<DataSematic>Slope Gradient</DataSematic>
+				</Input>
+			</Inputs>
+			<Parameters id = "Para_QinTWI"></Parameters>
+			<FilePath>twi.xml</FilePath>
+		</Algorithm>
+	</Algorithms>
+	<Outputs id ="Out_TWICal">
+		<Output id ="TWI">
+			<DataSematic>TWI</DataSematic>
+		</Output>
+	</Outputs>
+</Task>
+<Task TaskName = "PlanCurvCal" id = "PlanCurvCal">
+	<Algorithms>
+		<Algorithm id = "PlanCurv"> 
+			<AlgorithmName>PlanCurv</AlgorithmName>
+			<Inputs id = "In_PlanCurv">
+				<Input>
+					<DataSematic>FilledDEM</DataSematic>
+				</Input>
+			</Inputs>
+			<Parameters id = "Para_PlanCurv"></Parameters>
+			<FilePath>planCurv.xml</FilePath>
+		</Algorithm>
+	</Algorithms>
+	<Outputs id ="Out_PlanCurvCal">
+		<Output id ="Plan Curvature">
+			<DataSematic>Plan Curvature</DataSematic>
+		</Output>
+	</Outputs>
+</Task>
+<Task TaskName = "ProfileCurvCal" id = "ProfileCurvCal">
+	<Algorithms>
+		<Algorithm id = "ProfileCurv"> 
+			<AlgorithmName>ProfileCurv</AlgorithmName>
+			<Inputs id = "In_ProfileCurv">
+				<Input>
+					<DataSematic>FilledDEM</DataSematic>
+				</Input>
+			</Inputs>
+			<Parameters id = "Para_ProfileCurv"></Parameters>
+			<FilePath>profileCurv.xml</FilePath>
+		</Algorithm>
+	</Algorithms>
+	<Outputs id ="Out_ProfileCurvCal">
+		<Output id ="Profile Curvature">
+			<DataSematic>Profile Curvature</DataSematic>
+		</Output>
+	</Outputs>
+</Task>
+</Tasks>

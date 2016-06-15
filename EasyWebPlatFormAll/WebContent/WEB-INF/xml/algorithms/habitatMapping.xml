@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Algorithm AlgorithmName = "Habitat Mapping" Task = "Habitat Mapping" author = "JJC" WsdlBasePath = "C:/Wsdl" WsdlName = "HabitatMapping.wsdl" WsdlUrl = "http://localhost/WS_HabitatSuitabilityInference/wsHabitatSuitabilityInference.asmx?wsdl">
+	<Data>
+		<DataKind>InputData</DataKind>
+		<DataName>HM Env.Layers ManageMent</DataName>
+		<DataType>Manager</DataType>
+		<DataSematic>HM Env.Layers ManageMent</DataSematic>
+	</Data>
+    <Data>
+		<DataKind>InputData</DataKind>
+		<DataName>Cumulative Visibility</DataName>
+		<DataType>Grid</DataType>
+		<DataSematic>Cumulative Visibility</DataSematic>
+	</Data>
+	<Data>
+		<DataKind>InputData</DataKind>
+		<DataName>Presence Sites</DataName>
+		<DataType>SHP</DataType>
+		<DataSematic>Presence Sites</DataSematic>
+	</Data>
+    <Data>
+		<DataKind>Parameter</DataKind>
+		<DataName>Environment Variable Measurement Level</DataName>
+		<DataType>Attribute Rule</DataType>
+		<DataSematic>Attribute Rule Array</DataSematic>
+	</Data>
+	<Data>
+		<DataKind>OutputData</DataKind>
+		<DataName>Habitat Suitability Map</DataName>
+		<DataType>Grid</DataType>
+		<DataSematic>Habitat Suitability Map</DataSematic>
+	</Data>
+</Algorithm>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSets>
+  <dataSet>
+    <datasetname>EthiopiaWshd</datasetname>
+    <north>1410445.625000</north>
+    <south>853411.000000</south>
+    <west>1938.089966</west>
+    <east>588839.625000</east>
+    <kmlpath>kml\jliu93@wisc.edu\EthiopiaWshd.kml</kmlpath>
+  </dataSet>
+  <dataSet>
+    <datasetname>Ethiopia</datasetname>
+    <north>410445.625000</north>
+    <south>853411.000000</south>
+    <west>1938.089966</west>
+    <east>588839.625000</east>
+    <kmlpath>kml\jliu93@wisc.edu\Ethiopia.kml</kmlpath>
+  </dataSet>
+  <dataSet>
+    <datasetname>EthiopiaData</datasetname>
+    <north>1410445.625000</north>
+    <south>853411.000000</south>
+    <west>1938.089966</west>
+    <east>588839.625000</east>
+    <kmlpath>kml\jliu93@wisc.edu\EthiopiaData.kml</kmlpath>
+  </dataSet>
+</dataSets>

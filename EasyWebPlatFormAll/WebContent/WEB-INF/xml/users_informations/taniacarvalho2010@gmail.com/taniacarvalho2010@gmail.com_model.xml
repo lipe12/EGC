@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<models>
+  <model name="exemplo">
+    <data>
+      <x>228</x>
+      <y>510</y>
+      <a>40</a>
+      <b>25</b>
+      <label>SCA</label>
+      <value>SCA1426087362573.asc</value>
+    </data>
+    <data>
+      <x>392</x>
+      <y>405</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Slope Gradient</label>
+      <value>SlopeGradient1426087333645.asc</value>
+    </data>
+    <data>
+      <x>545</x>
+      <y>512</y>
+      <a>40</a>
+      <b>25</b>
+      <label>TWI</label>
+      <value>TWI1426087329359.asc</value>
+    </data>
+    <task>
+      <x>400</x>
+      <y>696</y>
+      <width>100</width>
+      <height>50</height>
+      <label>TWICal</label>
+      <algorithm>QinTWI</algorithm>
+      <parameter />
+      <inputdata>SCA$Slope Gradient</inputdata>
+      <outputdata>TWI</outputdata>
+    </task>
+    <task>
+      <x>373</x>
+      <y>286</y>
+      <width>100</width>
+      <height>50</height>
+      <label>SlopeCal</label>
+      <algorithm>ArcgisSlope</algorithm>
+      <parameter />
+      <inputdata>FilledDEM</inputdata>
+      <outputdata>Slope Gradient</outputdata>
+    </task>
+    <data>
+      <x>397</x>
+      <y>158</y>
+      <a>40</a>
+      <b>25</b>
+      <label>FilledDEM</label>
+      <value>FilledDEM1426087340262.asc</value>
+    </data>
+    <task>
+      <x>566</x>
+      <y>118</y>
+      <width>100</width>
+      <height>50</height>
+      <label>PitRemoving</label>
+      <algorithm>Fill</algorithm>
+      <parameter />
+      <inputdata>DEM</inputdata>
+      <outputdata>FilledDEM</outputdata>
+    </task>
+    <data>
+      <x>791</x>
+      <y>57</y>
+      <a>40</a>
+      <b>25</b>
+      <label>DEM</label>
+      <value />
+    </data>
+    <task>
+      <x>141</x>
+      <y>370</y>
+      <width>100</width>
+      <height>50</height>
+      <label>SCACal</label>
+      <algorithm>SFD</algorithm>
+      <parameter />
+      <inputdata>FlowDirection</inputdata>
+      <outputdata>SCA</outputdata>
+    </task>
+    <data>
+      <x>171</x>
+      <y>259</y>
+      <a>40</a>
+      <b>25</b>
+      <label>FlowDirection</label>
+      <value>FlowDirection1426087453914.asc</value>
+    </data>
+    <task>
+      <x>232</x>
+      <y>164</y>
+      <width>100</width>
+      <height>50</height>
+      <label>FlowDirectionCal</label>
+      <algorithm>D8</algorithm>
+      <parameter />
+      <inputdata>FilledDEM</inputdata>
+      <outputdata>FlowDirection</outputdata>
+    </task>
+  </model>
+</models>

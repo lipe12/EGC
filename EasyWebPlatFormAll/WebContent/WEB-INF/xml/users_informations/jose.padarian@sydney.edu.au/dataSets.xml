@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSets>
+  <dataSet>
+    <datasetname>chile</datasetname>
+    <north>55440.306411</north>
+    <south>53440.306411</south>
+    <west>52940.306411</west>
+    <east>55940.306411</east>
+    <kmlpath>kml\jose.padarian@sydney.edu.au\chile.kml</kmlpath>
+  </dataSet>
+</dataSets>

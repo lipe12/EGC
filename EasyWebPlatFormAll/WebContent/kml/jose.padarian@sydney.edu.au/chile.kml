@@ -1,0 +1,2624 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>group</name>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.3</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.5184472,-32.87724157</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.6</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.54572707,-33.67054979</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.58585625,-33.68266657</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.6</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.58779766,-33.67091816</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.7</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.61226095,-33.71028055</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.3</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.62418545,-33.2519972</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.62770531,-32.71442423</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.6</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.62987959,-32.74596333</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.64188958,-32.76068819</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.79</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.64955261,-33.91061368</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.1</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.65961121,-32.82403935</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.6</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.66198203,-33.88231155</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.3</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.66886003,-33.3433934</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.1</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.67849558,-33.28554593</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.68</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.68065721,-33.34224226</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.68468789,-32.79439244</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.69311528,-33.26415435</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.8</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.69592971,-33.07607955</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.6</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.69909008,-33.84528403</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.5</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.70246162,-33.63332002</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">5</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.70765088,-33.8681606</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.7153884,-33.25032141</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">0.4</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.72283602,-33.30162299</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.4</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.73037837,-33.30287091</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.1</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.73229851,-32.6336544</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.73389066,-32.77117333</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">0.9</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.750985,-33.36661148</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.9</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.75530799,-33.5279736</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.6</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.76568204,-33.2960614</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.6</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.76929514,-33.20898356</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">3.37</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.77322357,-32.73589977</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.9</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.77647596,-33.45733165</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">3.9</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.77986087,-33.25392429</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">4.6</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.78857168,-33.3651737</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.6</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.78882409,-33.06125344</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.8</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.80325473,-33.24321622</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">11.71</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.81131858,-32.77278318</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">3.4</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.81170396,-33.34048941</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.81591076,-33.12849988</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">4.2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.82669265,-32.79375403</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.7</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.82906763,-33.50255784</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">3.8</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.83283843,-32.78103795</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.6</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.83491779,-33.32030879</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.9</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.84380715,-33.12989371</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.1</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.84429696,-33.71244375</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">20.7</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.84586953,-32.79166903</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.8</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.85175606,-34.20737608</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.7</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.85293121,-33.86290537</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.4</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.88174441,-33.3998676</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">5.3</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.88719449,-33.45298994</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.84</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.89803819,-32.78457602</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">5.6</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.91875875,-33.64007142</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.9</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.92284889,-32.84597444</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">0.7</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.9230988,-33.22699161</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.4</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.9284436,-32.70925699</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">0.6</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.93646377,-32.73483644</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">4</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.9416795,-32.77849578</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.9</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.95026328,-34.80407975</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.9</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.96005811,-33.48792956</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.6</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.96355239,-32.8507532</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">0.9</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.96730854,-33.52298309</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.46</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.97264004,-33.8511282</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.59</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.9733392,-34.83210751</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.46</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.97937259,-34.60390579</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">5.5</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.98214183,-34.9482672</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.4</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.98322147,-34.62818668</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.9832463,-33.51371133</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.99317569,-32.86155758</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.3</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.99796741,-32.42949115</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.4</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.99818622,-32.43940841</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.52</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.00604143,-34.78288719</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">3.3</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.01382757,-33.57904479</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.3</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.02310351,-33.44543559</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">4.4</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.02329895,-33.47699361</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.52</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.02715387,-34.8195019</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.3</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.04289945,-34.61548065</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.5</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.06406561,-33.47181247</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">0.7</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.07760468,-32.30825322</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.8</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.0847795,-33.46064485</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.9</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.09667481,-33.68587371</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.3</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.09881061,-32.87786552</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.3</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.10547249,-34.02295261</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.1</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.10559971,-33.8083523</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.6</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.11434357,-32.87940741</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">3.1</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.12582507,-34.83043902</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">5.6</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.12980012,-35.27932757</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.12994545,-35.03231146</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.9</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.13332794,-34.61212905</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.13336254,-34.61348082</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">4.4</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.13643624,-34.60576359</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">3.6</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.13730264,-35.27198326</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.13985417,-34.65393791</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">3.8</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.14698895,-32.79272927</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">3.3</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.15036368,-33.56772977</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">4</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.15512647,-34.98949507</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.4</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.16514719,-34.99562737</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">0.7</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.17996642,-33.00588187</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.8</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.18519553,-34.8429097</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.18602642,-33.48685321</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">3.2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.19100995,-34.93836732</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">4.2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.2004745,-33.69578993</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">3.3</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.20238443,-32.76606591</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.8</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.20294362,-33.72910793</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.9</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.20500329,-32.45985477</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">3</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.21120379,-35.11920459</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.8</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.21182309,-32.80242202</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">3.3</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.21440696,-32.99219983</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.21522756,-34.01696634</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.8</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.21646564,-35.02985973</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.8</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.22155265,-35.01534254</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.22370747,-33.04298375</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">5.2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.22874515,-35.4794716</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">3.9</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.23056468,-32.89001265</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">3.7</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.23166583,-32.72045811</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">4.5</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.23269888,-32.91116612</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.65</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.24224101,-35.56846404</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">3.4</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.24477416,-34.9427944</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">3.3</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.2457258,-35.25739778</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.9</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.24648326,-34.96530057</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.25252904,-34.86602193</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.6</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.25493807,-32.47880994</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">0.9</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.25575948,-32.51171138</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.6</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.25735218,-33.86968437</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.3</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.25856347,-33.73080771</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.5</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.26091926,-32.52649856</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.72</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.27404243,-33.02268851</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.9</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.28091141,-34.06400168</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.7</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.28150407,-32.91749856</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">0.5</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.28209091,-34.06758623</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.1</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.28337488,-33.50583568</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">0.6</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.28418112,-33.84214061</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.8</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.28972974,-33.62428843</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.1</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.29395044,-35.05726667</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.5</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.2957569,-34.84718284</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.7</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.30590701,-32.97205701</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">3.7</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.30810667,-34.85866862</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.32075842,-33.81621144</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.32113986,-35.04953733</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.9</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.33223911,-34.97720556</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.8</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.33304572,-32.43409951</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.5</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.3342922,-35.39454349</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.6</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.33582816,-33.97280905</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.4</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.3423008,-33.7544929</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">3.2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.34349796,-34.44644428</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">0.6</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.34579408,-32.454153</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">3.5</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.34720801,-35.38437731</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">0.8</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.35254926,-32.4071336</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.1</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.35446689,-33.90302953</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.4</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.3586925,-33.68295123</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.5</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.37219762,-33.70343024</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">0.6</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.37232477,-34.9620049</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.38374628,-33.90607256</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">8</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.38412285,-33.91958939</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.38677627,-33.35150429</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">3.9</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.38717801,-33.28747738</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.8</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.3978328,-33.98423826</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.76</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.40642189,-35.4508182</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">0.9</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.42044289,-32.75843437</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.5</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.42270906,-35.03673292</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.5</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.42724472,-34.66973858</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.9</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.43937063,-32.80676048</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.4</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.44208789,-35.71871591</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">6.2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.44281832,-35.63397146</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.9</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.44488491,-35.04530242</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.44809866,-35.55364067</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.8</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.44879746,-35.79339302</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.7</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.45108164,-35.28856596</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.6</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.45455539,-35.03879687</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.47223803,-35.2250355</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.5</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.47326128,-32.81601415</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.6</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.4760202,-35.05999523</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.3</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.47996316,-32.90334719</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.6</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.48577167,-35.0561899</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">0.7</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.48915555,-35.31122477</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.1</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.49041841,-32.79944304</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">3</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.50087838,-35.61925878</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.9</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.509867,-35.0196358</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.5</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.51014252,-35.02864453</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">0.5</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.51518831,-33.96341186</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">0.88</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.5539907,-33.81340296</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.47</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.55958701,-37.32140125</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.56153731,-35.37461255</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">6</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.5666817,-36.0523163</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.1</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.59186588,-35.39379577</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">0.31</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.59686243,-33.65923977</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.5</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.60083382,-34.95101374</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.1</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.60175703,-34.94558538</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.60637995,-36.51290952</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.5</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.60708299,-34.7156033</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.7</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.60830796,-35.18612244</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">0.5</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.60894943,-34.96526242</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">0.83</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.6125768,-33.33974337</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">0.6</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.61991323,-35.13719617</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.1</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.62135157,-35.79245669</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.62194255,-35.9447662</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.62510988,-35.16232284</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">0.67</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.63687962,-34.08482351</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.5</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.64104907,-35.18000406</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.9</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.65078233,-35.81254132</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">0.7</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.65094453,-35.91708968</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.47</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.65340484,-34.16289913</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">3.6</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.69725818,-36.45816615</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.69742679,-35.45638053</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.5</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.70210921,-35.03443451</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.9</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.70759775,-34.39880403</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.71681593,-36.33109908</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.73620381,-35.39782139</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">0.9</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.73751278,-35.24095633</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.1</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.74230593,-35.80327649</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.6</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.74254054,-35.61670072</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.19</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.76060392,-34.15782877</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">0.6</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.76476461,-36.00374688</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.76752922,-34.63273706</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.1</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.76862116,-35.89190006</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">5</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.77222129,-36.52989584</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.6</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.77402496,-35.28068511</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">9.2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.77681367,-36.43966806</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.9</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.77894425,-35.45633277</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">6.13</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.77941331,-38.46436865</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">0.6</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.77966283,-35.34905764</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">0.9</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.7996049,-35.3531037</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.4</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.80143005,-35.34224538</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">3.6</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.80375802,-36.64541168</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.33</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.80407297,-34.06218812</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">0.82</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.80651469,-34.23431258</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.1</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.81517439,-35.61051774</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.4</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.81751048,-35.33015406</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.7</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.81943449,-36.63062249</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">0.8</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.84073799,-35.55313561</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.84323544,-35.71711149</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">8.26</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.85117182,-38.43876729</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">5.43</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.85647305,-38.87604473</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.3</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.86694072,-35.73096904</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">0.82</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.8713952,-34.32295266</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.17</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.87565005,-33.96858392</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.92</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.87630018,-36.32466101</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">5.1</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.87978642,-36.59988981</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.1</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.88727377,-35.71245706</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">6.18</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.89316034,-37.28127078</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">6.39</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.90416387,-37.12727377</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.93765968,-34.84868784</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.95247976,-35.0790706</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">0.87</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.95958369,-36.40643588</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">0.84</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.95983454,-34.45875907</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">7.7</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.96073617,-36.81643139</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.7</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.97341155,-36.5349586</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">5.75</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.97399254,-37.09995004</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.25</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.97753062,-37.33324107</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.9803249,-35.0910073</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">9.28</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.98481967,-39.36515528</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">0.7</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.98946467,-34.98082139</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.5</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.01242811,-35.09922634</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.1</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.02059924,-36.61397335</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">8.68</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.02154199,-38.99080318</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">5</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.02634517,-39.30552758</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.5</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.03045417,-35.08255331</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.3</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.04412561,-35.06688852</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.85</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.04916073,-36.55804877</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">3.29</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.06041617,-38.92852991</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.3</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.06239691,-36.02847454</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.93</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.07595632,-36.43975464</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.6</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.0824277,-36.05690197</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">0.89</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.09335099,-36.06167367</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">8.61</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.09944453,-38.57044448</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">4.38</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.10023834,-39.84519458</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.84</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.10811369,-36.78874977</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">10.48</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.10962575,-38.65988955</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">5.17</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.13497517,-38.4704133</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.84</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.14505191,-36.88011837</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.25</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.16123876,-36.33367008</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.98</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.16487152,-36.54013138</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.3</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.18480702,-36.11162418</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.99</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.18587092,-36.51539569</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.83</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.19389102,-37.1081003</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.56</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.19542934,-36.79084226</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.45</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.20948797,-36.76467872</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.22</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.22492449,-36.48476909</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">13.03</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.24372663,-39.30818661</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.47</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.24698757,-36.49203966</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">0.64</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.24723583,-35.96166329</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">5.05</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.25017984,-38.52993793</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">9.3</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.25451408,-38.65707607</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">3.34</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.26208782,-38.63923448</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">13.62</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.27176693,-39.61514199</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">8.27</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.27451944,-39.57466838</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">3.35</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.30036938,-38.59868007</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">5.8</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.30299947,-39.85999857</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">10.25</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.30373453,-39.57174696</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">0.31</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.30417542,-36.09634628</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.55</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.30877802,-36.80166368</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">8.33</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.31488993,-38.20752987</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.3252363,-36.84394061</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">10.04</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.33623909,-38.68419423</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">0.99</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.34361881,-37.04126102</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.1</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.35146779,-36.78234569</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.51</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.35160674,-36.36958729</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.53</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.35371179,-36.37323897</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.35</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.35951259,-37.08541288</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">4.73</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.36185325,-39.60461202</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">3.2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.36363495,-36.75422818</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">8.18</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.37643845,-40.35352149</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.38167509,-37.45303262</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">0.76</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.38872207,-36.59211116</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">3.09</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.40011955,-38.05852422</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">0.51</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.40049052,-36.64103508</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">3</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.40426866,-36.77810309</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.42061647,-37.53679338</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.42342431,-36.69110129</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">3.5</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.44872823,-37.6414841</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">5.62</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.45233097,-38.45702711</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">0.64</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.45431029,-36.63679065</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.93</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.45821548,-36.19588387</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.73</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.46534595,-37.58597293</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">0.4</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.47401375,-36.61558043</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">3.68</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.48689494,-37.92029485</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.3</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.48929173,-37.68200418</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.99</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.4899446,-38.59479354</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">4.3</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.49679331,-37.50914674</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.03</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.50009645,-37.25689274</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">3.44</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.5069627,-37.52648364</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.51929696,-37.63217645</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">0.9</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.52314704,-37.56737572</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.63</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.52390873,-37.49304739</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">4.3</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.52404257,-37.48899504</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.4</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.52518174,-35.74058101</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">3.69</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.53061569,-37.49544073</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.4</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.54195246,-37.73537939</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.9</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.55955054,-36.25919322</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.4</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.56575083,-37.70163072</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">7.76</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.56693113,-39.3514319</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">0.92</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.56933164,-37.11955135</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.88</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.57366701,-36.33879545</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.8</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.57377243,-37.47245481</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.82</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.5830004,-37.4667865</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.6</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.58706794,-37.56870027</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.9</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.58756424,-37.09469016</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.6</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.59600924,-37.90545468</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">10.52</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.59836513,-40.28763291</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">8.58</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.60904014,-39.0171527</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.94</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.61010056,-38.77931463</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">4</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.61098084,-37.54665801</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">7.86</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.61813365,-39.38132127</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">9.67</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.62412428,-39.04953554</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.62896701,-37.42536322</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">9.25</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.65962071,-39.75378662</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">7.43</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.66867073,-38.99493484</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">6.17</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.68493132,-38.49339379</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">12.06</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.68572288,-39.91511605</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">11.11</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.69185233,-40.35754781</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">4.84</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.69510264,-38.35393062</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.01</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.69906038,-38.15622141</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.55</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.71609946,-36.28337783</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">7.86</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.72740105,-37.40251482</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">7.66</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.74581481,-40.43428035</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">4.71</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.75031195,-38.7496626</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.59</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.77002447,-36.07798502</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.19</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.78038284,-38.2028423</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">3.39</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.79306919,-36.14331055</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">4.6</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.79795308,-40.26322966</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">14.29</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.80273325,-40.35160122</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">6.55</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.8102711,-38.76431718</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.52</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.81492977,-37.09098872</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">11.99</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.81527321,-39.9248375</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">0.91</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.82179951,-38.01979067</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.18</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.83226966,-37.77982893</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">8.25</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.83918914,-40.09419831</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.05</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.84131614,-37.16014733</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.58</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.84863818,-38.0563302</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.86</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.85076662,-38.62270436</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">3.68</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.85372805,-38.75431122</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.05</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.86392415,-37.80428814</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.01</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.884314,-38.69269707</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">11.31</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.91337721,-40.35275035</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">10.68</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.93522269,-40.29278671</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">3.98</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.94852671,-38.97947018</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">8.54</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.95076012,-39.57865906</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">8.72</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.9516336,-39.56876416</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.3</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.95529787,-36.57434121</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">9.02</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.96447754,-37.82364218</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.34</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-73.02309636,-38.07426395</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.38</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-73.03298099,-38.02441583</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">7.85</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-73.03569901,-39.70400522</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">5.93</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-73.05086383,-40.2601107</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.88</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-73.05921749,-38.04467748</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.82</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-73.06616197,-38.72828531</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">12.4</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-73.08673747,-39.67197361</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">10.73</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-73.13164035,-39.14923668</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">6.54</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-73.14995182,-39.7495779</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.58</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-73.1861246,-37.18828089</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">7.57</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-73.19207401,-39.11640176</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">5.38</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-73.23071421,-38.63267345</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">1.81</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-73.30630177,-38.78878055</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.08</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-73.37410688,-37.91418508</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.38</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-73.38366917,-37.25405297</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">4.45</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-73.39010086,-38.77419626</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">4.6</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-73.4036607,-39.93263268</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">5.44</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-73.42756129,-37.92536572</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">3.85</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-73.43319164,-37.28013579</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.93</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-73.44244841,-37.32352075</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">6.28</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-73.45131897,-39.97292008</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.06</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-73.48005734,-37.64036144</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.8</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-73.53774096,-37.32149227</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">5.96</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-73.5747256,-39.95107911</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">0.9</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-70.51666667,-34.43333333</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">2.78</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.38333333,-33.78333333</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">0.9</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-71.5,-33.7</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">8.5</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.03333333,-36.88333333</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">10.3</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.08333333,-35.9</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">19.2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.16,-40.38</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">10.4</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.16666667,-38.18333333</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">6.26</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.16666667,-40.58333333</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">10</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.16972222,-38.18</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">3.1</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.25,-37.4</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">11</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.33333333,-38.93333333</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">8.6</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.35,-38.21666667</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">11.4</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.35,-38.2</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">10.9</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.35,-38.41666667</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">3.3</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.41666667,-37.91666667</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">7.4</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.4,-37.45</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">10.3</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.4,-38.43333333</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">3.4</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.58333333,-38.71666667</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">8.1</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.63333333,-38.88333333</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">8.33</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.78333333,-39.41666667</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">13</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.81666667,-39.43333333</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">11</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.86666667,-40.26666667</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">31.3</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.88333333,-41.38333333</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">12.09</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.91666667,-40.96666667</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">8.4</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-72.96666667,-39.58333333</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">3.7</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-73.03333333,-40.5</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">24</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-73.03333333,-41.08333333</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">17.8</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-73.06666667,-41.3</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">16</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-73.09972222,-41.47</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">7.2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-73.15,-40.5</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">7.4</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-73.28333333,-40.78333333</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">8.4</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-73.36666667,-40.58333333</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#group">
+		<SimpleData name="oc">15.82</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-73.0,-41.46666667</coordinates></Point>
+  </Placemark>
+</Folder>
+<Schema name="group" id="group">
+	<SimpleField name="oc" type="float"></SimpleField>
+</Schema>
+</Document></kml>

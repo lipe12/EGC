@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Algorithm AlgorithmName = "PlanCurv" Task = "Plan Curvature" author = "JJC" WsdlBasePath = "C:/Wsdl" WsdlName = "planCurv.wsdl" WsdlUrl = "http://localhost/WS_PlanCurv/WebService.asmx?WSDL">
+	<Data>
+		<DataKind>InputData</DataKind>
+		<DataName>FilledDEM</DataName>
+		<DataType>Grid</DataType>
+		<DataSematic>FilledDEM</DataSematic>
+	</Data>
+	<Data>
+		<DataKind>OutputData</DataKind>
+		<DataName>Plan Curvature</DataName>
+		<DataType>Grid</DataType>
+		<DataSematic>Plan Curvature</DataSematic>
+	</Data>
+</Algorithm>

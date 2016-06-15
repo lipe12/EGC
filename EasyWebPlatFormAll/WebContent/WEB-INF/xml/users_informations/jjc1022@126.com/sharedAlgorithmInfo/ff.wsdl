@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+ <wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://whu.edu.cn/ws/fillDeps" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://whu.edu.cn/ws/fillDeps" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+ <wsdl:types>
+ <s:schema elementFormDefault="qualified" targetNamespace="http://whu.edu.cn/ws/fillDeps">
+ <s:element name="getFillDeps">
+ <s:complexType>
+ <s:sequence>
+  <s:element minOccurs="0" maxOccurs="1" name="dem" type="s:string" /> 
+  <s:element minOccurs="0" maxOccurs="1" name="outdata" type="s:string" /> 
+  </s:sequence>
+  </s:complexType>
+  </s:element>
+ <s:element name="getFillDepsResponse">
+ <s:complexType>
+ <s:sequence>
+  <s:element minOccurs="0" maxOccurs="1" name="getFillDepsResult" type="s:string" /> 
+  </s:sequence>
+  </s:complexType>
+  </s:element>
+  </s:schema>
+  </wsdl:types>
+ <wsdl:message name="getFillDepsSoapIn">
+  <wsdl:part name="parameters" element="tns:getFillDeps" /> 
+  </wsdl:message>
+ <wsdl:message name="getFillDepsSoapOut">
+  <wsdl:part name="parameters" element="tns:getFillDepsResponse" /> 
+  </wsdl:message>
+ <wsdl:portType name="fillDepsWebServcieSoap">
+ <wsdl:operation name="getFillDeps">
+  <wsdl:input message="tns:getFillDepsSoapIn" /> 
+  <wsdl:output message="tns:getFillDepsSoapOut" /> 
+  </wsdl:operation>
+  </wsdl:portType>
+ <wsdl:binding name="fillDepsWebServcieSoap" type="tns:fillDepsWebServcieSoap">
+  <soap:binding transport="http://schemas.xmlsoap.org/soap/http" /> 
+ <wsdl:operation name="getFillDeps">
+  <soap:operation soapAction="http://whu.edu.cn/ws/fillDeps/getFillDeps" style="document" /> 
+ <wsdl:input>
+  <soap:body use="literal" /> 
+  </wsdl:input>
+ <wsdl:output>
+  <soap:body use="literal" /> 
+  </wsdl:output>
+  </wsdl:operation>
+  </wsdl:binding>
+ <wsdl:binding name="fillDepsWebServcieSoap12" type="tns:fillDepsWebServcieSoap">
+  <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" /> 
+ <wsdl:operation name="getFillDeps">
+  <soap12:operation soapAction="http://whu.edu.cn/ws/fillDeps/getFillDeps" style="document" /> 
+ <wsdl:input>
+  <soap12:body use="literal" /> 
+  </wsdl:input>
+ <wsdl:output>
+  <soap12:body use="literal" /> 
+  </wsdl:output>        
+  </wsdl:operation>
+  </wsdl:binding>
+ <wsdl:service name="fillDepsWebServcie">
+ <wsdl:port name="fillDepsWebServcieSoap" binding="tns:fillDepsWebServcieSoap">
+  <soap:address location="http://localhost/WS_FillDep/WebService.asmx" /> 
+  </wsdl:port>
+ <wsdl:port name="fillDepsWebServcieSoap12" binding="tns:fillDepsWebServcieSoap12">
+  <soap12:address location="http://localhost/WS_FillDep/WebService.asmx" /> 
+  </wsdl:port>
+  </wsdl:service>
+  </wsdl:definitions>

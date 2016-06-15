@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSets>
+  <dataSet>
+    <datasetname>feizhou</datasetname>
+    <north>670641.212931</north>
+    <south>668641.212931</south>
+    <west>668141.212931</west>
+    <east>671141.212931</east>
+    <kmlpath>kml\604757224@qq.com\feizhou.kml</kmlpath>
+  </dataSet>
+  <dataSet>
+    <datasetname>Ethiopia</datasetname>
+    <north>583048.795316</north>
+    <south>581048.795316</south>
+    <west>580548.795316</west>
+    <east>583548.795316</east>
+    <kmlpath>kml\604757224@qq.com\Ethiopia.kml</kmlpath>
+  </dataSet>
+  <dataSet>
+    <datasetname>Ethiopia</datasetname>
+    <north>83344.458829</north>
+    <south>81344.458829</south>
+    <west>80844.458829</west>
+    <east>83844.458829</east>
+    <kmlpath>kml\604757224@qq.com\Ethiopia.kml</kmlpath>
+  </dataSet>
+</dataSets>

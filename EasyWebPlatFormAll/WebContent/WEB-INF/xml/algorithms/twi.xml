@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Algorithm AlgorithmName = "TWI" Task = "TWI" author = "JJC" WsdlBasePath = "C:/Wsdl" WsdlName = "twi.wsdl" WsdlUrl = "http://localhost/WS_TWI/WebService.asmx?WSDL">
+	<Data>
+		<DataKind>InputData</DataKind>
+		<DataName>SCA</DataName>
+		<DataType>Grid</DataType>
+		<DataSematic>SCA</DataSematic>
+	</Data>
+	<Data>
+		<DataKind>InputData</DataKind>
+		<DataName>Slope Gradient</DataName>
+		<DataType>Grid</DataType>
+		<DataSematic>Slope Gradient</DataSematic>
+	</Data>
+	<Data>
+		<DataKind>OutputData</DataKind>
+		<DataName>TWI</DataName>
+		<DataType>Grid</DataType>
+		<DataSematic>TWI</DataSematic>
+	</Data>
+</Algorithm>

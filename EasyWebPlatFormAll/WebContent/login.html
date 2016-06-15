@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>EGC Login</title>
+<link href="css/login.css" rel="stylesheet" type="text/css" />
+<script src="js/json.js" type="text/javascript"></script>     
+
+<script language="javascript">
+	var Ajax = function () {                                //根据浏览器类型创建XMLHttpRequest对象
+		try {
+			req = new XMLHttpRequest(); /* e.g. Firefox */
+		} catch (e) {
+			try {
+				req = new ActiveXObject("Msxml2.XMLHTTP");
+				/* some versions IE */
+			} catch (e) {
+				try {
+					req = new ActiveXObject("Microsoft.XMLHTTP");
+					/* some versions IE */
+				} catch (E) {
+					req = false;
+				}
+			}
+		}
+		return req;
+	};
+	
+	function isEmail(str){
+	   //var reg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/;
+	   var reg = /^([a-zA-Z0-9]+[_|-|.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|-|.]?)*[a-zA-Z0-9]+.[a-zA-Z]{2,3}$/;    
+	   return reg.test(str);
+	};
+
+	
+	function login(){
+		var username = document.getElementById("user_emailadress").value;
+		var password = document.getElementById("user_password").value;
+		if(!isEmail(username)){
+		   alert("email format is wrong!");
+		   return;
+		}else if(username==""||password==""){
+		   alert("email or password cannot be empty!");
+		   return;
+		}else{
+			var xmlUrl = "egcLogin.action?name=" + username + "&password=" + password;
+			
+			var ajax = new Ajax();   
+			ajax.open("GET",xmlUrl,true); 
+			ajax.onreadystatechange=function(){  
+				if(ajax.readyState==4){
+					if(ajax.status==200){
+                        					
+						var tag=ajax.responseText.pJSON().tag;
+						         
+						if(tag =="0"){                   
+						    //alert(123);           
+						    window.location.href = "easyGeoComputing.html"; 
+						}else if(tag == "1"){
+							alert("username is wrong!");
+						}else if(tag =="2"){
+							alert("password is wrong");
+						}else if(tag =="3"){
+							alert("user has logined");
+						}else if(tag =="4"){
+						    alert("system is busy, please try later");
+						}
+					}
+				 }    
+			};
+			ajax.send(null);        
+		}
+    };
+	
+
+</script>
+</head>
+<body>
+	<div id="top"></div>
+	<div class="loginborder">
+		<div style="width:440px;height:340px;float:left;margin:10px;border:0px solid red">
+			<div class="welcomtext">
+				<span>Welcome to Easy GeoComputation (EGC)</span>
+			</div>
+			<br>
+			<span class="character">(Contribution from the SoLIM group)</span>
+			<p>
+			EGC is a geo-computation platform powered by expert knowledgebase and high performance computing techniques. 
+			It provides a visualized environment and makes the construction and execution of geo-computing models easy for ordinary people. 
+			With the aid of EGC, anyone can accomplish geo-computation tasks anywhere and anytime.
+			</p>
+			<img style ="margin-top:-5px;" src="img/earth.jpg"></img>
+		</div>
+		<div class="login" >		
+			<div class="title">
+				<span class="text yellowtext">TAKE ME INTO EGC</span><br>
+				<span class="text yellowsmalltext">Enter you email address and password</span>
+			</div>	
+			<div class="buttom">
+				<span class="text graytext">Don't have an account:
+				<span class="bluetext" id="createuser"  >Sign Up Now!</span>
+			</span><br>
+			</div> 			
+			<span class="text">Your email address:<span class="redtext">*</span></span><br>
+			<input  id="user_emailadress"></input><br>
+			<span class="text">Password:<span class="redtext">*</span></span><br>
+			<input type="password" id="user_password"></input><br>
+			<input type="checkbox">Remember me</input><br>
+			<button onclick="login();">Sign in</button>&nbsp;&nbsp;or&nbsp;&nbsp;<span class="bluetext" >recover your password</span><br>
+			
+		</div>
+	</div>
+</body>
+<script language="javascript">
+	document.getElementById('createuser').onclick = function(){  
+	     window.location.href = "register.html";    
+	};
+</script>
+</html>

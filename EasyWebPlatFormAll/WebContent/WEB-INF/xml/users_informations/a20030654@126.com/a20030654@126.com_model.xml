@@ -1,0 +1,901 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<models>
+  <model name="SamplingBasedMapping">
+    <data>
+      <x>127</x>
+      <y>418</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Env.Layers ManageMent</label>
+      <value>xuancheng/xuancheng_precipitation.asc#xuancheng/xuancheng_tempr.asc#xuancheng/xuancheng_geoyl.asc#TWI1417701248568.asc#SlopeGradient1417701168431.asc#ProfileCurvature1417701233929.asc#PlanCurvature1417701245946.asc</value>
+    </data>
+    <data>
+      <x>428</x>
+      <y>481</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Sample Data</label>
+      <value />
+    </data>
+    <data>
+      <x>297</x>
+      <y>513</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Property Map</label>
+      <value>PropertyMap1417700954826.asc</value>
+    </data>
+    <data>
+      <x>550</x>
+      <y>200</y>
+      <a>0</a>
+      <b>0</b>
+      <label>Uncertainty Map</label>
+      <value>UncertaintyMap1417700954827.asc</value>
+    </data>
+    <task>
+      <x>285</x>
+      <y>385</y>
+      <width>100</width>
+      <height>50</height>
+      <label>Sample Based Mapping</label>
+      <algorithm>Sample Based Inference</algorithm>
+      <parameter>SoilProperty:Silt$Environmental Attribute Parameter:Climate?Gower#Climate?Gower#Geology?Boolean#Terrain?Gower#Terrain?Gower#Terrain?Gower#Terrain?Gower$Category Similarity Integration Method:LimitingFactor$Sample Similarity Integration Method:LimitingFactor$Uncertainty Threshold:0.3</parameter>
+      <inputdata>Precipitation$Temperature$Parent Material$TWI$Slope Gradient$Profile Curvature$Plan Curvature$Env.Layers ManageMent$Sample Data</inputdata>
+      <outputdata>Property Map$Uncertainty Map</outputdata>
+    </task>
+    <data>
+      <x>135</x>
+      <y>367</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Precipitation</label>
+      <value />
+    </data>
+    <data>
+      <x>158</x>
+      <y>315</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Temperature</label>
+      <value />
+    </data>
+    <data>
+      <x>229</x>
+      <y>283</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Parent Material</label>
+      <value />
+    </data>
+    <data>
+      <x>398</x>
+      <y>275</y>
+      <a>40</a>
+      <b>25</b>
+      <label>TWI</label>
+      <value>TWI1417701248568.asc</value>
+    </data>
+    <data>
+      <x>332</x>
+      <y>236</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Slope Gradient</label>
+      <value>SlopeGradient1417701168431.asc</value>
+    </data>
+    <data>
+      <x>410</x>
+      <y>340</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Profile Curvature</label>
+      <value>ProfileCurvature1417701233929.asc</value>
+    </data>
+    <data>
+      <x>476</x>
+      <y>430</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Plan Curvature</label>
+      <value>PlanCurvature1417701245946.asc</value>
+    </data>
+    <task>
+      <x>479</x>
+      <y>111</y>
+      <width>100</width>
+      <height>50</height>
+      <label>SlopeCal</label>
+      <algorithm>ArcgisSlope</algorithm>
+      <parameter />
+      <inputdata>FilledDEM</inputdata>
+      <outputdata>Slope Gradient</outputdata>
+    </task>
+    <data>
+      <x>900</x>
+      <y>177</y>
+      <a>40</a>
+      <b>25</b>
+      <label>FilledDEM</label>
+      <value>FilledDEM1417701193194.asc</value>
+    </data>
+    <task>
+      <x>804</x>
+      <y>78</y>
+      <width>100</width>
+      <height>50</height>
+      <label>PitRemoving</label>
+      <algorithm>Fill</algorithm>
+      <parameter />
+      <inputdata>DEM</inputdata>
+      <outputdata>FilledDEM</outputdata>
+    </task>
+    <data>
+      <x>627</x>
+      <y>81</y>
+      <a>40</a>
+      <b>25</b>
+      <label>DEM</label>
+      <value />
+    </data>
+    <task>
+      <x>543</x>
+      <y>325</y>
+      <width>100</width>
+      <height>50</height>
+      <label>ProfileCurvCal</label>
+      <algorithm>ProfileCurv</algorithm>
+      <parameter />
+      <inputdata>FilledDEM</inputdata>
+      <outputdata>Profile Curvature</outputdata>
+    </task>
+    <task>
+      <x>607</x>
+      <y>385</y>
+      <width>100</width>
+      <height>50</height>
+      <label>PlanCurvCal</label>
+      <algorithm>PlanCurv</algorithm>
+      <parameter />
+      <inputdata>FilledDEM</inputdata>
+      <outputdata>Plan Curvature</outputdata>
+    </task>
+    <task>
+      <x>477</x>
+      <y>189</y>
+      <width>100</width>
+      <height>50</height>
+      <label>TWICal</label>
+      <algorithm>QinTWI</algorithm>
+      <parameter />
+      <inputdata>SCA$Slope Gradient</inputdata>
+      <outputdata>TWI</outputdata>
+    </task>
+    <data>
+      <x>502</x>
+      <y>273</y>
+      <a>40</a>
+      <b>25</b>
+      <label>SCA</label>
+      <value>SCA1417701253529.asc</value>
+    </data>
+    <task>
+      <x>579</x>
+      <y>222</y>
+      <width>100</width>
+      <height>50</height>
+      <label>SCACal</label>
+      <algorithm>SFD</algorithm>
+      <parameter />
+      <inputdata>FlowDirection</inputdata>
+      <outputdata>SCA</outputdata>
+    </task>
+    <data>
+      <x>716</x>
+      <y>259</y>
+      <a>40</a>
+      <b>25</b>
+      <label>FlowDirection</label>
+      <value>FlowDirection1417701359849.asc</value>
+    </data>
+    <task>
+      <x>684</x>
+      <y>175</y>
+      <width>100</width>
+      <height>50</height>
+      <label>FlowDirectionCal</label>
+      <algorithm>D8</algorithm>
+      <parameter />
+      <inputdata>FilledDEM</inputdata>
+      <outputdata>FlowDirection</outputdata>
+    </task>
+  </model>
+  <model name="SamplingBasedMapping">
+    <data>
+      <x>80</x>
+      <y>382</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Env.Layers ManageMent</label>
+      <value>xuancheng/xuancheng_precipitation.asc#xuancheng/xuancheng_tempr.asc#xuancheng/xuancheng_geoyl.asc#TWI1417702856263.asc#SlopeGradient1417702977589.asc</value>
+    </data>
+    <data>
+      <x>416</x>
+      <y>388</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Sample Data</label>
+      <value />
+    </data>
+    <data>
+      <x>255</x>
+      <y>472</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Property Map</label>
+      <value>PropertyMap1417702656349.asc</value>
+    </data>
+    <data>
+      <x>550</x>
+      <y>200</y>
+      <a>0</a>
+      <b>0</b>
+      <label>Uncertainty Map</label>
+      <value>UncertaintyMap1417702656349.asc</value>
+    </data>
+    <task>
+      <x>229</x>
+      <y>395</y>
+      <width>100</width>
+      <height>50</height>
+      <label>Sample Based Mapping</label>
+      <algorithm>Sample Based Inference</algorithm>
+      <parameter>SoilProperty:Silt$Environmental Attribute Parameter:Climate?Gower#Climate?Gower#Geology?Boolean#Terrain?Gower#Terrain?Gower$Category Similarity Integration Method:LimitingFactor$Sample Similarity Integration Method:LimitingFactor$Uncertainty Threshold:0.3</parameter>
+      <inputdata>Precipitation$Temperature$Parent Material$TWI$Slope Gradient$Env.Layers ManageMent$Sample Data</inputdata>
+      <outputdata>Property Map$Uncertainty Map</outputdata>
+    </task>
+    <data>
+      <x>84</x>
+      <y>287</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Precipitation</label>
+      <value />
+    </data>
+    <data>
+      <x>158</x>
+      <y>247</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Temperature</label>
+      <value />
+    </data>
+    <data>
+      <x>246</x>
+      <y>237</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Parent Material</label>
+      <value />
+    </data>
+    <data>
+      <x>327</x>
+      <y>253</y>
+      <a>40</a>
+      <b>25</b>
+      <label>TWI</label>
+      <value>TWI1417702856263.asc</value>
+    </data>
+    <data>
+      <x>376</x>
+      <y>310</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Slope Gradient</label>
+      <value>SlopeGradient1417702977589.asc</value>
+    </data>
+    <task>
+      <x>462</x>
+      <y>204</y>
+      <width>100</width>
+      <height>50</height>
+      <label>TWICal</label>
+      <algorithm>QinTWI</algorithm>
+      <parameter />
+      <inputdata>SCA$Slope Gradient</inputdata>
+      <outputdata>TWI</outputdata>
+    </task>
+    <data>
+      <x>608</x>
+      <y>207</y>
+      <a>40</a>
+      <b>25</b>
+      <label>SCA</label>
+      <value>SCA1417702874062.asc</value>
+    </data>
+    <task>
+      <x>756</x>
+      <y>208</y>
+      <width>100</width>
+      <height>50</height>
+      <label>SCACal</label>
+      <algorithm>SFD</algorithm>
+      <parameter />
+      <inputdata>FlowDirection</inputdata>
+      <outputdata>SCA</outputdata>
+    </task>
+    <data>
+      <x>878</x>
+      <y>200</y>
+      <a>40</a>
+      <b>25</b>
+      <label>FlowDirection</label>
+      <value>FlowDirection1417702886503.asc</value>
+    </data>
+    <task>
+      <x>887</x>
+      <y>306</y>
+      <width>100</width>
+      <height>50</height>
+      <label>FlowDirectionCal</label>
+      <algorithm>D8</algorithm>
+      <parameter />
+      <inputdata>FilledDEM</inputdata>
+      <outputdata>FlowDirection</outputdata>
+    </task>
+    <data>
+      <x>741</x>
+      <y>308</y>
+      <a>40</a>
+      <b>25</b>
+      <label>FilledDEM</label>
+      <value>FilledDEM1417702901367.asc</value>
+    </data>
+    <task>
+      <x>747</x>
+      <y>393</y>
+      <width>100</width>
+      <height>50</height>
+      <label>PitRemoving</label>
+      <algorithm>Fill</algorithm>
+      <parameter />
+      <inputdata>DEM</inputdata>
+      <outputdata>FilledDEM</outputdata>
+    </task>
+    <data>
+      <x>755</x>
+      <y>481</y>
+      <a>40</a>
+      <b>25</b>
+      <label>DEM</label>
+      <value />
+    </data>
+    <task>
+      <x>566</x>
+      <y>310</y>
+      <width>100</width>
+      <height>50</height>
+      <label>SlopeCal</label>
+      <algorithm>ArcgisSlope</algorithm>
+      <parameter />
+      <inputdata>FilledDEM</inputdata>
+      <outputdata>Slope Gradient</outputdata>
+    </task>
+  </model>
+  <model name="SamplingBasedMapping">
+    <data>
+      <x>101</x>
+      <y>384</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Env.Layers ManageMent</label>
+      <value>undefined#undefined#undefined#TWI1417703449558.asc#SlopeGradient1417703480825.asc</value>
+    </data>
+    <data>
+      <x>450</x>
+      <y>430</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Sample Data</label>
+      <value />
+    </data>
+    <data>
+      <x>294</x>
+      <y>507</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Property Map</label>
+      <value>PropertyMap1417703422359.asc</value>
+    </data>
+    <data>
+      <x>550</x>
+      <y>200</y>
+      <a>0</a>
+      <b>0</b>
+      <label>Uncertainty Map</label>
+      <value>UncertaintyMap1417703422359.asc</value>
+    </data>
+    <task>
+      <x>300</x>
+      <y>400</y>
+      <width>100</width>
+      <height>50</height>
+      <label>Sample Based Mapping</label>
+      <algorithm>Sample Based Inference</algorithm>
+      <parameter>SoilProperty:$Environmental Attribute Parameter:Climate?Gower#Climate?Gower#Geology?Boolean#Terrain?Gower#Terrain?Gower$Category Similarity Integration Method:LimitingFactor$Sample Similarity Integration Method:LimitingFactor$Uncertainty Threshold:0.3</parameter>
+      <inputdata>Precipitation$Temperature$Parent Material$TWI$Slope Gradient$Env.Layers ManageMent$Sample Data</inputdata>
+      <outputdata>Property Map$Uncertainty Map</outputdata>
+    </task>
+    <data>
+      <x>135</x>
+      <y>319</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Precipitation</label>
+      <value />
+    </data>
+    <data>
+      <x>198</x>
+      <y>284</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Temperature</label>
+      <value />
+    </data>
+    <data>
+      <x>287</x>
+      <y>261</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Parent Material</label>
+      <value />
+    </data>
+    <data>
+      <x>376</x>
+      <y>264</y>
+      <a>40</a>
+      <b>25</b>
+      <label>TWI</label>
+      <value>TWI1417703449558.asc</value>
+    </data>
+    <data>
+      <x>428</x>
+      <y>313</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Slope Gradient</label>
+      <value>SlopeGradient1417703480825.asc</value>
+    </data>
+    <task>
+      <x>494</x>
+      <y>207</y>
+      <width>100</width>
+      <height>50</height>
+      <label>TWICal</label>
+      <algorithm>QinTWI</algorithm>
+      <parameter />
+      <inputdata>SCA$Slope Gradient</inputdata>
+      <outputdata>TWI</outputdata>
+    </task>
+    <data>
+      <x>633</x>
+      <y>208</y>
+      <a>40</a>
+      <b>25</b>
+      <label>SCA</label>
+      <value>SCA1417703453096.asc</value>
+    </data>
+    <task>
+      <x>748</x>
+      <y>202</y>
+      <width>100</width>
+      <height>50</height>
+      <label>SCACal</label>
+      <algorithm>SFD</algorithm>
+      <parameter />
+      <inputdata>FlowDirection</inputdata>
+      <outputdata>SCA</outputdata>
+    </task>
+    <data>
+      <x>880</x>
+      <y>204</y>
+      <a>40</a>
+      <b>25</b>
+      <label>FlowDirection</label>
+      <value>FlowDirection1417703459907.asc</value>
+    </data>
+    <task>
+      <x>886</x>
+      <y>304</y>
+      <width>100</width>
+      <height>50</height>
+      <label>FlowDirectionCal</label>
+      <algorithm>D8</algorithm>
+      <parameter />
+      <inputdata>FilledDEM</inputdata>
+      <outputdata>FlowDirection</outputdata>
+    </task>
+    <data>
+      <x>885</x>
+      <y>412</y>
+      <a>40</a>
+      <b>25</b>
+      <label>FilledDEM</label>
+      <value>FilledDEM1417703467480.asc</value>
+    </data>
+    <task>
+      <x>760</x>
+      <y>399</y>
+      <width>100</width>
+      <height>50</height>
+      <label>PitRemoving</label>
+      <algorithm>Fill</algorithm>
+      <parameter />
+      <inputdata>DEM</inputdata>
+      <outputdata>FilledDEM</outputdata>
+    </task>
+    <data>
+      <x>753</x>
+      <y>495</y>
+      <a>40</a>
+      <b>25</b>
+      <label>DEM</label>
+      <value />
+    </data>
+    <task>
+      <x>680</x>
+      <y>307</y>
+      <width>100</width>
+      <height>50</height>
+      <label>SlopeCal</label>
+      <algorithm>ArcgisSlope</algorithm>
+      <parameter />
+      <inputdata>FilledDEM</inputdata>
+      <outputdata>Slope Gradient</outputdata>
+    </task>
+  </model>
+  <model name="Sample_BasedMapping">
+    <data>
+      <x>101</x>
+      <y>384</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Env.Layers ManageMent</label>
+      <value>xuancheng/xuancheng_precipitation.asc#xuancheng/xuancheng_tempr.asc#xuancheng/xuancheng_geoyl.asc#TWI1417703449558.asc#SlopeGradient1417703480825.asc</value>
+    </data>
+    <data>
+      <x>450</x>
+      <y>430</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Sample Data</label>
+      <value />
+    </data>
+    <data>
+      <x>294</x>
+      <y>507</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Property Map</label>
+      <value>PropertyMap1417703422359.asc</value>
+    </data>
+    <data>
+      <x>550</x>
+      <y>200</y>
+      <a>0</a>
+      <b>0</b>
+      <label>Uncertainty Map</label>
+      <value>UncertaintyMap1417703422359.asc</value>
+    </data>
+    <task>
+      <x>300</x>
+      <y>400</y>
+      <width>100</width>
+      <height>50</height>
+      <label>Sample Based Mapping</label>
+      <algorithm>Sample Based Inference</algorithm>
+      <parameter>SoilProperty:Silt$Environmental Attribute Parameter:Climate?Gower#Climate?Gower#Geology?Boolean#Terrain?Gower#Terrain?Gower$Category Similarity Integration Method:LimitingFactor$Sample Similarity Integration Method:LimitingFactor$Uncertainty Threshold:0.3</parameter>
+      <inputdata>Precipitation$Temperature$Parent Material$TWI$Slope Gradient$Env.Layers ManageMent$Sample Data</inputdata>
+      <outputdata>Property Map$Uncertainty Map</outputdata>
+    </task>
+    <data>
+      <x>135</x>
+      <y>319</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Precipitation</label>
+      <value />
+    </data>
+    <data>
+      <x>198</x>
+      <y>284</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Temperature</label>
+      <value />
+    </data>
+    <data>
+      <x>287</x>
+      <y>261</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Parent Material</label>
+      <value />
+    </data>
+    <data>
+      <x>376</x>
+      <y>264</y>
+      <a>40</a>
+      <b>25</b>
+      <label>TWI</label>
+      <value>TWI1417703449558.asc</value>
+    </data>
+    <data>
+      <x>428</x>
+      <y>313</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Slope Gradient</label>
+      <value>SlopeGradient1417703480825.asc</value>
+    </data>
+    <task>
+      <x>494</x>
+      <y>207</y>
+      <width>100</width>
+      <height>50</height>
+      <label>TWICal</label>
+      <algorithm>QinTWI</algorithm>
+      <parameter />
+      <inputdata>SCA$Slope Gradient</inputdata>
+      <outputdata>TWI</outputdata>
+    </task>
+    <data>
+      <x>633</x>
+      <y>208</y>
+      <a>40</a>
+      <b>25</b>
+      <label>SCA</label>
+      <value>SCA1417703453096.asc</value>
+    </data>
+    <task>
+      <x>748</x>
+      <y>202</y>
+      <width>100</width>
+      <height>50</height>
+      <label>SCACal</label>
+      <algorithm>SFD</algorithm>
+      <parameter />
+      <inputdata>FlowDirection</inputdata>
+      <outputdata>SCA</outputdata>
+    </task>
+    <data>
+      <x>880</x>
+      <y>204</y>
+      <a>40</a>
+      <b>25</b>
+      <label>FlowDirection</label>
+      <value>FlowDirection1417703459907.asc</value>
+    </data>
+    <task>
+      <x>886</x>
+      <y>304</y>
+      <width>100</width>
+      <height>50</height>
+      <label>FlowDirectionCal</label>
+      <algorithm>D8</algorithm>
+      <parameter />
+      <inputdata>FilledDEM</inputdata>
+      <outputdata>FlowDirection</outputdata>
+    </task>
+    <data>
+      <x>885</x>
+      <y>412</y>
+      <a>40</a>
+      <b>25</b>
+      <label>FilledDEM</label>
+      <value>FilledDEM1417703467480.asc</value>
+    </data>
+    <task>
+      <x>760</x>
+      <y>399</y>
+      <width>100</width>
+      <height>50</height>
+      <label>PitRemoving</label>
+      <algorithm>Fill</algorithm>
+      <parameter />
+      <inputdata>DEM</inputdata>
+      <outputdata>FilledDEM</outputdata>
+    </task>
+    <data>
+      <x>753</x>
+      <y>495</y>
+      <a>40</a>
+      <b>25</b>
+      <label>DEM</label>
+      <value />
+    </data>
+    <task>
+      <x>680</x>
+      <y>307</y>
+      <width>100</width>
+      <height>50</height>
+      <label>SlopeCal</label>
+      <algorithm>ArcgisSlope</algorithm>
+      <parameter />
+      <inputdata>FilledDEM</inputdata>
+      <outputdata>Slope Gradient</outputdata>
+    </task>
+  </model>
+  <model name="Sample_basedMappping">
+    <data>
+      <x>115</x>
+      <y>400</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Env.Layers ManageMent</label>
+      <value>xuancheng/xuancheng_precipitation.asc#xuancheng/xuancheng_tempr.asc#xuancheng/xuancheng_geoyl.asc#TWI1417705234662.asc#SlopeGradient1417705330085.asc</value>
+    </data>
+    <data>
+      <x>508</x>
+      <y>405</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Sample Data</label>
+      <value />
+    </data>
+    <data>
+      <x>272</x>
+      <y>512</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Property Map</label>
+      <value>PropertyMap1417704974903.asc</value>
+    </data>
+    <data>
+      <x>550</x>
+      <y>200</y>
+      <a>0</a>
+      <b>0</b>
+      <label>Uncertainty Map</label>
+      <value>UncertaintyMap1417704974904.asc</value>
+    </data>
+    <task>
+      <x>300</x>
+      <y>400</y>
+      <width>100</width>
+      <height>50</height>
+      <label>Sample Based Mapping</label>
+      <algorithm>Sample Based Inference</algorithm>
+      <parameter>SoilProperty:Silt$Environmental Attribute Parameter:Climate?Gower#Climate?Gower#Geology?Boolean#Terrain?Gower#Terrain?Gower$Category Similarity Integration Method:LimitingFactor$Sample Similarity Integration Method:LimitingFactor$Uncertainty Threshold:0.3</parameter>
+      <inputdata>Precipitation$Temperature$Parent Material$TWI$Slope Gradient$Env.Layers ManageMent$Sample Data</inputdata>
+      <outputdata>Property Map$Uncertainty Map</outputdata>
+    </task>
+    <data>
+      <x>131</x>
+      <y>331</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Precipitation</label>
+      <value />
+    </data>
+    <data>
+      <x>188</x>
+      <y>280</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Temperature</label>
+      <value />
+    </data>
+    <data>
+      <x>269</x>
+      <y>265</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Parent Material</label>
+      <value />
+    </data>
+    <data>
+      <x>356</x>
+      <y>268</y>
+      <a>40</a>
+      <b>25</b>
+      <label>TWI</label>
+      <value>TWI1417705234662.asc</value>
+    </data>
+    <data>
+      <x>421</x>
+      <y>323</y>
+      <a>40</a>
+      <b>25</b>
+      <label>Slope Gradient</label>
+      <value>SlopeGradient1417705330085.asc</value>
+    </data>
+    <task>
+      <x>489</x>
+      <y>208</y>
+      <width>100</width>
+      <height>50</height>
+      <label>TWICal</label>
+      <algorithm>QinTWI</algorithm>
+      <parameter />
+      <inputdata>SCA$Slope Gradient</inputdata>
+      <outputdata>TWI</outputdata>
+    </task>
+    <data>
+      <x>618</x>
+      <y>212</y>
+      <a>40</a>
+      <b>25</b>
+      <label>SCA</label>
+      <value>SCA1417705249669.asc</value>
+    </data>
+    <task>
+      <x>787</x>
+      <y>219</y>
+      <width>100</width>
+      <height>50</height>
+      <label>SCACal</label>
+      <algorithm>SFD</algorithm>
+      <parameter />
+      <inputdata>FlowDirection</inputdata>
+      <outputdata>SCA</outputdata>
+    </task>
+    <data>
+      <x>928</x>
+      <y>223</y>
+      <a>40</a>
+      <b>25</b>
+      <label>FlowDirection</label>
+      <value>FlowDirection1417705264189.asc</value>
+    </data>
+    <task>
+      <x>931</x>
+      <y>340</y>
+      <width>100</width>
+      <height>50</height>
+      <label>FlowDirectionCal</label>
+      <algorithm>D8</algorithm>
+      <parameter />
+      <inputdata>FilledDEM</inputdata>
+      <outputdata>FlowDirection</outputdata>
+    </task>
+    <data>
+      <x>777</x>
+      <y>335</y>
+      <a>40</a>
+      <b>25</b>
+      <label>FilledDEM</label>
+      <value>FilledDEM1417705284918.asc</value>
+    </data>
+    <task>
+      <x>782</x>
+      <y>443</y>
+      <width>100</width>
+      <height>50</height>
+      <label>PitRemoving</label>
+      <algorithm>Fill</algorithm>
+      <parameter />
+      <inputdata>DEM</inputdata>
+      <outputdata>FilledDEM</outputdata>
+    </task>
+    <data>
+      <x>784</x>
+      <y>522</y>
+      <a>40</a>
+      <b>25</b>
+      <label>DEM</label>
+      <value />
+    </data>
+    <task>
+      <x>612</x>
+      <y>326</y>
+      <width>100</width>
+      <height>50</height>
+      <label>SlopeCal</label>
+      <algorithm>ArcgisSlope</algorithm>
+      <parameter />
+      <inputdata>FilledDEM</inputdata>
+      <outputdata>Slope Gradient</outputdata>
+    </task>
+  </model>
+</models>

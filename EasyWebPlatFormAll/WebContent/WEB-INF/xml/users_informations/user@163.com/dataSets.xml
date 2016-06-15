@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSets>
+  <dataSet>
+    <datasetname>AnhuiNorth</datasetname>
+    <north>549396.166611</north>
+    <south>547396.166611</south>
+    <west>546896.166611</west>
+    <east>549896.166611</east>
+    <kmlpath>kml\user@163.com\AnhuiNorth.kml</kmlpath>
+  </dataSet>
+  <dataSet>
+    <datasetname>Raffelson</datasetname>
+    <north>789441.262842</north>
+    <south>787441.262842</south>
+    <west>786941.262842</west>
+    <east>789941.262842</east>
+    <kmlpath>kml\user@163.com\Raffelson.kml</kmlpath>
+  </dataSet>
+  <dataSet>
+    <datasetname>Raffelson</datasetname>
+    <north>488990.250127</north>
+    <south>486990.250127</south>
+    <west>486490.250127</west>
+    <east>489490.250127</east>
+    <kmlpath>kml\user@163.com\Raffelson.kml</kmlpath>
+  </dataSet>
+  <dataSet>
+    <datasetname>AnhuiNorth</datasetname>
+    <north>723820.202360</north>
+    <south>721820.202360</south>
+    <west>721320.202360</west>
+    <east>724320.202360</east>
+    <kmlpath>kml\user@163.com\AnhuiNorth.kml</kmlpath>
+  </dataSet>
+</dataSets>

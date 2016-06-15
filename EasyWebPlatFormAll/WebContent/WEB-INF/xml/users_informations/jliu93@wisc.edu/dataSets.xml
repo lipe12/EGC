@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSets>
+  <dataSet>
+    <datasetname>EthiopiaBlueNile</datasetname>
+    <north>177493.114926</north>
+    <south>175493.114926</south>
+    <west>174993.114926</west>
+    <east>177993.114926</east>
+    <kmlpath>kml\jliu93@wisc.edu\EthiopiaBlueNile.kml</kmlpath>
+  </dataSet>
+</dataSets>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<algorithms>
+  <algorithm>
+    <algorithmName>ff</algorithmName>
+    <algorithmDescription>ff</algorithmDescription>
+    <metaFilePath>ff.txt</metaFilePath>
+    <wsdlFilePath>ff.wsdl</wsdlFilePath>
+    <inputs>
+      <input>
+        <Name>ff</Name>
+        <Description>ff</Description>
+      </input>
+    </inputs>
+    <parameters>
+      <parameter>
+        <Name>ff</Name>
+        <Description>ff</Description>
+      </parameter>
+    </parameters>
+    <outputs>
+      <output>
+        <Name>ff</Name>
+        <Description>ff</Description>
+      </output>
+    </outputs>
+  </algorithm>
+</algorithms>

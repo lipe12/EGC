@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSets>
+  <dataSet>
+    <datasetname>BlueNile</datasetname>
+    <north>547633.752200</north>
+    <south>545633.752200</south>
+    <west>545133.752200</west>
+    <east>548133.752200</east>
+    <kmlpath>kml\meggen@wisc.edu\BlueNile.kml</kmlpath>
+  </dataSet>
+</dataSets>

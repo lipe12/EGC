@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<models>
+  <model name="2">
+    <data>
+      <x>100</x>
+      <y>200</y>
+      <a>40</a>
+      <b>25</b>
+      <label>SCA</label>
+      <value />
+    </data>
+    <data>
+      <x>150</x>
+      <y>200</y>
+      <a>40</a>
+      <b>25</b>
+      <label>FlowDirection</label>
+      <value />
+    </data>
+    <data>
+      <x>500</x>
+      <y>200</y>
+      <a>40</a>
+      <b>25</b>
+      <label>StreamLine</label>
+      <value>StreamLine1423540075667.asc</value>
+    </data>
+    <task>
+      <x>300</x>
+      <y>400</y>
+      <width>100</width>
+      <height>50</height>
+      <label>extractStream</label>
+      <algorithm>StreamLE</algorithm>
+      <parameter>Threshold:500000</parameter>
+      <inputdata>SCA$FlowDirection</inputdata>
+      <outputdata>StreamLine</outputdata>
+    </task>
+  </model>
+</models>
