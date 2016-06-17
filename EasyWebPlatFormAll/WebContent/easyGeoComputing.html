@@ -8,6 +8,7 @@
 
 <script src="js/json.js" type="text/javascript"></script>
 <script type="text/javascript" src="js/graph.js"></script>
+<script type="text/javascript" src="js/group.js"></script>
 <script type="text/javascript" src="js/knowledge.js"></script>
 
 <script type="text/javascript" src="js/GeoExt.js"></script>
@@ -527,7 +528,7 @@
                              +'<button id="userlogout_btn" onclick="userlogout()" style="display:' + logout_flag + ';background-color:#FFFFFF;border-bottom:1px solid #FFFFFF;;border-right:1px solid #FFFFFF"><font color="#666666"; style="TEXT-DECORATION: underline">Logout</font></button>'    
                              +'</td>'        
                              +'<td align="right" width="30px">'                 
-                             //+'<button id="userregister_btn" onclick="userregister()" style="background-color:#FFFFFF;border-bottom:1px solid #FFFFFF;;border-right:1px solid #FFFFFF"><font color="#666666"; style="TEXT-DECORATION: underline">Register</font></button>'  
+                             +'<button id="userregister_btn" onclick="userregister()" style="background-color:#FFFFFF;border-bottom:1px solid #FFFFFF;;border-right:1px solid #FFFFFF"><font color="#666666"; style="TEXT-DECORATION: underline">Register</font></button>'  
                              +'</td>'              
                              +'</tr>'                        
                              +'</table>'            
@@ -542,13 +543,13 @@
 }); // end of ext
 
 var userregister = function(){
-    UserRegister_Win.show();
-	UserRegister_Form.getForm().reset();
+    group_Win.show();
+	Group_Form.getForm().reset();
 };
 var userlogin = function(){
 	
 	UserLogin_Win.show();
-	UserLogin_Form.getForm().reset();
+	groupOperation_form.getForm().reset();
 }; 
 var userlogout = function(){
 	  
@@ -573,7 +574,7 @@ var userlogout = function(){
 	};// end of ajax.onreadystatechange
 	ajax.send(null);
 };
-document.oncontextmenu=function(e){return false;}       
+document.oncontextmenu=function(e){return false;};       
 document.title='Easy GeoComputation';
 //
 var set_cookie =function (c_name,value)
@@ -587,7 +588,7 @@ var get_cookie = function (cookie_name)
        return (unescape(results[2]));
     else
        return "";
-};¡¡
+};
 var delete_cookie =function (cookie_name)
 {
     var cookie_date = new Date(); //current date & time

@@ -130,6 +130,12 @@
     <package name="org.easygeoc.account" extends="json-default">
     <action name="checkfoldersize" class="org.easygeoc.account.FolderSize">      
             <result type="json"/>             
+     </action>
+     <action name="creategroup" class="org.easygeoc.account.GroupOperation" method = "createGroup">
+     <result type="json"/>
+     </action>
+     <action name="joingroup" class="org.easygeoc.account.GroupOperation" method = "joinGroup">
+     <result type="json"/>
      </action> 
     </package>
 </struts>

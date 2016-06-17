@@ -11,8 +11,7 @@ This file may be used under the terms of the GNU General Public License version 
 
 If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
 
-*/
-﻿/**
+
  * List compiled by mystix on the extjs.com forums.
  * Thank you Mystix!
  * Vietnamese translation
