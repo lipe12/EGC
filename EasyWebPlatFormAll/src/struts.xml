@@ -137,5 +137,14 @@
      <action name="joingroup" class="org.easygeoc.account.GroupOperation" method = "joinGroup">
      <result type="json"/>
      </action> 
+     <action name="listdatasets" class="org.easygeoc.account.DataSets">
+     <result type="json"/>
+     </action>
+     <action name="findkmlextent1" class="org.easygeoc.account.DisplayDataSet" method = "findkmlextent">
+     <result type="json"/>
+     </action>
+     <action name="createdataset" class="org.easygeoc.account.WriteDataSet">
+     <result type="json"/>
+     </action>
     </package>
 </struts>

@@ -1,6 +1,8 @@
 
 var namespace= "data_management";
-////////list all the data of the user
+/**
+ * create DataModel and store, store will call the data in background
+ * */
    Ext.define('ListFileData',{ 
 	    extend: 'Ext.data.Model', 
 	    fields: [ 
@@ -29,6 +31,12 @@ var namespace= "data_management";
 	    autoLoad: false      
 	});
  var kmllayer = null;
+ 
+ /**
+  * this function is to call the xml in the background
+  * return the kml file into the vector layer myKML
+  * url:'/kml/kml_name' point to the kml file path, for example:/kml/jjc1022@126.com/xuancheng.xml
+  * */
  function displayKML(kml_name){    
 	
 	//alert(kml_name);
@@ -184,8 +192,14 @@ var namespace= "data_management";
 	 return str;
  }
 
+ //load the data
  ListFileDataStore.load();                 
  
+ /**
+  * create a grid panel, load the store:ListFileDataStore;
+  * tbar have three button, add dataset, add data, delete data
+  * call renderFileName and renderDescn(location button)
+  * */
 var FileDataGrid_User = Ext.create('Ext.grid.Panel',{ 
     
 	store:ListFileDataStore,
@@ -239,7 +253,8 @@ var FileDataGrid_User = Ext.create('Ext.grid.Panel',{
 	    //iconCls:'add',     
 		text: 'AddDataSet',   
 	    handler:function(){              	
-	    	DataSet_Win.show();
+	    	//DataSet_Win.show();
+	    	dataUploadWin.show();
 	    }
 	},{ 
 	    xtype: 'button', 
@@ -294,8 +309,10 @@ var FileDataGrid_User = Ext.create('Ext.grid.Panel',{
                  
 }) ; 
 
-
-///////////////// upload user's data into server
+//==================================================================================================
+/**
+ * upload user's datas into server
+ * */
 
 //Semantic fields
 Ext.define('SemanticModel', {
@@ -305,6 +322,7 @@ Ext.define('SemanticModel', {
         {type: 'string', name: 'value'}
     ]
 });
+//the content in semantics combox
 var semantics = [
               
                {"name":"Sample Data","value":"Sample Data"},
@@ -328,6 +346,10 @@ var semantic_store = Ext.create('Ext.data.Store', {
     data: semantics
 });
 
+/**
+ * define the semantic combox
+ * the action whether select Sample Data or not
+ * */
 var semantic_combo = Ext.create('Ext.form.field.ComboBox', {
     fieldLabel: 'Semantic',
     displayField: 'name', 
@@ -372,7 +394,12 @@ var semantic_combo = Ext.create('Ext.form.field.ComboBox', {
     	}
     }     
 });
-/// dataset names
+
+
+/**
+ * define the datasetname combox
+ * model----store----combox;
+ * */
 
 Ext.define('DataSetModel', {
     extend: 'Ext.data.Model',       
@@ -410,8 +437,7 @@ var dataset_combo = Ext.create('Ext.form.field.ComboBox', {
 
 DataSetStore.load();
 
-///
-///
+
 //html5 FileRead API
 
 var final_csv = "";
@@ -419,7 +445,7 @@ var csv_firstline = "";
 var html5read = function(e){
 	  
 	      
-	var extend = e.value.substring(e.value.lastIndexOf('.') + 1)
+	var extend = e.value.substring(e.value.lastIndexOf('.') + 1);
 	
 	extend = extend.toUpperCase();
 	
@@ -469,7 +495,7 @@ var html5read = function(e){
 				alert("CSV file has no data");
 				Ext.getCmp(namespace + 'datafile_csvStr').setValue("");
 			}
-		}
+		};
 
 		reader.readAsText(file);	
 		
@@ -481,7 +507,10 @@ var html5read = function(e){
 	
 };
 
-//CSV fields
+/**
+ * define and load datasample data fields, 
+ * deiine coordinate X,Y combox
+ * */
 Ext.define('CSVFieldsModel', {
     extend: 'Ext.data.Model',
     fields: [
@@ -490,7 +519,7 @@ Ext.define('CSVFieldsModel', {
     ]
 });
 
-var csvFields = [];
+var csvFields = []; //fields
 var csvFields_store = Ext.create('Ext.data.Store', {        
     model: 'CSVFieldsModel',
     data: csvFields
@@ -523,9 +552,12 @@ var csv_y_filed_combo = Ext.create('Ext.form.field.ComboBox', {
     disabled: false,        
     allowBlank: false    
 });
-/////
 
-///
+
+/**
+ * define the window for upload the user`s data
+ * the  widget named filePostfix is a hidden widget that save the file format
+ * */
 var FileUpload_Form_User = new Ext.FormPanel({   
     frame:true, 
     width:500,   
@@ -647,11 +679,11 @@ var FileUpload_Form_User = new Ext.FormPanel({
         		//Ext.getCmp(namespace + 'datafile_csv').setRawValue('');
         		
         		var asc_value = Ext.getCmp(namespace + 'datafile_asc').getValue();
-        		var extend_asc = asc_value.substring(asc_value.lastIndexOf('.') + 1)
+        		var extend_asc = asc_value.substring(asc_value.lastIndexOf('.') + 1);
         		extend_asc = extend_asc.toUpperCase();
         		
         		var prj_value = Ext.getCmp(namespace + 'datafile_prj').getValue();
-        		var extend_prj = prj_value.substring(prj_value.lastIndexOf('.') + 1)
+        		var extend_prj = prj_value.substring(prj_value.lastIndexOf('.') + 1);
         		extend_prj = extend_prj.toUpperCase();
         		
         		if(extend_asc!= "ASC" || extend_prj!= "PRJ"){
@@ -1040,4 +1072,48 @@ var Validata_Win=new Ext.Window({
     items:[  
         validate_form  
     ]
+});
+//=====================================================================================
+/**
+ * @author lp
+ * @version 2.0
+ * @description renew the window, this window can upload the rasters and samples together, and examine the consistency of boundary
+ * */
+Ext.define('uploadDataList',{
+extend: 'Ext.data.Model', 
+	    fields: [ 
+	        {name:'dataSetname',mapping:'dataSetName',type:'String'}, 
+	        {name:'Uploader',mapping:'upLoader',type:'String'},
+	        {name:'dataCategory',type:'String'}
+	    ] 
+});
+var dataUploadWin = new Ext.Window({
+	height:500,
+	title:'uploadData',
+	width:400,
+	items:[{xtype:'textfield', name:'datasetname', fieldLabel:'dataSetName'},
+		   {xtype:'fieldset',
+			id:'sample data',
+			title:'sample data',
+		    height:200,
+		    defaultType:'grid',
+		    defaults:{flex:1}
+		    },{xtype:'fieldset',
+			id:'raster data',
+			title:'raster data',
+		    height:200,
+		    defaultType:'grid',
+		    defaults:{flex:1}
+		    }],
+	buttons:[{
+        text: 'Save',
+        handler: function(){
+	                  
+        }
+    },{
+        text: 'Reset',
+        handler: function() {
+        	FileUpload_Form_User.getForm().reset(); 
+        }
+    }]
 });

@@ -17,6 +17,24 @@ import cn.com.bean.DataFile1;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class ListDataFileAction extends ActionSupport{
+	private String upLoader;
+	public String getUpLoader() {
+		return upLoader;
+	}
+
+	public void setUpLoader(String upLoader) {
+		this.upLoader = upLoader;
+	}
+
+	public String getDatasetname() {
+		return datasetname;
+	}
+
+	public void setDatasetname(String datasetname) {
+		this.datasetname = datasetname;
+	}
+
+	private String datasetname;
 
 	private List<DataFile1> items = new ArrayList<DataFile1>();
 	private int total = 1;
@@ -29,14 +47,15 @@ public class ListDataFileAction extends ActionSupport{
 	    String path = request.getSession().getServletContext().getRealPath("")+ File.separator +"WEB-INF" + File.separator +"xml";
 	    try{
 	    	 Document filesdoc = null;
-	    	 String username = (String)request.getSession().getAttribute("username");
+	    	 //String username = (String)request.getSession().getAttribute("username");
+	    	 String username = upLoader;
 	    	 if(username==null){
 	    		 filesdoc = sb.build("file:" + File.separator + path + File.separator + "dataFiles.xml");	 
 	    	 }else{            
 	    		 path = path + File.separator + "users_informations" + File.separator + username;
 	    		 filesdoc = sb.build("file:" + File.separator + path + File.separator + username + "_dataFiles.xml"); 
 	    	 }
-		     XPath xpath = XPath.newInstance("files/file");
+		     XPath xpath = XPath.newInstance("files/file[datasetName='" + this.datasetname + "']");
 		     List<Element> files = (List<Element>)xpath.selectNodes(filesdoc);
 		     
 		     for(Element file : files){
