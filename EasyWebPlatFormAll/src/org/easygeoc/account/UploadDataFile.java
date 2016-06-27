@@ -1,4 +1,4 @@
-package cn.com.action;
+package org.easygeoc.account;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.DecimalFormat;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -28,14 +29,14 @@ import cn.com.bean.DataSet;
 import com.googlecode.jsonplugin.annotations.JSON;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class UploadDataFileAction extends ActionSupport{
+public class UploadDataFile extends ActionSupport{
 
 	private String dataName;
 	private String semantic;
 	private String dataSetName;
 	
 	private File datafile_csv;
-	private File datafile_asc;
+	private File datafile;
 	private File datafile_prj;
 
 	
@@ -47,11 +48,11 @@ public class UploadDataFileAction extends ActionSupport{
 	public void setDatafile_csvStr(String datafile_csvStr) {
 		this.datafile_csvStr = datafile_csvStr;
 	}
-	public File getDatafile_asc() {
-		return datafile_asc;
+	public File getDatafile() {
+		return datafile;
 	}
-	public void setDatafile_asc(File datafile_asc) {
-		this.datafile_asc = datafile_asc;
+	public void setDatafile(File datafile) {
+		this.datafile = datafile;
 	}
 	public File getDatafile_prj() {
 		return datafile_prj;
@@ -84,9 +85,9 @@ public class UploadDataFileAction extends ActionSupport{
 	    
 		this.flag = false;
 		
-		if(this.datafile_asc == null){
+		if(this.datafile == null){
 			
-			System.out.println("asc is null");
+			System.out.println("tif is null");
 		}
 		if(this.datafile_csvStr.equals("")){          
 			
@@ -125,13 +126,13 @@ public class UploadDataFileAction extends ActionSupport{
 	    	folder.mkdir();    
 	    }
 	               
-      if(this.datafile_asc != null){
+      if(this.datafile != null){
 	    	
 	    	String filePath = path + File.separator  + dataName + "." + this.filePostfix;
 	  	    File file = new File(filePath);
 	    	
-	    	this.copy(datafile_asc,file); 
-			this.fileSize = FileSize(datafile_asc.length());
+	    	this.copy(datafile,file); 
+			this.fileSize = FileSize(datafile.length());
 			this.writeMetaData();
 			
 			
@@ -179,12 +180,11 @@ public class UploadDataFileAction extends ActionSupport{
         out.close(); 
 	}
 	
-	@Override
 	public String execute(){         
 	   
 		this.flag = false;
 		
-		if(this.datafile_asc == null){
+		if(this.datafile == null){
 			
 			System.out.println("asc is null");
 		}
@@ -238,13 +238,13 @@ public class UploadDataFileAction extends ActionSupport{
 			
 			System.out.println("filePath:" + filePath);
 			
-	    }else if(this.datafile_asc != null){
+	    }else if(this.datafile != null){
 	    	
 	    	String filePath = path + File.separator  + dataName + "." + this.filePostfix;
 	  	    File file = new File(filePath);
 	    	
-	    	this.copy(datafile_asc,file); 
-			this.fileSize = FileSize(datafile_asc.length());
+	    	this.copy(datafile,file); 
+			this.fileSize = FileSize(datafile.length());
 			this.writeMetaData();
 			
 			System.out.println("filePath:" + filePath);
@@ -323,7 +323,7 @@ public class UploadDataFileAction extends ActionSupport{
 		if(postfix.equals("CSV")){
 			
 			_type = "Table";
-		}else if (postfix.equals("ASC")){
+		}else if (postfix.equals("TIF")){
 			
 			_type = "Raster";
 		}else{

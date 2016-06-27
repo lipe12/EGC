@@ -14,12 +14,13 @@ import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
 
 import com.opensymphony.xwork2.ActionSupport;
+import tutorial.Constant;
 
 public class DeleteDataFileAction extends ActionSupport{
 
 	private String fileName;
 	private int tag;
-	
+	private String deleteFileName;
 	public String getFileName() {
 		return fileName;
 	}
@@ -58,6 +59,7 @@ public class DeleteDataFileAction extends ActionSupport{
 		     for(Element file : files){
 		    	 
 		    	 String file_name = file.getChild("fileName").getText();
+		    	 deleteFileName = file_name;
 		    	 if(file_name.equals(fileName)){
 		    		 
 		    		 root.removeContent(file);
@@ -79,12 +81,22 @@ public class DeleteDataFileAction extends ActionSupport{
   	         
   	         xmlout.output(filesdoc, filewriter);
   	         filewriter.close();     
-  	         
+  	         String deleFilePath = Constant.DataFilePath + File.separator + deleteFileName;
+  	         deleteDiskFile(deleFilePath);
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 		
 		tag =1;
 		return SUCCESS;
+	}
+    
+	public void deleteDiskFile(String path) {
+		File deleteFile = new File(path);
+		if(deleteFile.isFile() && deleteFile.exists())
+		{
+
+			deleteFile.delete();
+		}
 	}
 }

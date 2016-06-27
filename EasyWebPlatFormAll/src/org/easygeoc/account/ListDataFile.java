@@ -1,5 +1,4 @@
-package cn.com.action;
-
+package org.easygeoc.account;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,8 +14,7 @@ import org.jdom2.xpath.XPath;
 import cn.com.bean.DataFile1;
 
 import com.opensymphony.xwork2.ActionSupport;
-
-public class ListDataFileAction extends ActionSupport{
+public class ListDataFile extends ActionSupport{
 	private String upLoader;
 	private String datasetname;
 	public String getUpLoader() {
@@ -38,9 +36,19 @@ public class ListDataFileAction extends ActionSupport{
 	
 
 	private List<DataFile1> items = new ArrayList<DataFile1>();
+	public List<DataFile1> getItems() {
+		return items;
+	}
+
+	public void setItems(List<DataFile1> items) {
+		this.items = items;
+	}
+
+
+
 	private int total = 1;
 	
-	public String execute(){     
+	public String listData(){     
 		
 		SAXBuilder sb = new SAXBuilder();
 	    HttpServletRequest request = ServletActionContext.getRequest();
@@ -87,21 +95,5 @@ public class ListDataFileAction extends ActionSupport{
 	    	e.printStackTrace();
 	    }
 		return SUCCESS;
-	}
-
-	public List getItems() {
-		return items;
-	}
-
-	public void setItems(List items) {
-		this.items = items;
-	}
-
-	public int getTotal() {
-		return total;
-	}
-
-	public void setTotal(int total) {
-		this.total = total;
-	}
+}
 }
