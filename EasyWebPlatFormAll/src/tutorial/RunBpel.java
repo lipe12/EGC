@@ -85,6 +85,11 @@ public class RunBpel extends ActionSupport{
 	public boolean ascToGeotiff(){
 		return true;
 	}
+/**
+ * convert asc data into tif data
+ * @param rasterFileName {String}
+ * @param geotiffFileName {String}
+ * */
 	public boolean RasterFormatConver(String rasterFileName, String geotiffFileName){
 		boolean flag = false;
 		
@@ -170,7 +175,8 @@ public class RunBpel extends ActionSupport{
 	public String run(){   
 		           
 		 try{  
-        	
+        	//================================read http input steam, get document doc============================
+			 //===========================================start=================================================
         	HttpServletRequest request = ServletActionContext.getRequest();
  		    request.setCharacterEncoding("UTF-8"); 
  			BufferedInputStream inputStream = new BufferedInputStream(request.getInputStream());
@@ -190,11 +196,17 @@ public class RunBpel extends ActionSupport{
  	        SAXBuilder sb = new SAXBuilder();
  	        Document doc = sb.build(source); 
  	        
+	        //============================================end=================================================================
+	        
+	        //==========================read tasks.xml, get document taskdoc=================================================
+	        //====================================start======================================================================
  	        String path = request.getSession().getServletContext().getRealPath("")+ File.separator + "WEB-INF" + File.separator + "xml";
  	        Document tasksdoc = sb.build("file:" + File.separator + path + File.separator + "tasks.xml");
-	        XPath xpath = XPath.newInstance("model/task");
-	        List<Element> tasks = (List<Element>)xpath.selectNodes(doc);
 	        
+	        //======================================end============================================================================
+ 	        
+ 	        XPath xpath = XPath.newInstance("model/task");
+	        List<Element> tasks = (List<Element>)xpath.selectNodes(doc);
 	        List<String> atomWsdlsName = new ArrayList<String>();
 	        oneToNMap map = new oneToNMap();
 	        String wsdlBasePath = null;
@@ -204,21 +216,28 @@ public class RunBpel extends ActionSupport{
 	        List<String> lastTaskOutDataName = new ArrayList<String>();
 	        //
 	        List<String> tasknames = new ArrayList<String>();
-	       
+	        
+	        //=======================================get the task information of every task=============================================
+	        //=======================================include taskname\input and output data path\wsdlBasePath\atomWsdlsName==============
+	        //===============================================start=================================================================
 		    for(Element task : tasks){
 		    	String taskname = task.getAttribute("taskName").getValue();
 	            //
 		    	tasknames.add(taskname);
+		    	
+		    	//based algorithmname to get the algorithmname.xml position, such as D8.xml
 		    	Element algorithm =  task.getChild("algorithm");
 		    	String  algorithmname = algorithm.getAttributeValue("algorithmName");
-		    	
 		    	xpath = XPath.newInstance("Tasks/Task[@TaskName='"+taskname+"']/Algorithms/Algorithm/AlgorithmName[text()='"+algorithmname+"']");
 		    	Element AlgorithmName = (Element)xpath.selectSingleNode(tasksdoc);
-		    	   
 		    	Element algorithm_temp = AlgorithmName.getParentElement();
 		    	Element algorithmPath_temp = algorithm_temp.getChild("FilePath");
 		    	String filePath = path + File.separator + "algorithms" + File.separator + algorithmPath_temp.getText();
 		    	
+		    	//parse the algorithmname.xml document, get the description of algorithmname
+		    	//include WsdlBasePath such as WsdlBasePath = "C:/Wsdl"
+		    	//WsdlName WsdlName = "flowDirectionImpl.wsdl"
+		    	//datakind and dataname
 		    	Document algorithmdoc = sb.build("file:" + File.separator + filePath);
 		    	xpath = XPath.newInstance("Algorithm");
 		    	Element Algorithm = (Element)xpath.selectSingleNode(algorithmdoc);
@@ -235,9 +254,9 @@ public class RunBpel extends ActionSupport{
 		    		Element dataName_temp = (Element)xpath.selectSingleNode(doc);
 		    		Element data_temp = dataName_temp.getParentElement();
 		    		Element dataValue = data_temp.getChild("dataValue");
-		    		String dataValueText = dataValue.getText();
+		    		String dataValueText = dataValue.getText();   // get the data relative path from the http transfered data 
 					
-		    		  
+		    		 // get the absolute path of input and out put data 
 		    		if(!dataValueText.contains(File.separator) && !dataKind.getText().equals("Parameter")){				
 		    			if(dataValueText.contains("#")){
 							String [] dataValueTexts = dataValueText.split("#");
@@ -262,11 +281,11 @@ public class RunBpel extends ActionSupport{
 		    			}        
 			    	}  
 		    		//
-		    	    map.putAdd("input" + index ,dataValueText); 
+		    	    map.putAdd("input" + index ,dataValueText);  // record the input data
 		    	}
 		    	index ++;  
 		    }// end of for(Element task : tasks)
-		    
+		    //=============================================================end====================================================
 		    bpelUtility2 bu = new bpelUtility2();
 		    String basePath = Constant.ODE_BasePath;
 		    String srcBasePath = Constant.SrcBasePath;

@@ -27,6 +27,8 @@ import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
 import org.jdom2.xpath.XPath;
 
+import tutorial.Constant;
+
 public class bpelUtility2 {
 	
 	private boolean deployed = false;
@@ -72,6 +74,11 @@ public class bpelUtility2 {
 		return true;
 	}
 	public  static Object obj=new Object();
+	
+/**
+ * match the task2wsdl precious record, based on tasknames
+ * @param tasknames {List<String>} task name strings
+ *  */
 	private String matchTask2Wsdl(List<String> tasknames){
 		
 		String wsdl_location = null;
@@ -104,7 +111,12 @@ public class bpelUtility2 {
 			return wsdl_location;
 		}
 	}
-	
+/**
+ * updata the task2wsdl.xml
+ * when the original xml do not have a same tasks flow, build a new record
+ * @param tasknames {List<String>} task names
+ * @param wsdllocation {String} the task2wsdl position
+ * */	
 	private boolean updataTask2Wsdk(List<String> tasknames,String wsdllocation){
 		
 		String combine_taskname = tasknames.get(0);
@@ -142,7 +154,17 @@ public class bpelUtility2 {
 			return true;
 		}
 	}
-	
+/**
+ *  create a new fold, copy created wsdl bpel deployedxml into ODE_BasePath, upadate the task2wsdl.xml
+ * @param basePath {String} Constant.ODE_BasePath;
+ * @param wsdlBasePath {String} "C:/Wsdl"
+ * @param srcBasePath {String} Constant.SrcBasePath
+ * @param bpelFileName {String}
+ * @param deployFileName {String}
+ * @param mainWsdlName {String}
+ * @param atomWsdlsName {List<String>} every task wsdl such as fillDeps.wsdl
+ * @param tasknames {List<String>} task names
+ * */
 	private boolean bootBpel(String basePath,String wsdlBasePath,String srcBasePath ,String bpelFileName,String deployFileName,String mainWsdlName,List<String> atomWsdlsName,List<String> tasknames){
 		Date d = new Date();
 		long longtime = d.getTime();   

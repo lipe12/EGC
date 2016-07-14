@@ -97,7 +97,7 @@ public class DisplayDataSet extends ActionSupport{
 	    try{
 	    	 Document filesdoc = null;
 	         filesdoc = sb.build("file:" + File.separator + path);	 
-		     XPath xpath = XPath.newInstance("dataSets/dataSet[datasetName='" + this.datasetname + "']");
+		     XPath xpath = XPath.newInstance("dataSets/dataSet[datasetname='" + this.datasetname + "']");
 		     
 		     Element dataSet = (Element)xpath.selectSingleNode(filesdoc);
              if(dataSet==null){

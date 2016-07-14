@@ -383,6 +383,8 @@ public class UploadDataFile extends ActionSupport{
 			 _format.setText(this.format);
 			 Element _semantic = new Element("semantic");
 			 _semantic.setText(this.semantic);
+			 Element _dataversion = new Element("dataversion");
+			 _dataversion.setText("new");
 			 Element _top =new Element("top");
 			 _top.setText(this.top);
 			 Element _down = new Element("down");
@@ -400,6 +402,7 @@ public class UploadDataFile extends ActionSupport{
 			 _file.addContent(_type);
 			 _file.addContent(_format);
 			 _file.addContent(_semantic);
+			 _file.addContent(_dataversion);
 			 _file.addContent(_top);
 			 _file.addContent(_down);
 			 _file.addContent(_left);

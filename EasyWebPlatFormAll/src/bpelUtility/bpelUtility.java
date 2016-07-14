@@ -138,7 +138,11 @@ public class bpelUtility {
 		System.out.println(soap);
 		return soap;
 	}
-
+/**
+ * create a wsdl in C:\wsdl
+ * @param srcBasePath {String} C:\\Wsdl
+ * @param wsdlpaths {List<String>} the every task wsdl path called by this task process
+ * */
 	public String CreateWSDL(String srcBasePath ,List<String> wsdlpaths){
 		SAXBuilder builder = new SAXBuilder();
         String xmlns = "http://schemas.xmlsoap.org/wsdl/";
@@ -281,7 +285,7 @@ public class bpelUtility {
           seq.addContent(ele); 
       }
       
-      // Ìí¼Ó complexType
+      // ï¿½ï¿½ï¿½ complexType
       index = 1;
       for(String path : wsdlpaths)
       {
@@ -332,7 +336,7 @@ public class bpelUtility {
           }
       }// end of for
       
-      //Ìí¼Óelement
+      //ï¿½ï¿½ï¿½element
       element = new Element("element",shcema);
       element.setAttribute("name", "CaculatorProcessResponse");
       schema.addContent(element);
@@ -345,7 +349,7 @@ public class bpelUtility {
       seq_ele.setAttribute("type", "string");
       seq.addContent(seq_ele);  
       
-      //Ìí¼Ó message
+      //ï¿½ï¿½ï¿½ message
       Element message = new Element("message",xmlns); 
       message.setAttribute("name", "CaculatorProcessRequestMessage");
       definitions.addContent(message);
@@ -364,11 +368,11 @@ public class bpelUtility {
       part.setAttribute("name", "payload");
       message.addContent(part);
       
-      //Ìí¼ÓportType
+      //ï¿½ï¿½ï¿½portType
       Element _portType = new Element("portType",xmlns);
       _portType.setAttribute("name", "CaculatorProcess");
       definitions.addContent(_portType);
-      //Ìí¼Óoperation
+      //ï¿½ï¿½ï¿½operation
       Element operation = new Element("operation",xmlns);
       operation.setAttribute("name", "caculator");
       _portType.addContent(operation);
@@ -380,7 +384,7 @@ public class bpelUtility {
       operation.addContent(_input);
       operation.addContent(_output);
       
-      // Ìí¼Ó plnk
+      // ï¿½ï¿½ï¿½ plnk
       Element _partnerLinkType = new Element("partnerLinkType","plnk",  plnk);
       _partnerLinkType.setAttribute("name", "CaculatorProcess");
       definitions.addContent(_partnerLinkType);
@@ -390,7 +394,7 @@ public class bpelUtility {
       _role.setAttribute("portType", "tns:CaculatorProcess");
       _partnerLinkType.addContent(_role);
       
-      //Ìí¼Ó binding
+      //ï¿½ï¿½ï¿½ binding
       Element binding = new Element("binding",xmlns);
       binding.setAttribute("name", "CaculatorProcessBinding");
       binding.setAttribute("type", "tns:CaculatorProcess");
@@ -424,7 +428,7 @@ public class bpelUtility {
       _output.addContent(body);
       
       
-      // Ìí¼Ó service
+      // ï¿½ï¿½ï¿½ service
       Element service = new Element("service",xmlns);
       service.setAttribute("name", "CaculatorProcess");
       definitions.addContent(service);

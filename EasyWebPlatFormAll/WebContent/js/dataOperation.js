@@ -43,6 +43,7 @@ ListDataSetStore.load();
 var upLoader = null;
 var dataSetName = null;
 var authority = null;
+var kmllayer = null;
 var grid = Ext.create("Ext.grid.Panel", {
 	title:"Data Manage",
 	store: ListDataSetStore,
@@ -61,7 +62,7 @@ var grid = Ext.create("Ext.grid.Panel", {
 																				authority = row.get('dataCategory');
 																				gridmenu.showAt(e.getXY());}},
 	//TODO: add dataset action
-	tbar:[{text:'add dataset', handler:function(){}},
+	tbar:[{text:'add dataset', handler:createDataSetWinShow},
 		{xtype:'textfield', enableKeyEvents:true,
 		listeners:{
 			keyup:function(){
@@ -90,16 +91,13 @@ var grid = Ext.create("Ext.grid.Panel", {
  * find the kml or shape file through the datasetname and uploader field
  * this progress will erase the precious kml or shape
  * */
-function displayKML1(kml_name, upLoader){    
+function displayKML1(){    
 	
 	//alert(kml_name);
-	FileDataGrid_User.getSelectionModel().deselectAll();   
-	 
-	
-	var datasetname = kml_name;
-	var kmlPath = upLoader + '/' + kml_name + '.kml';
+	grid.getSelectionModel().deselectAll();   
+	var kmlPath = upLoader + '/' + dataSetName + '.kml';
 	//alert(datasetname);                                 
-	var xmlUrl = "findkmlextent1.action?datasetname="+ datasetname + "&upLoader=" + upLoader;
+	var xmlUrl = "findkmlextent1.action?datasetname="+ dataSetName + "&upLoader=" + upLoader;
     var ajax = new Ajax();   
     ajax.open("GET",xmlUrl,true);
     ajax.send(null);
@@ -194,6 +192,8 @@ function displayKML1(kml_name, upLoader){
 				    map.addControl(selectControl);       
 					selectControl.activate();    						
 					    
+				}else{
+					Ext.Msg.alert('tip','kml file does not exist');
 				}          
 			}
 		 }    
@@ -222,20 +222,118 @@ function displayKML1(kml_name, upLoader){
 //============================================================================================
 var showDatasAction = new Ext.create('Ext.Action', {text:'show data',handler:showdata});
 
-var locationAction = new Ext.create('Ext.Action', {text:'location',handler:locationKml});
+var locationAction = new Ext.create('Ext.Action', {text:'location',handler:displayKML1});
+
+var deleteDataSetAction = new Ext.create('Ext.Action', {text:'deleteDataSet',handler:deleteDataSet});
+
+var shareDataSetAction = new Ext.create('Ext.Action', {text:'share',handler:share});
+
+//var dataShareAction = new Ext.create('Ext.Action', {text:'location',handler:dataShare});
 
 var gridmenu = new Ext.menu.Menu(
 	{
-		items:[showDatasAction, locationAction]
+		id:'rightmenu',
+		items:[showDatasAction, deleteDataSetAction, locationAction, shareDataSetAction],
+		//TODO:
+		listeners:{beforeshow:function(){
+											var xmlurl = "judgeshareduser.action";
+											var ajax = new Ajax();
+											ajax.open("GET", xmlurl,true);
+											ajax.send(null);
+											ajax.onreadystatechange = function()
+											{
+												if(ajax.readyState == 4)
+												{
+													if(ajax.status == 200)
+													{
+														var tag = ajax.responseText.pJSON().tag;
+														if(tag == true)
+														{
+															Ext.getCmp("rightmenu").setDisabled(true);
+														}
+													}
+												}
+											};
+										}}
 	});
 	
 	
 	
-	function locationKml()
-	{
-		//TODO:when load the dataset ,shoule show it whether has the kml file
-	};
 
+
+	/**
+	 * @description delete the dataset from xml file and disk
+	 * @param dataSetName*/
+	function deleteDataSet()
+	{
+		var xmlUrl = "deleteDataSet.action?dataSetName=" + dataSetName;
+		var ajax = new Ajax();   
+	    ajax.open("GET",xmlUrl,true);
+	    ajax.send(null);
+	    ajax.onreadystatechange=function(){
+	    	//TODO:now it do not come in, but it delete the data .
+	    	if(ajax.readyState == 4){
+	    		if(ajax.status == 200){
+	    	    var m = ajax.responseText;
+	    		var tag=ajax.responseText.pJSON().tag;
+	    		if(tag == 1)
+	    		{
+	    			Ext.MessageBox.alert('tip','delete dataset successfully');
+	    			ListDataSetStore.load();
+	    		}
+	    		}
+	    	}
+	    }
+	    
+	};
+	
+	/**
+	 * make the dataset public
+	 * */
+	function share(){
+		var xmlurl = "sharedataset.action?dataSetName=" + dataSetName;
+		var ajax = new Ajax();
+		ajax.open("GET", xmlurl,true);
+		ajax.send(null);
+		ajax.onreadystatechange = function()
+		{
+			if(ajax.readyState == 4)
+			{
+				if(ajax.status == 200)
+				{
+					var tag = ajax.responseText.pJSON().tag;
+					if(tag == 0)
+					{
+						Ext.Msg.alert("tip", "this data set had been shared");
+					}else if(tag == 1)
+					{
+						Ext.Msg.alert("tip", "this data set is shared successfully");
+					}
+				}
+			}
+		};
+	};
+	
+	function judgeSharedUser(){
+		var xmlurl = "judgeshareduser.action";
+		var ajax = new Ajax();
+		ajax.open("GET", xmlurl,true);
+		ajax.send(null);
+		ajax.onreadystatechange = function()
+		{
+			if(ajax.readyState == 4)
+			{
+				if(ajax.status == 200)
+				{
+					var tag = ajax.responseText.pJSON().tag;
+					if(tag == true)
+					{
+						Ext.getCmp("rightmenu").setDisabled(true);
+					}
+				}
+			}
+		};
+	};
 //===================================================================================================
 //the create dataset window
 //===================================================================================================
@@ -257,7 +355,7 @@ var createDataSet_Form = new Ext.FormPanel({
         handler: function(){
         	if(createDataSet_Form.getForm().isValid()){
         		
-            	var form = DataSet_Form.getForm();  
+            	var form = createDataSet_Form.getForm();  
             	form.submit({             
                     url: 'createdataset.action',           
                     modal:false,  
@@ -267,7 +365,7 @@ var createDataSet_Form = new Ext.FormPanel({
     				              
                     }, 
                     failure:function(f,action){             
-    					 alert("create dataset fail!");                
+    					 alert("give a new data set name!");                
                     }
     	        });   
             	
@@ -288,8 +386,13 @@ var createSet_Win=new Ext.Window({
     collapsible : false, 
     modal:false,          
     closeAction:'hide',  
-    items:[createDataSet_Form]
+    items:createDataSet_Form
 });
+
+function createDataSetWinShow()
+{
+	createSet_Win.show();
+}
 //====================================================================================
 //the window show the data in the right click dataset
 //====================================================================================
@@ -308,11 +411,13 @@ function showdata()
 	{
 		Ext.getCmp("AddData").setDisabled(true);
 		Ext.getCmp("DeleteData").setDisabled(true);
+		Ext.getCmp("createBoundary").setDisabled(true);
 	}
 	else
 	{
 		Ext.getCmp("AddData").setDisabled(false);
 		Ext.getCmp("DeleteData").setDisabled(false);
+		Ext.getCmp("createBoundary").setDisabled(false);
 	}
 	
 	datafileshow_win.show();
@@ -337,7 +442,7 @@ var ListDataStore = Ext.create('Ext.data.Store', {
 		model: 'ListData',        
 	    proxy: { 
 	        type: 'ajax', 
-	        url: "listdata.action?",  
+	        url: "listdata.action",  
 	        params:{upLoader:upLoader,datasetname:dataSetName},
 	        reader: { 
 	            type: 'json', 
@@ -440,10 +545,25 @@ var FileData_User1 = Ext.create('Ext.grid.Panel',{
 	    	              
 	    } 
 	},{xtype: 'button',
-	text: 'create public boundary',
+	text: 'createPublicBoundary',
 	id:'createBoundary',
 	handler:function(){
-	//TODO:create the dataset kml through the several raster data
+	var xmlUrl = "createdatasetkml.action?dataSetName=" + dataSetName;
+	var ajax = new Ajax();
+	ajax.open("GET", xmlUrl, true);
+	ajax.send(null);
+	ajax.onreadystatechange=function(){
+			if(ajax.readyState == 4)
+				if(ajax.status == 200)
+				{
+					var tag=ajax.responseText.pJSON().tag;
+					if(tag == 1)
+					{
+						alert("create public boundary successfully");
+						ListDataStore.load();
+					}
+				}
+			}
 	}}] 
                  
 }) ; 

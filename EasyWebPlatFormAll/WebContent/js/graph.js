@@ -55,6 +55,7 @@ var ModelManager = function(){
 		ajax.send(null);
 	};
 };
+
 var graphManager = function(canvas){
     
 	this.canvas = canvas;
@@ -64,7 +65,9 @@ var graphManager = function(canvas){
 	this.currentPre = null;  
 	this._dataMenu = null;
 	this._taskMenu= null;
-	
+/**
+ * @description get all data needed
+ * */	
 	this.findInitInputDatas = function(){
 		var taskList =[];
 		var dataList =[];
@@ -710,6 +713,10 @@ var graphManager = function(canvas){
 				}else if(startflag ==0&&endflag==1){ 
 					this._dataMenu = new  DataMenu(this,this.canvas,e,this.current,"Automate");
 					this._dataMenu.init();       
+				}else if(startflag ==1&&endflag==1){
+					this.current.interMediateResult = true;  //TODO: zhongjian jieguo menu
+					this._dataMenu = new DataMenu(this, this.canvas,e,this.current,"Automate");
+					this._dataMenu.init();
 				}
 			
 			}else if(this.current.type=='rectangle'){
@@ -1447,6 +1454,10 @@ var DataMenuItem = function(graphManager,canvas,x,y,graph,text){
 		}else if(this.text == 'SetSampleData'){
 			var win = GeoExt.createSampleDataWin(this.graph,this.graphManager);
 			win.show();   
+		}else if(this.text == "download"){
+			var downLoadFilePath = this.graph.getValue();
+			window.location.href = "http://159.226.110.183/egcDataFiles/" +  downLoadFilePath;
+			//TODO:change the egc_result folder into useser`s own folder
 		}
 		canvas.onmouseup();          
               		
@@ -1528,17 +1539,25 @@ var DataMenu = function(graphManager,canvas,e,graph,text){
 			}else if(this.graph.dataName =="FS Env.Layers ManageMent"){
 				var item1 = new  DataMenuItem(this.graphManager,this.canvas,x,y,this.graph,"Add/Remove FSEnv.Layers");
 			    this.list.push(item1);
+			}else if(this.graph.interMediateResult == true)
+			{
+				var item1 = new DataMenuItem(this.graphManager,this.canvas,x,y,this.graph,"download");
+				this.list.push(item1);
 			}else{
 				var item1 = new  DataMenuItem(this.graphManager,this.canvas,x,y,this.graph,"Automate");
 			    this.list.push(item1);
 				
 				var item2 = new  DataMenuItem(this.graphManager,this.canvas,x,y+31,this.graph,"SetData");
-			    this.list.push(item2);				
+			    this.list.push(item2);
+			    //TODO:add  download button
+			    //var item3 = new  DataMenuItem(this.graphManager,this.canvas,x,y+62,this.graph,"download");
+			    //this.list.push(item3);
 			}
 			
 		}else {  
 			//var item1 = new  DataMenuItem(this.graphManager,this.canvas,x,y,this.graph,"SetOutput");
 		    //this.list.push(item1);
+			
 		}
 		    
 	};
@@ -1549,6 +1568,30 @@ var DataMenu = function(graphManager,canvas,e,graph,text){
 	
 	};
 };	
+
+/**
+ * ellipse 
+ * @param canvas the vessel for drawing
+ * @param y the y axis in canvas
+ * @param x the x axis in canvas
+ * @param a the width of ellipse
+ * @param b the height of ellipse
+ * @inner type ellipse
+ * @inner isCurrent 
+ * @inner isLeftKeyDown
+ * @inner isRightKeyDown
+ * @inner isMounseMove
+ * @inner isKeyUp
+ * @inner fillStyle 
+ * @inner hasValue
+ * @inner lastValue
+ * @inner hasShadow
+ * @event isPointIn
+ * @event fakemousedown
+ * @event onmousedown
+ * @event onmousemove
+ * @event onmouseup
+ * @event draw*/
 var ellipse = function(x,y,a,b,label,canvas){
 	this.x=x;
 	this.y=y;
@@ -1557,6 +1600,7 @@ var ellipse = function(x,y,a,b,label,canvas){
 	this.label = label;
 	this.canvas=canvas;  
 	this.type = 'ellipse';
+	this.interMediateResult = false; //TODO: lp add for download button
 
 	this.isCurrent=false;
 	this.isLeftKeyDown=false;
@@ -1680,7 +1724,30 @@ var ellipse = function(x,y,a,b,label,canvas){
 	};
 
 };
-	
+/**
+ * rectangle 
+ * @param canvas the vessel for drawing
+ * @param y the y axis in canvas
+ * @param x the x axis in canvas
+ * @param a the width of ellipse
+ * @param b the height of ellipse
+ * @param label the name of a rectangle
+ * @inner type rectangle
+ * @inner isCurrent 
+ * @inner isLeftKeyDown
+ * @inner isRightKeyDown
+ * @inner isMounseMove
+ * @inner isKeyUp
+ * @inner fillStyle 
+ * @inner isReadyToRun
+ * @inner canRun
+ * @inner hasShadow
+ * @event isPointIn
+ * @event fakemousedown
+ * @event onmousedown
+ * @event onmousemove
+ * @event onmouseup
+ * @event draw*/	
 var rectangle = function (x,y,width,height,label,canvas){
 	    this.x = x;
         this.y = y;
@@ -1810,7 +1877,23 @@ var rectangle = function (x,y,width,height,label,canvas){
 		};		
 	
 	};
-	
+
+/**
+ * arrow 
+ * @param canvas the vessel for drawing
+ * @param start
+ * @param end
+ * @inner type arrow
+ * @inner isReady 
+ * @event isPointIn
+ * @event fakemousedown
+ * @event onmousedown
+ * @event onmousemove
+ * @event onmouseup
+ * @event draw
+ * @event crossMul
+ * @event checkCross
+ * */
 var arrow = function(start,end, canvas){
 	    this.start =start;
 		this.end = end;
@@ -2000,7 +2083,16 @@ var arrow = function(start,end, canvas){
 			return (v<=0&&this.crossMul(v1,v3)*this.crossMul(v2,v3)<=0)?true:false
 		};
 	};
-
+/**
+ * dashedLine 
+ * @param canvas the vessel for drawing
+ * @param x
+ * @param y
+ * @param x2
+ * @param y2
+ * @param dashArray
+ * @param ctx {canvas.getContext('2d')}
+ * */
 var dashedLine = function(x, y, x2, y2, dashArray, ctx){
 	if(! dashArray) dashArray=[10,5];
 	var dashCount = dashArray.length;
@@ -2039,6 +2131,17 @@ var dashedLine = function(x, y, x2, y2, dashArray, ctx){
 		dashIndex++;
 	}
 };
+/**
+ * task 
+ * @inherits rectangle
+ * @param canvas the vessel for drawing
+ * @param x
+ * @param y
+ * @param width
+ * @param height
+ * @param label
+ * @param graphManager
+ * */
 var task = function(x,y,width,height,label,canvas,graphManager){
 	
 	rectangle.call(this, x,y,width,height,label,canvas);// inherit the properties
@@ -2175,7 +2278,21 @@ var task = function(x,y,width,height,label,canvas,graphManager){
 	this.prototype = new rectangle();      
 };
 
-
+/**
+ * data 
+ * @inherits ellipse
+ * @param canvas the vessel for drawing
+ * @param x
+ * @param y
+ * @param a
+ * @param b
+ * @param label
+ * @param graphManager
+ * @event setValue
+ * @event getValue
+ * @event check judge the ellipse whether hava a data, and set hasValue true or false
+ * @event prototype
+ * */
 var data = function(x,y,a,b,label,canvas){
 	ellipse.call(this,x,y,a,b,label,canvas);// inherit the properties
 	this.dataName = label;
@@ -2199,7 +2316,16 @@ var data = function(x,y,a,b,label,canvas){
 	};
 	this.prototype = new ellipse();
 };
-
+/**
+ * parameter 
+ * @param parametername
+ * @inner parameterName
+ * @inner parameterType
+ * @inner parameterSemantic
+ * @event setValue
+ * @event getValue
+ * @event check
+ * */
 var parameter = function(parametername)	{
 	this.parameterName = parametername;
 	this.parameterType = null;
@@ -2220,6 +2346,29 @@ var parameter = function(parametername)	{
 	};
 
 };
+/**
+ * algorithm 
+ * @param algorithmName
+ * @inner inputDatas
+ * @inner outputDatas
+ * @inner parameters
+ * @event hasInputData
+ * @event setInputDatas
+ * @event addInputData
+ * @event deleteInputData
+ * @event clearInputDatas
+ * @event hasOutputData
+ * @event setOutputDatas
+ * @event addOutputData
+ * @event deleteOutputData
+ * @event clearOutputDatas
+ * @event hasParameter
+ * @event setParameter
+ * @event setParameters
+ * @event addParameter
+ * @event deleteParameter
+ * @event clearParameters
+ * */
 var algorithm = function(algorithmName){
 	this.algorithmName = algorithmName;
 	this.inputDatas = [];

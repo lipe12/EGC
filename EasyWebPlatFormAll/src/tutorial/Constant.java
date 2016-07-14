@@ -21,7 +21,7 @@ public class Constant {
 			ips = new BufferedInputStream(new FileInputStream(
 					Constant.class.getResource("/").toURI().getPath() + "config.properties"));
 			props.load(ips);
-			      
+			exepath = props.getProperty("exepath").trim();
 			ODE_BasePath = props.getProperty("ODE.BasePath").trim();
 			SrcBasePath = props.getProperty("SrcBasePath").trim();  
 			DataFilePath = props.getProperty("DataFilePath").trim();  
@@ -56,7 +56,7 @@ public class Constant {
 	public static  String Service_ModifyRasterShp_Path;
 	public static  String Service_Raster2Line_Path;
 	public static  String Service_RasterFormatConvert_Path;
-	
+	public static  String exepath;
 	
 	
 }

@@ -3,6 +3,8 @@ package bpelUtility;
 import java.util.HashMap;
 import java.util.ArrayList;
 
+/**
+ * build key-value form*/
 public class oneToNMap {
 
 
