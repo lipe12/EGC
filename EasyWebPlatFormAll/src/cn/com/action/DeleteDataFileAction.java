@@ -21,6 +21,7 @@ public class DeleteDataFileAction extends ActionSupport{
 	private String fileName;
 	private int tag;
 	private String deleteFileName;
+	private String format_tag;
 	public String getFileName() {
 		return fileName;
 	}
@@ -40,6 +41,7 @@ public class DeleteDataFileAction extends ActionSupport{
 	public String delete(){
 		
 		tag = 0;
+		String username;
 		SAXBuilder sb = new SAXBuilder();
 	    HttpServletRequest request = ServletActionContext.getRequest();
 	   
@@ -47,7 +49,7 @@ public class DeleteDataFileAction extends ActionSupport{
 	    		+ File.separator +"WEB-INF" + File.separator +"xml";
 		try{
 			 Document filesdoc = null;
-			 String username = (String)request.getSession().getAttribute("username");
+			 username = (String)request.getSession().getAttribute("username");
 
              path = path + File.separator + "users_informations" + File.separator + username;		 
 	         filesdoc = sb.build("file:" + File.separator + path + File.separator 
@@ -59,9 +61,10 @@ public class DeleteDataFileAction extends ActionSupport{
 		     for(Element file : files){
 		    	 
 		    	 String file_name = file.getChild("fileName").getText();
-		    	 deleteFileName = file_name;
+		    	 
 		    	 if(file_name.equals(fileName)){
-		    		 
+		    		 deleteFileName = file_name;
+		    		 format_tag = file.getChild("format").getText();
 		    		 root.removeContent(file);
 		    		 break;
 		    	 }
@@ -80,8 +83,15 @@ public class DeleteDataFileAction extends ActionSupport{
   	         FileWriter filewriter = new FileWriter(dataFiles);
   	         
   	         xmlout.output(filesdoc, filewriter);
-  	         filewriter.close();     
-  	         String deleFilePath = Constant.DataFilePath + File.separator + deleteFileName;
+  	         filewriter.close();
+  	         String deleFilePath;
+  	         //based on the format, give the file path that  needed to delete
+  	         // because the kml file and the raster file are not in the same folder
+  	         if (format_tag.equals("KML")) {
+  	        	deleFilePath = request.getSession().getServletContext().getRealPath("") + File.separator +"kml" + File.separator  + deleteFileName;
+			}else {
+				deleFilePath = Constant.DataFilePath + File.separator + deleteFileName;
+			}
   	         deleteDiskFile(deleFilePath);
 		}catch(Exception e){
 			e.printStackTrace();

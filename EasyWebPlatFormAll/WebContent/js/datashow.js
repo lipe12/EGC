@@ -80,7 +80,7 @@ var rightClickMenue = new Ext.menu.Menu({
 	}]
 });
 
-
+ var kmllayer = null;
 function displayKML1(kml_name, upLoader){    
 	
 	//alert(kml_name);

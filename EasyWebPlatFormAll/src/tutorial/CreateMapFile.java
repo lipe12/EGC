@@ -31,7 +31,14 @@ public class CreateMapFile extends ActionSupport{
 	public void setTag(String tag) {
 		this.tag = tag;
 	}
-	private String DataPath = Constant.DataFilePath + File.separator; 
+	private String DataPath = Constant.DataFilePath + File.separator;
+	
+	/**
+	 * this function call ExtractRasterMetaDataNew webservice to get the specified data proj et al information
+	 * @param raster_file {String} fileName: such as egc_result/b.tif
+	 * @return metaData {RasterMetaData} raster matadata information
+	 * @see http://whu.edu.cn/ws/ExtractRasterMetaDataNew webservice
+	 * */
     public RasterMetaData MetaDataExtractNew(String raster_file){
 		             	
 		RasterMetaData metaData =  new RasterMetaData();
@@ -102,7 +109,11 @@ public class CreateMapFile extends ActionSupport{
 		}
 		return metaData;
 	}
-	public boolean create_mapfile(String filename){
+	
+    /**
+	 * this function is to publish the layer in mapserver
+	 * */
+    public boolean create_mapfile(String filename){
 		
 		System.out.println("filename:" + filename);
 		
@@ -249,7 +260,7 @@ public class CreateMapFile extends ActionSupport{
 				writer.write(SixSpace + END_STYLE + "\t\n");
 				writer.write(FourSpace + END_CLASS + "\t\n");
 			}
-			//LAYER¡¡END
+			//LAYERï¿½ï¿½END
 			writer.write(DoubleSpace + END_LAYER + "\t\n");
 		
 			//MAP END

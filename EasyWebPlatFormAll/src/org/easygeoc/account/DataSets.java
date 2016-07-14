@@ -117,6 +117,25 @@ public void setTotal(int total) {
 	    			 }
 	    			 
 	    		 }
+	    		 SAXBuilder sb2 = new SAXBuilder();
+	    		 String sharedSetPath = path + File.separator + "shares.xml";
+	    		 Document doc2 = sb2.build("file:" + sharedSetPath);
+	    		 XPath sharedPath = XPath.newInstance("dataSets/dataSet");
+	    		 List<Element> sharedDataSets = (List<Element>)sharedPath.selectNodes(doc2);
+	    		 String username2 = (String)request.getSession().getAttribute("username");
+	    		 for (Element sharedDataset: sharedDataSets) {
+	    			 Element uploader = sharedDataset.getChild("upLoader");
+	    			 Element datasetname = sharedDataset.getChild("datasetname");
+	    			 if (! uploader.getText().equals(username2)) {
+	    				 dataSetlist dsl = new dataSetlist();
+	 					 dsl.setDataCategory("shared");
+	 					 dsl.setDataSetName(datasetname.getText());
+	 					 dsl.setUpLoader(uploader.getText());
+	 					 items.add(dsl);
+					}
+					
+					
+				}
 	    	 }
 	    	total = items.size();
 	    	
