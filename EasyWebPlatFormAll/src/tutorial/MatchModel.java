@@ -23,6 +23,19 @@ import org.jdom2.xpath.XPath;
 import xmlUtility.xmlUtility_dom;
 
 import com.opensymphony.xwork2.ActionSupport;
+/**
+ * match the precious model to decrease the calculation cost
+ * @author lp
+ * @version 1.0
+ * discription: i think and do this function as follow:
+ * create two variables | tmpTask : record the task that can remove from the request model(tasks) |
+ *                      | doc_process : a document that record the modified doc |
+ * --------->first, i foreach the request tasks, as we know when the back groud get the request, the task had been sorted.
+ * --------->when a node is the start node which must been given the data by the use, i check up whether the record of precious model have this task, and 
+ * --------->check the user whether have the same input data(check the xml dataValue node), if then add it into tmpTask, and remove it from doc_process
+ * --------->for the node that not the start node, we first inspect whether this task in the precious record, if then inspect its father nodes whether in tmpTask
+ * ---------> if the father nodes all in, find the children of this node. give its output data to corresponding children input, and remove this node form doc_process
+ * */
 public class MatchModel extends ActionSupport{
 	int tag = 0;
 	/**
@@ -30,7 +43,7 @@ public class MatchModel extends ActionSupport{
 	 * @param tasknames {List<String>} the request tasknames
 	 * 
 	 * */
-	public String matchPreciousModel(Document doc, List<String> tasknames) {
+	public Document matchPreciousModel(Document doc) {
 		List<String> tmpTask = new ArrayList<String>(); //use to store the same task
 		Document doc_process = doc;  //use to delete the task that can use the precious task
 		HttpServletRequest request = ServletActionContext.getRequest();
@@ -74,17 +87,6 @@ public class MatchModel extends ActionSupport{
 								boolean tag = hasSameInputValue(dataValueString, filesdoc);             
 								if (tag) {                                                               //if they have the same input
 									sameInputData = sameInputData + 1;
-									// get this data Name node value
-									//String dataNameString = dataElement.getChild("dataName").getValue();   
-									// get this next tasks of this start task
-									//List<Element> nextTasks = getNextTask(dataNameString, doc);  
-									//judge whether has next tasks
-									//if (nextTasks.size() > 0) {
-										//for(Element dataElement2 : nextTasks){
-											//Element taskElement = dataElement2.getParentElement().getParentElement();
-											
-										//}
-									//}
 								}
 								
 							}
@@ -92,6 +94,9 @@ public class MatchModel extends ActionSupport{
 						if (numInputData == sameInputData) {
 							tmpTask.add(taskNameString);
 							rootElement.removeContent(task);
+							List<Element> nextTasks = getNextTasks(taskNameString, doc_process);
+							List<String> outPutResults = findOldOutputs(taskNameString, filesdoc);
+							setNewTaskDataValue(nextTasks,outPutResults);
 						}
 					}else if (flag == false) {
 						int tmp_tag1 = 0;
@@ -112,31 +117,9 @@ public class MatchModel extends ActionSupport{
 							if (tmp_tag1 == tmp_tag2) {
 								tmpTask.add(taskNameString);
 								rootElement.removeContent(task);
-								List<Element> nextTasks = getNextTasks(taskNameString, doc);
+								List<Element> nextTasks = getNextTasks(taskNameString, doc_process);
 								List<String> outPutResults = findOldOutputs(taskNameString, filesdoc);
-								List<String> outputDataNames = new ArrayList<String>();
-								List<String> outputDataValues = new ArrayList<String>();
-								for(String outputResult : outPutResults){
-									String outputDataName = outputResult.split(":")[0];
-									String outputDataValue = outputResult.split(":")[1];
-									outputDataNames.add(outputDataName);
-									outputDataValues.add(outputDataValue);
-								}
-								for(Element nextTask : nextTasks){
-									List<Element>nextTaskDatas = nextTask.getChild("algorithm").getChildren("data");
-									for (Element nextTaskData : nextTaskDatas) {
-										String nextTaskDataKind = nextTaskData.getChild("dataKind").getValue();
-										if (nextTaskDataKind.equals("InputData")) {
-											String nextTaskDataName = nextTaskData.getChild("dataName").getValue();
-											if (outputDataNames.contains(nextTaskDataName)) {
-												Element nextTaskDataValue = nextTaskData.getChild("dataValue");
-												int i = outputDataNames.indexOf(nextTaskDataName);
-												nextTaskDataValue.setText(outputDataValues.get(i));
-											}
-										}
-									}
-								}
-								//TODO: add new data value
+								setNewTaskDataValue(nextTasks,outPutResults);
 							}
 						}
 						
@@ -147,7 +130,8 @@ public class MatchModel extends ActionSupport{
 			}
 	    	
 		}
-	    return SUCCESS;
+	    //TODO: save the new model into the record
+	    return doc_process;
 	}
 /**
  * judge whether this taskNode is the start node
@@ -176,18 +160,22 @@ public class MatchModel extends ActionSupport{
 									tag = true;
 								}
 							} catch (Exception e) {
-								// TODO: handle exception
+								e.printStackTrace();
 							}
 						}
 					}
 				}
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 		
 		return tag;
 	}
+/**
+ * judge wether have the record model xml
+ * @param xmlPath {String}
+ * */
 	private void createDataSetXML(String xmlPath){
 		
         Element root = new Element("model");  
@@ -205,6 +193,11 @@ public class MatchModel extends ActionSupport{
 			e.printStackTrace();
 		}  
 	}
+/**
+ * judge the start nodes whether have same orignal input data value
+ * @param inputValue {String}
+ * @param doc {Document}
+ * */
 	public boolean hasSameInputValue(String inputValue, Document doc) {
 		boolean tag = false;
 		try {
@@ -214,7 +207,7 @@ public class MatchModel extends ActionSupport{
 				tag = true;
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 		return tag;
 	}
@@ -258,12 +251,12 @@ public class MatchModel extends ActionSupport{
 		
 		return nextTasks;
 	}
-	/**
-	 * get the precious tasks
-	 * @param taskname {String}
-	 * @param doc {Document} the request xml
-	 * */	
-	public List<Element> getPreciousTask(String taskname, Document doc) {
+/**
+ * get the precious tasks
+ * @param taskname {String}
+ * @param doc {Document} the request xml
+ * */	
+public List<Element> getPreciousTask(String taskname, Document doc) {
 		List<Element> nextTasks = new ArrayList<Element>();
 		try {
 			XPath xPath = XPath.newInstance("model/task");
@@ -342,8 +335,38 @@ public class MatchModel extends ActionSupport{
 				}
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 		return outputResults;
+	}
+	
+/**
+ * set the request xml model task new DataValue
+ * @param nextTasks {List<Element> nextTasks}
+ * @param outPutResults {List<String>}
+ * */
+	public void setNewTaskDataValue(List<Element> nextTasks, List<String> outPutResults) {
+		List<String> outputDataNames = new ArrayList<String>();
+		List<String> outputDataValues = new ArrayList<String>();
+		for(String outputResult : outPutResults){
+			String outputDataName = outputResult.split(":")[0];
+			String outputDataValue = outputResult.split(":")[1];
+			outputDataNames.add(outputDataName);
+			outputDataValues.add(outputDataValue);
+		}
+		for(Element nextTask : nextTasks){
+			List<Element>nextTaskDatas = nextTask.getChild("algorithm").getChildren("data");
+			for (Element nextTaskData : nextTaskDatas) {
+				String nextTaskDataKind = nextTaskData.getChild("dataKind").getValue();
+				if (nextTaskDataKind.equals("InputData")) {
+					String nextTaskDataName = nextTaskData.getChild("dataName").getValue();
+					if (outputDataNames.contains(nextTaskDataName)) {
+						Element nextTaskDataValue = nextTaskData.getChild("dataValue");
+						int i = outputDataNames.indexOf(nextTaskDataName);
+						nextTaskDataValue.setText(outputDataValues.get(i));
+					}
+				}
+			}
+		}
 	}
 }

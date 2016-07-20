@@ -580,7 +580,7 @@ var graphManager = function(canvas){
 				//var _data=new data(500 + i*50,1200,40,25,outputnames[i],this.canvas);
 			    //_data.hasValue = false;
 				
-				var format = ".asc";       
+				var format = ".tif";       
 			    var nowtime = (new Date()).valueOf();    
 			    var dataName = _data.dataName.replace(/\s/g,"");   
 			    var filename = "result_egc/" +  dataName + nowtime + format;  
@@ -985,6 +985,8 @@ var point = function (x,y){
 };
 
 var SampleMappingParametersWin = null;  
+var AdditonalSamplingWin = null;
+var PurposiveSampingWin =null;
 var TaskMenuItem = function(graphManager,canvas,x,y,graph,text){
 	this.graphManager = graphManager;
 	this.canvas = canvas;
@@ -1033,17 +1035,47 @@ var TaskMenuItem = function(graphManager,canvas,x,y,graph,text){
 			this.graphManager.generateBPEL();           
 			//this.graphManager.topologySort();     
 		}else if(this.text == 'Operation Parameters'){
-			if(SampleMappingParametersWin == null){
-				var paras = this.graph.getParameters();
-				//var paras = null;
-				SampleMappingParametersWin = GeoExt.createSampleMappingParametersWin(paras);        
-				SampleMappingParametersWin.show();   
+			if(this.graph.taskName == "Sampling Based On Uncertainty")
+			{
+					if(AdditonalSamplingWin == null){
+					var paras = this.graph.getParameters();
+					//var paras = null;
+					AdditonalSamplingWin = GeoExt.createAdditonalSamplingWin(paras);       
+					AdditonalSamplingWin.show();   
+			   }else
+			   {
+				   	var paras = this.graph.getParameters();
+					//var paras = null;
+					AdditonalSamplingWin = GeoExt.createAdditonalSamplingWin(paras);       
+					AdditonalSamplingWin.show(); 
+			   }
+			}else if(this.graph.taskName == "sampling based on purposive"){
+				   if(PurposiveSampingWin == null){
+					var paras = this.graph.getParameters();
+					//var paras = null;
+					PurposiveSampingWin = GeoExt.createPurposiveSamplingWin(paras);       
+					PurposiveSampingWin.show();   
+			   }else
+			   {
+				   	var paras = this.graph.getParameters();
+					//var paras = null;
+					PurposiveSampingWin = GeoExt.createPurposiveSamplingWin(paras);       
+					PurposiveSampingWin.show(); 
+			   }
+			}else if(this.graph.taskName == "Sample Based Mapping"){
+					if(SampleMappingParametersWin == null){
+					var paras = this.graph.getParameters();
+					//var paras = null;
+					SampleMappingParametersWin = GeoExt.createSampleMappingParametersWin(paras);        
+					SampleMappingParametersWin.show();   
 			}else{        
-				var paras = this.graph.getParameters(); 
-				//var paras = null;          
-				SampleMappingParametersWin = GeoExt.createSampleMappingParametersWin(paras);         
-				SampleMappingParametersWin.show();
-			}   
+					var paras = this.graph.getParameters(); 
+					//var paras = null;          
+					SampleMappingParametersWin = GeoExt.createSampleMappingParametersWin(paras);         
+					SampleMappingParametersWin.show();
+			     }  
+			}
+			 
 		}else if(this.text =='SelectAlgorithm'){
 		    var  AlgorithmSelectWin = GeoExt.createAlgorithmSelectWindow(this.graph,this.graphManager,this.canvas);
 			             
@@ -1117,7 +1149,7 @@ var TaskMenu = function(graphManager,canvas,e,graph,text){
 		     
 		if(this.graph.isReadyToRun&& this.graph.canRun){
 		       
-			if(this.graph.taskName =='Sample Based Mapping'){
+			if(this.graph.taskName =='Sample Based Mapping' || this.graph.taskName =='Sampling Based On Uncertainty' || this.graph.taskName =='sampling based on purposive'){
 				
 				var item0 = new  TaskMenuItem(this.graphManager,this.canvas,x,y,this.graph,"Run");
 			    this.list.push(item0);
@@ -1148,7 +1180,7 @@ var TaskMenu = function(graphManager,canvas,e,graph,text){
 
 		}else{
 		               
-			if(this.graph.taskName =='Sample Based Mapping'){
+			if(this.graph.taskName =='Sample Based Mapping' || this.graph.taskName =='Sampling Based On Uncertainty' || this.graph.taskName =='sampling based on purposive'){
 				var item1 = new  TaskMenuItem(this.graphManager,this.canvas,x,y,this.graph,"Operation Parameters");
 			    this.list.push(item1); 
 			    var item2 = new  TaskMenuItem(this.graphManager,this.canvas,x,y+31,this.graph,"Delete");
@@ -1289,7 +1321,7 @@ var DataMenuItem = function(graphManager,canvas,x,y,graph,text){
 			if(this.graph.dataName == 'Presence Sites'){
 				filename = "result_egc/" +  this.graph.dataName + nowtime + ".shp";
 			}else{ 
-				filename = "result_egc/" +  this.graph.dataName + nowtime + ".asc";
+				filename = "result_egc/" +  this.graph.dataName + nowtime + ".tif";
 			}
 			// by jjc 2012-8-23
 			//var filename = this.graph.dataName + nowtime + ".asc"; 

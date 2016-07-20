@@ -34,4 +34,14 @@
         "text": "Habitat Mapping",
         "leaf": true
     }]
-}]
+},{
+	"text": "Soil Sampling",
+	"cls": "folder",
+	"expanded": true,
+	"id": "SS",
+	"children":[{
+		"text":"Sampling based on Uncertainty",
+		"leaf":true},{
+		"text":"Sampling based on purposive",
+		"leaf":true}]
+		}]

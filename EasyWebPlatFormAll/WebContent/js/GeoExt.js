@@ -1687,6 +1687,7 @@ GeoExt.createEnvLayersManageWin = function(graph , graphManager){
      		  		     }
     	  		         if(tempsnet.length >1){
     	  		        	 tag = 1;
+    	  		        	 //TODO:this place just take Geology as Boolen, maybe landuse and others also boolen, should hangle it
     	  		        	 if(kindName == 'Geology'){
         	  		        	 for(var k =0;k<tempsnet.length-1;k++){
         	  		        		 rulestring = rulestring + kindName+ "?Boolean" +"#";
@@ -1716,8 +1717,15 @@ GeoExt.createEnvLayersManageWin = function(graph , graphManager){
     	  		        
     	  		     }
     	  		            
-    		  		 value.push(rulestringAll); 
-    		  		 para.setValue(value);  
+    		  		 value.push(rulestringAll);
+    		  		 if(task.taskName == '"sampling based on purposive"')
+    		  		 {
+    		  		 }
+    		  		 else
+    		  		 {
+    		  		 	para.setValue(value);  
+    		  		 }
+    		  		 
         		  }
 
         		  //
@@ -3086,3 +3094,742 @@ GeoExt.createAlgorithmSelectWindow = function(_task,_graphManager,_canvas){
 	}
 	return this.win;
 }
+
+
+/**
+ *@deprecated function for Uncertainty Directed Field Sampling for Digital Soil Mapping
+ *@author lp
+ *@see 基于推理不确定性的数字土壤制图补样方法研究 张淑杰 博士论文
+ * */ 
+GeoExt.createAdditonalSamplingWin = function(paras){   
+	  
+	var Climate = null;
+	if(Ext.getCmp('Climate_Parameter') == undefined){
+		
+		Climate = {
+	    		 xtype: 'fieldset',
+	             flex: 1,         
+	             id:'Climate_Parameter',      
+	             title: 'Climate',
+	             defaultType: 'checkbox', // each item will be a checkbox
+	             layout: 'anchor',
+	             defaults: {      
+	                
+	                 hideEmptyLabel: true   
+	             },
+	             items:[{
+	            	 xtype:'component',      
+	         		 html:'Env.Layer Name &nbsp;&nbsp;&nbsp;&nbsp;Distance Calculation'
+	             },{
+	            	 xtype:'component',
+	             	 height:10   
+	             }]
+	    };
+	}else{
+		Climate = Ext.getCmp('Climate_Parameter');
+	}         
+	var Geology = null;
+	if(Ext.getCmp('Geology_Parameter') == undefined){
+	    Geology = {
+	            xtype: 'fieldset',
+	            flex: 1,
+	            id:'Geology_Parameter',
+	            title: 'Geology',
+	            defaultType: 'checkbox', // each item will be a checkbox
+	            layout: 'anchor',
+	            defaults: {
+	                //anchor: '100%',
+	                hideEmptyLabel: true   
+	            },
+	            items:[{
+	            	 xtype:'component',      
+	         		 html:'Env.Layer Name &nbsp;&nbsp;&nbsp;&nbsp;Distance Calculation'
+	             },{
+	            	 xtype:'component',
+	             	 height:10   
+	             }]
+	    };
+	}else{
+		Geology = Ext.getCmp('Geology_Parameter');
+	}
+    
+	var Terrain = null;
+    if(Ext.getCmp('Terrain_Parameter') == undefined){
+        Terrain = {
+                xtype: 'fieldset',
+                flex: 1,
+                id:'Terrain_Parameter',
+                title: 'Terrain',
+                defaultType: 'checkbox', // each item will be a checkbox
+                layout: 'anchor',
+                defaults: {
+                   // anchor: '100%',
+                    hideEmptyLabel: true   
+                },
+                items:[{
+	            	 xtype:'component',      
+	         		 html:'Env.Layer Name &nbsp;&nbsp;&nbsp;&nbsp;Distance Calculation'
+	             },{
+	            	 xtype:'component',
+	             	 height:10   
+	             }]
+        };
+    }else{
+    	Terrain = Ext.getCmp('Terrain_Parameter');
+    }
+     
+    var Vegetation = null;
+    if(Ext.getCmp('Vegetation_Parameter') == undefined){
+        Vegetation = {
+                xtype: 'fieldset',
+                flex: 1,
+                id:'Vegetation_Parameter',
+                title: 'Vegetation',
+                defaultType: 'checkbox', // each item will be a checkbox
+                layout: 'anchor',
+                defaults: {
+                    //anchor: '100%',
+                    hideEmptyLabel: true   
+                },
+                items:[{
+	            	 xtype:'component',      
+	         		 html:'Env.Layer Name &nbsp;&nbsp;&nbsp;&nbsp;Distance Calculation'
+	             },{
+	            	 xtype:'component',
+	             	 height:10   
+	             }]
+        };
+    }else{
+    	Vegetation = Ext.getCmp('Vegetation_Parameter');
+    }
+    
+    var Others = null;
+    if( Ext.getCmp('Others_Parameter') == undefined){
+        Others = {     
+                xtype: 'fieldset',
+                flex: 1,
+                id:'Others_Parameter',
+                title: 'Others',
+                defaultType: 'checkbox', // each item will be a checkbox
+                layout: 'anchor',
+                defaults: {
+                    //anchor: '100%',
+                    hideEmptyLabel: true   
+                },
+                items:[{
+	            	 xtype:'component',      
+	         		 html:'Env.Layer Name &nbsp;&nbsp;&nbsp;&nbsp;Distance Calculation'
+	             },{
+	            	 xtype:'component',
+	             	 height:10   
+	             }]
+        };
+    }else{
+    	Others = Ext.getCmp('Others_Parameter');
+    }
+                        
+    Ext.define('State1', {
+        extend: 'Ext.data.Model',
+        fields: [
+            {type: 'string', name: 'name'},
+            {type: 'string', name: 'value'}
+        ]
+    });
+	var states1= [
+	               {"name":"Gower","value":"Gower"},
+	               {"name":"Boolean","value":"Boolean"}    
+	             ];
+    var store1 = Ext.create('Ext.data.Store', {        
+        model: 'State1',
+        data: states1
+    });
+    //
+    var ut = null;
+    if(Ext.getCmp('UT')==undefined){
+        ut = Ext.create('Ext.form.NumberField', {
+            fieldLabel: 'Uncertainty Threshold',
+            decimalPrecision:2,   
+            id:'UT',
+            step : 0.1, 
+            value: 0.3,  
+            minValue: 0.0,          
+            maxValue: 1.0,
+            width: 400,             
+            labelWidth: 220
+        });
+    }else{    
+    	ut = Ext.getCmp('UT');
+    }
+    var ms = null;
+    if(Ext.getCmp('MS') == undefined){
+    	ms = Ext.create('Ext.form.NumberField',{
+    		fieldLabel : 'Max Sample Number',
+    		decimalPrecision:0,
+    		id:'MS',
+    		step:1,
+    		value:10,
+    		minValue:0,
+    		maxValue:9999,
+    		width:400,
+    		labelWidth:220
+    	});
+    }else{
+    	ms = Ext.getCmp('MS');
+    }
+    
+    var parameters = [];   
+   
+                  
+    parameters.push(Climate);
+    parameters.push(Geology);  
+    parameters.push(Terrain);
+    parameters.push(Vegetation); 
+    parameters.push(Others); 
+    parameters.push(ms);
+    parameters.push(ut);          
+    // combine all that into one huge form
+    var fp = null;
+    if(Ext.getCmp('AdditonalSamplingFrom') == undefined){
+        fp = Ext.create('Ext.FormPanel', {
+            
+            frame: true,
+            id:'AdditonalSamplingFrom',
+            fieldDefaults: {
+                labelWidth: 110
+            },
+            width: 450,    
+            bodyPadding: 10,
+            items: [
+                    
+            ],
+            buttons: [{
+                text: 'OK',
+                handler: function(){
+                   
+            	  for(var i =0; i< paras.length; i++){
+            		  var paraName = paras[i].parameterName;
+            		  var para = paras[i];
+            		  var value = [];
+            		 
+            		  switch(paraName){
+            		  	case "Uncertainty Threshold":
+            		  		 value = []; 
+                  			 value.push(Ext.getCmp('UT').getValue());
+                  			 para.setValue(value);
+                  	         break;
+            		  	case "Max Sample Number":
+           		  		     value = []; 
+                 			 value.push(Ext.getCmp('MS').getValue());
+                 			 para.setValue(value);
+                 	         break;
+            		  	case "Environmental Attribute Parameter":
+         		  		    
+            		  		 value = []; 
+         		  		     var rulestringAll = "";
+         		  		     var kinds = [];
+         		  		     kinds.push('Climate');
+         		  		     kinds.push('Geology');
+         		  		     kinds.push('Terrain');
+         		  		     kinds.push('Vegetation');
+         		  		     kinds.push('Others');
+         		  		     
+         		  		     for(var t = 0;t<kinds.length;t++){
+         		  		    	 var kindName = kinds[t];
+         		  		    	 var rulestring = ""; 
+             		  		     var temps = Ext.getCmp(kindName + '_Parameter').query("combo");
+             		  		     var tempsnet = [];
+             		  		     for(var v =0;v<temps.length;v++){
+             		  		    	 if(temps[v].isVisible()){
+             		  		    		 tempsnet.push(temps[v]);
+             		  		    	 }
+             		  		     }
+             		  		     var tag = 0;
+         		  		         if(tempsnet.length >1){
+         		  		        	 tag =1;
+         		  		        	 for(var k =0;k<tempsnet.length-1;k++){
+                  		  		    	rulestring = rulestring + kindName+ "?" + tempsnet[k].getValue() +"#";
+                  		  		     }
+         		  		        	 rulestring = rulestring + kindName+"?" + tempsnet[tempsnet.length-1].getValue(); 
+         		  		         }else if(tempsnet.length ==1){     
+         		  		              tag =1;
+         		  		        	  rulestring = rulestring + kindName+"?" + tempsnet[0].getValue();
+         		  		         }
+	         		  		     if(tag == 1 && rulestringAll != ""){  
+	          	  		        	  rulestringAll = rulestringAll + "#" + rulestring;
+	          	  		         }else if(tag == 1 && rulestringAll == ""){
+	          	  		        	  rulestringAll =  rulestring;
+	          	  		         }
+
+         		  		        	              
+         		  		     }               
+         		  		     value.push(rulestringAll);          
+         		  		     
+         		  		     para.setValue(value);
+         		  		     break;	    
+               	         default:
+               	        	 break;
+            		  }
+            		  
+            	  }
+            	  
+            	  win.hide();   
+                }
+            },{
+                text: 'Cancel',   
+                handler: function(){
+            	  win.hide();    
+                }
+            }]             
+        });  
+    }else{
+    	fp = Ext.getCmp('AdditonalSamplingFrom');
+    }
+                  
+    
+    fp.add(parameters);  
+    
+    var parameterNames = [];
+    parameterNames.push('Climate_Parameter');
+    parameterNames.push('Geology_Parameter');
+    parameterNames.push('Terrain_Parameter');
+    parameterNames.push('Vegetation_Parameter');
+    parameterNames.push('Others_Parameter');
+   
+    for(var k =0 ; k<parameterNames.length ; k++){
+        if( Ext.getCmp(parameterNames[k])!=undefined){
+	       	 var temps = Ext.getCmp(parameterNames[k]).query('combo');                
+	       	 for(var i =0;i< temps.length;i++){
+	       		 temps[i].hide();
+	       	 }            
+       }      
+    }       
+         
+    var EnvLayers= GeoExt.getSelectedEnvLayers();
+                                                  
+    var climateflag = 0;
+    var geologyflag = 0;
+    var terrainflag = 0;
+    var vegetationflag = 0;
+    var othersflag = 0;
+    var EnvNames = [];
+    EnvNames.push("Climate");
+    EnvNames.push("Geology");
+    EnvNames.push("Terrain");
+    EnvNames.push("Vegetation");
+    EnvNames.push("Others");
+    
+    for(var i =0;i<EnvLayers.length;i++){
+    	for(var j =0;j<EnvNames.length;j++){
+    		if(EnvLayers[i].indexOf(EnvNames[j])>=0){
+    			var temps = EnvLayers[i].split("#");
+        		var layername = temps[1]; 
+        		var layerid = layername.replace(/\s/g,""); 
+        		if(Ext.getCmp(layerid)!=undefined){
+        			Ext.getCmp(layerid).show();
+        			 if(EnvNames[j]=="Geology"){
+         		    	Ext.getCmp(layerid).setValue('Boolean');
+         		    }  
+        		}else{
+        		    var combolayer = Ext.create('Ext.form.field.ComboBox', {
+        		        fieldLabel: layername,
+        		        id:layerid,    
+        		        displayField: 'name',
+        		        valueField:'value',
+        		        value:'Gower',    
+        		        width: 200,         
+        		        labelWidth: 100,            
+        		        store: store1,    
+        		        queryMode: 'local',          
+        		        typeAhead: true
+        		    });
+        		    Ext.getCmp(EnvNames[j] + '_Parameter').add(combolayer);
+        		    if(EnvNames[j]=="Geology"){
+        		    	Ext.getCmp(layerid).setValue('Boolean');
+        		    	           
+        		    }
+        		}           
+    		}// end of if
+    	}// end of for
+    }//end of for
+    for(var i =0; i<EnvLayers.length;i++){
+       
+    	if(EnvLayers[i].indexOf("Climate")>=0){
+    		climateflag = 1;
+    		
+    	}else if(EnvLayers[i].indexOf("Geology")>=0){
+    		geologyflag = 1; 
+    		
+    	} else if(EnvLayers[i].indexOf("Terrain")>=0){
+    		terrainflag = 1;
+    		
+    	} else if(EnvLayers[i].indexOf("Vegetation")>=0){
+    		vegetationflag =1;
+    		
+    	} else if(EnvLayers[i].indexOf("Others")>=0){
+    		othersflag = 1; 
+    	}         
+    }         
+    
+    if(climateflag == 1){
+    	Ext.getCmp('Climate_Parameter').show();
+    }else{   
+    	Ext.getCmp('Climate_Parameter').hide();
+    }
+    
+    if(geologyflag == 1){
+    	Ext.getCmp('Geology_Parameter').show();
+    }else{   
+    	Ext.getCmp('Geology_Parameter').hide();
+    } 
+    
+    if(terrainflag == 1){
+    	Ext.getCmp('Terrain_Parameter').show();
+    }else{   
+    	Ext.getCmp('Terrain_Parameter').hide();
+    }
+    
+    if(vegetationflag == 1){
+    	Ext.getCmp('Vegetation_Parameter').show();
+    }else{   
+    	Ext.getCmp('Vegetation_Parameter').hide();
+    }
+    
+    if(othersflag == 1){
+    	Ext.getCmp('Others_Parameter').show();
+    }else{   
+    	Ext.getCmp('Others_Parameter').hide();
+    }    
+    ///////
+	for(var i =0; i< paras.length; i++){         
+		var paraName = paras[i].parameterName;
+		var para = paras[i];
+		if(paraName =="Uncertainty Threshold"){
+		   var value = para.getValue();                 
+		   Ext.getCmp('UT').setValue(value[0]);   
+		}
+	};
+	for(var i =0; i< paras.length; i++){         
+		var paraName = paras[i].parameterName;
+		var para = paras[i];
+		if(paraName =="Max Sample Number"){
+		   var value = para.getValue();                 
+		   Ext.getCmp('MS').setValue(value[0]);   
+		}
+	};
+	///////
+    fp.doLayout(); 
+    var win = null ;
+    if(Ext.getCmp('AdditonalSamplingWin') == undefined){
+    	win = new Ext.Window({           
+            width:460,
+			modal:true,			
+            id:'AdditonalSamplingWin',
+            title: 'Sampling Based on uncertainty',      
+            closeAction:'close',
+            items: [fp]
+        });  	
+    }else{
+    	win = Ext.getCmp('AdditonalSamplingWin');   
+    }
+	
+	                   
+	return win;            
+	   
+};
+
+/**
+ * sampling based on purposive
+ * */
+GeoExt.createPurposiveSamplingWin = function(paras){                    
+    
+    //para minClassNum
+	var mic = null;
+    if(Ext.getCmp('MIC')==undefined){
+        mic = Ext.create('Ext.form.NumberField', {
+            fieldLabel: 'minClassNum',
+            decimalPrecision:0,   
+            id:'MIC',
+            step : 1, 
+            value: 3,  
+            minValue: 0,          
+            maxValue: 9999,
+            width: 400,             
+            labelWidth: 220
+        });
+    }else{    
+    	mic = Ext.getCmp('MIC');
+    }
+    //para maxClassNum
+    var mac = null;
+    if(Ext.getCmp('MAC') == undefined){
+    	mac = Ext.create('Ext.form.NumberField',{
+    		fieldLabel : 'maxClassNum',
+    		decimalPrecision:0,
+    		id:'MAC',
+    		step:1,
+    		value:5,
+    		minValue:0,
+    		maxValue:9999,
+    		width:400,
+    		labelWidth:220
+    	});
+    }else{
+    	mac = Ext.getCmp('MAC');
+    }
+    //para endError
+    var ee = null;
+    if(Ext.getCmp('EE') == undefined){
+    	ee = Ext.create('Ext.form.NumberField',{
+    		fieldLabel : 'endError',
+    		decimalPrecision:3,
+    		id:'EE',
+    		step:0.001,
+    		value:0.005,
+    		minValue:0.000,
+    		maxValue:1.000,
+    		width:400,
+    		labelWidth:220
+    	});
+    }else{
+    	ee = Ext.getCmp('EE');
+    }
+    
+    //para iterationNum
+    var inum = null;
+    if(Ext.getCmp('IN') == undefined){
+    	inum = Ext.create('Ext.form.NumberField',{
+    		fieldLabel : 'iterationNum',
+    		decimalPrecision:0,
+    		id:'IN',
+    		step:1,
+    		value:100,
+    		minValue:0,
+    		maxValue:9999,
+    		width:400,
+    		labelWidth:220
+    	});
+    }else{
+    	inum = Ext.getCmp('IN');
+    }
+    //para Alpha_Cut
+    var ac = null;
+    if(Ext.getCmp('AC') == undefined){
+    	ac = Ext.create('Ext.form.NumberField',{
+    		fieldLabel : 'Alpha_Cut',
+    		decimalPrecision:2,
+    		id:'AC',
+    		step:0.1,
+    		value:0.7,
+    		minValue:0.0,
+    		maxValue:1.0,
+    		width:400,
+    		labelWidth:220
+    	});
+    }else{
+    	ac = Ext.getCmp('AC');
+    }
+    //para patternSampleNum
+    var ps = null;
+    if(Ext.getCmp('PS') == undefined){
+    	ps = Ext.create('Ext.form.NumberField',{
+    		fieldLabel : 'patternSampleNum',
+    		decimalPrecision:0,
+    		id:'PS',
+    		step:1,
+    		value:3,
+    		minValue:0,
+    		maxValue:9999,
+    		width:400,
+    		labelWidth:220
+    	});
+    }else{
+    	ps = Ext.getCmp('PS');
+    }
+    //para sample_distance
+    var sd = null;
+    if(Ext.getCmp('SD') == undefined){
+    	sd = Ext.create('Ext.form.NumberField',{
+    		fieldLabel : 'sample_distance',
+    		decimalPrecision:0,
+    		id:'SD',
+    		step:1,
+    		value:100,
+    		minValue:0,
+    		maxValue:9999,
+    		width:400,
+    		labelWidth:220
+    	});
+    }else{
+    	sd = Ext.getCmp('SD');
+    }
+    
+    
+    var parameters = [];   
+   
+                  
+    parameters.push(mic);
+    parameters.push(mac);  
+    parameters.push(ee);
+    parameters.push(inum); 
+    parameters.push(ac); 
+    parameters.push(ps);
+    parameters.push(sd);          
+    // combine all that into one huge form
+    var fp = null;
+    if(Ext.getCmp('PurposiveSampingFrom') == undefined){
+        fp = Ext.create('Ext.FormPanel', {
+            
+            frame: true,
+            id:'PurposiveSampingFrom',
+            fieldDefaults: {
+                labelWidth: 110
+            },
+            width: 450,    
+            bodyPadding: 10,
+            items: [
+                    
+            ],
+            buttons: [{
+                text: 'OK',
+                handler: function(){
+                   
+            	  for(var i =0; i< paras.length; i++){
+            		  var paraName = paras[i].parameterName;
+            		  var para = paras[i];
+            		  var value = [];
+            		 
+            		  switch(paraName){
+            		  	case "minClassNum":
+            		  		 value = []; 
+                  			 value.push(Ext.getCmp('MIC').getValue());
+                  			 para.setValue(value);
+                  	         break;
+            		  	case "maxClassNum":
+           		  		     value = []; 
+                 			 value.push(Ext.getCmp('MAC').getValue());
+                 			 para.setValue(value);
+                 	         break;
+                 	    case "endError":
+           		  		     value = []; 
+                 			 value.push(Ext.getCmp('EE').getValue());
+                 			 para.setValue(value);
+                 	         break;
+                 	    case "iterationNum":
+           		  		     value = []; 
+                 			 value.push(Ext.getCmp('IN').getValue());
+                 			 para.setValue(value);
+                 	         break;
+                 	    case "Alpha_Cut":
+           		  		     value = []; 
+                 			 value.push(Ext.getCmp('AC').getValue());
+                 			 para.setValue(value);
+                 	         break;
+                 	    case "patternSampleNum":
+           		  		     value = []; 
+                 			 value.push(Ext.getCmp('PS').getValue());
+                 			 para.setValue(value);
+                 	         break;
+                 	    case "sample_distance":
+           		  		     value = []; 
+                 			 value.push(Ext.getCmp('SD').getValue());
+                 			 para.setValue(value);
+                 	         break;
+               	         default:
+               	        	 break;
+            		  }
+            		  
+            	  }
+            	  
+            	  win.hide();   
+                }
+            },{
+                text: 'Cancel',   
+                handler: function(){
+            	  win.hide();    
+                }
+            }]             
+        });  
+    }else{
+    	fp = Ext.getCmp('PurposiveSampingFrom');
+    }
+                  
+    
+    fp.add(parameters);     
+    ///////
+	for(var i =0; i< paras.length; i++){         
+		var paraName = paras[i].parameterName;
+		var para = paras[i];
+		if(paraName =="minClassNum"){
+		   var value = para.getValue();                 
+		   Ext.getCmp('MIC').setValue(value[0]);   
+		}
+	};
+	for(var i =0; i< paras.length; i++){         
+		var paraName = paras[i].parameterName;
+		var para = paras[i];
+		if(paraName =="maxClassNum"){
+		   var value = para.getValue();                 
+		   Ext.getCmp('MAC').setValue(value[0]);   
+		}
+	};
+	for(var i =0; i< paras.length; i++){         
+		var paraName = paras[i].parameterName;
+		var para = paras[i];
+		if(paraName =="endError"){
+		   var value = para.getValue();                 
+		   Ext.getCmp('EE').setValue(value[0]);   
+		}
+	};
+	for(var i =0; i< paras.length; i++){         
+		var paraName = paras[i].parameterName;
+		var para = paras[i];
+		if(paraName =="iterationNum"){
+		   var value = para.getValue();                 
+		   Ext.getCmp('IN').setValue(value[0]);   
+		}
+	};
+	for(var i =0; i< paras.length; i++){         
+		var paraName = paras[i].parameterName;
+		var para = paras[i];
+		if(paraName =="Alpha_Cut"){
+		   var value = para.getValue();                 
+		   Ext.getCmp('AC').setValue(value[0]);   
+		}
+	};
+	for(var i =0; i< paras.length; i++){         
+		var paraName = paras[i].parameterName;
+		var para = paras[i];
+		if(paraName =="patternSampleNum"){
+		   var value = para.getValue();                 
+		   Ext.getCmp('PS').setValue(value[0]);   
+		}
+	};
+	for(var i =0; i< paras.length; i++){         
+		var paraName = paras[i].parameterName;
+		var para = paras[i];
+		if(paraName =="sample_distance"){
+		   var value = para.getValue();                 
+		   Ext.getCmp('SD').setValue(value[0]);   
+		}
+	};
+	///////
+    fp.doLayout(); 
+    var win = null ;
+    if(Ext.getCmp('PurposiveSampingWin') == undefined){
+    	win = new Ext.Window({           
+            width:460,
+			modal:true,			
+            id:'PurposiveSampingWin',
+            title: 'Sampling Based on Purposive',      
+            closeAction:'close',
+            items: [fp]
+        });  	
+    }else{
+    	win = Ext.getCmp('PurposiveSampingWin');   
+    }
+	
+	                   
+	return win;            
+	   
+};
+

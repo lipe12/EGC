@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Algorithm AlgorithmName = "Sampling BasedOn Uncertainty" Task = "Sampling Based On Uncertainty" author = "lp" WsdlBasePath = "C:/Wsdl" WsdlName = "SamplingBasedOnUncertainty.wsdl" WsdlUrl = "http://localhost/WS_SamplingBasedOnUncertainty/SamplingBasedOnUncertainty.asmx?WSDL">
+	<Data>
+		<DataKind>InputData</DataKind>
+		<DataName>Env.Layers ManageMent</DataName>
+		<DataType>Manager</DataType>
+		<DataSematic>Env.Layers ManageMent</DataSematic>
+	</Data>
+    <Data>
+		<DataKind>InputData</DataKind>
+		<DataName>Sample Data</DataName>
+		<DataType>Table</DataType>
+		<DataSematic>Soil Sample</DataSematic>
+	</Data>
+	<Data>
+		<DataKind>Parameter</DataKind>
+		<DataName>Environmental Attribute Parameter</DataName>
+		<DataType>Attribute Rule</DataType>
+		<DataSematic>Attribute Rule Array</DataSematic>
+	</Data>
+	<Data>
+		<DataKind>Parameter</DataKind>
+		<DataName>The max sampling number</DataName>
+		<DataType>Interger</DataType>
+		<DataSematic>The max sampling number</DataSematic>
+	</Data>
+    <Data>
+		<DataKind>Parameter</DataKind>
+		<DataName>Uncertainty Threshold</DataName>
+		<DataType>float</DataType>
+		<DataSematic>Uncertainty Threshold</DataSematic>
+	</Data>
+	<Data>
+		<DataKind>OutputData</DataKind>
+		<DataName>Sample Point</DataName>
+		<DataType>Table</DataType>
+		<DataSematic>Sample Point</DataSematic>
+	</Data>
+</Algorithm>

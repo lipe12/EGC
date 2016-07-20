@@ -162,6 +162,89 @@
 		</Output>
 	</Outputs>
 </Task>
+<Task TaskName = "Sampling Based On Uncertainty" id = "Sampling Based On Uncertainty">
+	<Algorithms>
+		<Algorithm id = "Sampling BasedOn Uncertainty"> 
+			<AlgorithmName>Sampling BasedOn Uncertainty</AlgorithmName>
+			<Inputs id = "In_Sampling BasedOn Uncertainty">
+				<Input>
+					<DataSematic>Env.Layers ManageMent</DataSematic>
+				</Input>
+				<Input>
+					<DataSematic>Sample Data</DataSematic>
+				</Input>
+			</Inputs>
+			<Parameters id = "Para_Sampling BasedOn Uncertainty">
+				<Parameter>
+					<ParaSematic>Environmental Attribute Parameter</ParaSematic>
+					<DefaultValue></DefaultValue>
+				</Parameter>
+				<Parameter>
+					<ParaSematic>The max sampling number</ParaSematic>
+					<DefaultValue>10</DefaultValue>
+				</Parameter>
+				<Parameter>
+					<ParaSematic>Uncertainty Threshold</ParaSematic>
+					<DefaultValue>0.3</DefaultValue>
+				</Parameter>				
+			</Parameters>
+			<FilePath>samplingBasedOnUncertainty.xml</FilePath>
+		</Algorithm>
+	</Algorithms>
+	<Outputs id ="Out_Sampling BasedOn Uncertainty">
+		<Output id ="Sample Point">
+			<DataSematic>Sample Point</DataSematic>
+		</Output>
+	</Outputs>
+</Task>
+<Task TaskName = "sampling based on purposive" id = "sampling based on purposive">
+	<Algorithms>
+		<Algorithm id = "purposive sampling"> 
+			<AlgorithmName>purposive sampling</AlgorithmName>
+			<Inputs id = "In_purposive sampling">
+				<Input>
+					<DataSematic>Env.Layers ManageMent</DataSematic>
+				</Input>
+			</Inputs>
+			<Parameters id = "Para_purposive sampling">
+				<Parameter>
+					<ParaSematic>minClassNum</ParaSematic>
+					<DefaultValue></DefaultValue>
+				</Parameter>
+				<Parameter>
+					<ParaSematic>maxClassNum</ParaSematic>
+					<DefaultValue></DefaultValue>
+				</Parameter>
+				<Parameter>
+					<ParaSematic>endError</ParaSematic>
+					<DefaultValue></DefaultValue>
+				</Parameter>
+				<Parameter>
+					<ParaSematic>iterationNum</ParaSematic>
+					<DefaultValue></DefaultValue>
+				</Parameter>
+				<Parameter>
+					<ParaSematic>Alpha_Cut</ParaSematic>
+					<DefaultValue></DefaultValue>
+				</Parameter>
+				<Parameter>
+					<ParaSematic>patternSampleNum</ParaSematic>
+					<DefaultValue></DefaultValue>
+				</Parameter>
+				<Parameter>
+					<ParaSematic>sample_distance</ParaSematic>
+					<DefaultValue></DefaultValue>
+				</Parameter>					
+			</Parameters>
+			<FilePath>purposiveSampling.xml</FilePath>
+		</Algorithm>
+	</Algorithms>
+	<Outputs id ="Out_purposive sampling">
+		<Output id ="Sample Point">
+			<DataSematic>Sample Point</DataSematic>
+		</Output>
+	</Outputs>
+</Task>
 <Task TaskName = "Habitat Mapping" id ="Habitat Mapping">
 	<Algorithms>
 		<Algorithm id = "Monkey Habitat Mapping"> 

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Algorithm AlgorithmName = "purposive sampling" Task = "sampling based on purposive" author = "lp" WsdlBasePath = "C:/Wsdl" WsdlName = "purposiveSamping.wsdl" WsdlUrl = "http://localhost/WS_purposiveSamping/purposiveSamping.asmx?WSDL">
+	<Data>
+		<DataKind>InputData</DataKind>
+		<DataName>Env.Layers ManageMent</DataName>
+		<DataType>Manager</DataType>
+		<DataSematic>Env.Layers ManageMent</DataSematic>
+	</Data>
+	<Data>
+		<DataKind>Parameter</DataKind>
+		<DataName>minClassNum</DataName>
+		<DataType>Interger</DataType>
+		<DataSematic>minClassNum</DataSematic>
+	</Data>
+	<Data>
+		<DataKind>Parameter</DataKind>
+		<DataName>maxClassNum</DataName>
+		<DataType>Interger</DataType>
+		<DataSematic>maxClassNum</DataSematic>
+	</Data>
+    <Data>
+		<DataKind>Parameter</DataKind>
+		<DataName>endError</DataName>
+		<DataType>float</DataType>
+		<DataSematic>endError</DataSematic>
+	</Data>
+	<Data>
+		<DataKind>Parameter</DataKind>
+		<DataName>iterationNum</DataName>
+		<DataType>Interger</DataType>
+		<DataSematic>iterationNum</DataSematic>
+	</Data>
+	<Data>
+		<DataKind>Parameter</DataKind>
+		<DataName>Alpha_Cut</DataName>
+		<DataType>float</DataType>
+		<DataSematic>Alpha_Cut</DataSematic>
+	</Data>
+	<Data>
+		<DataKind>Parameter</DataKind>
+		<DataName>patternSampleNum</DataName>
+		<DataType>Interger</DataType>
+		<DataSematic>patternSampleNum</DataSematic>
+	</Data>
+	<Data>
+		<DataKind>Parameter</DataKind>
+		<DataName>sample_distance</DataName>
+		<DataType>Interger</DataType>
+		<DataSematic>sample_distance</DataSematic>
+	</Data>
+	<Data>
+		<DataKind>OutputData</DataKind>
+		<DataName>Sample Point</DataName>
+		<DataType>Table</DataType>
+		<DataSematic>Sample Point</DataSematic>
+	</Data>
+</Algorithm>
