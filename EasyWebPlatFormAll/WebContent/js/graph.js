@@ -522,9 +522,10 @@ var graphManager = function(canvas){
 		    		
 		    		files_for_download = document.getElementById('files_for_download');
 		    		var files_for_download_html = '';
+		    		//TODO:judge the result format, if it is a csv file or a tif file
 		    		for(var i =0; i< layers.length; i++){ 
 		    			var temp = //'<a href= "'+ resultfile_path + layers[i] + '.tif' +'" target= "_self ">'
-						            '<a href= "'+ resultfile_path + layers[i] + '.asc' +'" target= "_self ">'
+						            '<a href= "'+ resultfile_path + layers[i] + '.tif' +'" target= "_self ">'
 		    				        + semantics[i] +'</a><br/>';      
 		    			files_for_download_html = files_for_download_html + temp;
 		    		}

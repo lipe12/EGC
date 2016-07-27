@@ -1718,7 +1718,7 @@ GeoExt.createEnvLayersManageWin = function(graph , graphManager){
     	  		     }
     	  		            
     		  		 value.push(rulestringAll);
-    		  		 if(task.taskName == '"sampling based on purposive"')
+    		  		 if(task.taskName == 'sampling based on purposive')
     		  		 {
     		  		 }
     		  		 else
@@ -2108,7 +2108,9 @@ GeoExt.createSampleMappingParametersWin = function(paras){
     });
 	var states1= [
 	               {"name":"Gower","value":"Gower"},
-	               {"name":"Boolean","value":"Boolean"}    
+	               {"name":"Gaussian","value":"Gaussian"},
+	               {"name":"Boolean","value":"Boolean"}
+	               
 	             ];
     var store1 = Ext.create('Ext.data.Store', {        
         model: 'State1',

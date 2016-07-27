@@ -1,11 +1,11 @@
-var website_url = "159.226.110.183";
+var website_url = "localhost";
 //var website_url = "192.168.6.56";
 OpenLayers.ProxyHost ="http://" + website_url + ":8080/EasyWebPlatForm/cgi-bin/proxy.cgi?url=";
     
-var wfs_url = "http://192.168.6.56:8090/cgi-bin/mapserv.exe";
-var wms_url = "http://159.226.110.183:8090/cgi-bin/mapserv.exe";
-var mapfile_path = 'D:/ms4w/apps/tutorial/htdocs/';
-var resultfile_path = 'http://159.226.110.183/egcDataFiles/';                
+var wfs_url = "http://localhost:8090/cgi-bin/mapserv.exe";
+var wms_url = "http://localhost:8090/cgi-bin/mapserv.exe";
+var mapfile_path = 'D:/soft/ms4w/apps/tutorial/htdocs/';
+var resultfile_path = 'http://localhost/egcDataFiles/';                
 var map;   
 var selectControl;
 var selectedFeature;   

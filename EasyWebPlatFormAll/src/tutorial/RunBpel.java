@@ -137,8 +137,8 @@ public class RunBpel extends ActionSupport{
 		for(String dataname : lastTaskOutDataName){
 			String ascFileName = Constant.DataFilePath + File.separator + dataname;
 			String geotiffFileName = Constant.DataFilePath + File.separator + dataname.replace(".asc", ".tif");
-			String layername = dataname.replace(".asc", "");
-			String mapfilename = dataname.replace(".asc", "");
+			String layername = dataname.replace(".tif", "");
+			String mapfilename = dataname.replace(".tif", "");
 			String semantic = "";
 			String regEx = "[a-zA-Z]+";  
 			Pattern pattern = Pattern.compile(regEx);   
@@ -195,9 +195,10 @@ public class RunBpel extends ActionSupport{
  	       
  	        SAXBuilder sb = new SAXBuilder();
  	        //Document doc = sb.build(source);  the jjc code
- 	        Document doc_orignal = sb.build(source);
- 	        MatchModel MM = new MatchModel();
- 	        Document doc = MM.matchPreciousModel(doc_orignal);// call the MatchModel to conversion the document
+ 	        //Document doc_orignal = sb.build(source);
+ 	        //MatchModel MM = new MatchModel();
+ 	        //Document doc = MM.matchPreciousModel(doc_orignal);// call the MatchModel to conversion the document
+ 	        Document doc = sb.build(source);
 	        //============================================end=================================================================
 	        
 	        //==========================read tasks.xml, get document taskdoc=================================================

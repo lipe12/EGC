@@ -101,10 +101,12 @@ public class CreateDataSetKml extends ActionSupport{
 
 		    	 String dataVersion = file.getChild("dataversion").getText();
 		    	 String dataType = file.getChild("type").getText();
-		    	 String semantic = file.getChild("semantic").getText();
-		    	 semanticValue[k] = semantic;
-		    	 k = k + 1;
+		    	 
+		    	 
 		    	 if (dataVersion.equals(tag_node) && dataType.equals("Raster")) {
+		    		 String semantic = file.getChild("semantic").getText();
+			    	 semanticValue[k] = semantic;
+			    	 k = k + 1;
 					String inputFilePath =  file.getChild("fileName").getText();
 					String[] tmpStrings = file.getChild("fileName").getText().split("/");
 					int len = tmpStrings.length;
@@ -116,7 +118,7 @@ public class CreateDataSetKml extends ActionSupport{
 					{
 						
 						outPutFilePath += tmpStrings[i];
-						outPutFilePath += File.separator;
+						outPutFilePath += "/";
 					}
 					outPutFilePath = outPutFilePath + filenameString;
 					if (outPutName == null) {
@@ -167,6 +169,7 @@ public class CreateDataSetKml extends ActionSupport{
 		   //TODO:.shp turn into kml
 		     String kml_reletive_path = userName + File.separator + dataSetName + ".kml";
 		     writekmlXML(path, userName, kml_reletive_path, ouputkml, dataSetName, north, south, west, east);
+		     updateSampleRecord(path, dataSetName, north, south, west, east);
 		     writekmllocation(kml_reletive_path, dataSetName, north, south, west, east);
 		     this.tag = 1;
 		}
@@ -406,6 +409,50 @@ public class CreateDataSetKml extends ActionSupport{
 		e.printStackTrace();
 	}
 	}
+
+	/**
+	 * upadate sample data record
+	 * */
+	public void updateSampleRecord(String xmlFilePath,  String datasetname, String north, String south, String west, String east) {
+		SAXBuilder sb = new SAXBuilder();
+		try {
+			Document doc = sb.build("file:" + xmlFilePath);
+			Element root=doc.getRootElement();
+			XPath xPath = XPath.newInstance("/files/file[datasetName=\"" + datasetname + "\"]");
+			List<Element> files = (List<Element>)xPath.selectNodes(doc);
+			for (Element file : files) {
+			    if (file.getChild("semantic").getValue().equals("Sample Data")) {
+					Element topElement = file.getChild("top");
+					topElement.setText(north);
+					Element downElement = file.getChild("down");
+					downElement.setText(south);
+					Element westElement = file.getChild("left");
+					westElement.setText(west);
+					Element eastElement = file.getChild("right");
+					eastElement.setText(east);
+				}
+		    	
+			    Format format1 = Format.getCompactFormat();   
+	  	        format1.setEncoding("UTF-8");  
+	  	        format1.setIndent("  ");     
+	  	        XMLOutputter xmlout = new XMLOutputter(format1); 
+	  	        File dataFiles = null;
+	  	         
+	  	        dataFiles = new File(xmlFilePath);
+	  	         
+	  	        System.out.println("dataFiles:" +  dataFiles);
+	  	         
+	  	        FileWriter filewriter = new FileWriter(dataFiles);
+	  	         
+	  	        xmlout.output(doc, filewriter);
+	  	        filewriter.close();
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	
 	private String createFixLenthString(int strLength) {  
 	      
