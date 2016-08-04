@@ -131,7 +131,7 @@ public class CreateMapFile extends ActionSupport{
 		try{
 			
 			//String mapfile_name = Constant.MapFilePath + filename.replace(".tif", ".map");
-			String mapfile_name = Constant.MapFilePath + filename.replace(".asc", ".map");
+			String mapfile_name = Constant.MapFilePath + filename.replace(".tif", ".map");
 			File mapfile = new File(mapfile_name);
 			BufferedWriter writer = new BufferedWriter(new FileWriter(mapfile));
 			

@@ -1,5 +1,7 @@
+
 /**
- * 
+ * upload data pannel 
+ * version 1.0
  */
  //============================================================================
  /**
@@ -307,6 +309,7 @@ var gridmenu = new Ext.menu.Menu(
 						Ext.Msg.alert("tip", "this data set had been shared");
 					}else if(tag == 1)
 					{
+						ListDataSetStore.load();
 						Ext.Msg.alert("tip", "this data set is shared successfully");
 					}
 				}
