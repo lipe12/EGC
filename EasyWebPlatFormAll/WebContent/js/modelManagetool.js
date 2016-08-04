@@ -1,9 +1,9 @@
 var modelManagerwin;
 var modelSavewin;
 var modelOpenwin;
-var modelstrjjc;        
-modelManagerwin = Ext.create('Ext.Window', {
-   
+var modelstrjjc;
+
+var modelManagerwin = Ext.create('Ext.Window', {
 	closeAction: 'hide',   
 	width:300,     
 	frame:true,  
@@ -14,7 +14,6 @@ modelManagerwin = Ext.create('Ext.Window', {
 	resizable:false,  				
 	x: 200,   
 	y: 60,
-	
 	defaults:{
 				margins:'0 7 0 0'
 			},
@@ -27,7 +26,6 @@ modelManagerwin = Ext.create('Ext.Window', {
 		height:25,
 		text:'Open Model',
 		handler: function(){    
-			
 			modelOpenwin.show(); 
             GeoModelStore.load();       			
 			//Manager.openModel(modelstrjjc);
@@ -45,16 +43,12 @@ modelManagerwin = Ext.create('Ext.Window', {
 		height:25,
 		text:'Share Algorithm',
 		handler:function(){
-			
 			shareAlgorithm_win.show();
-			
 		}
-		
 	}]
 }); 
 var modelSaveform = Ext.create('Ext.form.Panel', {
         frame:true,
-            
         width: 236,  
 		height:65,          
         fieldDefaults: {
@@ -65,7 +59,6 @@ var modelSaveform = Ext.create('Ext.form.Panel', {
         defaults: {
             anchor: '100%'
         },
-
         items: [{
             xtype:'component',
             height:15             		
@@ -89,7 +82,6 @@ modelSavewin =  Ext.create('Ext.Window', {
       text:'Save',
 	  handler:function(){
 	    var modelname = Ext.getCmp('modelname').getValue();
-		
 		Manager.saveModel(modelname);
 		modelSavewin.hide(); 
 		GeoModelStore.load();      
@@ -126,7 +118,6 @@ var GeoModelStore = Ext.create('Ext.data.Store', {
 	}, 
 	autoLoad: false      
 }); 
-   
     
 var  ModelGrid = Ext.create('Ext.grid.Panel',{
             store: GeoModelStore, 
@@ -144,12 +135,10 @@ var  ModelGrid = Ext.create('Ext.grid.Panel',{
 		        displayMsg: 'Show {0} - {1} item, total {2} items', 
 		        emptyMsg: "no data" 
 		    }) 
-
 });
 GeoModelStore.load(); 
 
 var getmodelstr = function(modelname){
-               
 	var xmlUrl = "geomodelstr.action?modelname="+modelname;
 	var ajax = new Ajax();   
 	ajax.open("GET",xmlUrl,true); 
