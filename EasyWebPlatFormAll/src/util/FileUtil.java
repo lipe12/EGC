@@ -1,7 +1,5 @@
 package util;
 
-import java.io.File;
-
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -21,12 +19,12 @@ public class FileUtil
 	 */
 	public static String getAppPath(HttpServletRequest request)
 	{
-		return request.getSession().getServletContext().getRealPath("");
+		return request.getSession().getServletContext().getRealPath("/");
 	}
 
 	public static String getXMLDirPath(HttpServletRequest request)
 	{
-		return getAppPath(request) + File.separator + "WEB-INF" + File.separator + "xml";
+		return getAppPath(request) + "WEB-INF\\xml";
 	}
 
 }

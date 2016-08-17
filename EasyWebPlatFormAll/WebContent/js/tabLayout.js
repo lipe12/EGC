@@ -212,7 +212,6 @@ function clickLayerOpacity(obj)
 //begin of ext 
 Ext.onReady(function()
 {
-
     // define model-taske tree               
     var treestore = Ext.create('Ext.data.TreeStore',
     {
@@ -238,6 +237,9 @@ Ext.onReady(function()
         region: 'center',
         margins: '3 3 3 0',
         activeTab: 0,
+        style: {
+    		top:'50px'
+		},
         defaults:
         {
             autoScroll: true
@@ -247,13 +249,15 @@ Ext.onReady(function()
         {
             'tabchange': function()
             {
-                if (tabs.getActiveTab().id != 'easyModel')
+                if (tabs.getActiveTab().id == 'easyModel')
                 {
-                    modelManagerwin.hide();
+                    modelManagerwin.show();
+                    Ext.get('tutorial').setVisible(true);
                 }
                 else
                 {
-                    modelManagerwin.show();
+                    modelManagerwin.hide();
+                    Ext.get('tutorial').setVisible(false);//hide model canvas
                 }
             }
         },
@@ -557,7 +561,6 @@ Ext.onReady(function()
                 id: 'modelCanvas',
                 contentEl: 'model',
                 autoScroll: true,
-
                 bbar: [
                 {
                     xtype: 'component',
@@ -583,12 +586,12 @@ Ext.onReady(function()
         items: [
             {
                 region: 'north',
-                html: '<div id="header">' + '<table width="100%">' + '<tr class="banner">' + '<td class="banner" width="50px">' + '<img src="img/globe_25.gif" width=25px height=25px alt="World picture" align="top">' + '<img src="img/EGC.jpg" width=25px height=25px alt="GeoNetwork opensource logo" align="top">' + '</td>' + '<td>'
+                html: '<div id="header">' + '<table width="100%">' + '<tr class="banner">' + '<td class="banner" width="60px">' + '<img src="img/globe_25.gif" width=25px height=25px alt="World picture" align="top">' + '<img src="img/EGC.jpg" width=25px height=25px alt="GeoNetwork opensource logo" align="top">' + '</td>' + '<td>'
                     //+'<label  style="color: #009999;font-size: 15pt;">&nbsp;&nbsp;&nbsp;Easy GeoComputation PlatForm</label>'
                     + '<label  style="color: #009999;font-size: 15pt;">&nbsp;&nbsp;&nbsp;CyberSoLIM: Easy Digital Soil Mapping PlatForm</label>' + '</td>' + '<td align="right" width="450px">' + '<label id="welcome_label" style="color: #99CC00;font-size: 10pt;">' + welcomewords + '</label>&nbsp;&nbsp;&nbsp;&nbsp;' + '</td>' + '<td align="right" width="30px">'
                     //+'<button id="userlogin_btn" onclick="userlogin()" style="display:' + login_flag + ';background-color:#FFFFFF;border-bottom:1px solid #FFFFFF;;border-right:1px solid #FFFFFF"><font color="#666666"; style="TEXT-DECORATION: underline">Login</font></button>'  
                     + '<button id="userlogout_btn" onclick="userlogout()" style="display:' + logout_flag + ';background-color:#FFFFFF;border-bottom:1px solid #FFFFFF;;border-right:1px solid #FFFFFF"><font color="#666666"; style="TEXT-DECORATION: underline">Logout</font></button>' + '</td>' + '<td align="right" width="30px">' + '<button id="group_btn" onclick="groupOperation1()" style="background-color:#FFFFFF;border-bottom:1px solid #FFFFFF;;border-right:1px solid #FFFFFF"><font color="#666666"; style="TEXT-DECORATION: underline">Group</font></button>' + '</td>' + '</tr>' + '</table>' + '</div>',
-                height: 29
+                height: 30
             },
             {
                 region: 'south',
@@ -608,13 +611,11 @@ var groupOperation1 = function()
 };
 var userlogin = function()
 {
-
     UserLogin_Win.show();
     groupOperation_form.getForm().reset();
 };
 var userlogout = function()
 {
-
     var xmlUrl = "egcLogout.action";
     var ajax = new Ajax();
     ajax.open("GET", xmlUrl, true);
@@ -625,7 +626,6 @@ var userlogout = function()
             if (ajax.status == 200)
             {
                 var tag = ajax.responseText.pJSON().tag;
-
                 if (tag == "0")
                 {
                     //document.getElementById('userlogin_btn').style.display = "block";
@@ -680,7 +680,6 @@ var set_loginlogout = function()
 };
 window.onbeforeunload = function(e)
 {
-
     current_username = get_cookie("username");
     if (current_username != "")
     {
