@@ -192,8 +192,8 @@
 		</Algorithm>
 	</Algorithms>
 	<Outputs id ="Out_Sampling BasedOn Uncertainty">
-		<Output id ="Sample Point">
-			<DataSematic>Sample Point</DataSematic>
+		<Output id ="result samples">
+			<DataSematic>result samples</DataSematic>
 		</Output>
 	</Outputs>
 </Task>
@@ -240,8 +240,8 @@
 		</Algorithm>
 	</Algorithms>
 	<Outputs id ="Out_purposive sampling">
-		<Output id ="Sample Point">
-			<DataSematic>Sample Point</DataSematic>
+		<Output id ="result samples">
+			<DataSematic>result samples</DataSematic>
 		</Output>
 	</Outputs>
 </Task>

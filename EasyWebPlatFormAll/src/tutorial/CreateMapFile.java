@@ -131,7 +131,15 @@ public class CreateMapFile extends ActionSupport{
 		try{
 			
 			//String mapfile_name = Constant.MapFilePath + filename.replace(".tif", ".map");
-			String mapfile_name = Constant.MapFilePath + filename.replace(".tif", ".map");
+			String mapfile_name = "";
+			String[] splitFileNames = filename.split("\\.");
+			int splitFileLen = splitFileNames.length;
+			if (splitFileNames[splitFileLen - 1].equals("TIF")) {
+				mapfile_name = Constant.MapFilePath + filename.replace(".TIF", ".map");
+			}else if (splitFileNames[splitFileLen - 1].equals("tif")) {
+				mapfile_name = Constant.MapFilePath + filename.replace(".tif", ".map");
+			}
+			
 			File mapfile = new File(mapfile_name);
 			BufferedWriter writer = new BufferedWriter(new FileWriter(mapfile));
 			
@@ -274,4 +282,17 @@ public class CreateMapFile extends ActionSupport{
 		}
 		return true;    
 	}
+    
+    
+    public String getUploadRasterInfo(String dataPathString) {
+    	String[] tmpStrings = dataPathString.split("\\\\");
+    	int len = tmpStrings.length;
+    	String envPathString = tmpStrings[len - 1];
+		RasterMetaData envRasterMetaData = MetaDataExtractNew(envPathString);
+		String EPSGCODE = envRasterMetaData.GetEpsgcode();
+		String projString = envRasterMetaData.GetProj4();
+		String proj = EPSGCODE + "#" + projString;
+		return proj;
+	}
+    
 }

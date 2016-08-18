@@ -1,19 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <datasets>
-  <dataset>
-    <upLoader>user@163.com</upLoader>
-    <datasetname>AnhuiNorth</datasetname>
-  </dataset>
-  <dataset>
-    <upLoader>jjc1022@126.com</upLoader>
-    <datasetname>a</datasetname>
-  </dataset>
-  <dataset>
-    <upLoader>jjc1022@126.com</upLoader>
-    <datasetname>xc</datasetname>
-  </dataset>
-  <dataset>
-    <upLoader>jjc1022@126.com</upLoader>
-    <datasetname>d</datasetname>
-  </dataset>
+
 </datasets>

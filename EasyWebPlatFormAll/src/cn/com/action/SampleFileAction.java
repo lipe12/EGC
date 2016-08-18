@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.ServletActionContext;
@@ -23,7 +24,14 @@ public class SampleFileAction extends ActionSupport{
 	private String down;
 	private String left;
 	private String right;
-	
+	private String dataSetName;
+	public String getDataSetName() {
+		return dataSetName;
+	}
+
+	public void setDataSetName(String dataSetName) {
+		this.dataSetName = dataSetName;
+	}
 	private List<SampleFile> samplefiles;
 	
 	public String execute(){ 
@@ -49,8 +57,8 @@ public class SampleFileAction extends ActionSupport{
 		    	 Element _down = file.getChild("down");
 		    	 Element _left = file.getChild("left");
 		    	 Element _right = file.getChild("right");
-		    	 if(semantic.equals(_semantic.getText()) && top.equals(_top.getText())&& down.equals(_down.getText())
-		    	    && left.equals(_left.getText()) && right.equals(_right.getText())){
+		    	 Element _dataSetName = file.getChild("datasetName");
+		    	 if(semantic.equals(_semantic.getText()) && dataSetName.equals(_dataSetName.getText())){
 			    	 
 		    		 SampleFile samplefile = new SampleFile();
 			    	 Element _fileName = file.getChild("fileName");

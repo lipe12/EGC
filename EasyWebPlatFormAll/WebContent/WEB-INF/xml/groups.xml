@@ -1,27 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <groups>
-  <group>
-    <groupname>1</groupname>
-    <groupcode>1</groupcode>
-    <member>
-      <username>jjc1022@126.com</username>
-      <membershipe>founder</membershipe>
-    </member>
-	<member>
-      <username>zcy19880520@163.com</username>
-      <membershipe>member</membershipe>
-    </member>
-  </group>
-  <group>
-    <groupname>2</groupname>
-    <groupcode>2</groupcode>
-    <member>
-      <username>jjc1022@126.com</username>
-      <membershipe>founder</membershipe>
-    </member>
-	<member>
-      <username>zcy19880520@163.com</username>
-      <membershipe>member</membershipe>
-    </member>
-  </group>
+ 
 </groups>

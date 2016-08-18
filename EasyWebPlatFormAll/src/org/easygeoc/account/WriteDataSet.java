@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Random;
 import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.ServletActionContext;
@@ -48,7 +49,15 @@ public class WriteDataSet extends ActionSupport{
 	}
 	public String execute() {
 		HttpServletRequest reuqest = ServletActionContext.getRequest();
+		String path = reuqest.getSession().getServletContext().getRealPath("") + File.separator + "kml";
+		
 		username = (String)reuqest.getSession().getAttribute("username");
+		path = path + File.separator + username;
+	    File folder =new File(path);    
+	     
+	    if(!folder.exists()&& !folder.isDirectory()){       
+	    	folder.mkdir();    
+	    }
 		/// begin
 		String integer_random = this.createFixLenthString(6);
 		String dot_random = this.createFixLenthString(6);

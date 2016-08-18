@@ -488,22 +488,58 @@ var graphManager = function(canvas){
 		    		var earth = tabs.child('#EarthTab');
 	    			earth.tab.show();  
 	    		    tabs.setActiveTab(earth);          
-	    		    
-		    		var mapfiles = ajax.responseText.pJSON().mapfiles;
+	    		    var projInfo = ajax.responseText.pJSON().envProj;
+	    		    var filePath = ajax.responseText.pJSON().csvFile;
+	    		    var mapfiles = ajax.responseText.pJSON().mapfiles;
 		    		var layers = ajax.responseText.pJSON().layers;
 		    		var srs = ajax.responseText.pJSON().srs;
 		    		var semantics = ajax.responseText.pJSON().semantics;
 					////
+		    		
 					var maxs = ajax.responseText.pJSON().maxs;
 					var mins = ajax.responseText.pJSON().mins;
 		    		wms_results = [];
-		    		for(var i=0;i< mapfiles.length ; i++){   
-		    			var wms_result = new WMS_Result(mapfiles[i],layers[i],srs,semantics[i],maxs[i],mins[i]);
-	    			    wms_results.push(wms_result);
-		    		}//end of for
-		    		displayresult(wms_results[0].wms,wms_results[0].legendUrl,maxs[0],mins[0]);
-		    		
-		    		var select_show_map = document.getElementById('select_show_map');   
+	    		    if (projInfo != null && filePath !=null)
+	    		    {
+	    		    	checkSamples(filePath, projInfo);
+	    		    	if(addSamples!=null){    
+							addSamples.setVisibility(true);
+					        map.setLayerIndex(addSamples,index+5);  
+						}
+						var result = Ext.getCmp('easttabs').child('#result_display');
+						result.tab.show();              
+						Ext.getCmp('easttabs').setActiveTab(result);
+						files_for_download = document.getElementById('files_for_download');
+			    		var files_for_download_html = '';
+			    		//TODO:judge the result format, if it is a csv file or a tif file
+			    		for(var i =0; i< layers.length; i++){ 
+			    			var tmpLayer = layers[i].split("/");
+			    			var temp = //'<a href= "'+ resultfile_path + layers[i] + '.tif' +'" target= "_self ">'
+							            '<a href= "'+ resultfile_path + layers[i] + '.csv' +'" target= "_self ">'
+			    				        + tmpLayer[1] +'</a><br/>';      
+			    			files_for_download_html = files_for_download_html + temp;
+			    		}
+						files_for_download_html	= files_for_download_html.replace("result_egc/","");				
+			    		files_for_download.innerHTML = files_for_download_html;
+			    		var validate_rmse = document.getElementById('validate_rmse');
+			    		validate_rmse.style.visibility = 'hidden';
+			    		var map_for_show = document.getElementById('map_for_show');
+			    		map_for_show.style.visibility = 'hidden';
+			    		var select_show_map = document.getElementById('select_show_map');
+			    		select_show_map.style.visibility = 'hidden';
+	    		    	var title_map_legend = document.getElementById('title_map_legend');
+	    		    	title_map_legend.style.visibility = 'hidden';
+	    		    	var legend_container = document.getElementById('legend_container');
+	    		    	legend_container.style.visibility = 'hidden';
+	    		    	
+	    		    }else{
+		    		    	for(var i=0;i< mapfiles.length ; i++){   
+			    			var wms_result = new WMS_Result(mapfiles[i],layers[i],srs,semantics[i],maxs[i],mins[i]);
+		    			    wms_results.push(wms_result);
+	    			    
+		    			}//end of for
+		    			displayresult(wms_results[0].wms,wms_results[0].legendUrl,maxs[0],mins[0]);
+		    			var select_show_map = document.getElementById('select_show_map');   
 		    		var select_show_map_html = '<select  STYLE="width: 110px"  onclick="clickSelectValue(this);" onchange="getSelectValue(this);">';
 		    		
 					for(var i =0 ;i< semantics.length; i++){
@@ -514,7 +550,7 @@ var graphManager = function(canvas){
 					select_show_map_html = select_show_map_html + '<option value ="0">Clear result</option>'; 
 		    		select_show_map_html = select_show_map_html + '</select>';           
 					select_show_map_html = select_show_map_html + '&nbsp;opacity&nbsp;';
-					select_show_map_html = select_show_map_html + '<select  onclick="clickLayerOpacity(this);" onchange="getLayerOpacity(this);">'                     
+					select_show_map_html = select_show_map_html + '<select  onclick="clickLayerOpacity(this);" onchange="getLayerOpacity(this);">';                     
 					select_show_map_html = select_show_map_html + '<option selected="selected" value ="1.0">1.0</option><option value ="0.9">0.9</option><option value ="0.8">0.8</option><option value ="0.7">0.7</option>';
 					select_show_map_html = select_show_map_html + '<option value ="0.6">0.6</option><option value ="0.5">0.5</option><option value ="0.4">0.4</option><option value ="0.3">0.3</option>';
 					select_show_map_html = select_show_map_html + '<option value ="0.2">0.2</option><option value ="0.1">0.1</select>'; 
@@ -524,13 +560,17 @@ var graphManager = function(canvas){
 		    		var files_for_download_html = '';
 		    		//TODO:judge the result format, if it is a csv file or a tif file
 		    		for(var i =0; i< layers.length; i++){ 
+		    			var tmpLayer = layers[i].split("/");
 		    			var temp = //'<a href= "'+ resultfile_path + layers[i] + '.tif' +'" target= "_self ">'
 						            '<a href= "'+ resultfile_path + layers[i] + '.tif' +'" target= "_self ">'
-		    				        + semantics[i] +'</a><br/>';      
+		    				        + tmpLayer[1] +'</a><br/>';      
 		    			files_for_download_html = files_for_download_html + temp;
 		    		}
 					files_for_download_html	= files_for_download_html.replace("result_egc/","");				
 		    		files_for_download.innerHTML = files_for_download_html;
+	    		    }
+		
+		    		
 		    		//
 		    	}else{   
 					Ext.getCmp('modelprogressbar').setVisible(false); 
@@ -580,11 +620,20 @@ var graphManager = function(canvas){
 				//var _data=new data(500 + i*50,200,40,25,outputnames[i],this.canvas);
 				//var _data=new data(500 + i*50,1200,40,25,outputnames[i],this.canvas);
 			    //_data.hasValue = false;
-				
-				var format = ".tif";       
-			    var nowtime = (new Date()).valueOf();    
-			    var dataName = _data.dataName.replace(/\s/g,"");   
-			    var filename = "result_egc/" +  dataName + nowtime + format;  
+				var format;
+				var nowtime = (new Date()).valueOf();
+				var dataName;
+				var filename;
+				if(outputnames[i] == "result samples"){
+					format = ".csv";     
+				    dataName = _data.dataName.replace(/\s/g,"");   
+				    filename = "result_egc/" +  dataName + nowtime + format;  
+				}else{
+					format = ".tif";       
+				    dataName = _data.dataName.replace(/\s/g,"");   
+				    filename = "result_egc/" +  dataName + nowtime + format; 
+				}
+				 
 			       
 			    var value = [];                       
 				value.push(filename);     
@@ -1030,11 +1079,15 @@ var TaskMenuItem = function(graphManager,canvas,x,y,graph,text){
 			 	var win = GeoExt.createParameterSetWindow(paras);
 			 	win.show();  
 			}
-		}else if(this.text == "Run"){                
-			   
+		}else if(this.text == "Run"){
+			//=========test checkSamples whether can use=================
+//			var filePath = "result_egc/resultsamples1470412940405.csv";
+//			var projInfo = "32650#proj=utm zone=50 datum=WGS84 units=m no_defs";
+//			checkSamples(filePath, projInfo); 
+			//===========================================================
 			Ext.getCmp('modelprogressbar').setVisible(true); 
 			this.graphManager.generateBPEL();           
-			//this.graphManager.topologySort();     
+			this.graphManager.topologySort();     
 		}else if(this.text == 'Operation Parameters'){
 			if(this.graph.taskName == "Sampling Based On Uncertainty")
 			{

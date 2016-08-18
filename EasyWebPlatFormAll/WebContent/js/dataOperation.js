@@ -201,7 +201,25 @@ function displayKML1(){
 		 }    
 	 };
  }
- 
+ //displayKML2 is a test function
+ function displayKML2(){    
+
+	grid.getSelectionModel().deselectAll();   
+	var dataName = "xcdem";
+	 	var layerName = upLoader + dataSetName + dataName; //TODO:将layerName 改为用户名+数据集+数据名称
+	 	var envWMS = new OpenLayers.Layer.WMS(layerName, wms_url,{
+		 		layers: dataName,
+		 		map: mapfile_path  + upLoader + "/" + dataSetName + "/" + dataName + '.map',
+		 		transparent: 'true',
+		 		format: 'image/png'
+	 	    },{
+	 	    	isBaseLayer: false,
+				visibility: true,
+				opacity: 1.0,           
+				buffer: 0
+	 	    });
+	 	map.addLayer(envWMS);
+ };
  /**
   * the action of button named 'add dataset' 
  function onAddClick(){

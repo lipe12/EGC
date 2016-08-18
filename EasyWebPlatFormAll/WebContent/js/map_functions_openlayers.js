@@ -6,7 +6,9 @@ var wfs_url = "http://localhost:8090/cgi-bin/mapserv.exe";
 var wms_url = "http://localhost:8090/cgi-bin/mapserv.exe";
 var mapfile_path = 'D:/soft/ms4w/apps/tutorial/htdocs/';
 var resultfile_path = 'http://localhost/egcDataFiles/';                
-var map;   
+var map;
+var soilMappingDataSet; //负责记录用户点击的project（dataset）
+var envRaster = [];    //环境变量图层数组
 var selectControl;
 var selectedFeature;   
 var latlng1_temp;
@@ -36,7 +38,7 @@ var ctrlPressed = false;
 
 var rectLayer;
 var drawrect_control;
-
+var rightclick;
 var wfs_nigeriaSamples;
 var wfs_nigeria;
 
@@ -129,7 +131,7 @@ function nigeriaStudyArea(){
 			SelectSample(e);
 	    },
 	    "featureunselected": function(e) {
-             UnSelectSample(e)            
+             UnSelectSample(e);            
 	    }
     });
 	wfs_indicators.push(wfs_nigeriaSamples);
@@ -190,7 +192,7 @@ function XinJiangStudyArea(){
 			SelectSample(e);
 	    },
 	    "featureunselected": function(e) {
-             UnSelectSample(e)            
+             UnSelectSample(e);            
 	    }
     });
 	wfs_indicators.push(xinjiangSamples_wfs);
@@ -282,7 +284,7 @@ function KenyaSampleShow(){
 			SelectSample(e);
 	    },
 	    "featureunselected": function(e) {
-             UnSelectSample(e)             
+             UnSelectSample(e);            
 	    }
     });
 	wfs_indicators.push(wfs_KenyaSamples); 
@@ -339,7 +341,7 @@ function KenyaSampleShow(){
 			SelectSample(e);
 	    },
 	    "featureunselected": function(e) {
-             UnSelectSample(e)            
+             UnSelectSample(e);            
 	    }
     });
     wfs_indicators.push(tansSamples_wfs); 
@@ -426,6 +428,13 @@ function WMS_Result(mapfile,layer,srs,semantic,max,min){
 function onPopupClose(evt) {    
    selectControl.unselect(selectedFeature); 
 };
+function onPopupClose2() { 
+	var pops = map.popups;
+	for(var a = 0; a < pops.length; a++){
+       map.removePopup(map.popups[a]);
+    };
+
+};
 var geographic;
 var mercator;
 function initMap() {  
@@ -473,11 +482,71 @@ function initMap() {
 				fillColor: "#666666"
         })       
     });
-	map.addLayer(outlet_Layer);     
+	map.addLayer(outlet_Layer);  
+	var proj_900913 = map.getProjectionObject();
 	//wfs_indicators.push(outlet_Layer);         
-	map.events.register("click", map, onMapClick);
-	
-	
+	//map.events.register("click", map, onMapClick);
+	//map.events.register("rightclick", map, onMapRightClick);
+	//map.events.on({"rightclick": function(){alert();}});
+	//===================================================
+	OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control, {                
+                defaultHandlerOptions: {
+                    'single': true,
+                    'double': true,
+                    'pixelTolerance': 0,
+                    'stopSingle': false,
+                    'stopDouble': false
+                },
+                handleRightClicks:true,
+                initialize: function(options) {
+                    this.handlerOptions = OpenLayers.Util.extend(
+                        {}, this.defaultHandlerOptions
+                    );
+                    OpenLayers.Control.prototype.initialize.apply(
+                        this, arguments
+                    ); 
+                    this.handler = new OpenLayers.Handler.Click(
+                        this, {
+                            'rightclick': this.onrightclick,
+                            'click': this.onclick
+                        }, this.handlerOptions
+                    );
+                }, 
+
+                onrightclick: function(evt) {
+                	onPopupClose2();
+                	var location = map.getLonLatFromPixel(evt.xy);
+                	var locationTransfrom = new Object();
+                	locationTransfrom.lat = location.lat;
+                	locationTransfrom.lon = location.lon;
+                	Proj4js.defs["EPSG:4326"] = "+proj=longlat +datum=WGS84 +no_defs";
+                	var proj_4326 =  new OpenLayers.Projection("EPSG:4326");
+    				var mousePosition=location.transform(proj_900913, proj_4326);
+    				var lon = mousePosition.lon;
+    				var lat = mousePosition.lat;
+                    //alert(map.getLonLatFromPixel(evt.xy));
+                    Ext.Ajax.request({
+                    	url:"finddataset.action",
+                    	params:{lon:lon, lat:lat},
+                    	method:'POST',
+                    	success: function (response, options) {
+                    		//TODO: here i just implement click in one study area,and the name in project xml should be just one
+                    		var dataSet = Ext.decode(response.responseText).dataSets[0];
+                    		soilMappingDataSet = dataSet;
+                    	}
+                    });
+                	AddPop2(locationTransfrom);
+                },
+                onclick:function(evt){
+                	onPopupClose2(evt);
+                }
+
+            });
+    
+    var click = new OpenLayers.Control.Click();
+    map.addControl(click);
+    click.activate();
+	//===================================================
 	// 
 	lasha_wfs = new OpenLayers.Layer.Vector("Lasha", {
         strategies: [new OpenLayers.Strategy.Fixed()],
@@ -641,7 +710,7 @@ function initMap() {
 			SelectSample(e);
 	    },
 	    "featureunselected": function(e) {
-             UnSelectSample(e)            
+             UnSelectSample(e);            
 	    }
     });
     wfs_indicators.push(xuanchengSamples_wfs); 
@@ -660,7 +729,7 @@ function initMap() {
 	//
 	Proj4js.defs["EPSG:32637"] = "+proj=utm +zone=37 +datum=WGS84 +units=m +no_defs";
     var proj_32637 =  new OpenLayers.Projection("EPSG:32637");
-    var proj_900913 = map.getProjectionObject();
+    
 	
 	rectLayer = new OpenLayers.Layer.Vector("Rect Layer");
 	wfs_indicators.push(rectLayer);          
@@ -733,6 +802,42 @@ function DeletePop(feature){
     feature.popup.destroy();
     feature.popup = null;  
 };
+//==================================================================
+function AddPop2(location){
+	var htmlStr = '<table width="200px">'
+                     +'<tr>'    
+                     +'<td>'        
+                     +'<label  style="color: #009999;font-size: 11pt;">&nbsp;Select Your GeoTask</label>'
+                     +'</td>'                                      
+                     +'</tr>' 
+                     +'<tr>'    
+                     +'<td  align="center">'                                      
+                     +'<button onclick="SoilMap()" style="cursor: pointer;background-color:#FFFFFF;border-bottom:1px solid #FFFFFF;;border-right:1px solid #FFFFFF"><font face="Times New Roman" size="3" color="#666666"; style="TEXT-DECORATION: underline">Digital&nbsp; Soil &nbsp;Mapping</font></button>'  
+                     +'</td>'                                                   
+                     +'</tr>' 					 
+                     +'<tr>'    
+                     +'<td  align="center">'                                       
+                     +'<button onclick="WaterShedModeling()" style="cursor: pointer;background-color:#FFFFFF;border-bottom:1px solid #FFFFFF;;border-right:1px solid #FFFFFF"><font face="Times New Roman" size="3" color="#666666"; style="TEXT-DECORATION: underline">Digital Terrain Analysis</font></button>'  
+                     +'</td>'                                                     
+                     +'</tr>'  
+                     +'<tr>'        
+                     +'<td  align="center">'                                           
+                     +'<button onclick="Others()" style="cursor: pointer;background-color:#FFFFFF;border-bottom:1px solid #FFFFFF;;border-right:1px solid #FFFFFF"><font face="Times New Roman" size="3" color="#666666"; style="TEXT-DECORATION: underline">Monkey Habitat Mapping</font></button>'  
+                     +'</td>'                                                 
+                     +'</tr>'                                            
+                    +'</table>';    
+    var popup = new OpenLayers.Popup.FramedCloud("Select Your Tasks", 
+                             location,
+                             new OpenLayers.Size(250,75),
+							 "<div style='font-size:1.0em'>"
+							 + htmlStr
+							 +"</div>",
+                             null,   
+                             true, 
+                             onPopupClose2);
+    map.addPopup(popup);            
+};
+//==================================================================
 function AddPop(feature){
 	var htmlStr = '<table width="200px">'
                      +'<tr>'    
@@ -957,7 +1062,8 @@ function displayresult(wms,legendUrl,max,min){
 	//Ext.getCmp('MapLegend').getEl().dom.src = legendUrl;     
 };
 var currentTask = null;
-function WaterShedModeling(){  
+function WaterShedModeling(){
+	onPopupClose2();
 	var model = tabs.child('#easyModel');
 	model.tab.show();  
     tabs.setActiveTab(model);  
@@ -986,7 +1092,8 @@ function WaterShedModeling(){
 	//currentTask = "TWI";
 	currentTask = "TWICal";     
 };
-function SoilMap(){  
+function SoilMap(){ 
+	onPopupClose2();
 	var model = tabs.child('#easyModel');
 	model.tab.show();  
     tabs.setActiveTab(model);  
@@ -1010,9 +1117,11 @@ function SoilMap(){
     selectControl.unselect(selectedFeature); 
 	modelManagerwin.show();
 	//modelManagerwin.showAt(30,60);  
-	currentTask = "Sample Based Mapping";	
+	currentTask = "Sample Based Mapping";
+	
 };                 
-function Others(){  
+function Others(){
+	onPopupClose2();
 	var model = tabs.child('#easyModel');
 	model.tab.show();  
     tabs.setActiveTab(model);  
@@ -1080,3 +1189,26 @@ window.onresize= function(){
 	}
 	
 } ;
+
+function showEnvData(){
+	//TODO:结合树中被选中环境变量，在地图中动态显示环境变量
+	 var n = 10; 
+	 for(var i = 0; i < n; i++){
+	 	var userName = i;
+	 	var dataSetName = i;
+	 	var dataName = i;
+	 	var layerName = userName + dataSetName + dataName; //TODO:将layerName 改为用户名+数据集+数据名称
+	 	var envWMS = new OpenLayers.Layer.WMS(layerName, wms_url,{
+		 		layers: dataName,
+		 		map: mapfile_path  + userName + "/" + dataSetName + "/" + dataName + '.map',
+		 		transparent: 'true',
+		 		format: 'image/png'
+	 	    },{
+	 	    	isBaseLayer: false,
+				visibility: true,
+				opacity: 1.0,           
+				buffer: 0
+	 	    });
+	 	map.addLayer(envWMS);
+	 }
+}

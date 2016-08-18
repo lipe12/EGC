@@ -166,6 +166,10 @@
             <param name="root">js</param>                       
             </result>               
         </action>
+        <action name="finddataset" class="org.easygeoc.account.FindDataSets" >      
+            <result type="json">                     
+            </result>               
+        </action>
     </package>
     <package name="cn.com.action" extends="json-default">
     <action name="deleteDataSet" class="cn.com.action.DeleteDataSetAction" method="deleteDataSet">
