@@ -128,7 +128,8 @@ public class DataManageAction extends BaseAction
 						setJsonObject.put(Constants.ID, idString + "-" + (i + 1));
 						setJsonObject.put(Constants.TEXT, SetName);
 						setJsonObject.put(Constants.TYPE, "dataset");
-						// setJsonObject.put(Constants.CHECKED, false);
+						setJsonObject.put(Constants.UPLOADER, userString);
+						setJsonObject.put(Constants.CHECKED, false);
 						XPath xPath2 = XPath.newInstance("files/file[datasetName='" + SetName + "']");
 						List<Element> datafiles = (List<Element>) xPath2.selectNodes(dataDoc);
 						setLeafValue(setJsonObject, datafiles);
@@ -155,7 +156,8 @@ public class DataManageAction extends BaseAction
 									datafile.put(Constants.ID, idString + "-" + (i + 1) + "-" + (j + 1));
 									datafile.put(Constants.TEXT, nameString);
 									datafile.put(Constants.LEAF, true);
-									// datafile.put(Constants.CHECKED, false);
+									datafile.put(Constants.UPLOADER, userString);
+									datafile.put(Constants.CHECKED, false);
 									String typeString = typeElement.getValue();
 									datafile.put(Constants.TYPE, typeString);
 									String formatString = formatElement.getValue();
@@ -186,12 +188,14 @@ public class DataManageAction extends BaseAction
 					// find <member> by <username>'s value
 					XPath userxPath = XPath.newInstance("groups/group/member[username='" + userString + "']");
 					List<Element> users = (List<Element>) userxPath.selectNodes(filesdoc);
+					int g = 0;
 					for (Element user : users)
 					{
+						g++;
 						Element group = user.getParentElement();// <group>
 						Element groupname = group.getChild("groupname");
 						JSONObject groupObj = new JSONObject();
-						groupObj.put(Constants.ID, group.getChild("groupcode").getValue());
+						groupObj.put(Constants.ID, idString + "-" + g);
 						groupObj.put(Constants.TEXT, groupname.getValue());
 						groupObj.put(Constants.TYPE, "group");
 						// groupObj.put(Constants.CHECKED, false);
@@ -200,14 +204,14 @@ public class DataManageAction extends BaseAction
 						JSONArray memberarray = new JSONArray();
 						for (Element member : members)
 						{
-							Element _username = member.getChild("username");
-							String _username_text = _username.getText();
+							Element _usernameEl = member.getChild("username");
+							String _username = _usernameEl.getText();
 							SAXBuilder sb1 = new SAXBuilder();
 							// username/dataSets.xml
-							String userDataSetPath = path + "\\users_informations\\" + _username_text;
+							String userDataSetPath = path + "\\users_informations\\" + _username;
 							Document dataSetDoc = sb1.build("file:\\" + userDataSetPath + "\\dataSets.xml");
 							// username_dataFiles.xml
-							Document dataDoc = sb1.build("file:\\" + userDataSetPath + File.separator + _username_text + "_dataFiles.xml");
+							Document dataDoc = sb1.build("file:\\" + userDataSetPath + File.separator + _username + "_dataFiles.xml");
 							// find <dataSet> from dataSets.xml
 							XPath userDataSet = XPath.newInstance("dataSets/dataSet");
 							List<Element> dataSets = (List<Element>) userDataSet.selectNodes(dataSetDoc);
@@ -219,10 +223,11 @@ public class DataManageAction extends BaseAction
 								String userDataSetName = dataSetName.getText();
 								JSONObject setJsonObject = new JSONObject();
 								y = y + i + 1;
-								setJsonObject.put(Constants.ID, idString + "-" + (y));
+								setJsonObject.put(Constants.ID, idString + "-" + g + "-" + y);
 								setJsonObject.put(Constants.TEXT, userDataSetName);
 								setJsonObject.put(Constants.TYPE, "dataset");
-								// setJsonObject.put(Constants.CHECKED, false);
+								setJsonObject.put(Constants.UPLOADER, _username);
+								setJsonObject.put(Constants.CHECKED, false);
 								XPath xPath2 = XPath.newInstance("files/file[datasetName='" + userDataSetName + "']");
 								List<Element> datafiles = (List<Element>) xPath2.selectNodes(dataDoc);
 								setLeafValue(setJsonObject, datafiles);
@@ -240,11 +245,11 @@ public class DataManageAction extends BaseAction
 										String dataName = splitDataPathStrings[len - 1];
 										String nameString = dataName.split("\\.")[0];
 										JSONObject datafile = new JSONObject();
-										datafile.put(Constants.ID, idString + "-" + (y) + "-" + (k + 1));
+										datafile.put(Constants.ID, idString + "-" + g + "-" + (y) + "-" + (k + 1));
 										datafile.put(Constants.TEXT, nameString);
 										datafile.put(Constants.LEAF, true);
-										// datafile.put(Constants.CHECKED,
-										// false);
+										datafile.put(Constants.UPLOADER, _username);
+										datafile.put(Constants.CHECKED, false);
 										String typeString = dataFileElement.getChild("type").getValue();
 										datafile.put(Constants.TYPE, typeString);
 										String formatString = dataFileElement.getChild("format").getValue();
@@ -286,8 +291,9 @@ public class DataManageAction extends BaseAction
 						setJsonObject.put(Constants.ID, idString + "-" + (i + 1));
 						setJsonObject.put(Constants.TEXT, dataSetName);
 						setJsonObject.put(Constants.TYPE, "dataset");
-						// setJsonObject.put(Constants.CHECKED, false);
-						String userDataPath = path + File.separator + "users_informations" + File.separator + upLoader + File.separator + upLoader + "_dataFiles.xml";
+						setJsonObject.put(Constants.UPLOADER, upLoader);
+						setJsonObject.put(Constants.CHECKED, false);
+						String userDataPath = path + "\\users_informations\\" + upLoader + File.separator + upLoader + "_dataFiles.xml";
 						SAXBuilder sb1 = new SAXBuilder();
 						Document userDataFile = sb1.build("File:" + userDataPath);
 						XPath userDataXPath = XPath.newInstance("files/file[datasetName ='" + dataSetName + "']");
@@ -305,7 +311,8 @@ public class DataManageAction extends BaseAction
 							dataJsonObject.put(Constants.ID, idString + "-" + (i + 1) + "-" + (j + 1));
 							dataJsonObject.put(Constants.TEXT, dataName);
 							dataJsonObject.put(Constants.LEAF, true);
-							// dataJsonObject.put(Constants.CHECKED, false);
+							dataJsonObject.put(Constants.UPLOADER, upLoader);
+							dataJsonObject.put(Constants.CHECKED, false);
 							String typeString = userData.getChild("type").getValue();
 							dataJsonObject.put(Constants.TYPE, typeString);
 							String formatString = userData.getChild("format").getValue();
@@ -331,7 +338,7 @@ public class DataManageAction extends BaseAction
 				{
 					SAXBuilder s = new SAXBuilder();
 					Document projsdoc = sb.build("File:" + projectPath);
-					filesdoc = s.build("file:" + dataPath);
+					filesdoc = s.build("file:" + dataPath);// username?
 					// get projects through creater
 					XPath projPath = XPath.newInstance("projects/project");
 					List<Element> allprojs = (List<Element>) projPath.selectNodes(projsdoc);
@@ -354,6 +361,10 @@ public class DataManageAction extends BaseAction
 						projObj.put(Constants.TEXT, projName);
 						projObj.put(Constants.TYPE, "project");
 						List<JSONObject> jsonObjects = new ArrayList<JSONObject>();
+						if (proj.getChild("datasets") == null && proj.getChild("files") == null)
+						{
+							projObj.put(Constants.LEAF, true);
+						}
 						if (proj.getChild("datasets") != null)
 						{
 							projObj.put(Constants.LEAF, false);
@@ -367,7 +378,7 @@ public class DataManageAction extends BaseAction
 								obj.put(Constants.ID, idString + "-" + y + "-" + (i + 1));
 								obj.put(Constants.TEXT, datasetName);
 								obj.put(Constants.TYPE, "dataset");
-
+								obj.put(Constants.UPLOADER, userString);
 								XPath xPath2 = XPath.newInstance("files/file[datasetName='" + datasetName + "']");
 								List<Element> datafiles = (List<Element>) xPath2.selectNodes(filesdoc);
 								setLeafValue(obj, datafiles);
@@ -388,8 +399,7 @@ public class DataManageAction extends BaseAction
 										datafile.put(Constants.ID, idString + "-" + y + "-" + (i + 1) + "-" + (k + 1));
 										datafile.put(Constants.TEXT, nameString);
 										datafile.put(Constants.LEAF, true);
-										// datafile.put(Constants.CHECKED,
-										// false);
+										datafile.put(Constants.UPLOADER, userString);
 										String typeString = dataFileElement.getChild("type").getValue();
 										datafile.put(Constants.TYPE, typeString);
 										String formatString = dataFileElement.getChild("format").getValue();
@@ -404,9 +414,27 @@ public class DataManageAction extends BaseAction
 							}
 							childrenNode(projObj, jsonObjects);
 						}
-						else
+						if (proj.getChild("files") != null)
 						{
-							projObj.put(Constants.LEAF, true);
+							projObj.put(Constants.LEAF, false);
+							List<Element> files = proj.getChild("files").getChildren("file");
+							y++;
+							for (int i = 0; i < files.size(); i++)
+							{
+								Element file = files.get(i);
+								JSONObject obj = new JSONObject();
+								String fileName = file.getValue();
+								String user = fileName.substring(0, fileName.indexOf("/"));
+								fileName = fileName.substring(fileName.lastIndexOf("/") + 1);
+								obj.put(Constants.ID, idString + "-" + y + "-" + (i + 1));
+								// 补充？：读取username_datafiles.xml数据文件，获取数据相关内容
+								obj.put(Constants.TEXT, fileName);
+								obj.put(Constants.TYPE, "datafile");
+								obj.put(Constants.LEAF, true);
+								obj.put(Constants.UPLOADER, user);
+								jsonObjects.add(obj);
+							}
+							childrenNode(projObj, jsonObjects);
 						}
 						jArray.add(projObj);
 					}

@@ -167,6 +167,8 @@
         </action>
         <action name="createproject" class="cn.com.action.CreateDatasetAction" method="createProject" >
         </action>
+        <action name="addDataToProject" class="cn.com.action.CreateDatasetAction" method="addProjectData" >
+        </action>
         <action name="removedatasets" class="cn.com.action.CreateDatasetAction" method="removeDatasets">
             <result type="json" />
         </action>

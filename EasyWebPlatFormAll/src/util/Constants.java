@@ -9,6 +9,7 @@ public class Constants
 {
 	public static final String CHECKED = "checked";
 	public static final String USERNAME = "username";
+	public static final String UPLOADER = "uploader";
 	public static final String CHILDREN = "children";
 	public static final String LEAF = "leaf";
 	public static final String ID = "id";

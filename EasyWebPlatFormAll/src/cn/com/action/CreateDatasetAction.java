@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Map;
 import java.util.Random;
 
@@ -29,8 +30,52 @@ public class CreateDatasetAction extends BaseAction
 {
 	private static final String DATASETS_DOT_XML = "dataSets.xml";
 	private static final String PROJECTS_DOT_XML = "projects.xml";
+	private String[] datasets;
+	private String[] datafiles;
 	private String datasetname;
 	private String projectName;
+
+	private String north;
+	private String south;
+	private String west;
+	private String east;
+	// private String kmlPath;
+	private String dataSetPath;
+	private String username;
+	private boolean flag;
+
+	// start getter setter
+	/**
+	 * @return the datasets
+	 */
+	public String[] getDatasets()
+	{
+		return datasets;
+	}
+
+	/**
+	 * @param datasets the datasets to set
+	 */
+	public void setDatasets(String[] datasets)
+	{
+		this.datasets = datasets;
+	}
+
+	/**
+	 * @return the datafiles
+	 */
+	public String[] getDatafiles()
+	{
+		return datafiles;
+	}
+
+	/**
+	 * @param datafiles the datafiles to set
+	 */
+	public void setDatafiles(String[] datafiles)
+	{
+		this.datafiles = datafiles;
+	}
 	/**
 	 * @return the projectName
 	 */
@@ -46,24 +91,6 @@ public class CreateDatasetAction extends BaseAction
 	{
 		this.projectName = projectName;
 	}
-
-	private String north;
-	private String south;
-	private String west;
-	private String east;
-	// private String kmlPath;
-	private String dataSetPath;
-	private String username;
-	private boolean flag; 
-	// this param should be there, when submit form,
-							// otherwise js will jump into success:handler.
-
-	@JSON(name = "success")
-	public boolean isFlag()
-	{
-		return flag;
-	}
-
 	public void setFlag(boolean flag)
 	{
 		this.flag = flag;
@@ -77,6 +104,17 @@ public class CreateDatasetAction extends BaseAction
 	public void setDatasetname(String datasetname)
 	{
 		this.datasetname = datasetname;
+	}
+
+	// end
+
+	// this param should be there, when submit form,
+	// otherwise js will jump into success:handler.
+
+	@JSON(name = "success")
+	public boolean isFlag()
+	{
+		return flag;
 	}
 
 	public String createDatasets()
@@ -248,10 +286,96 @@ public class CreateDatasetAction extends BaseAction
 	 * 上传到project下的数据，同时也算作personal data，<br/>
 	 * 但是上传到personal data的数据不能算作project data
 	 * 
+	 * @throws JDOMException
+	 * 
 	 * @Houzw at 2016年8月13日下午6:03:46
 	 */
-	public void uploadProjectData()
+
+	/**
+	 * 往project添加数据
+	 * 
+	 * @throws JDOMException
+	 * @Houzw at 2016年8月18日下午3:31:42
+	 */
+	public void addProjectData() throws Exception
 	{
+		username = getUsername();
+		username = getUsername();
+		HttpServletRequest request = ServletActionContext.getRequest();
+		File file = XMLUtil.getWebappXmlFile(request, PROJECTS_DOT_XML);
+		XPath userPath = XPath.newInstance("projects/project/creater");// 包含@符号，不能直接获取
+
+		SAXBuilder sb = new SAXBuilder();
+		Document projsdoc = null;
+		Element proj = null;
+		try
+		{
+			projsdoc = sb.build(file);
+			Element root = projsdoc.getRootElement();
+			List<Element> createrEls = (List<Element>) userPath.selectNodes(projsdoc);
+			ListIterator<Element> createrElItr = createrEls.listIterator();
+			while (createrElItr.hasNext())
+			{
+				Element createrEl = createrElItr.next();
+				Element projEl = createrEl.getParentElement();
+				if (createrEl.getValue().equals(username) && projEl.getChild("name").getValue().equals(projectName))
+				{
+					proj = projEl;
+					break;
+				}
+			}
+			if (datasets != null && datasets.length > 0)
+			{
+				Element datasetsEl = proj.getChild("datasets");
+				if (datasetsEl == null)
+				{
+					proj.addContent(new Element("datasets"));
+				}
+				datasetsEl = proj.getChild("datasets");
+				for (String dataset : datasets)
+				{
+					System.out.println(dataset);
+					Element datasetEl = new Element("dataset");
+					datasetEl.setText(dataset);
+					if (datasetsEl.getChildren("dataset").size() == 0)
+						datasetsEl.addContent(datasetEl);
+					else if (!datasetsEl.getChildren("dataset").contains(datasetEl))
+						datasetsEl.addContent(datasetEl);
+				}
+			}
+
+			if (datafiles != null && datafiles.length > 0)
+			{
+				Element filesEl = proj.getChild("files");
+				if (filesEl == null)
+				{
+					filesEl = new Element("files");
+					proj.addContent(filesEl);
+				}
+				filesEl = proj.getChild("files");
+				for (String datafile : datafiles)
+				{
+					System.out.println(datafile);
+					Element dataEl = new Element("file");
+					dataEl.setText(datafile);
+					if (filesEl.getChildren("file").size() == 0)
+						filesEl.addContent(dataEl);
+					else if (!filesEl.getChildren("file").contains(dataEl))
+						filesEl.addContent(dataEl);
+				}
+			}
+			XMLUtil.saveXML(projsdoc, new File(file.getAbsolutePath()));
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("msg", SUCCESS);
+			writeJson(com.alibaba.fastjson.JSON.toJSONString(map));
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("msg", e.toString());
+			writeJson(com.alibaba.fastjson.JSON.toJSONString(map));
+		}
 
 	}
 

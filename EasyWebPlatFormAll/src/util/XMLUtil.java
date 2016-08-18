@@ -21,7 +21,7 @@ import org.jdom2.output.XMLOutputter;
 public class XMLUtil
 {
 	/**
-	 * get xml file located in: web-inf/xml/users_informations/username/
+	 * get xml file located in: web-inf/xml/users_informations/current-username/
 	 * 
 	 * @param request HttpServletRequest
 	 * @param filename xml filename such as "dataSets.xml"
@@ -31,6 +31,25 @@ public class XMLUtil
 	public static File getUsersXmlFile(HttpServletRequest request, String filename)
 	{
 		String username = (String) request.getSession().getAttribute("username");
+		String path = FileUtil.getAppPath(request)
+				+ "\\WEB-INF\\xml\\users_informations\\"
+				+ username + "\\" + filename;
+		// web-inf/xml/users_informations/username/dataSets.xml
+		File file = new File(path);
+		return file;
+	}
+
+	/**
+	 * get xml file located in: web-inf/xml/users_informations/username/
+	 * 
+	 * @param request
+	 * @param filename
+	 * @param username
+	 * @return
+	 * @Houzw at 2016年8月17日下午10:32:02
+	 */
+	public static File getUsersXmlFile(HttpServletRequest request, String filename, String username)
+	{
 		String path = FileUtil.getAppPath(request)
 				+ "\\WEB-INF\\xml\\users_informations\\"
 				+ username + "\\" + filename;
