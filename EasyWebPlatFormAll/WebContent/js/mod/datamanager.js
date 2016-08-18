@@ -3,8 +3,6 @@
  */
 var DataManagePanel = function()
 {
-
-
     Ext.Loader.setConfig(
     {
         enabled: true
@@ -12,7 +10,7 @@ var DataManagePanel = function()
     Ext.define("DatasetsModel",
     {
         extend: "Ext.data.TreeModel",
-        fields: ["text", "id", "leaf",  "children", "type", "semantic", "format"]
+        fields: ["text", "id", "leaf", "children", "type", "semantic", "format", 'uploader']
     });
     var treeStore = new Ext.data.TreeStore(
     {
@@ -22,7 +20,7 @@ var DataManagePanel = function()
         {
             id: 'data',
             text: 'datasets',
-            expand: true
+            expanded: true
         },
         proxy:
         {
@@ -30,6 +28,46 @@ var DataManagePanel = function()
             url: 'treecontent.action'
         }
     });
+    var getSelectedItemId = function()
+    {
+        var items = treeGrid.getSelectionModel().selected.items;
+        if (items.length == 0)
+        {
+            Ext.MessageBox.alert('message', 'You must select a treenode first!');
+            return;
+        }
+        var item = items[0]; //single select
+        var itemId = item.data.id;
+        return itemId;
+        /*
+        var pid = treeGrid.getSelectionModel().selected.map[itemId].parentNode.data.id;
+        var pei = pid.indexOf("Personal Data");
+        /Projects/.test(pid); //true to add dataset
+        /Projects/.test(itemId); //true to add project(not dataset)
+        */
+    };
+    var getSelectedItemText = function()
+    {
+        var items = treeGrid.getSelectionModel().selected.items;
+        if (items.length == 0)
+        {
+            Ext.MessageBox.alert('message', 'You must select a treenode first!');
+            return;
+        }
+        var item = items[0]; //single select
+        return item.data.text;
+    };
+    /**
+     * parent id
+     * @param  {[type]} itemId [description]
+     * @return {[type]}        [description]
+     */
+    var getSelectedItemPId = function(itemId)
+    {
+        var pid = treeGrid.getSelectionModel().selected.map[itemId].parentNode.data.id;
+        return pid;
+    };
+
     var tb = Ext.create('Ext.Toolbar',
     {
         items: [
@@ -37,81 +75,70 @@ var DataManagePanel = function()
                 id: 'add',
                 text: 'new',
                 iconCls: "Folderadd",
-                tooltip: 'new dataset or project ',
+                tooltip: 'new personal dataset or project ',
                 // only 'personal data' and 'projects' can add new datasets
                 handler: function()
                 {
-                    var items = treeGrid.getSelectionModel().selected.items;
-                    if (items.length == 0)
+                    var itemId = getSelectedItemId();
+                    var pid = getSelectedItemPId(itemId);
+                    if (itemId === "Personal Data" && pid != "Projects") //p d
                     {
-                        Ext.MessageBox.alert('message', 'You must select a treenode first!');
+                        Ext.MessageBox.prompt('New Dataset', 'Please enter dataset\'s name:', function(btn, text)
+                        {
+                            if (btn == 'ok')
+                            {
+                                Ext.Ajax.request(
+                                {
+                                    url: "createdatasets.action",
+                                    success: function(response, config)
+                                    {
+                                        treeStore.reload();
+                                        Ext.MessageBox.alert("result", response.responseText);
+                                    },
+                                    failure: function()
+                                    {
+                                        Ext.MessageBox.alert("result", "Create dataset folder failed.");
+                                    },
+                                    method: "post",
+                                    params:
+                                    {
+                                        datasetname: text
+                                    }
+                                });
+                            }
+                        });
+                    }
+                    else if (itemId === "Projects") //p
+                    {
+                        Ext.MessageBox.prompt('New Project', 'Please enter project\'s name:', function(btn, text)
+                        {
+                            if (btn == 'ok')
+                            {
+                                Ext.Ajax.request(
+                                {
+                                    url: "createproject.action",
+                                    success: function(json)
+                                    {
+                                        treeStore.reload();
+                                        console.log(json);
+                                        Ext.MessageBox.alert("result", json.msg);
+                                    },
+                                    failure: function()
+                                    {
+                                        Ext.MessageBox.alert("result", "Create dataset folder failed!");
+                                    },
+                                    method: "post",
+                                    params:
+                                    {
+                                        projectName: text
+                                    }
+                                });
+                            }
+                        });
                     }
                     else
                     {
-                        var item = items[0]; //single select
-                        var itemId=item.data.id;
-                        var pid = treeGrid.getSelectionModel().selected.map[itemId].parentNode.data.id;
-                        var pei = pid.indexOf("Personal Data");
-                         /Projects/.test(pid);//true to add dataset
-                         /Projects/.test(itemId);//true to add project(not dataset)
-                        console.log(pid);
-                        if (itemId === "Personal Data"&& pid != "Projects") //p d
-                        {
-                            Ext.MessageBox.prompt('New Datasets', 'Please enter datasets\' name:', function(btn, text)
-                            {
-                                if (btn == 'ok')
-                                {
-                                    Ext.Ajax.request(
-                                    {
-                                        url: "createdatasets.action",
-                                        success: function(response, config)
-                                        {
-                                            treeStore.reload();
-                                            Ext.MessageBox.alert("result", response.responseText);
-                                        },
-                                        failure: function()
-                                        {
-                                            Ext.MessageBox.alert("result", "Create dataset folder failed.");
-                                        },
-                                        method: "post",
-                                        params:
-                                        {
-                                            datasetname: text
-                                        }
-                                    });
-                                }
-                            });
-                        }
-                        else if (itemId === "Projects") //p
-                        {
-                            Ext.MessageBox.prompt('New Project', 'Please enter project\'s name:', function(btn, text)
-                            {
-                                if (btn == 'ok')
-                                {
-                                    Ext.Ajax.request(
-                                    {
-                                        url: "createproject.action",
-                                        success: function(json)
-                                        {
-                                            treeStore.reload();
-                                            console.log(json);
-                                            Ext.MessageBox.alert("result", json);
-                                        },
-                                        failure: function()
-                                        {
-                                            Ext.MessageBox.alert("result", "Create dataset folder failed!");
-                                        },
-                                        method: "post",
-                                        params:
-                                        {
-                                            projectName: text
-                                        }
-                                    });
-                                }
-                            });
-                        }else{
-                        	Ext.MessageBox.alert("info","Can not add dataset or project here");
-                        }
+                        Ext.MessageBox.alert("info", "Can not add dataset or project here");
                     }
                 }
             }, '-',
@@ -124,11 +151,20 @@ var DataManagePanel = function()
             {
                 id: 'upload',
                 text: 'upload',
-                tooltip: 'upload data file to dataset',
+                tooltip: 'upload data file to a dataset or project',
                 iconCls: 'Arrowjoin',
                 handler: function()
                 {
-                    FileUpload_Win_User.show();
+                    var itemId = getSelectedItemId();
+                    var pid = getSelectedItemPId(itemId);
+                    if (itemId == "Personal Data" || pid == "Personal Data" || /Projects/.test(pid)) //p d
+                    {
+                        FileUpload_Win_DM.show();
+                    }
+                    else
+                    {
+                        Ext.MessageBox.alert('message', 'Can only upload datafile to a personal dataset or project!');
+                    }
                 }
             }, '-',
             {
@@ -160,8 +196,10 @@ var DataManagePanel = function()
             {
                 text: 'delete',
                 iconCls: 'Delete',
+                tooltip:'delete (the first) selected item.',
                 handler: function()
                 {
+                    var checkedItems = treeGrid.getChecked();
                     var selected = treeGrid.getSelectionModel().selected.items;
                     if (selected.length == 0)
                     {
@@ -169,6 +207,10 @@ var DataManagePanel = function()
                     }
                     else
                     {
+                        var itemId = getSelectedItemId();
+                        var pid = getSelectedItemPId(itemId);
+                        // different delete actions
+                        // if(/Projects/.test(pid))
                         Ext.MessageBox.show(
                         {
                             title: 'Delete Dataset?',
@@ -185,6 +227,7 @@ var DataManagePanel = function()
                                         url: "deleteDataSet.action",
                                         success: function(response, config)
                                         {
+                                            console.log(response.responseText);
                                             Ext.MessageBox.alert("result", response.responseText);
                                             treeStore.reload();
                                         },
@@ -199,6 +242,59 @@ var DataManagePanel = function()
                                         }
                                     });
                                 }
+                            }
+                        });
+                    }
+                }
+            }, '-',
+            {
+                text: 'add into project',
+                iconCls: 'Applicationadd',
+                tooltip: 'check datasets and add to a selected project',
+                handler: function()
+                {
+                    var checkedItems = treeGrid.getChecked();
+                    var itemId = getSelectedItemId();
+                    var pid = getSelectedItemPId(itemId);
+                    if (!/Projects/.test(pid))
+                    {
+                        Ext.MessageBox.alert("message", "Please select a project.");
+                    }
+                    else if (checkedItems.length == 0)
+                    {
+                        Ext.MessageBox.alert("message", "Please select datasets first.");
+                    }
+                    else
+                    {
+                        var datasets = [],
+                            datafiles = [];
+                        for (var i = 0; i < checkedItems.length; i++)
+                        {
+                            var item = checkedItems[i];
+                            if (item.data.type === "dataset")
+                                datasets.push(item.data.text);
+                            else
+                                datafiles.push(item.data.text);
+                        }
+                        Ext.Ajax.request(
+                        {
+                            url: "addDataToProject.action",
+                            success: function(response, config)
+                            {
+                                console.log(response.responseText);
+                                Ext.MessageBox.alert("result", response.responseText);
+                                treeStore.reload();
+                            },
+                            failure: function()
+                            {
+                                Ext.MessageBox.alert("result", "Failed.");
+                            },
+                            method: "post",
+                            params:
+                            {
+                                datasets: datasets,
+                                datafiles: datafiles,
+                                projectName: getSelectedItemText()
                             }
                         });
                     }
@@ -223,7 +319,7 @@ var DataManagePanel = function()
                 e.preventDefault();
                 e.stopEvent();
                 //console.log(record);
-                gridmenu.showAt(e.getXY());
+                //gridmenu.showAt(e.getXY());
             }
         },
         store: treeStore, //newstore,
@@ -300,181 +396,6 @@ var DataManagePanel = function()
     });
 
 
-    /**
-     * @param upLoader
-     * @param dataSetName
-     * this two parameters global variables record the content of the clicked row*/
-    var upLoader = null;
-    var dataSetName = null;
-    var authority = null;
-    var kmllayer = null;
-
-
-    /**
-     * this method is locate the dataset, show the scope in the map 
-     * find the kml or shape file through the datasetname and uploader field
-     * this progress will erase the precious kml or shape
-     * */
-    function displayKML1()
-    {
-        grid.getSelectionModel().deselectAll();
-        var kmlPath = upLoader + '/' + dataSetName + '.kml';
-        var xmlUrl = "findkmlextent1.action?datasetname=" + dataSetName + "&upLoader=" + upLoader;
-        var ajax = new Ajax();
-        ajax.open("GET", xmlUrl, true);
-        ajax.send(null);
-        ajax.onreadystatechange = function()
-        {
-            if (ajax.readyState == 4)
-            {
-                if (ajax.status == 200)
-                {
-                    var tag = ajax.responseText.pJSON().tag;
-                    if (tag == true)
-                    {
-                        var north = ajax.responseText.pJSON().north;
-                        var south = ajax.responseText.pJSON().south;
-                        var west = ajax.responseText.pJSON().west;
-                        var east = ajax.responseText.pJSON().east;
-                        var wfs_indicators_tmp = [];
-                        for (var i = wfs_indicators.length - 1; i >= 0; i--)
-                        {
-                            if (wfs_indicators[i].name != "myKML")
-                            {
-                                wfs_indicators_tmp.push(wfs_indicators[i]);
-                            }
-                        }
-                        if (kmllayer != null)
-                        {
-                            map.removeControl(selectControl);
-                            selectControl.destroy();
-                            map.removeLayer(kmllayer);
-                            kmllayer.destroy();
-                        }
-                        kmllayer = null;
-                        kmllayer = new OpenLayers.Layer.Vector("myKML",
-                        {
-                            styleMap: new OpenLayers.StyleMap(
-                            {
-                                "default": new OpenLayers.Style(
-                                {
-                                    fillColor: "#ffcc66",
-                                    strokeColor: "#ff9933",
-                                    strokeWidth: 2,
-                                    fillOpacity: 0.4,
-                                    graphicZIndex: 1
-                                }),
-                                "select": new OpenLayers.Style(
-                                {
-                                    fillColor: "#6A6AFF",
-                                    strokeColor: "#6A6AFF",
-                                    fillOpacity: 0.4,
-                                    graphicZIndex: 2
-                                })
-                            }),
-
-                            strategies: [new OpenLayers.Strategy.Fixed()],
-                            protocol: new OpenLayers.Protocol.HTTP(
-                            {
-                                url: "kml/" + kmlPath,
-                                format: new OpenLayers.Format.KML(
-                                {
-                                    extractAttributes: true,
-                                    maxDepth: 2
-                                })
-                            }),
-                            projection: geographic
-                        });
-
-                        kmllayer.events.on(
-                        {
-                            "featureselected": function(e)
-                            {
-                                latlng1_temp = new OpenLayers.LonLat(west, south);
-                                latlng2_temp = new OpenLayers.LonLat(east, north);
-
-                                var feature = e.feature;
-                                selectedFeature = feature;
-                                AddPop(feature);
-                            },
-                            "featureunselected": function(e)
-                            {
-                                var feature = e.feature;
-                                DeletePop(feature);
-                            },
-                            "loadend": function()
-                            {
-                                var center_kml = kmllayer.features[0].geometry.getBounds().getCenterLonLat();
-                                map.panTo(center_kml);
-                            }
-                        });
-                        map.addLayers([kmllayer]);
-
-                        wfs_indicators = wfs_indicators_tmp;
-                        wfs_indicators.push(kmllayer);
-                        map.removeControl(selectControl);
-                        selectControl = new OpenLayers.Control.SelectFeature(wfs_indicators);
-                        map.addControl(selectControl);
-                        selectControl.activate();
-                    }
-                    else
-                    {
-                        Ext.MessageBox.alert('tip', 'kml file does not exist');
-                    }
-                }
-            }
-        };
-    }
-
-    /**
-      * the action of button named 'add dataset' 
-     function onAddClick(){
-            // Create a model instance
-            var rec = new ListdataSet({
-                dataSetname: 'New dataset',
-                Uploader: '',
-                dataCategory: ''
-            });
-            
-            ListDataSetStore.insert(0, rec);
-            this.cellEditing.startEditByPosition({
-                row: 0, 
-                column: 0
-            });
-        };
-    */
-    //=============================================================================================
-    //create the right click menu
-    //============================================================================================
-    var showDatasAction = new Ext.create('Ext.Action',
-    {
-        text: 'show data',
-        handler: showdata,
-        iconCls: 'Table'
-    });
-
-    var locationAction = new Ext.create('Ext.Action',
-    {
-        text: 'location',
-        handler: displayKML1,
-        iconCls: 'Mapgo'
-    });
-
-    var deleteDataSetAction = new Ext.create('Ext.Action',
-    {
-        text: 'deleteDataSet',
-        handler: deleteDataSet,
-        iconCls: 'Delete'
-    });
-
-    var shareDataSetAction = new Ext.create('Ext.Action',
-    {
-        text: 'share',
-        handler: share,
-        iconCls: 'Share'
-    });
-
-    //var dataShareAction = new Ext.create('Ext.Action', {text:'location',handler:dataShare});
     var gridmenu = new Ext.menu.Menu(
     {
         id: 'gridmenu',
@@ -652,7 +573,6 @@ var DataManagePanel = function()
 
     function showdata()
     {
-        ListDataStore.load();
         if (authority != "")
         {
             Ext.getCmp("AddData").setDisabled(true);
@@ -665,7 +585,6 @@ var DataManagePanel = function()
             Ext.getCmp("DeleteData").setDisabled(false);
             // Ext.getCmp("createboundary").setDisabled(false);
         }
-
         datafileshow_win.show();
     }
 
@@ -684,33 +603,6 @@ var DataManagePanel = function()
         }
         return str;
     }
-    /*var FileData_User1 = Ext.create('Ext.grid.Panel',
-    {
-        {
-            xtype: 'button',
-            text: 'createPublicBoundary',
-            handler: function()
-            {
-                var xmlUrl = "createdatasetkml.action?dataSetName=" + dataSetName;
-                var ajax = new Ajax();
-                ajax.open("GET", xmlUrl, true);
-                ajax.send(null);
-                ajax.onreadystatechange = function()
-                {
-                    if (ajax.readyState == 4)
-                        if (ajax.status == 200)
-                        {
-                            var tag = ajax.responseText.pJSON().tag;
-                            if (tag == 1)
-                            {
-                                Ext.MessageBox.alert('msg',"create public boundary successfully");
-                                ListDataStore.load();
-                            }
-                        }
-                }
-            }
-        }
-    });*/
 
     //=======================================================================
     //below is about the add data window
@@ -798,7 +690,7 @@ var DataManagePanel = function()
         fieldLabel: 'Semantic',
         displayField: 'name',
         name: 'semantic',
-        id: namespace + '_semantics',
+        id: namespace + '_semantic',
         store: semantic_store,
         value: "Sample Data",
         queryMode: 'local',
@@ -808,7 +700,7 @@ var DataManagePanel = function()
         {
             "select": function()
             {
-                document.getElementById('_html5_inputfile').value = '';
+                document.getElementById('inputfile').value = '';
                 document.getElementById('_inputfile_text').value = '';
                 csvFields = [];
                 csvFields_store.loadData(csvFields);
@@ -836,11 +728,11 @@ var DataManagePanel = function()
     });
     var final_csv = "";
     var csv_firstline = "";
-    var html5read = function(e)
+    var html5readFile = function(e)
     {
         var extend = e.value.substring(e.value.lastIndexOf('.') + 1);
         extend = extend.toUpperCase();
-        var fileInput = document.getElementById('_html5_inputfile');
+        var fileInput = document.getElementById('inputfile');
         var file = fileInput.files[0];
         if (extend === "CSV")
         {
@@ -949,7 +841,7 @@ var DataManagePanel = function()
      * define the window for upload the user`s data
      * the  widget named filePostfix is a hidden widget that save the file format
      * */
-    var FileUpload_Form_User = new Ext.FormPanel(
+    var FileUpload_Form = new Ext.FormPanel(
     {
         frame: true,
         width: 500,
@@ -986,7 +878,7 @@ var DataManagePanel = function()
                     '<input type="text" name="textfield" readonly="true" id="_inputfile_text" class="txt" />' +
                     '<label>&nbsp;</label>' +
                     '<input type="button" class="btn" value="Browse Data" class="input" style="width:100px" />' +
-                    '<input type="file" onchange="html5read(this)" class="file" id="_html5_inputfile" size="28" />' +
+                    '<input type="file" onchange="DataManagePanel.html5readFile(this)" class="file" id="inputfile" size="28" />' +
                     '</div>'
 
             },
@@ -1097,7 +989,7 @@ var DataManagePanel = function()
                 }
 
                 Ext.getCmp("uploadMark").getEl().show();
-                var form = FileUpload_Form_User.getForm();
+                var form = FileUpload_Form.getForm();
                 form.submit(
                 {
                     //url: 'uploadData.action',
@@ -1122,15 +1014,15 @@ var DataManagePanel = function()
             text: 'Reset',
             handler: function()
             {
-                FileUpload_Form_User.getForm().reset();
+                FileUpload_Form.getForm().reset();
             }
         }]
     });
-
-    var FileUpload_Win_User = new Ext.Window(
+    //FileUpload Window for Data Management
+    var FileUpload_Win_DM = new Ext.Window(
     {
         title: 'Upload Data',
-        id: 'fileUpload_Win',
+        id: 'fileUpload_Win_DM',
         iconCls: 'upload',
         //layout:'fit',  
         autoDestory: true,
@@ -1138,11 +1030,12 @@ var DataManagePanel = function()
         modal: false,
         closeAction: 'hide',
         items: [
-            FileUpload_Form_User
+            FileUpload_Form
         ]
     });
 
     return {
-        data_panel: dataPanel
+        data_panel: dataPanel,
+        html5readFile: html5readFile
     }
 }();

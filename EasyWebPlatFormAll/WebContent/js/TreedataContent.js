@@ -11,7 +11,7 @@ Ext.QuickTips.init(); //init tooltips
 Ext.define("myTreeModel",
 {
     extend: "Ext.data.Model",
-    fields: ['text', 'id', 'leaf', 'children']
+    fields: ['text', 'id', 'leaf', 'children', 'uploader']
 });
 
 var righttreeStore = new Ext.data.TreeStore(
@@ -35,26 +35,35 @@ var tbar = new Ext.Toolbar(
 {
     buttonAlign: 'center',
     items: [
-    {
-        xtype: 'textfield',
-        emptyText: 'search dataset...',
-        id: 'filter_input',
-        width: 200
-    }, '-',
-    {
-        iconCls: 'Magnifier',
-        id: 'filter_icon',
-        handler: function(e)
         {
-            var filterInput = Ext.get('filter_input');
-            var text = filterInput.dom.value;
-            //searchTables(treePanel, text);
+            text: 'refresh',
+            iconCls: 'Reload',
+            handler: function()
+            {
+                righttreeStore.reload();
+            }
         }
-    }]
+        /*{
+            xtype: 'textfield',
+            emptyText: 'search dataset...',
+            id: 'filter_input',
+            width: 200
+        }, '-',
+        {
+            iconCls: 'Magnifier',
+            id: 'filter_icon',
+            handler: function(e)
+            {
+                var filterInput = Ext.get('filter_input');
+                var text = filterInput.dom.value;
+                //searchTables(treePanel, text);
+            }
+        }*/
+    ]
 });
 var treePanel = new Ext.tree.TreePanel(
 {
-    title: 'Data management',
+    title: 'Datasets',
     id: 'dataTree',
     width: 500,
     height: 300,
@@ -66,34 +75,8 @@ var treePanel = new Ext.tree.TreePanel(
     {
         xtype: 'treecolumn',
         dataIndex: 'text',
+        text: 'datasets',
         flex: 1
-    },
-    {
-        xtype: 'actioncolumn',
-        width: 30,
-        tooltip: 'new',
-        handler: DataTreeController.actionColumnHandler,
-        //An Array which may contain multiple icon definitions
-        items: [
-        {
-            getTip: function(v, meta, rec)
-            {
-                if (rec.get('text') == 'personal data')
-                    return 'add new dataset';
-            },
-            //A function which returns the CSS class to apply to the icon image.
-            getClass: function(v, meta, rec)
-            {
-                if (rec.get('text') == 'personal data')
-                    return 'Add';
-                else
-                    return 'x-hidden';
-            },
-            handler: function(grid, rowIndex, colIndex)
-            {
-                //A function called when the icon is clicked.               
-            }
-        }]
     }],
     contextMenu: DataTreeController.contextmenu,
     listeners:
@@ -102,29 +85,12 @@ var treePanel = new Ext.tree.TreePanel(
         {
             e.preventDefault();
             e.stopEvent();
-            DataTreeController.contextmenu.showAt(e.getXY());
+            if (record.data.leaf)
+            {
+                DTC_datasetName = record.data.text;
+                DTC_uploader = record.data.uploader;
+                DataTreeController.contextmenu.showAt(e.getXY());
+            }
         }
     }
 });
-
-// treepanel 模糊查询 ，展开树型结构，选中匹配项  
-function searchTables(tree, value)
-{
-    tree.forEach(function(e)
-    {
-        var content = e.raw.text;
-        var re = new RegExp(Ext.escapeRe(value), 'i');
-        if (re.test(content) || re.test(content.toUpperCase()))
-        {
-            e.parentNode.expand();
-            var tabllepanel = Ext.ComponentQuery.query('auditruleview treepanel[name=dataTables]')[0];
-            var selModel = tabllepanel.getSelectionModel();
-            selModel.select(e, true);
-            if (!e.isLeaf())
-            {
-                e.expand();
-            }
-        }
-        searchTables(e.childNodes, value);
-    });
-}
