@@ -1,0 +1,59 @@
+body { 
+		-moz-user-select : none; 
+   }      
+   button.gray{
+	   background-color:#FFFFFF;
+	   border-bottom:1px solid #FFFFFF;
+	   border-right:1px solid #FFFFFF;                                     
+   }
+   font.gray{
+   	   color:"#666666";      
+   	   TEXT-DECORATION: underline;
+   }    
+   button.banner{
+   	   font-family:Verdana;
+   	   font-size:8pt;                       
+   	   color:#064377;        
+   	   cursor:hand;          
+   	   border:1px solid #266397; 
+   	   width:170px;                                      
+   }
+    .userlogin {
+        background-image:url(img/user.png) !important;
+    }
+   
+   .Layers {
+        background-image:url(img/Layers.png) !important;
+    }
+    
+    .charts {
+        background-image:url(img/chart_curve.png) !important;
+    }
+    
+   .upload {
+        background-image:url(img/upload.png) !important;
+    }
+    
+    .add{
+    	background-image:url(img/add.png) !important;
+    }  
+    
+    .delete{
+    	background-image:url(img/delete.gif) !important;
+    } 
+   .x-tree-checked .x-grid-cell-inner {
+       font-style: italic;
+       color: #777;     
+   }
+   .x-grid-row-selected .x-grid-cell {       
+       background-color: #777 !important;    
+   }
+   .x-combo-list{z-index:100000 !important;} 
+   a:link {color: #999966}                 
+	a:visited {color: #000000}
+	a:hover {color: #000000}      
+	a:active {color: #000000}
+	
+	#map2d{
+		height: 1000px;width: 1000px
+	}

@@ -462,7 +462,8 @@ function initMap() {
         key: apiKey,
         type: "Aerial"
     });
-	              
+    //图层切换控制
+    map.addControl(new OpenLayers.Control.LayerSwitcher({'ascending':false}));             
     map.addLayers([gs]);
     
 	/*
@@ -938,7 +939,6 @@ function SelectSample(e){
 
 };
 function UnSelectSample(e){
-	
 	map.removePopup(e.feature.popup);
 	e.feature.popup.destroy();
 	e.feature.popup = null;  

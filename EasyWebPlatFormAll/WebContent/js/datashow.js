@@ -151,8 +151,7 @@ function displayKML1(kml_name, upLoader){
 				        }),
 				        projection: geographic            
 				     });
-				     
-					
+				     					
 				     kmllayer.events.on({      
 						 "featureselected": function(e){              
 					        
