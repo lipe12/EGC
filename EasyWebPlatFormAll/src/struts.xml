@@ -169,8 +169,16 @@
         </action>
         <action name="addDataToProject" class="cn.com.action.CreateDatasetAction" method="addProjectData" >
         </action>
-        <action name="removedatasets" class="cn.com.action.CreateDatasetAction" method="removeDatasets">
-            <result type="json" />
+        <action name="deleteProject" class="cn.com.action.DeleteDataSetAction" method="deleteProject" >
         </action>
+        <action name="rmDataSetFromProj" class="cn.com.action.DeleteDataSetAction" method="rmDataSetFromProj" >
+        </action>
+        <action name="rmDataSetFromShared" class="cn.com.action.DeleteDataSetAction" method="rmDataSetFromShared" >
+        </action>
+        <action name="rmDataFileFromProj" class="cn.com.action.DeleteDataSetAction" method="rmDataFileFromProj" >
+        </action>
+       <!--  <action name="removedatasets" class="cn.com.action.CreateDatasetAction" method="removeDatasets">
+            <result type="json" />
+        </action> -->
     </package>
 </struts>
