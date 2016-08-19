@@ -32,8 +32,8 @@
 	</Data>
 	<Data>
 		<DataKind>OutputData</DataKind>
-		<DataName>Sample Point</DataName>
+		<DataName>result samples</DataName>
 		<DataType>Table</DataType>
-		<DataSematic>Sample Point</DataSematic>
+		<DataSematic>result samples</DataSematic>
 	</Data>
 </Algorithm>

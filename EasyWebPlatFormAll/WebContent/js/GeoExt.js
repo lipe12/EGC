@@ -81,23 +81,23 @@ GeoExt.createSampleDataWin = function(data,graphManager){
     }
     //////create soil sample file combo
    
-	var lat1 = latlng1_temp.lat;
-	var lat2 = latlng2_temp.lat;
-	var minLat = lat1 < lat2 ? lat1 : lat2;
-	var maxLat = lat1 < lat2 ? lat2 : lat1;
-	             
-	var lon1 = latlng1_temp.lon;
-	var lon2 = latlng2_temp.lon;  
-	var minLon = lon1 < lon2 ? lon1 : lon2;    
-	var maxLon = lon1 < lon2 ? lon2 : lon1;   
-	      
-	maxLat = maxLat.toFixed(6);  
-	minLat = minLat.toFixed(6);    
-	minLon = minLon.toFixed(6);        
-	maxLon = maxLon.toFixed(6);               
+//	var lat1 = latlng1_temp.lat;
+//	var lat2 = latlng2_temp.lat;
+//	var minLat = lat1 < lat2 ? lat1 : lat2;
+//	var maxLat = lat1 < lat2 ? lat2 : lat1;
+//	             
+//	var lon1 = latlng1_temp.lon;
+//	var lon2 = latlng2_temp.lon;  
+//	var minLon = lon1 < lon2 ? lon1 : lon2;    
+//	var maxLon = lon1 < lon2 ? lon2 : lon1;   
+//	      
+//	maxLat = maxLat.toFixed(6);  
+//	minLat = minLat.toFixed(6);    
+//	minLon = minLon.toFixed(6);        
+//	maxLon = maxLon.toFixed(6);               
 	
 	if(KenyaStatus == false){        
-		SampleFileStore.load({params:{semantic:data.dataName,top:maxLat,down:minLat,left:minLon,right:maxLon }});  
+		SampleFileStore.load({params:{semantic:data.dataName,dataSetName:soilMappingDataSet}});  
 		SoilPropertyStore.load();		
 	}else if(KenyaStatus == true){
 	    if(CheckSampleInRect()==true){
@@ -132,7 +132,7 @@ GeoExt.createSampleDataWin = function(data,graphManager){
     	          try{  
     	        	  Ext.getCmp('SelectSoilProperty').clearValue();     
 					  SoilPropertyStore.load({params:{filename : combo.getValue()}});
-					  checkSamples(combo.getValue());           					  
+					  //checkSamples(combo.getValue());           					  
     			   }catch(ex){
     				   
     			   }  
@@ -2531,7 +2531,7 @@ GeoExt.createInputDataWindow = function(_data , _graphManager){
 		    height:240,     
 		    width:345,            
 		    viewConfig: { 
-		        stripeRows: true 
+		        stripeRows: true
 		    },
 		    tbar: [{ 
 			    xtype: 'button', 
@@ -2549,11 +2549,11 @@ GeoExt.createInputDataWindow = function(_data , _graphManager){
 				listeners : {
 					'change':function(eOpts){
 				       
-						FileDataStore.proxy.extraParams["semantic"]=_data.dataName;
-						FileDataStore.proxy.extraParams["top"]=maxLat;
-						FileDataStore.proxy.extraParams["down"]=minLat;
-						FileDataStore.proxy.extraParams["left"]=minLon;
-						FileDataStore.proxy.extraParams["right"]=maxLon;
+//						FileDataStore.proxy.extraParams["semantic"]=_data.dataName;
+//						FileDataStore.proxy.extraParams["top"]=maxLat;
+//						FileDataStore.proxy.extraParams["down"]=minLat;
+//						FileDataStore.proxy.extraParams["left"]=minLon;
+//						FileDataStore.proxy.extraParams["right"]=maxLon;
 						return true;
 					}
 										
@@ -2585,6 +2585,7 @@ GeoExt.createInputDataWindow = function(_data , _graphManager){
 	
 	var data = _data;
 	var graphManager = _graphManager;
+	/**
 	var lat1 = latlng1_temp.lat;
 	var lat2 = latlng2_temp.lat;
 	var minLat = lat1 < lat2 ? lat1 : lat2;
@@ -2599,10 +2600,10 @@ GeoExt.createInputDataWindow = function(_data , _graphManager){
 	minLat = minLat.toFixed(6);    
 	minLon = minLon.toFixed(6);        
 	maxLon = maxLon.toFixed(6);       
-	
+	*/
         	
-	FileDataStore.load({params:{semantic:_data.dataName,top:maxLat,down:minLat,left:minLon,right:maxLon }});     
-	
+	//FileDataStore.load({params:{semantic:_data.dataName,top:maxLat,down:minLat,left:minLon,right:maxLon }});     
+	FileDataStore.load({params:{semantic:_data.dataName,dataSetName:soilMappingDataSet}});
 	var _inputfun = function(){
 		var records = FileDataGrid.getSelectionModel().getSelection();
 		if(records.length >0){       
@@ -2643,7 +2644,8 @@ GeoExt.createInputDataWindow = function(_data , _graphManager){
 			}//end of for  
 			for(var p =0; p<tasks.length; p ++){
 				task = tasks[p];
-				if(task.taskName == 'Sample Based Mapping'){
+				//TODO: this place must be modified, when add tasks that needed env.
+				if(task.taskName == 'Sample Based Mapping' || task.taskName == 'Sampling Based On Uncertainty' || task.taskName == 'sampling based on purposive'){
 					     
 					  var algorithm = task.selectedAlgorithm;
 					  var inputDatas = algorithm.inputDatas;

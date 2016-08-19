@@ -28,7 +28,13 @@ import cn.com.bean.DataSet;
 
 import com.googlecode.jsonplugin.annotations.JSON;
 import com.opensymphony.xwork2.ActionSupport;
+import tutorial.CreateMapFile;
 
+/**
+ * @version 1.1
+ * @author lp
+ * 添加功能：当用户上传栅格数据时，在mapserver中创建mapfile，以便在前台openlayer中显示
+ * */
 public class UploadDataFile extends ActionSupport{
 
 	private String dataName;
@@ -134,9 +140,24 @@ public class UploadDataFile extends ActionSupport{
 	    	this.copy(datafile,file); 
 			this.fileSize = FileSize(datafile.length());
 			this.writeMetaData();
-			
-			
-			
+			//========================new function ==========================
+			   //判断在MapFilePath文件夹中是否存在username文件夹，如果不存在创建文件夹
+			String mapUserPath = Constant.MapFilePath + File.separator + username;
+			File userMapFolder = new File(mapUserPath);
+			if (!userMapFolder.exists() && !userMapFolder.isDirectory()) {
+				userMapFolder.mkdir();
+			}
+			   //判断在MapFilePath/username文件夹中是否存在dataSetName文件夹，如果不存在创建该文件夹
+			String mapSetPath = mapUserPath + File.separator + dataSetName;
+			File mapSetFolder = new File(mapSetPath);
+			if (!mapSetFolder.exists() && !mapSetFolder.isDirectory()) {
+				mapSetFolder.mkdir();
+			}
+			   //在dataSetName文件夹中创建raster的mapfi文件
+			CreateMapFile createFileMap = new CreateMapFile();
+			String soapFileAddress = username + File.separator + dataSetName + File.separator  + dataName + "." + this.filePostfix;
+			createFileMap.create_mapfile(soapFileAddress);
+			//=============================end================================
 			filePath = path + File.separator  + dataName + ".prj";
 	  	    file = new File(filePath);
 	    	                                        

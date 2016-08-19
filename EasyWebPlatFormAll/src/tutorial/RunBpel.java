@@ -7,7 +7,6 @@ import java.io.InputStream;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
-
 import java.util.regex.*;
 
 import javax.servlet.http.HttpServletRequest; 
@@ -35,6 +34,21 @@ public class RunBpel extends ActionSupport{
 	private List<String> layers = new ArrayList<String>();
 	private List<String> mapfiles = new ArrayList<String>();
 	private String srs; 
+	private String csvFile;
+	private List<String> midleResult;
+	public String getCsvFile() {
+		return csvFile;
+	}
+	public void setCsvFile(String csvFile) {
+		this.csvFile = csvFile;
+	}
+	private String envProj;
+	public String getEnvProj() {
+		return envProj;
+	}
+	public void setEnvProj(String envProj) {
+		this.envProj = envProj;
+	}
 	private List<String> semantics = new ArrayList<String>();
 	private List<String> maxs = new ArrayList<String>();
 	private List<String> mins = new ArrayList<String>();
@@ -89,6 +103,8 @@ public class RunBpel extends ActionSupport{
  * convert asc data into tif data
  * @param rasterFileName {String}
  * @param geotiffFileName {String}
+ * @author lp modifie in 2016-07-29
+ * because original do not work for the csv result
  * */
 	public boolean RasterFormatConver(String rasterFileName, String geotiffFileName){
 		boolean flag = false;
@@ -132,43 +148,82 @@ public class RunBpel extends ActionSupport{
 		return flag;
 	}
 
-	public boolean runcore(List<String> lastTaskOutDataName){
+	public boolean runcore(List<String> lastTaskOutDataName, String envPath){
 		boolean flag = true;
+		CreateMapFile createMapFile = new CreateMapFile();
 		for(String dataname : lastTaskOutDataName){
-			String ascFileName = Constant.DataFilePath + File.separator + dataname;
-			String geotiffFileName = Constant.DataFilePath + File.separator + dataname.replace(".asc", ".tif");
-			String layername = dataname.replace(".tif", "");
-			String mapfilename = dataname.replace(".tif", "");
+			String postFix = dataname.split("\\.")[1];
+			//String ascFileName = Constant.DataFilePath + File.separator + dataname;
+			//String geotiffFileName = Constant.DataFilePath + File.separator + dataname.replace(".asc", ".tif");
+			String layername ="";
+			String mapfilename = "";
 			String semantic = "";
+			
+			if (postFix.equals("csv")) {
+				csvFile = dataname;         //TODO: this place just for one csv result, if many, should modify it
+				String envPathForProj = envPath;
+				String projInfoString = createMapFile.getUploadRasterInfo(envPathForProj);
+				if (!projInfoString.equals("")) {
+					envProj = projInfoString;
+					flag = true;
+				}
+				layername = dataname.replace(".csv", "");
+				mapfilename = dataname.replace(".csv", "");
+				layers.add(layername);                          
+	            mapfiles.add(mapfilename);
+	            maxs.add("0");
+				mins.add("0");
+			}else if (postFix.equals("tif")) {
+				layername = dataname.replace(".tif", "");
+				mapfilename = dataname.replace(".tif", "");
+				
+				flag = createMapFile.create_mapfile(dataname);
+				layers.add(layername);                          
+	            mapfiles.add(mapfilename);
+	            maxs.add(createMapFile.max);
+				mins.add(createMapFile.min);
+			}
+			
+			
 			String regEx = "[a-zA-Z]+";  
 			Pattern pattern = Pattern.compile(regEx);   
 			Matcher matcher = pattern.matcher(dataname); 
             if(matcher.find()){
             	semantic = matcher.group();        	  
             }
-            layers.add(layername);                          
-            mapfiles.add(mapfilename);
+            
             semantics.add(semantic);
-            /*
-			if(RasterFormatConver(ascFileName, geotiffFileName)){
-				CreateMapFile createMapFile = new CreateMapFile();
-				flag = createMapFile.create_mapfile(dataname.replace(".asc", ".tif"));
-				if(flag == false){            
-					return flag;
-				}
-			}else{
-				flag = false;
-				return flag;
-			}
-			*/
-            CreateMapFile createMapFile = new CreateMapFile();
-			flag = createMapFile.create_mapfile(dataname);
-			maxs.add(createMapFile.max);
-			mins.add(createMapFile.min);
+			
 			if(flag == false){            
 				return flag;
 			}
 			
+		}
+		for (int i = 0; i < midleResult.size(); i++) {
+			String dataname = midleResult.get(i);
+			String layername ="";
+			String mapfilename = "";
+			String semantic = "";
+			layername = dataname.replace(".tif", "");
+			mapfilename = dataname.replace(".tif", "");
+			
+			flag = createMapFile.create_mapfile(dataname);
+			layers.add(layername);                          
+            mapfiles.add(mapfilename);
+            maxs.add(createMapFile.max);
+			mins.add(createMapFile.min);
+			String regEx = "[a-zA-Z]+";  
+			Pattern pattern = Pattern.compile(regEx);   
+			Matcher matcher = pattern.matcher(dataname); 
+            if(matcher.find()){
+            	semantic = matcher.group();        	  
+            }
+            
+            semantics.add(semantic);
+			
+			if(flag == false){            
+				return flag;
+			}
 		}
 		return flag;
 	}
@@ -195,15 +250,19 @@ public class RunBpel extends ActionSupport{
  	       
  	        SAXBuilder sb = new SAXBuilder();
  	        //Document doc = sb.build(source);  the jjc code
- 	        //Document doc_orignal = sb.build(source);
- 	        //MatchModel MM = new MatchModel();
- 	        //Document doc = MM.matchPreciousModel(doc_orignal);// call the MatchModel to conversion the document
- 	        Document doc = sb.build(source);
+ 	        Document doc_orignal = sb.build(source);
+ 	        MatchModel MM = new MatchModel();
+ 	        Document doc = MM.matchPreciousModel(doc_orignal);// call the MatchModel to conversion the document
+ 	        //Document doc = sb.build(source);
+ 	        String path = request.getSession().getServletContext().getRealPath("")+ File.separator +"WEB-INF" + File.separator +"xml";
+ 		    String user = (String)request.getSession().getAttribute("username");
+ 		    String preciousModelPath = path + File.separator + "users_informations" + File.separator + user + File.separator + "preciousmodel.xml";
+ 	        midleResult = MM.readIntermediateResult(preciousModelPath, doc_orignal);
 	        //============================================end=================================================================
 	        
 	        //==========================read tasks.xml, get document taskdoc=================================================
 	        //====================================start======================================================================
- 	        String path = request.getSession().getServletContext().getRealPath("")+ File.separator + "WEB-INF" + File.separator + "xml";
+ 	        
  	        Document tasksdoc = sb.build("file:" + File.separator + path + File.separator + "tasks.xml");
 	        
 	        //======================================end============================================================================
@@ -213,7 +272,7 @@ public class RunBpel extends ActionSupport{
 	        List<String> atomWsdlsName = new ArrayList<String>();
 	        oneToNMap map = new oneToNMap();
 	        String wsdlBasePath = null;
-	            
+	        String envDatapath = "";  //to get one inuput env layer path , the purpose is to use this layer to get the proj info, and give it to the csv showing    
 	        int index = 1;
 	        int tasksSize = tasks.size();
 	        List<String> lastTaskOutDataName = new ArrayList<String>();
@@ -258,7 +317,17 @@ public class RunBpel extends ActionSupport{
 		    		Element data_temp = dataName_temp.getParentElement();
 		    		Element dataValue = data_temp.getChild("dataValue");
 		    		String dataValueText = dataValue.getText();   // get the data relative path from the http transfered data 
-					
+					String dataEnvPath = ""; //for sample method
+		    		if (index == 1 && dataKind.getValue().equals("InputData") && envDatapath.equals("")) {
+						if(dataValueText.contains("#")){
+							String [] dataValueTexts = dataValueText.split("#");
+							dataEnvPath = Constant.DataFilePath + File.separator + dataValueTexts[0];
+		    				
+		    			}else {
+		    				dataEnvPath = Constant.DataFilePath + File.separator + dataValueText;      
+		    			} 
+						envDatapath = dataEnvPath;
+					}
 		    		 // get the absolute path of input and out put data 
 		    		if(!dataValueText.contains(File.separator) && !dataKind.getText().equals("Parameter")){				
 		    			if(dataValueText.contains("#")){
@@ -280,7 +349,7 @@ public class RunBpel extends ActionSupport{
 		    					lastTaskOutDataName.add(dataValue.getText());
 			    				outputData_asc.add(Constant.HttpFilePath + "/" + dataValue.getText());
 		    				}
-		    				
+		    				//TODO:likely Constant.HttpFilePath + "/" + dataValue.getText() have a more "/", maybe should delete it
 		    			}        
 			    	}  
 		    		//
@@ -304,7 +373,7 @@ public class RunBpel extends ActionSupport{
 			    	boolean hag =  bu.invoke(map,bpelWsdl);
 			    	if(hag){              
 			    		tag = "1";
-			    		if(!runcore(lastTaskOutDataName)){
+			    		if(!runcore(lastTaskOutDataName, envDatapath)){
 			    			tag = "0";
 			    		}
 			    			
@@ -323,6 +392,8 @@ public class RunBpel extends ActionSupport{
          }
 		return SUCCESS;
 	}
+	
+	
 	public List<String> getOutputData_png() {
 		return outputData_png;
 	}

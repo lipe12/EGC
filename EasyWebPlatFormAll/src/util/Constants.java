@@ -18,6 +18,7 @@ public class Constants
 	public static final String GROUP_DATA = "Group Data";
 	public static final String SHARED_DATA = "Shared Data";
 	public static final String PROJECTS = "Projects";
+	public static final String PROJECTS_DOT_XML = "projects.xml";
 	public static final String PROJECT = "project";
 	public static final String USERS_INFORMATIONS = "users_informations";
 	public static final String GROUPS_DOT_XML = "groups.xml";
