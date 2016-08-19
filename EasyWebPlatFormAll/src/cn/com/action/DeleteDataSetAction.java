@@ -1,7 +1,10 @@
 package cn.com.action;
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,10 +16,14 @@ import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
 import org.jdom2.xpath.XPath;
 
-import com.opensymphony.xwork2.ActionSupport;
-
 import tutorial.Constant;
-public class DeleteDataSetAction extends ActionSupport{
+import util.Constants;
+import util.XMLUtil;
+
+import com.alibaba.fastjson.JSON;
+
+public class DeleteDataSetAction extends BaseAction
+{
 	
 	private String dataSetName;
 	private int tag;          //tag = 0 the specified dataset xml node delete failed
@@ -41,6 +48,248 @@ public class DeleteDataSetAction extends ActionSupport{
 	}
 	public void setTag(int tag) {
 		this.tag = tag;
+	}
+
+	private String uploader;
+	private String projectName;
+	private String groupName;
+	private String fileName;
+
+	/**
+	 * @return the fileName
+	 */
+	public String getFileName()
+	{
+		return fileName;
+	}
+
+	/**
+	 * @param fileName the fileName to set
+	 */
+	public void setFileName(String fileName)
+	{
+		this.fileName = fileName;
+	}
+	/**
+	 * @return the uploader
+	 */
+	public String getUploader()
+	{
+		return uploader;
+	}
+
+	/**
+	 * @param uploader the uploader to set
+	 */
+	public void setUploader(String uploader)
+	{
+		this.uploader = uploader;
+	}
+
+	/**
+	 * @return the projectName
+	 */
+	public String getProjectName()
+	{
+		return projectName;
+	}
+
+	/**
+	 * @param projectName the projectName to set
+	 */
+	public void setProjectName(String projectName)
+	{
+		this.projectName = projectName;
+	}
+
+	/**
+	 * @return the groupName
+	 */
+	public String getGroupName()
+	{
+		return groupName;
+	}
+
+	/**
+	 * @param groupName the groupName to set
+	 */
+	public void setGroupName(String groupName)
+	{
+		this.groupName = groupName;
+	}
+
+
+	public void deleteGroup() throws IOException
+	{
+		SAXBuilder sb = new SAXBuilder();
+		HttpServletRequest request = ServletActionContext.getRequest();
+		File file = XMLUtil.getWebappXmlFile(request, Constants.GROUPS_DOT_XML);
+		Document groupsdoc;
+		try
+		{
+			groupsdoc = sb.build(file);
+
+			XPath projPath = XPath.newInstance("groups/group[groupname='" + groupName + "']");
+		Element root = groupsdoc.getRootElement();
+		Element rmElement = (Element) projPath.selectSingleNode(groupsdoc);
+		if (rmElement != null)
+			root.removeContent(rmElement);
+		XMLUtil.saveXML(groupsdoc, file);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("msg", SUCCESS);
+			writeJson(JSON.toJSONString(map));
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("msg", e.toString());
+			writeJson(JSON.toJSONString(map));
+		}
+	}
+
+	public void deleteProject() throws IOException
+	{
+		SAXBuilder sb = new SAXBuilder();
+		HttpServletRequest request = ServletActionContext.getRequest();
+		File file = XMLUtil.getWebappXmlFile(request, Constants.PROJECTS_DOT_XML);
+		Document projsdoc;
+		try
+		{
+			projsdoc = sb.build(file);
+			XPath projPath = XPath.newInstance("projects/project[name='" + projectName + "']");
+			Element root = projsdoc.getRootElement();
+			Element rmElement = (Element) projPath.selectSingleNode(projsdoc);
+			System.out.println(projectName);
+			System.out.println(rmElement);
+		if (rmElement != null)
+			root.removeContent(rmElement);
+		XMLUtil.saveXML(projsdoc, file);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("msg", SUCCESS);
+		writeJson(JSON.toJSONString(map));}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("msg", e.toString());
+			writeJson(JSON.toJSONString(map));
+		}
+	}
+
+	public void rmDataSetFromShared() throws IOException
+	{
+		SAXBuilder sb = new SAXBuilder();
+		HttpServletRequest request = ServletActionContext.getRequest();
+		File file = XMLUtil.getWebappXmlFile(request, Constants.SHARES_DOT_XML);
+		Document sharesdoc;
+		Map<String, Object> map = new HashMap<String, Object>();
+		try
+		{
+			sharesdoc = sb.build(file);
+			XPath sharePath = XPath.newInstance("datasets/dataset[datasetname='" + dataSetName + "']");
+			Element root = sharesdoc.getRootElement();
+			List<Element> datasetEls = (List<Element>) sharePath.selectNodes(sharesdoc);
+			int i = 0;
+			for (i = 0; i < datasetEls.size(); i++)
+			{
+				if (datasetEls.get(i).getChild("upLoader").getText().equals(getUsername()))
+				{
+					root.removeContent(datasetEls.get(i));
+					break;
+				}
+			}
+			if (i == datasetEls.size())
+			{
+				map = new HashMap<String, Object>();
+				map.put("msg", "You have no access to delete this sgared dataset!");
+				writeJson(JSON.toJSONString(map));
+			}
+			XMLUtil.saveXML(sharesdoc, file);
+
+			map.put("msg", SUCCESS);
+			writeJson(JSON.toJSONString(map));
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			map = new HashMap<String, Object>();
+			map.put("msg", e.toString());
+			writeJson(JSON.toJSONString(map));
+		}
+	}
+	public void rmDataSetFromProj() throws IOException
+	{
+		SAXBuilder sb = new SAXBuilder();
+		HttpServletRequest request = ServletActionContext.getRequest();
+		File file = XMLUtil.getWebappXmlFile(request, Constants.PROJECTS_DOT_XML);
+		Document projsdoc;
+		try
+		{
+			projsdoc = sb.build(file);
+
+			XPath projPath = XPath.newInstance("projects/project[name='" + projectName + "']");
+		Element root = projsdoc.getRootElement();
+		Element projEl = (Element) projPath.selectSingleNode(projsdoc);
+		Element datasets = projEl.getChild("datasets");
+		List<Element> datasetList = datasets.getChildren("dataset");
+		for (Element dataset : datasetList)
+		{
+			if (dataset.getText().equals(dataSetName))
+			{
+				datasets.removeContent(dataset);
+				break;
+			}
+		}
+		XMLUtil.saveXML(projsdoc, file);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("msg", SUCCESS);
+		writeJson(JSON.toJSONString(map));
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("msg", e.toString());
+			writeJson(JSON.toJSONString(map));
+		}
+	}
+
+	public void rmDataFileFromProj() throws IOException
+	{
+		SAXBuilder sb = new SAXBuilder();
+		HttpServletRequest request = ServletActionContext.getRequest();
+		File file = XMLUtil.getWebappXmlFile(request, Constants.PROJECTS_DOT_XML);
+		Document projsdoc;
+		try
+		{
+			projsdoc = sb.build(file);
+		
+		XPath projPath = XPath.newInstance("projects/project[name=" + projectName + "]");
+		Element root = projsdoc.getRootElement();
+		Element projEl = (Element) projPath.selectSingleNode(projsdoc);
+		Element filesElement = projEl.getChild("files");
+		List<Element> fileList = filesElement.getChildren("file");
+		for (Element fileEl : fileList)
+		{
+			if (fileEl.getText().equals(fileName))
+			{
+				filesElement.removeContent(fileEl);
+				break;
+			}
+		}
+		XMLUtil.saveXML(projsdoc, new File(file.getAbsolutePath()));
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("msg", SUCCESS);
+		writeJson(JSON.toJSONString(map));
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("msg", e.toString());
+			writeJson(JSON.toJSONString(map));
+		}
 	}
 	public String deleteDataSet() {
 		tag = 0;

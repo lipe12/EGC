@@ -1,60 +1,96 @@
 /**
  *upload data pannel 
  *version 2.0
- * */
- 
+ */
+
 /**
  * this js file is the view of tree data list
  */
- 
- /**
-  * fitst build the accordion form
-  */
 
-
-var treeModel = Ext.define("TreeModel", {
-	extend : "Ext.data.Model",
-//	fields : [{id: "id", type : "string"},
-//			  {name : "text", type : "string"},
-//			  {name : "leaf", type : "boolean"}]
-	fields:[{name:'array',type:'array'}]
+Ext.QuickTips.init(); //init tooltips
+Ext.define("myTreeModel",
+{
+    extend: "Ext.data.Model",
+    fields: ['text', 'id', 'leaf', 'children', 'uploader']
 });
 
-
-var store = new Ext.data.TreeStore({ 
-        model: 'treeModel', 
-        autoLoad:true ,
-        root:{
-        expanded: true},
-        proxy: { 
-            type: 'ajax',
-            //api:{read:'listtreecontent.action'}
-           // url: 'listtreecontent.action' 
-            url:'listtreecontent.action'
-        }, 
-        reader: { 
-	            type: 'json',
-	            root: 'array' 
-	        },
-	     sorters:[{property: 'leaf',
-                    direction: 'ASC'},
-                    {property: 'text',
-                    direction: 'ASC'}]
-//	    listeners: {'beforeexpand': function(node, eOpts){
-//	    	this.proxy.extraParams.root = node.row.ids;
-//	    }}
-    }); 
-
-var treePanel = new Ext.tree.TreePanel({ 
-        title: 'Data management', 
-         
-        width: 500, 
-        height: 300, 
-        renderTo: Ext.getBody(), 
-
-        useArrows: true, 
-        rootVisible: false, 
-        
-       
-        store: store
-    }); 
+var righttreeStore = new Ext.data.TreeStore(
+{
+    model: 'myTreeModel',
+    autoLoad: true,
+    root:
+    {
+        id: 'data',
+        text: 'project dataset',
+        expanded: true
+    },
+    proxy:
+    {
+        type: 'ajax',
+        url: 'treecontent.action'
+    }
+});
+//treepanel toolbar
+var tbar = new Ext.Toolbar(
+{
+    buttonAlign: 'center',
+    items: [
+        {
+            text: 'refresh',
+            iconCls: 'Reload',
+            handler: function()
+            {
+                righttreeStore.reload();
+            }
+        }
+        /*{
+            xtype: 'textfield',
+            emptyText: 'search dataset...',
+            id: 'filter_input',
+            width: 200
+        }, '-',
+        {
+            iconCls: 'Magnifier',
+            id: 'filter_icon',
+            handler: function(e)
+            {
+                var filterInput = Ext.get('filter_input');
+                var text = filterInput.dom.value;
+                //searchTables(treePanel, text);
+            }
+        }*/
+    ]
+});
+var treePanel = new Ext.tree.TreePanel(
+{
+    title: 'Datasets',
+    id: 'dataTree',
+    width: 500,
+    height: 300,
+    useArrows: true,
+    rootVisible: false,
+    store: righttreeStore,
+    tbar: tbar,
+    columns: [
+    {
+        xtype: 'treecolumn',
+        dataIndex: 'text',
+        text: 'datasets',
+        flex: 1
+    }],
+    contextMenu: DataTreeController.contextmenu,
+    listeners:
+    {
+        itemcontextmenu: function(menutree, record, items, index, e)
+        {
+            e.preventDefault();
+            e.stopEvent();
+            if (record.data.leaf)
+            {
+                DTC_datasetName = record.data.text;
+                DTC_uploader = record.data.uploader;
+                DataTreeController.contextmenu.showAt(e.getXY());
+            }
+        }
+    }
+});
