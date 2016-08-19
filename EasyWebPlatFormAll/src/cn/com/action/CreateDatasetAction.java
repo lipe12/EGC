@@ -17,6 +17,7 @@ import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.xpath.XPath;
 
+import util.Constants;
 import util.XMLUtil;
 
 import com.googlecode.jsonplugin.annotations.JSON;
@@ -28,8 +29,6 @@ import com.googlecode.jsonplugin.annotations.JSON;
  */
 public class CreateDatasetAction extends BaseAction
 {
-	private static final String DATASETS_DOT_XML = "dataSets.xml";
-	private static final String PROJECTS_DOT_XML = "projects.xml";
 	private String[] datasets;
 	private String[] datafiles;
 	private String datasetname;
@@ -225,7 +224,7 @@ public class CreateDatasetAction extends BaseAction
 	private void createDataSet()
 	{
 		HttpServletRequest request = ServletActionContext.getRequest();
-		File file = XMLUtil.getUsersXmlFile(request, DATASETS_DOT_XML);
+		File file = XMLUtil.getUsersXmlFile(request, Constants.DATASETS_DOT_XML);
 		dataSetPath = file.getAbsolutePath();
 		// new File(dataSetPath);
 		if (!file.exists())
@@ -260,12 +259,12 @@ public class CreateDatasetAction extends BaseAction
 	public String removeDatasets()
 	{
 		HttpServletRequest request = ServletActionContext.getRequest();
-		File datasetsXml = XMLUtil.getUsersXmlFile(request, DATASETS_DOT_XML);
+		File datasetsXml = XMLUtil.getUsersXmlFile(request, Constants.DATASETS_DOT_XML);
 		Element rootElement = XMLUtil.getXMLRootEl(datasetsXml);
 		try
 		{
 			System.out.println("el.getText():");
-			Element el = (Element) XPath.selectSingleNode(rootElement, "//dataSet[datasetname=" + datasetname + "]");
+			Element el = (Element) XPath.selectSingleNode(rootElement, "//dataSet[datasetname='" + datasetname + "']");
 			if (el != null)
 			{
 				System.out.println("el.getText():");
@@ -302,8 +301,8 @@ public class CreateDatasetAction extends BaseAction
 		username = getUsername();
 		username = getUsername();
 		HttpServletRequest request = ServletActionContext.getRequest();
-		File file = XMLUtil.getWebappXmlFile(request, PROJECTS_DOT_XML);
-		XPath userPath = XPath.newInstance("projects/project/creater");// 包含@符号，不能直接获取
+		File file = XMLUtil.getWebappXmlFile(request, Constants.PROJECTS_DOT_XML);
+		XPath userPath = XPath.newInstance("projects/project/creater");
 
 		SAXBuilder sb = new SAXBuilder();
 		Document projsdoc = null;
@@ -383,7 +382,7 @@ public class CreateDatasetAction extends BaseAction
 	{
 		username = getUsername();		
 		HttpServletRequest request = ServletActionContext.getRequest();
-		File file = XMLUtil.getWebappXmlFile(request, PROJECTS_DOT_XML);
+		File file = XMLUtil.getWebappXmlFile(request, Constants.PROJECTS_DOT_XML);
 		SAXBuilder sb = new SAXBuilder();
 		Document projsdoc = null;
 		try
