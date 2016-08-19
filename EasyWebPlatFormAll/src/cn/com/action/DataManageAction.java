@@ -85,17 +85,22 @@ public class DataManageAction extends BaseAction
 			return;
 			// return SUCCESS;
 		}
+		// datasets.xml
 		String setPath = path + File.separator + Constants.USERS_INFORMATIONS + File.separator + userString + File.separator + Constants.DATASETS_DOT_XML;
+		// _dataFiles.xml
 		String dataPath = path + File.separator + Constants.USERS_INFORMATIONS + File.separator + userString + File.separator + userString + Constants._DATAFILES_DOT_XML;
+		// groups.xml
 		String groupPath = path + File.separator + Constants.GROUPS_DOT_XML;
+		// shares.xml
 		String sharePath = path + File.separator + Constants.SHARES_DOT_XML;
-		String projectPath = path + File.separator + "projects.xml";
+		// projects.xml
+		String projectPath = path + File.separator + Constants.PROJECTS_DOT_XML;
 
 		List<String> parantNodes = new ArrayList<String>();
+		parantNodes.add(Constants.PROJECTS);
 		parantNodes.add(Constants.PERSONAL_DATA);
 		parantNodes.add(Constants.GROUP_DATA);
 		parantNodes.add(Constants.SHARED_DATA);
-		parantNodes.add(Constants.PROJECTS);
 		for (int m = 0; m < parantNodes.size(); m++)
 		{
 			SAXBuilder sb = new SAXBuilder();
@@ -107,16 +112,19 @@ public class DataManageAction extends BaseAction
 			jsonObject.put(Constants.TYPE, "data category");
 			// jsonObject.put(Constants.CHECKED, false);
 			JSONArray jsonArray = new JSONArray();
-			if (m == 0)// PERSONAL_DATA
+			if (idString.equals(Constants.PERSONAL_DATA))// PERSONAL_DATA
 			{
 				try
 				{
 					XPath xpath = XPath.newInstance("dataSets/dataSet");
-					filesdoc = sb.build("File:" + setPath);
-					if (filesdoc == null)
+					File docFile = new File(setPath);
+					if (!docFile.exists())
 					{
+						childrenNode(jsonObject, jsonArray);
+						array.add(jsonObject);
 						continue;
 					}
+					filesdoc = sb.build("File:" + setPath);
 					Document dataDoc = sb.build("File:" + dataPath);
 					List<Element> dataSets = (List<Element>) xpath.selectNodes(filesdoc);
 					for (int i = 0; i < dataSets.size(); i++)
@@ -180,10 +188,17 @@ public class DataManageAction extends BaseAction
 					e.printStackTrace();
 				}
 			}
-			else if (m == 1)// GROUP_DATA
+			else if (idString.equals(Constants.GROUP_DATA))// GROUP_DATA
 			{
 				try
 				{
+					File docFile = new File(groupPath);
+					if (!docFile.exists())
+					{
+						childrenNode(jsonObject, jsonArray);
+						array.add(jsonObject);
+						continue;
+					}
 					filesdoc = sb.build("File:" + groupPath);
 					// find <member> by <username>'s value
 					XPath userxPath = XPath.newInstance("groups/group/member[username='" + userString + "']");
@@ -265,8 +280,8 @@ public class DataManageAction extends BaseAction
 						}
 						childrenNode(groupObj, memberarray);
 						jsonArray.add(groupObj);
-						childrenNode(jsonObject, jsonArray);
 					}
+					childrenNode(jsonObject, jsonArray);
 					array.add(jsonObject);
 				}
 				catch (Exception e)
@@ -274,10 +289,17 @@ public class DataManageAction extends BaseAction
 					e.printStackTrace();
 				}
 			}
-			else if (m == 2)// SHARED_DATA
+			else if (idString.equals(Constants.SHARED_DATA))// SHARED_DATA
 			{
 				try
 				{
+					File docFile = new File(sharePath);
+					if (!docFile.exists())
+					{
+						childrenNode(jsonObject, jsonArray);
+						array.add(jsonObject);
+						continue;
+					}
 					filesdoc = sb.build("File:" + sharePath);
 					XPath xPath = XPath.newInstance("datasets/dataset");
 					List<Element> dataSets = (List<Element>) xPath.selectNodes(filesdoc);
@@ -332,11 +354,20 @@ public class DataManageAction extends BaseAction
 					e.printStackTrace();
 				}
 			}
-			else if (m == 3)// PROJECTS
+			else if (idString.equals(Constants.PROJECTS))// PROJECTS
 			{
 				try
 				{
+					jsonObject.put("expanded", true);
 					SAXBuilder s = new SAXBuilder();
+					File docFile = new File(projectPath);
+
+					if (!docFile.exists())
+					{
+						childrenNode(jsonObject, jsonArray);
+						array.add(jsonObject);
+						continue;
+					}
 					Document projsdoc = sb.build("File:" + projectPath);
 					filesdoc = s.build("file:" + dataPath);// username?
 					// get projects through creater

@@ -39,21 +39,20 @@ var DataManagePanel = function() {
 		*/
 	}
 	var getSelectedItemText = function() {
-		var items = treeGrid.getSelectionModel().selected.items;
-		if ( items.length == 0 ) {
-			Ext.MessageBox.alert( 'message', 'You must select a treenode first!' );
-			return;
+			var items = treeGrid.getSelectionModel().selected.items;
+			if ( items.length == 0 ) {
+				Ext.MessageBox.alert( 'message', 'You must select a treenode first!' );
+				return;
+			}
+			var item = items[ 0 ]; //single select
+			return item.data.text;
 		}
-		var item = items[ 0 ]; //single select
-		return item.data.text;
-	}
-	/**
-	 * parent id
-	 * @param  {[type]} itemId [description]
-	 * @return {[type]}        [description]
-	 */
+		/**
+		 * parent id
+		 * @param  {[type]} itemId [description]
+		 * @return {[type]}        [description]
+		 */
 	var getSelectedItemPId = function( itemId ) {
-		console.log(treeGrid.getSelectionModel().selected);
 		var pid = treeGrid.getSelectionModel().selected.map[ itemId ].parentNode.data.id;
 		return pid;
 	}
@@ -61,55 +60,57 @@ var DataManagePanel = function() {
 	/* start toolbar handler functions*/
 	//add
 	var tbAddFn = function() {
-		var itemId = getSelectedItemId();
-		var pid = getSelectedItemPId( itemId );
-		if ( itemId === "Personal Data" && pid != "Projects" ) //p d
-		{
-			Ext.MessageBox.prompt( 'New Dataset', 'Please enter dataset\'s name:', function( btn, text ) {
-				if ( btn == 'ok' ) {
-					Ext.Ajax.request( {
-						url: "createdatasets.action",
-						success: function( response, config ) {
-							treeStore.reload();
-							var json = Ext.JSON.decode(response.responseText);
-							Ext.MessageBox.alert( "result", json.msg );
-						},
-						failure: function() {
-							Ext.MessageBox.alert( "result", "Create dataset folder failed." );
-						},
-						method: "post",
-						params: {
-							datasetname: text
-						}
-					} );
-				}
-			} );
-		} else if ( itemId === "Projects" ) //p
-		{
-			Ext.MessageBox.prompt( 'New Project', 'Please enter project\'s name:', function( btn, text ) {
-				if ( btn == 'ok' ) {
-					Ext.Ajax.request( {
-						url: "createproject.action",
-						success: function( response ) {
-							treeStore.reload();
-							var json = Ext.JSON.decode(response.responseText);
-							Ext.MessageBox.alert( "result", json.msg );
-						},
-						failure: function() {
-							Ext.MessageBox.alert( "result", "Create dataset folder failed!" );
-						},
-						method: "post",
-						params: {
-							projectName: text
-						}
-					} );
-				}
-			} );
-		} else {
-			Ext.MessageBox.alert( "info", "Can not add dataset or project here" );
+			var itemId = getSelectedItemId();
+			var pid = getSelectedItemPId( itemId );
+			if ( itemId === "Personal Data" && pid != "Projects" ) //p d
+			{
+				Ext.MessageBox.prompt( 'New Dataset', 'Please enter dataset\'s name:', function( btn, text ) {
+					if ( btn == 'ok' ) {
+						Ext.Ajax.request( {
+							url: "createdatasets.action",
+							success: function( response, config ) {
+								treeStore.reload();
+								treeGrid.expandPath( "/data/Personal Data/" );
+								var json = Ext.JSON.decode( response.responseText );
+								Ext.MessageBox.alert( "result", json.msg );
+							},
+							failure: function() {
+								Ext.MessageBox.alert( "result", "Create dataset folder failed." );
+							},
+							method: "post",
+							params: {
+								datasetname: text
+							}
+						} );
+					}
+				} );
+			} else if ( itemId === "Projects" ) //p
+			{
+				Ext.MessageBox.prompt( 'New Project', 'Please enter project\'s name:', function( btn, text ) {
+					if ( btn == 'ok' ) {
+						Ext.Ajax.request( {
+							url: "createproject.action",
+							success: function( response ) {
+								treeStore.reload();
+								treeGrid.expandPath( "/data/Projects/" );
+								var json = Ext.JSON.decode( response.responseText );
+								Ext.MessageBox.alert( "result", json.msg );
+							},
+							failure: function() {
+								Ext.MessageBox.alert( "result", "Create dataset folder failed!" );
+							},
+							method: "post",
+							params: {
+								projectName: text
+							}
+						} );
+					}
+				} );
+			} else {
+				Ext.MessageBox.alert( "info", "Can not add dataset or project here" );
+			}
 		}
-	}
-	//delete
+		//delete
 	var tbDeleteFn = function() {
 		//var checkedItems = treeGrid.getChecked();
 		var selectedItems = treeGrid.getSelectionModel().selected.items;
@@ -129,14 +130,14 @@ var DataManagePanel = function() {
 				return;
 			}
 			if ( type == "dataset" ) {
-				if ( itemId.indexOf( "Personal Data" ) >= 0 )
+				if ( itemId.indexOf( "Personal Data" ) >= 0 ) {
 					delDataSetFn( text, item.data.uploader );
-				else if( itemId.indexOf( "Projects" ) >= 0 ) {
+					treeGrid.expandPath( "/data/Personal Data/" );
+				} else if ( itemId.indexOf( "Projects" ) >= 0 ) {
 					var pid = treeGrid.getSelectionModel().selected.map[ itemId ].parentNode.data.id;
 					rmDataSetFromProjFn( pid, text );
-				}
-				else if(itemId.indexOf( "Shared Data" ) >= 0){
-					rmDataSetFromSharedFn(text);
+				} else if ( itemId.indexOf( "Shared Data" ) >= 0 ) {
+					rmDataSetFromSharedFn( text );
 				}
 			} else if ( type == "group" ) {
 				Ext.MessageBox.alert( 'message', 'Not allowed to delete group!' );
@@ -145,15 +146,13 @@ var DataManagePanel = function() {
 			} else if ( type == "data category" ) {
 				Ext.MessageBox.alert( 'message', 'Can not delete data category!' );
 				return;
-			} else if(type=="project"){
-
-				delProjectFn( text  );
-			}
-			else //datafile
+			} else if ( type == "project" ) {
+				delProjectFn( text );
+			} else //datafile
 			{
 				if ( itemId.indexOf( "Personal Data" ) >= 0 )
 					delDataFileFn( text );
-				else if( itemId.indexOf( "Projects" ) >= 0 ) {
+				else if ( itemId.indexOf( "Projects" ) >= 0 ) {
 					var pid = treeGrid.getSelectionModel().selected.map[ itemId ].parentNode.data.id;
 					rmDataFileFromProjFn( pid, text );
 				}
@@ -161,29 +160,31 @@ var DataManagePanel = function() {
 			}
 		}
 	}
-	var rmDataSetFromSharedFn=function(dataSetName){
-		var paramsObj = {
-			dataSetName: dataSetName
-		};
-		basicDeleteFn( "dataset", "rmDataSetFromShared.action", paramsObj );
-	}
-	/**
-	 * 移除（remove）项目下的数据集：不删除硬盘文件夹
-	 * @param  {[type]} dataSetName [description]
-	 * @return {[type]}             [description]
-	 */
+	var rmDataSetFromSharedFn = function( dataSetName ) {
+			var paramsObj = {
+				dataSetName: dataSetName
+			};
+			basicDeleteFn( "dataset", "rmDataSetFromShared.action", paramsObj );
+			treeGrid.expandPath( "/data/Shared Data/" );
+		}
+		/**
+		 * 移除（remove）项目下的数据集：不删除硬盘文件夹
+		 * @param  {[type]} dataSetName [description]
+		 * @return {[type]}             [description]
+		 */
 	var rmDataSetFromProjFn = function( projectName, dataSetName ) {
-		var paramsObj = {
-			projectName: projectName,
-			dataSetName: dataSetName
-		};
-		basicDeleteFn( "dataset", "rmDataSetFromProj.action", paramsObj );
-	}
-	/**
-	 * 移除（remove）项目下的数据：不删除硬盘文件
-	 * @param  {[type]} fileName [description]
-	 * @return {[type]}          [description]
-	 */
+			var paramsObj = {
+				projectName: projectName,
+				dataSetName: dataSetName
+			};
+			basicDeleteFn( "dataset", "rmDataSetFromProj.action", paramsObj );
+			treeGrid.expandPath( "/data/Projects/" );
+		}
+		/**
+		 * 移除（remove）项目下的数据：不删除硬盘文件
+		 * @param  {[type]} fileName [description]
+		 * @return {[type]}          [description]
+		 */
 	var rmDataFileFromProjFn = function( projectName, fileName ) {
 		var paramsObj = {
 			projectName: projectName,
@@ -212,6 +213,7 @@ var DataManagePanel = function() {
 			groupName: groupName
 		};
 		basicDeleteFn( "group", "deleteGroup.action", paramsObj );
+		treeGrid.expandPath( "/data/Group Data/" );
 	}
 
 	var delProjectFn = function( projectName ) {
@@ -219,93 +221,98 @@ var DataManagePanel = function() {
 			projectName: projectName
 		};
 		basicDeleteFn( "project", "deleteProject.action", paramsObj );
+		treeGrid.expandPath( "/data/Projects/" );
 	}
 
 	var basicDeleteFn = function( delType, actionUrl, paramsObj ) {
-		Ext.MessageBox.show( {
-			title: 'Warnning',
-			msg: 'Delete is irreversible, are you sure to delete this ' + delType + '?',
-			buttons: Ext.MessageBox.YESNOCANCEL,
-			icon: Ext.MessageBox.QUESTION,
-			modal: true,
-			fn: function callback( btn ) {
-				if ( btn == "yes" ) {
-					Ext.Ajax.request( {
-						url: actionUrl,
-						success: function( response, config ) {
-							var json = Ext.JSON.decode(response.responseText);
-							Ext.MessageBox.alert( "result", json.msg );
-							treeStore.reload();
-						},
-						failure: function() {
-							Ext.MessageBox.alert( "result", "Create dataset folder failed." );
-						},
-						method: "post",
-						params: paramsObj
-					} );
-				}
-			}
-		} );
-	}
-	//upload
-	var tbUploadFn = function() {
-		var itemId = getSelectedItemId();
-		var pid = getSelectedItemPId( itemId );
-		if ( itemId == "Personal Data" || pid == "Personal Data" || /Projects/.test( pid ) ) //p d
-		{
-			FileUpload_Win_DM.show();
-		} else {
-			Ext.MessageBox.alert( 'message', 'Can only upload datafile to a personal dataset or project!' );
-		}
-	}
-	//share
-	var tbShareFn = function() {
-		var selected = treeGrid.getSelectionModel().selected.items;
-		if ( selected.length == 0 ) {
-			Ext.MessageBox.alert( 'message', 'You must select a treenode first!' );
-		} else {
-			share( selected[ 0 ].data.text );
-		}
-	}
-	//add to project
-	var tbAdd2ProjectFn = function() {
-		var checkedItems = treeGrid.getChecked();
-		var itemId = getSelectedItemId();
-		var pid = getSelectedItemPId( itemId );
-		if ( !/Projects/.test( pid ) ) {
-			Ext.MessageBox.alert( "message", "Please select a project." );
-		} else if ( checkedItems.length == 0 ) {
-			Ext.MessageBox.alert( "message", "Please select datasets first." );
-		} else {
-			var datasets = [],
-				datafiles = [];
-			for ( var i = 0; i < checkedItems.length; i++ ) {
-				var item = checkedItems[ i ];
-				if ( item.data.type === "dataset" )
-					datasets.push( item.data.text );
-				else
-					datafiles.push( item.data.text );
-			}
-			Ext.Ajax.request( {
-				url: "addDataToProject.action",
-				success: function( response, config ) {
-					console.log( response.responseText );
-					Ext.MessageBox.alert( "result", response.responseText );
-					treeStore.reload();
-				},
-				failure: function() {
-					Ext.MessageBox.alert( "result", "Failed." );
-				},
-				method: "post",
-				params: {
-					datasets: datasets,
-					datafiles: datafiles,
-					projectName: getSelectedItemText()
+			Ext.MessageBox.show( {
+				title: 'Warnning',
+				msg: 'Delete is irreversible, are you sure to delete this ' + delType + '?',
+				buttons: Ext.MessageBox.YESNOCANCEL,
+				icon: Ext.MessageBox.QUESTION,
+				modal: true,
+				fn: function callback( btn ) {
+					if ( btn == "yes" ) {
+						Ext.Ajax.request( {
+							url: actionUrl,
+							success: function( response, config ) {
+								var json = Ext.JSON.decode( response.responseText );
+								Ext.MessageBox.alert( "result", json.msg );
+								treeStore.reload();
+							},
+							failure: function() {
+								Ext.MessageBox.alert( "result", "Create dataset folder failed." );
+							},
+							method: "post",
+							params: paramsObj
+						} );
+					}
 				}
 			} );
 		}
-	}
-	/* end */
+		//upload
+	var tbUploadFn = function() {
+			var itemId = getSelectedItemId();
+			var pid = getSelectedItemPId( itemId );
+			if ( itemId == "Personal Data" || pid == "Personal Data" || /Projects/.test( pid ) ) //p d
+			{
+				FileUpload_Win_DM.show();
+				if ( pid != "data" )
+					treeGrid.expandPath( "/data/" + pid + "/" );
+			} else {
+				Ext.MessageBox.alert( 'message', 'Can only upload datafile to a personal dataset or project!' );
+			}
+		}
+		//share
+	var tbShareFn = function() {
+			var selected = treeGrid.getSelectionModel().selected.items;
+			if ( selected.length == 0 ) {
+				Ext.MessageBox.alert( 'message', 'You must select a treenode first!' );
+			} else {
+				share( selected[ 0 ].data.text );
+				treeStore.reload();
+				treeGrid.expandPath( "/data/Shared Data/" );
+			}
+		}
+		//add to project
+	var tbAdd2ProjectFn = function() {
+			var checkedItems = treeGrid.getChecked();
+			var itemId = getSelectedItemId();
+			var pid = getSelectedItemPId( itemId );
+			if ( !/Projects/.test( pid ) ) {
+				Ext.MessageBox.alert( "message", "Please select a project." );
+			} else if ( checkedItems.length == 0 ) {
+				Ext.MessageBox.alert( "message", "Please select datasets first." );
+			} else {
+				var datasets = [],
+					datafiles = [];
+				for ( var i = 0; i < checkedItems.length; i++ ) {
+					var item = checkedItems[ i ];
+					if ( item.data.type === "dataset" )
+						datasets.push( item.data.text );
+					else
+						datafiles.push( item.data.text );
+				}
+				Ext.Ajax.request( {
+					url: "addDataToProject.action",
+					success: function( response, config ) {
+						console.log( response.responseText );
+						Ext.MessageBox.alert( "result", response.responseText );
+						treeStore.reload();
+					},
+					failure: function() {
+						Ext.MessageBox.alert( "result", "Failed." );
+					},
+					method: "post",
+					params: {
+						datasets: datasets,
+						datafiles: datafiles,
+						projectName: getSelectedItemText()
+					}
+				} );
+			}
+		}
+		/* end */
 
 	var tb = Ext.create( 'Ext.Toolbar', {
 		items: [ {
@@ -314,7 +321,9 @@ var DataManagePanel = function() {
 				iconCls: "Folderadd",
 				tooltip: 'new personal dataset or project ',
 				// only 'personal data' and 'projects' can add new datasets
-				handler: function(){tbAddFn();}
+				handler: function() {
+					tbAddFn();
+				}
 			},
 			'-',
 			/*{
@@ -328,14 +337,18 @@ var DataManagePanel = function() {
 				text: 'upload',
 				tooltip: 'upload data file to a dataset or project',
 				iconCls: 'Arrowjoin',
-				handler: function(){tbUploadFn();}
+				handler: function() {
+					tbUploadFn();
+				}
 			},
 			'-', {
 				id: 'share',
 				text: 'share',
 				iconCls: 'Share',
 				tooltip: 'share data to others',
-				handler: function(){tbShareFn();}
+				handler: function() {
+					tbShareFn();
+				}
 			},
 			'-', {
 				text: 'refresh',
@@ -348,13 +361,17 @@ var DataManagePanel = function() {
 				text: 'delete',
 				iconCls: 'Delete',
 				tooltip: 'delete (the first) selected item.',
-				handler: function(){tbDeleteFn();}
+				handler: function() {
+					tbDeleteFn();
+				}
 			},
 			'-', {
 				text: 'add into project',
 				iconCls: 'Applicationadd',
 				tooltip: 'check datasets and add to a selected project',
-				handler: function(){tbAdd2ProjectFn();}
+				handler: function() {
+					tbAdd2ProjectFn();
+				}
 			}
 		]
 	} );
@@ -373,15 +390,47 @@ var DataManagePanel = function() {
 				e.stopEvent();
 				//console.log(record);
 				//gridmenu.showAt(e.getXY());
+			},
+			beforeitemexpand: function( item, eOpts ) {
+				var flag=false;
+				if ( item.data.id == "Shared Data" ) {
+					Ext.Ajax.request( {
+						url: 'judgeshareduser.action',
+						success: function( response, config ) {
+							var json = Ext.JSON.decode( response.responseText );
+							
+							Ext.MessageBox.alert( "result", json.tag );
+							if(!json.tag){
+								Ext.MessageBox.alert( "Message", "You have no access to use shared data before you shared any data." );
+							}else
+								flag=true;
+						},
+						failure: function() {
+							Ext.MessageBox.alert( "Message", "You have no access to use shared data before you shared any data." );
+						},
+						method: "post"
+					} );
+				}
+				return flag;
 			}
 		},
 		store: treeStore, //newstore,
 		columns: [ {
+			header: 'ROW',
+			xtype: 'rownumberer',
+			width: 40,
+			sortable: false
+		}, {
 			xtype: 'treecolumn',
 			text: 'Dataset',
 			dataIndex: "text",
 			flex: 1,
 			sortable: false
+		}, {
+			text: "uploader",
+			dataIndex: "uploader",
+			flex: 1,
+			sortable: true
 		}, {
 			text: "type",
 			dataIndex: "type",
@@ -397,7 +446,12 @@ var DataManagePanel = function() {
 			dataIndex: "format",
 			flex: 1,
 			sortable: true
-		} ]
+		} ],
+		viewConfig: {
+			stripeRows: true, //在表格中显示斑马线
+			enableTextSelection: true //, //可以复制单元格文字
+				//selectedItemCls:'new-grid-row-selected'
+		}
 	} );
 	/**
 	 * data-panel
@@ -543,22 +597,6 @@ var DataManagePanel = function() {
 
 	function createDataSetWinShow() {
 		createSet_Win.show();
-	}
-	//====================================================================================
-	//the window show the data in the right click dataset
-	//====================================================================================
-
-	function showdata() {
-		if ( authority != "" ) {
-			Ext.getCmp( "AddData" ).setDisabled( true );
-			Ext.getCmp( "DeleteData" ).setDisabled( true );
-			// Ext.getCmp("createboundary").setDisabled(true);
-		} else {
-			Ext.getCmp( "AddData" ).setDisabled( false );
-			Ext.getCmp( "DeleteData" ).setDisabled( false );
-			// Ext.getCmp("createboundary").setDisabled(false);
-		}
-		datafileshow_win.show();
 	}
 
 	function renderFileName( value ) {
@@ -741,7 +779,7 @@ var DataManagePanel = function() {
 
 	var csv_x_filed_combo = Ext.create( 'Ext.form.field.ComboBox', {
 		fieldLabel: 'X Field',
-		id: namespace + '_x_fields',
+		id: namespace + '_x_field',
 		displayField: 'name',
 		name: 'x_field',
 		store: csvFields_store,
@@ -755,7 +793,7 @@ var DataManagePanel = function() {
 
 	var csv_y_filed_combo = Ext.create( 'Ext.form.field.ComboBox', {
 		fieldLabel: 'Y Field',
-		id: namespace + '_y_fields',
+		id: namespace + '_y_field',
 		displayField: 'name',
 		name: 'y_field',
 		store: csvFields_store,
@@ -842,6 +880,7 @@ var DataManagePanel = function() {
 		buttons: [ {
 			text: 'Save',
 			handler: function() {
+				var datasetName = getSelectedItemText();
 				var filePostfix = null;
 				var semantic = Ext.getCmp( namespace + '_semantic' ).getValue();
 				if ( semantic == "Sample Data" ) {
@@ -886,7 +925,7 @@ var DataManagePanel = function() {
 				//var dataset = Ext.getCmp(namespace + 'dataSetName').getValue();
 
 				var dataname = Ext.getCmp( namespace + '_dataName' ).getValue();
-				Ext.getCmp( namespace + '_dataSetName' ).setValue( dataSetName );
+				Ext.getCmp( namespace + '_dataSetName' ).setValue( datasetName );
 				if ( postfix == "" || semantic == "" || dataname == "" ) {
 					Ext.MessageBox.alert( 'msg', "all the input can not be empty!" );
 					return;

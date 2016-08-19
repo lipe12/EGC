@@ -43,10 +43,10 @@ body {
     } 
    .x-tree-checked .x-grid-cell-inner {
        font-style: italic;
-       color: #777;     
+       color: #439CE0;     
    }
    .x-grid-row-selected .x-grid-cell {       
-       background-color: #777 !important;    
+       background-color: #439CE0 !important;    
    }
    .x-combo-list{z-index:100000 !important;} 
    a:link {color: #999966}                 
