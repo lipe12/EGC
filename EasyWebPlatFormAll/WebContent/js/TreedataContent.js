@@ -91,6 +91,28 @@ var treePanel = new Ext.tree.TreePanel(
                 DTC_uploader = record.data.uploader;
                 DataTreeController.contextmenu.showAt(e.getXY());
             }
-        }
+        },
+        beforeitemexpand: function( item, eOpts ) {
+                var flag=true;
+                if ( item.data.id == "Shared Data" ) {
+                    Ext.Ajax.request( {
+                        url: 'judgeshareduser.action',
+                        success: function( response, config ) {
+                            var json = Ext.JSON.decode( response.responseText );
+                            
+                            Ext.MessageBox.alert( "result", json.tag );
+                            if(!json.tag){
+                                flag= false;
+                                Ext.MessageBox.alert( "Message", "You have no access to use shared data before you shared any data." );
+                            }
+                        },
+                        failure: function() {
+                            Ext.MessageBox.alert( "Message", "You have no access to use shared data before you shared any data." );
+                        },
+                        method: "post"
+                    } );
+                }
+                return flag;
+            }
     }
 });
