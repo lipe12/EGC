@@ -361,6 +361,7 @@ var DataManagePanel = function() {
 
 	var treeGrid = Ext.create( 'Ext.tree.Panel', {
 		itemId: "tree",
+		id:"dataTreeManager",
 		width: 600,
 		height: 500,
 		tbar: tb,
@@ -470,8 +471,10 @@ var DataManagePanel = function() {
 					var tag = ajax.responseText.pJSON().tag;
 					if ( tag == 0 ) {
 						Ext.MessageBox.alert( "tip", "this data set had been shared" );
+						
 					} else if ( tag == 1 ) {
 						Ext.MessageBox.alert( "tip", "this data set is shared successfully" );
+						treeStore.reload();
 					}
 				}
 			}
@@ -659,14 +662,14 @@ var DataManagePanel = function() {
 				var seman = semantic_combo.getValue();
 				if ( seman == "Sample Data" ) {
 					Ext.getCmp( namespace + '_datafile_csv' ).setDisabled( false );
-					Ext.getCmp( namespace + '_x_field' ).setDisabled( false );
-					Ext.getCmp( namespace + '_y_field' ).setDisabled( false );
+					Ext.getCmp( namespace + '_x_fields' ).setDisabled( false );
+					Ext.getCmp( namespace + '_y_fields' ).setDisabled( false );
 
 					Ext.getCmp( namespace + '_datafile' ).setDisabled( true );
 				} else {
 					Ext.getCmp( namespace + '_datafile_csv' ).setDisabled( true );
-					Ext.getCmp( namespace + '_x_field' ).setDisabled( true );
-					Ext.getCmp( namespace + '_y_field' ).setDisabled( true );
+					Ext.getCmp( namespace + '_x_fields' ).setDisabled( true );
+					Ext.getCmp( namespace + '_y_fields' ).setDisabled( true );
 					Ext.getCmp( namespace + '_datafile' ).setDisabled( false );
 				}
 			}
@@ -842,6 +845,8 @@ var DataManagePanel = function() {
 		buttons: [ {
 			text: 'Save',
 			handler: function() {
+				var datasetName = getSelectedItemText();
+				var node =  Ext.getCmp("dataTreeManager").getSelectionModel().selected.items[0];
 				var filePostfix = null;
 				var semantic = Ext.getCmp( namespace + '_semantic' ).getValue();
 				if ( semantic == "Sample Data" ) {
@@ -880,19 +885,19 @@ var DataManagePanel = function() {
 					return;
 				}
 
-				Ext.getCmp( namespace + 'filePostfix' ).setValue( filePostfix );
+				Ext.getCmp( namespace + '_filePostfix' ).setValue( filePostfix );
 
 				var postfix = Ext.getCmp( namespace + '_filePostfix' ).getValue();
 				//var dataset = Ext.getCmp(namespace + 'dataSetName').getValue();
 
 				var dataname = Ext.getCmp( namespace + '_dataName' ).getValue();
-				Ext.getCmp( namespace + '_dataSetName' ).setValue( dataSetName );
+				Ext.getCmp( namespace + '_dataSetName' ).setValue(datasetName);
 				if ( postfix == "" || semantic == "" || dataname == "" ) {
 					Ext.MessageBox.alert( 'msg', "all the input can not be empty!" );
 					return;
 				}
 
-				if ( Ext.getCmp( namespace + '_datafile' ).getValue() == "" && Ext.getCmp( namespace + 'datafile_csvStr' ).getValue() == "" ) {
+				if ( Ext.getCmp( namespace + '_datafile' ).getValue() == "" && Ext.getCmp( namespace + '_datafile_csvStr' ).getValue() == "" ) {
 					Ext.MessageBox.alert( 'msg', "please select data to unload" );
 					return;
 				}
@@ -905,8 +910,10 @@ var DataManagePanel = function() {
 					modal: false,
 					success: function( fp, o ) {
 						Ext.MessageBox.alert( 'msg', "upload file success!" );
-						Ext.getCmp( '_List_FileData' ).getStore().load();
+						//Ext.getCmp( '_List_FileData' ).getStore().load();
 						Ext.getCmp( "uploadMark" ).getEl().hide();
+						//treeStore.reload();
+						expandNode(node);
 					},
 					failure: function( f, action ) {
 						Ext.MessageBox.alert( 'msg', "upload file fail!" );
@@ -936,7 +943,27 @@ var DataManagePanel = function() {
 			FileUpload_Form
 		]
 	} );
-
+	
+	
+	function expandNode(node){
+		var tree1 = Ext.getCmp('dataTreeManager');
+		var path = node.getPath('id');
+		tree1.getStore().load({node: tree1.getRootNode(),
+									callback: function () {
+										tree1.expandPath(path, 'id');
+									}
+		})
+	};
+	function expandNode(node){
+		var tree1 = Ext.getCmp('dataTreeManager');
+		var path = node.getPath('id');
+		tree1.getStore().load({node: tree1.getRootNode(),
+									callback: function () {
+										tree1.expandPath(path, 'id');
+									}
+		})
+	}
+//TODO: 删除节点后展开，还得和侯志伟商量下
 	return {
 		data_panel: dataPanel,
 		html5readFile: html5readFile
