@@ -820,7 +820,12 @@ function AddPop2(location){
                      +'<td  align="center">'                                       
                      +'<button onclick="WaterShedModeling()" style="cursor: pointer;background-color:#FFFFFF;border-bottom:1px solid #FFFFFF;;border-right:1px solid #FFFFFF"><font face="Times New Roman" size="3" color="#666666"; style="TEXT-DECORATION: underline">Digital Terrain Analysis</font></button>'  
                      +'</td>'                                                     
-                     +'</tr>'  
+                     +'</tr>'
+                     +'<tr>'    
+                     +'<td  align="center">'                                       
+                     +'<button onclick="SoilSampling()" style="cursor: pointer;background-color:#FFFFFF;border-bottom:1px solid #FFFFFF;;border-right:1px solid #FFFFFF"><font face="Times New Roman" size="3" color="#666666"; style="TEXT-DECORATION: underline">Soil Sampling</font></button>'  
+                     +'</td>'                                                     
+                     +'</tr>'
                      +'<tr>'        
                      +'<td  align="center">'                                           
                      +'<button onclick="Others()" style="cursor: pointer;background-color:#FFFFFF;border-bottom:1px solid #FFFFFF;;border-right:1px solid #FFFFFF"><font face="Times New Roman" size="3" color="#666666"; style="TEXT-DECORATION: underline">Monkey Habitat Mapping</font></button>'  
@@ -1073,10 +1078,11 @@ function WaterShedModeling(){
     var DTANode = rootNode.findChild("id","DTA");
 	var PMNode = rootNode.findChild("id","PM");
 	var HMNode = rootNode.findChild("id","HM");
+	var SSNode = rootNode.findChild("id","SS");
 	DTANode.expand(true);
     PMNode.collapse(true);
 	HMNode.collapse(true);	
-   
+    SSNode.collapse(true);
     DTANode.eachChild(function(childnode) {      
 		Ext.getCmp('taskTree').getSelectionModel().deselect(childnode);
 	});
@@ -1092,6 +1098,39 @@ function WaterShedModeling(){
 	//currentTask = "TWI";
 	currentTask = "TWICal";     
 };
+function SoilSampling(){
+	onPopupClose2();
+	var model = tabs.child('#easyModel');
+	model.tab.show();  
+    tabs.setActiveTab(model); 
+    			  
+    Manager.init("sampling based on purposive"); 
+	var rootNode = Ext.getCmp('taskTree').getRootNode();
+    var DTANode = rootNode.findChild("id","DTA");
+	var PMNode = rootNode.findChild("id","PM");
+	var HMNode = rootNode.findChild("id","HM");
+	var SSNode = rootNode.findChild("id","SS");
+	SSNode.expand(true);
+	PMNode.collapse(true);
+    DTANode.collapse(true);
+	HMNode.collapse(true);	
+	DTANode.eachChild(function(childnode) {      
+		Ext.getCmp('taskTree').getSelectionModel().deselect(childnode);
+	});
+	PMNode.eachChild(function(childnode) {      
+		Ext.getCmp('taskTree').getSelectionModel().deselect(childnode);
+	});   
+    HMNode.eachChild(function(childnode) {      
+		Ext.getCmp('taskTree').getSelectionModel().deselect(childnode);
+	}); 
+	SSNode.eachChild(function(childnode) {      
+		Ext.getCmp('taskTree').getSelectionModel().deselect(childnode);
+	});
+    selectControl.unselect(selectedFeature); 
+	modelManagerwin.show();
+	//modelManagerwin.showAt(30,60);  
+	currentTask = "sampling based on purposive";
+};
 function SoilMap(){ 
 	onPopupClose2();
 	var model = tabs.child('#easyModel');
@@ -1102,9 +1141,11 @@ function SoilMap(){
     var DTANode = rootNode.findChild("id","DTA");
 	var PMNode = rootNode.findChild("id","PM");
 	var HMNode = rootNode.findChild("id","HM");
+	var SSNode = rootNode.findChild("id","SS");
 	PMNode.expand(true);
     DTANode.collapse(true);
-	HMNode.collapse(true);	
+	HMNode.collapse(true);
+	SSNode.collapse(true);	
 	DTANode.eachChild(function(childnode) {      
 		Ext.getCmp('taskTree').getSelectionModel().deselect(childnode);
 	});
@@ -1112,6 +1153,9 @@ function SoilMap(){
 		Ext.getCmp('taskTree').getSelectionModel().deselect(childnode);
 	});   
     HMNode.eachChild(function(childnode) {      
+		Ext.getCmp('taskTree').getSelectionModel().deselect(childnode);
+	}); 
+	SSNode.eachChild(function(childnode) {      
 		Ext.getCmp('taskTree').getSelectionModel().deselect(childnode);
 	}); 
     selectControl.unselect(selectedFeature); 
@@ -1130,9 +1174,11 @@ function Others(){
     var DTANode = rootNode.findChild("id","DTA");
 	var PMNode = rootNode.findChild("id","PM");
 	var HMNode = rootNode.findChild("id","HM");
+	var SSNode = rootNode.findChild("id","SS");
 	HMNode.expand(true);
     DTANode.collapse(true);
-	PMNode.collapse(true);	     
+	PMNode.collapse(true);	  
+	SSNode.collapse(true);
 	DTANode.eachChild(function(childnode) {      
 		Ext.getCmp('taskTree').getSelectionModel().deselect(childnode);
 	});
@@ -1141,7 +1187,10 @@ function Others(){
 	});   
     HMNode.eachChild(function(childnode) {      
 		Ext.getCmp('taskTree').getSelectionModel().deselect(childnode);
-	}); 
+	});
+	SSNode.eachChild(function(childnode) {      
+		Ext.getCmp('taskTree').getSelectionModel().deselect(childnode);
+	});
     selectControl.unselect(selectedFeature);
 	modelManagerwin.show();	   
 	//modelManagerwin.showAt(30,60);  
