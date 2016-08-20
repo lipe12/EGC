@@ -2,6 +2,7 @@ package org.easygeoc.account;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
@@ -9,8 +10,10 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,6 +31,7 @@ import cn.com.bean.DataSet;
 
 import com.googlecode.jsonplugin.annotations.JSON;
 import com.opensymphony.xwork2.ActionSupport;
+
 import tutorial.CreateMapFile;
 
 /**
@@ -139,6 +143,21 @@ public class UploadDataFile extends ActionSupport{
 	    	
 	    	this.copy(datafile,file); 
 			this.fileSize = FileSize(datafile.length());
+			String tmpTxtPath = "";
+			try {
+				tmpTxtPath = request.getSession().getServletContext().getRealPath("") + File.separator + "WEB-INF"
+			    		+ File.separator + "xml" + File.separator + "users_informations" + File.separator + username + File.separator + "tmp.txt";
+				String cmdString = Constant.exepath + File.separator + "polygon.exe" + " " + filePath + " " + tmpTxtPath;
+				Process process = Runtime.getRuntime().exec("cmd /c" + cmdString); 
+				String str;
+				BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(process.getInputStream())); 
+				while ( (str=bufferedReader.readLine()) !=null){System.out.println(str);}     
+				process.waitFor(); 
+			    path = path + File.separator + username;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			readTxtExtent(tmpTxtPath);
 			this.writeMetaData();
 			//========================new function ==========================
 			   //判断在MapFilePath文件夹中是否存在username文件夹，如果不存在创建文件夹
@@ -181,6 +200,7 @@ public class UploadDataFile extends ActionSupport{
 			}
 	    	File file = new File(filePath);
 			this.fileSize = FileSize(file.length());
+			
 			this.writeMetaData();
 			
 			System.out.println("filePath:" + filePath);
@@ -377,6 +397,30 @@ public class UploadDataFile extends ActionSupport{
 	private String down;
 	private String left;
 	private String right;
+	public void readTxtExtent(String path) {
+		String encoding="GBK";
+		try {
+			File file=new File(path);
+			List<String> extents = new ArrayList<String>();
+			if(file.isFile() && file.exists()){ 
+				InputStreamReader read = new InputStreamReader(new FileInputStream(file),encoding);
+				 BufferedReader bufferedReader = new BufferedReader(read);
+				 
+				 String lineTxt = null;
+				 while((lineTxt = bufferedReader.readLine()) != null){
+					 extents.add(lineTxt);
+				 }
+			}
+			String extent = extents.get(0);
+			String[] splitExtent = extent.split(" ");
+			this.down = splitExtent[0];
+			this.right = splitExtent[0];
+			this.top = splitExtent[0];
+			this.left = splitExtent[0];
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	private  void writeMetaData(){
 		SAXBuilder sb = new SAXBuilder();
 	    HttpServletRequest request = ServletActionContext.getRequest();
