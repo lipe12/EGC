@@ -392,7 +392,7 @@ var DataManagePanel = function() {
 				//gridmenu.showAt(e.getXY());
 			},
 			beforeitemexpand: function( item, eOpts ) {
-				var flag=false;
+				var flag=true;
 				if ( item.data.id == "Shared Data" ) {
 					Ext.Ajax.request( {
 						url: 'judgeshareduser.action',
@@ -401,9 +401,9 @@ var DataManagePanel = function() {
 							
 							Ext.MessageBox.alert( "result", json.tag );
 							if(!json.tag){
+								flag= false;
 								Ext.MessageBox.alert( "Message", "You have no access to use shared data before you shared any data." );
-							}else
-								flag=true;
+							}
 						},
 						failure: function() {
 							Ext.MessageBox.alert( "Message", "You have no access to use shared data before you shared any data." );
