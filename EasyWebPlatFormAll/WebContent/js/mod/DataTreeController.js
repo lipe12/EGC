@@ -2,7 +2,7 @@
  * [DataTreeController]
  * @param {[type]} me ['this']
  */
-var DTC_datasetName, DTC_uploader;
+var DTC_datasetName, DTC_uploader, DTC_dataName;
 var DataTreeController = function()
 {
     var displayKML = function()
@@ -145,4 +145,4 @@ var DataTreeController = function()
     return {
         contextmenu: contextmenu
     }
-}(DTC_datasetName,DTC_uploader);
+}(DTC_datasetName,DTC_uploader, DTC_dataName);

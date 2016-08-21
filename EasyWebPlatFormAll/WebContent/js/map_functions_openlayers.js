@@ -1241,23 +1241,41 @@ window.onresize= function(){
 
 function showEnvData(){
 	//TODO:结合树中被选中环境变量，在地图中动态显示环境变量
-	 var n = 10; 
-	 for(var i = 0; i < n; i++){
-	 	var userName = i;
-	 	var dataSetName = i;
-	 	var dataName = i;
-	 	var layerName = userName + dataSetName + dataName; //TODO:将layerName 改为用户名+数据集+数据名称
-	 	var envWMS = new OpenLayers.Layer.WMS(layerName, wms_url,{
-		 		layers: dataName,
-		 		map: mapfile_path  + userName + "/" + dataSetName + "/" + dataName + '.map',
-		 		transparent: 'true',
-		 		format: 'image/png'
-	 	    },{
-	 	    	isBaseLayer: false,
-				visibility: true,
-				opacity: 1.0,           
-				buffer: 0
-	 	    });
-	 	map.addLayer(envWMS);
-	 }
+ 	var userName = DTC_uploader;
+ 	var dataSetName = DTC_datasetName;
+ 	var dataName = DTC_dataName;
+ 	var layerName = userName + dataSetName + dataName; //TODO:将layerName 改为用户名+数据集+数据名称
+ 	var envWMS = new OpenLayers.Layer.WMS(layerName, wms_url,{
+	 		layers: dataName,
+	 		map: mapfile_path  + userName + "/" + dataSetName + "/" + dataName + '.map',
+	 		transparent: 'true',
+	 		format: 'image/png'
+ 	    },{
+ 	    	isBaseLayer: false,
+			visibility: true,
+			opacity: 1.0,           
+			buffer: 0
+ 	    });
+ 	map.addLayer(envWMS);
+	var xmlUrl = "findkmlextent1.action?datasetname=" + DTC_datasetName + "&upLoader=" + DTC_uploader;
+    var ajax = new Ajax();
+    ajax.open("GET", xmlUrl, true);
+    ajax.send(null);
+    ajax.onreadystatechange = function(){
+    	 if (ajax.readyState == 4){
+    	 	if (ajax.status == 200){
+    	 		var tag = ajax.responseText.pJSON().tag;
+    	 		if (tag == true){
+    	 			var north = ajax.responseText.pJSON().north;
+                    var south = ajax.responseText.pJSON().south;
+                    var west = ajax.responseText.pJSON().west;
+                    var east = ajax.responseText.pJSON().east;
+                    var lon = (parseFloat(west) + parseFloat(east)) / 2;
+                    var lat = (parseFloat(north) + parseFloat(south)) / 2;
+                    var centerLonLat = new OpenLayers.LonLat(lon, lat);
+                    map.panTo(centerLonLat);
+    	 		}
+    	 	}
+    	 }
+    }
 }

@@ -87,7 +87,9 @@ var treePanel = new Ext.tree.TreePanel(
             e.stopEvent();
             if (record.data.leaf)
             {
-                DTC_datasetName = record.data.text;
+                //DTC_datasetName = record.data.text;
+            	DTC_datasetName = Ext.getCmp("dataTree").getSelectionModel().selected.items[0].parentNode.data.text;
+                DTC_dataName = record.data.text;
                 DTC_uploader = record.data.uploader;
                 DataTreeController.contextmenu.showAt(e.getXY());
             }
