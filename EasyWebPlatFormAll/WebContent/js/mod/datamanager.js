@@ -72,7 +72,10 @@ var DataManagePanel = function() {
 								treeStore.reload();
 								treeGrid.expandPath( "/data/Personal Data/" );
 								var json = Ext.JSON.decode( response.responseText );
-								Ext.MessageBox.alert( "result", json.msg );
+								if(json.msg)
+									Ext.MessageBox.alert( "result", json.msg );
+								else
+									Ext.MessageBox.alert( "result", "Success" );
 							},
 							failure: function() {
 								Ext.MessageBox.alert( "result", "Create dataset folder failed." );
@@ -94,7 +97,7 @@ var DataManagePanel = function() {
 								treeStore.reload();
 								treeGrid.expandPath( "/data/Projects/" );
 								var json = Ext.JSON.decode( response.responseText );
-								Ext.MessageBox.alert( "result", json.msg );
+								Ext.MessageBox.alert( "result", json.msg );				
 							},
 							failure: function() {
 								Ext.MessageBox.alert( "result", "Create dataset folder failed!" );
@@ -134,8 +137,8 @@ var DataManagePanel = function() {
 					delDataSetFn( text, item.data.uploader );
 					treeGrid.expandPath( "/data/Personal Data/" );
 				} else if ( itemId.indexOf( "Projects" ) >= 0 ) {
-					var pid = treeGrid.getSelectionModel().selected.map[ itemId ].parentNode.data.id;
-					rmDataSetFromProjFn( pid, text );
+					var ptext = treeGrid.getSelectionModel().selected.map[ itemId ].parentNode.data.text;
+					rmDataSetFromProjFn( ptext, text );
 				} else if ( itemId.indexOf( "Shared Data" ) >= 0 ) {
 					rmDataSetFromSharedFn( text );
 				}
@@ -153,13 +156,26 @@ var DataManagePanel = function() {
 				if ( itemId.indexOf( "Personal Data" ) >= 0 )
 					delDataFileFn( text );
 				else if ( itemId.indexOf( "Projects" ) >= 0 ) {
-					var pid = treeGrid.getSelectionModel().selected.map[ itemId ].parentNode.data.id;
-					rmDataFileFromProjFn( pid, text );
+					var ptype='';
+					var mapItem=treeGrid.getSelectionModel().selected.map[ itemId ];
+					while(ptype!='project'){
+						ptype=mapItem.parentNode.data.type;	
+						mapItem=mapItem.parentNode;
+						// console.log(ptype);
+						// console.log(mapItem.data.text);
+					}
+					var ptext = mapItem.data.text;					
+					rmDataFileFromProjFn( ptext, text );
 				}
 
 			}
 		}
 	}
+	/**
+	 * 移除共享数据集，但不删除对应数据文件
+	 * @param  {[type]} dataSetName [description]
+	 * @return {[type]}             [description]
+	 */
 	var rmDataSetFromSharedFn = function( dataSetName ) {
 			var paramsObj = {
 				dataSetName: dataSetName
@@ -192,7 +208,12 @@ var DataManagePanel = function() {
 		};
 		basicDeleteFn( "datafile", "rmDataFileFromProj.action", paramsObj );
 	}
-
+	/**
+	 * delete dataset
+	 * @param  {[type]} dataSetName [description]
+	 * @param  {[type]} uploader    [description]
+	 * @return {[type]}             [description]
+	 */
 	var delDataSetFn = function( dataSetName, uploader ) {
 		var paramsObj = {
 			dataSetName: dataSetName,
@@ -223,7 +244,13 @@ var DataManagePanel = function() {
 		basicDeleteFn( "project", "deleteProject.action", paramsObj );
 		treeGrid.expandPath( "/data/Projects/" );
 	}
-
+/**
+ * common delete function
+ * @param  {[type]} delType   the dataset type to be deleted 
+ * @param  {[type]} actionUrl [description]
+ * @param  {[type]} paramsObj  parameters send to server
+ * @return {[type]}           [description]
+ */
 	var basicDeleteFn = function( delType, actionUrl, paramsObj ) {
 			Ext.MessageBox.show( {
 				title: 'Warnning',
@@ -237,7 +264,10 @@ var DataManagePanel = function() {
 							url: actionUrl,
 							success: function( response, config ) {
 								var json = Ext.JSON.decode( response.responseText );
-								Ext.MessageBox.alert( "result", json.msg );
+								if(json.msg)
+									Ext.MessageBox.alert( "result", json.msg );
+								else
+									Ext.MessageBox.alert( "result", 'Success' );
 								treeStore.reload();
 							},
 							failure: function() {
@@ -395,10 +425,10 @@ var DataManagePanel = function() {
 				var flag=true;
 				if ( item.data.id == "Shared Data" ) {
 					Ext.Ajax.request( {
+						async:false,
 						url: 'judgeshareduser.action',
 						success: function( response, config ) {
-							var json = Ext.JSON.decode( response.responseText );
-							
+							var json = Ext.JSON.decode( response.responseText );						
 							Ext.MessageBox.alert( "result", json.tag );
 							if(!json.tag){
 								flag= false;
