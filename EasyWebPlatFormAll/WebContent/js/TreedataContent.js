@@ -11,7 +11,7 @@ Ext.QuickTips.init(); //init tooltips
 Ext.define("myTreeModel",
 {
     extend: "Ext.data.Model",
-    fields: ['text', 'id', 'leaf', 'children', 'uploader']
+    fields: ['text', 'id', 'leaf', 'children', 'uploader', 'format']
 });
 
 var righttreeStore = new Ext.data.TreeStore(
@@ -27,7 +27,8 @@ var righttreeStore = new Ext.data.TreeStore(
     proxy:
     {
         type: 'ajax',
-        url: 'treecontent.action'
+        //url: 'treecontent.action'
+        url:'projecttreecontent.action'
     }
 });
 //treepanel toolbar
@@ -91,6 +92,7 @@ var treePanel = new Ext.tree.TreePanel(
             	DTC_datasetName = Ext.getCmp("dataTree").getSelectionModel().selected.items[0].parentNode.data.text;
                 DTC_dataName = record.data.text;
                 DTC_uploader = record.data.uploader;
+                DTC_format  = record.data.format;
                 DataTreeController.contextmenu.showAt(e.getXY());
             }
         },
@@ -99,10 +101,11 @@ var treePanel = new Ext.tree.TreePanel(
                 if ( item.data.id == "Shared Data" ) {
                     Ext.Ajax.request( {
                         url: 'judgeshareduser.action',
+                        async:false,
                         success: function( response, config ) {
                             var json = Ext.JSON.decode( response.responseText );
                             
-                            Ext.MessageBox.alert( "result", json.tag );
+//                            Ext.MessageBox.alert( "result", json.tag );
                             if(!json.tag){
                                 flag= false;
                                 Ext.MessageBox.alert( "Message", "You have no access to use shared data before you shared any data." );

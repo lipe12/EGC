@@ -32,7 +32,7 @@ import cn.com.bean.DataSet;
 import com.googlecode.jsonplugin.annotations.JSON;
 import com.opensymphony.xwork2.ActionSupport;
 
-import tutorial.CreateMapFile;
+import tutorial.CreateUploadDataMapFile;;
 
 /**
  * @version 1.1
@@ -174,7 +174,7 @@ public class UploadDataFile extends ActionSupport{
 				mapSetFolder.mkdir();
 			}
 			   //在dataSetName文件夹中创建raster的mapfi文件
-			CreateMapFile createFileMap = new CreateMapFile();
+			CreateUploadDataMapFile createFileMap = new CreateUploadDataMapFile();
 			String soapFileAddress = username + File.separator + dataSetName + File.separator  + dataName + "." + this.filePostfix;
 			createFileMap.create_mapfile(soapFileAddress);
 			//=============================end================================
@@ -353,24 +353,34 @@ public class UploadDataFile extends ActionSupport{
 	
 				 Element _north = dataSet.getChild("north");
 				 String dataSettop = _north.getText();
-				 if (Double.parseDouble(this.top) > Double.parseDouble(dataSettop)) {
+				 if (dataSettop.equals("")) {
+					 _north.setText(this.top);
+				}else if (Double.parseDouble(this.top) < Double.parseDouble(dataSettop)) {
 					_north.setText(this.top);
 				}
 				 Element _south = dataSet.getChild("south");
 				 String dataSetdown = _south.getText();
-				 if (Double.parseDouble(this.down) < Double.parseDouble(dataSetdown)) {
-						_north.setText(this.down);
-					}
+				 if (dataSetdown.equals("")) {
+					 _south.setText(this.down);
+				}else if (Double.parseDouble(this.down) < Double.parseDouble(dataSetdown)) {
+					_south.setText(this.down);
+				}
+				 
 		    	 Element _west = dataSet.getChild("west");
 		    	 String dataSetWest = _west.getText();
-		    	 if (Double.parseDouble(this.left) < Double.parseDouble(dataSetWest)) {
-						_north.setText(this.left);
-					}
+		    	 if (dataSetWest.equals("")) {
+		    		 _west.setText(this.left);
+				}else if (Double.parseDouble(this.left) < Double.parseDouble(dataSetWest)) {
+					_west.setText(this.left);
+				}
+		    	 
 		    	 Element _east = dataSet.getChild("east");
 		    	 String dataSeteast = _east.getText(); 
-		    	 if (Double.parseDouble(this.right) > Double.parseDouble(dataSeteast)) {
-						_north.setText(this.right);
-					}
+		    	 if (dataSeteast.equals("")) {
+		    		 _east.setText(this.right);
+				}else if (Double.parseDouble(this.right) < Double.parseDouble(dataSeteast)) {
+					_east.setText(this.right);
+				}
 		    	 Format format = Format.getCompactFormat();   
 	  	        format.setEncoding("UTF-8");  
 	  	        format.setIndent("  ");     
@@ -466,9 +476,9 @@ public class UploadDataFile extends ActionSupport{
 			}
 			String extent = extents.get(0);
 			String[] splitExtent = extent.split(" ");
-			this.down = splitExtent[0];
-			this.right = splitExtent[0];
-			this.top = splitExtent[0];
+			this.down = splitExtent[3];
+			this.right = splitExtent[2];
+			this.top = splitExtent[1];
 			this.left = splitExtent[0];
 		} catch (Exception e) {
 			e.printStackTrace();

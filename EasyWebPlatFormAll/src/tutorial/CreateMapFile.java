@@ -123,6 +123,7 @@ public class CreateMapFile extends ActionSupport{
 		String max = metaData.GetMax();
 		String quantile = metaData.GetBreakvaules();
 		String proj4 = metaData.GetProj4();
+		String espgCode = metaData.GetEpsgcode();
  
 		String  [] proj4s = proj4.split("\\s"); 
 		
@@ -184,7 +185,7 @@ public class CreateMapFile extends ActionSupport{
 			System.out.println("Constant.SHAPEPATH:" + Constant.SHAPEPATH);
 			
 			writer.write(DoubleSpace + "IMAGECOLOR" + SingleSpace + "255 255 255" + "\t\n");
-			writer.write(DoubleSpace + "FONTSET" + SingleSpace + "\"../fonts/fonts.list\"" + "\t\n");
+			writer.write(DoubleSpace + "FONTSET" + SingleSpace + "\"../../fonts/fonts.list\"" + "\t\n");
 			writer.write("\t\n");
 			//WEB BEGIN
 			// write WEB information
@@ -227,14 +228,15 @@ public class CreateMapFile extends ActionSupport{
 			String [] tempstr = filename.replace("result_egc/", "").split("\\.");
 			writer.write(FourSpace + "NAME" + SingleSpace + "\""+ tempstr[0] +"\"" +"\t\n");
 			
-			writer.write(FourSpace + "DATA" + SingleSpace + "\""+ filename.replace("result_egc/", "") +"\"" + "\t\n");
+			//writer.write(FourSpace + "DATA" + SingleSpace + "\""+ filename.replace("result_egc/", "") +"\"" + "\t\n");
+			writer.write(FourSpace + "DATA" + SingleSpace + "\""+ filename +"\"" + "\t\n");
 			writer.write(FourSpace + PROJECTION_LAYER + "\t\n");
 			
-			//writer.write(SixSpace + "\"init=epsg:"+ epsgcode +"\"" + "\t\n");
-			int proj4s_len = proj4s.length -1; 
-			for(int i = 0; i< proj4s_len ; i++){
-				writer.write(SixSpace + "\"" + proj4s[i] +"\"" + "\t\n");
-			}
+			writer.write(SixSpace + "\"init=epsg:"+ espgCode +"\"" + "\t\n");
+//			int proj4s_len = proj4s.length -1; 
+//			for(int i = 0; i< proj4s_len ; i++){
+//				writer.write(SixSpace + "\"" + proj4s[i] +"\"" + "\t\n");
+//			}
 			
 			writer.write(FourSpace + END_PROJECTION_LAYER + "\t\n");
 			writer.write(FourSpace + "STATUS" + SingleSpace + "OFF" + "\t\n");

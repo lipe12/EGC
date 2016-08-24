@@ -1241,41 +1241,87 @@ window.onresize= function(){
 
 function showEnvData(){
 	//TODO:结合树中被选中环境变量，在地图中动态显示环境变量
+	
  	var userName = DTC_uploader;
  	var dataSetName = DTC_datasetName;
  	var dataName = DTC_dataName;
- 	var layerName = userName + dataSetName + dataName; //TODO:将layerName 改为用户名+数据集+数据名称
- 	var envWMS = new OpenLayers.Layer.WMS(layerName, wms_url,{
-	 		layers: dataName,
-	 		map: mapfile_path  + userName + "/" + dataSetName + "/" + dataName + '.map',
-	 		transparent: 'true',
-	 		format: 'image/png'
- 	    },{
- 	    	isBaseLayer: false,
-			visibility: true,
-			opacity: 1.0,           
-			buffer: 0
- 	    });
- 	map.addLayer(envWMS);
-	var xmlUrl = "findkmlextent1.action?datasetname=" + DTC_datasetName + "&upLoader=" + DTC_uploader;
-    var ajax = new Ajax();
-    ajax.open("GET", xmlUrl, true);
-    ajax.send(null);
-    ajax.onreadystatechange = function(){
-    	 if (ajax.readyState == 4){
-    	 	if (ajax.status == 200){
-    	 		var tag = ajax.responseText.pJSON().tag;
-    	 		if (tag == true){
-    	 			var north = ajax.responseText.pJSON().north;
-                    var south = ajax.responseText.pJSON().south;
-                    var west = ajax.responseText.pJSON().west;
-                    var east = ajax.responseText.pJSON().east;
-                    var lon = (parseFloat(west) + parseFloat(east)) / 2;
-                    var lat = (parseFloat(north) + parseFloat(south)) / 2;
-                    var centerLonLat = new OpenLayers.LonLat(lon, lat);
-                    map.panTo(centerLonLat);
-    	 		}
-    	 	}
-    	 }
-    }
+ 	var dataFormat = DTC_format;
+ 	if (dataFormat == "TIF"){
+ 		var layerName = dataSetName + dataName; //TODO:将layerName 改为用户名+数据集+数据名称
+	 	var envWMS = new OpenLayers.Layer.WMS(layerName, wms_url,{
+		 		layers: dataName,
+		 		map: mapfile_path  + userName + "/" + dataSetName + "/" + dataName + '.map',
+		 		transparent: 'true',
+		 		format: 'image/png'
+	 	    },{
+	 	    	isBaseLayer: false,
+				visibility: true,
+				opacity: 1.0,           
+				buffer: 0
+	 	    });
+	 	map.addLayer(envWMS);
+		
+ 	}else if(dataFormat == "CSV"){
+ 		var xmlUrl = "readDataSetProj.action?dataSetName=" + DTC_datasetName + "&uploader=" + DTC_uploader + "&dataName=" + DTC_dataName;
+	    var ajax = new Ajax();
+	    ajax.open("GET", xmlUrl, true);
+	    
+	    ajax.onreadystatechange = function(){
+	    	 if (ajax.readyState == 4){
+	    	 	if (ajax.status == 200){
+	    	 		var proj = ajax.responseText.pJSON().proj;
+	    	 		var datafile = ajax.responseText.pJSON().dataPath;
+	    	 		checkSamples(datafile, proj);
+	    	 		}
+	    	 	}
+	    	 };
+	    	 ajax.send(null);
+ 	}
+ 	Ext.Ajax.request({
+ 		url: 'findkmlextent1.action',
+ 		params: { datasetname: DTC_datasetName, upLoader: DTC_uploader },
+ 		success: function( response, config ){
+ 			var json = Ext.JSON.decode( response.responseText );
+ 			var tag = json.tag;
+ 			if (tag == true){
+ 				var north = json.north;
+                var south = json.south;
+                var west = json.west;
+                var east = json.east;
+                var lon = (parseFloat(west) + parseFloat(east)) / 2;
+                var lat = (parseFloat(north) + parseFloat(south)) / 2;
+                var centerLonLat = new OpenLayers.LonLat(lon, lat);
+                var proj_900913 = map.getProjectionObject();
+                Proj4js.defs["EPSG:4326"] = "+proj=longlat +datum=WGS84 +no_defs";
+            	var proj_4326 =  new OpenLayers.Projection("EPSG:4326");
+                var centerPosition=centerLonLat.transform( proj_4326,proj_900913);
+                map.panTo(centerPosition);
+ 			}
+ 		}
+ 	});
+// 	var xmlUrl = "findkmlextent1.action?datasetname=" + DTC_datasetName + "&upLoader=" + DTC_uploader;
+//	    var ajax = new Ajax();
+//	    ajax.open("GET", xmlUrl, true);
+//	    ajax.send(null);
+//	    ajax.onreadystatechange = function(){
+//	    	 if (ajax.readyState == 4){
+//	    	 	if (ajax.status == 200){
+//	    	 		var tag = ajax.responseText.pJSON().tag;
+//	    	 		if (tag == true){
+//	    	 			var north = ajax.responseText.pJSON().north;
+//	                    var south = ajax.responseText.pJSON().south;
+//	                    var west = ajax.responseText.pJSON().west;
+//	                    var east = ajax.responseText.pJSON().east;
+//	                    var lon = (parseFloat(west) + parseFloat(east)) / 2;
+//	                    var lat = (parseFloat(north) + parseFloat(south)) / 2;
+//	                    var centerLonLat = new OpenLayers.LonLat(lon, lat);
+//	                    var proj_900913 = map.getProjectionObject();
+//	                    Proj4js.defs["EPSG:4326"] = "+proj=longlat +datum=WGS84 +no_defs";
+//	                	var proj_4326 =  new OpenLayers.Projection("EPSG:4326");
+//	                    var centerPosition=centerLonLat.transform( proj_4326,proj_900913);
+//	                    map.panTo(centerPosition);
+//	    	 		}
+//	    	 	}
+//	    	 }
+//	    };
 }

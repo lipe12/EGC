@@ -134,8 +134,8 @@ var DataManagePanel = function() {
 					delDataSetFn( text, item.data.uploader );
 					treeGrid.expandPath( "/data/Personal Data/" );
 				} else if ( itemId.indexOf( "Projects" ) >= 0 ) {
-					var pid = treeGrid.getSelectionModel().selected.map[ itemId ].parentNode.data.id;
-					rmDataSetFromProjFn( pid, text );
+					var ptext = treeGrid.getSelectionModel().selected.map[ itemId ].parentNode.data.text;
+					rmDataSetFromProjFn( ptext, text );
 				} else if ( itemId.indexOf( "Shared Data" ) >= 0 ) {
 					rmDataSetFromSharedFn( text );
 				}
@@ -153,13 +153,26 @@ var DataManagePanel = function() {
 				if ( itemId.indexOf( "Personal Data" ) >= 0 )
 					delDataFileFn( text );
 				else if ( itemId.indexOf( "Projects" ) >= 0 ) {
-					var pid = treeGrid.getSelectionModel().selected.map[ itemId ].parentNode.data.id;
-					rmDataFileFromProjFn( pid, text );
+					var ptype='';
+					var mapItem=treeGrid.getSelectionModel().selected.map[ itemId ];
+					while(ptype!='project'){
+						ptype=mapItem.parentNode.data.type;	
+						mapItem=mapItem.parentNode;
+						// console.log(ptype);
+						// console.log(mapItem.data.text);
+					}
+					var ptext = mapItem.data.text;					
+					rmDataFileFromProjFn( ptext, text );
 				}
 
 			}
 		}
 	}
+	/**
+	 * 移除共享数据集，但不删除对应数据文件
+	 * @param  {[type]} dataSetName [description]
+	 * @return {[type]}             [description]
+	 */
 	var rmDataSetFromSharedFn = function( dataSetName ) {
 			var paramsObj = {
 				dataSetName: dataSetName
@@ -237,7 +250,10 @@ var DataManagePanel = function() {
 							url: actionUrl,
 							success: function( response, config ) {
 								var json = Ext.JSON.decode( response.responseText );
-								Ext.MessageBox.alert( "result", json.msg );
+								if(json.msg)
+									Ext.MessageBox.alert( "result", json.msg );
+								else
+									Ext.MessageBox.alert( "result", 'Success' );
 								treeStore.reload();
 							},
 							failure: function() {
@@ -378,6 +394,7 @@ var DataManagePanel = function() {
 
 	var treeGrid = Ext.create( 'Ext.tree.Panel', {
 		itemId: "tree",
+		id:"dataTreeManager",
 		width: 600,
 		height: 500,
 		tbar: tb,
@@ -396,10 +413,11 @@ var DataManagePanel = function() {
 				if ( item.data.id == "Shared Data" ) {
 					Ext.Ajax.request( {
 						url: 'judgeshareduser.action',
+						async:false,
 						success: function( response, config ) {
 							var json = Ext.JSON.decode( response.responseText );
 							
-							Ext.MessageBox.alert( "result", json.tag );
+							//Ext.MessageBox.alert( "result", json.tag );
 							if(!json.tag){
 								flag= false;
 								Ext.MessageBox.alert( "Message", "You have no access to use shared data before you shared any data." );
@@ -699,14 +717,14 @@ var DataManagePanel = function() {
 				var seman = semantic_combo.getValue();
 				if ( seman == "Sample Data" ) {
 					Ext.getCmp( namespace + '_datafile_csv' ).setDisabled( false );
-					Ext.getCmp( namespace + '_x_fields' ).setDisabled( false );
-					Ext.getCmp( namespace + '_y_fields' ).setDisabled( false );
+					Ext.getCmp( namespace + '_x_field' ).setDisabled( false );
+					Ext.getCmp( namespace + '_y_field' ).setDisabled( false );
 
 					Ext.getCmp( namespace + '_datafile' ).setDisabled( true );
 				} else {
 					Ext.getCmp( namespace + '_datafile_csv' ).setDisabled( true );
-					Ext.getCmp( namespace + '_x_fields' ).setDisabled( true );
-					Ext.getCmp( namespace + '_y_fields' ).setDisabled( true );
+					Ext.getCmp( namespace + '_x_field' ).setDisabled( true );
+					Ext.getCmp( namespace + '_y_field' ).setDisabled( true );
 					Ext.getCmp( namespace + '_datafile' ).setDisabled( false );
 				}
 			}
@@ -982,15 +1000,15 @@ var DataManagePanel = function() {
 	} );
 	
 	
-	function expandNode(node){
-		var tree1 = Ext.getCmp('dataTreeManager');
-		var path = node.getPath('id');
-		tree1.getStore().load({node: tree1.getRootNode(),
-									callback: function () {
-										tree1.expandPath(path, 'id');
-									}
-		})
-	};
+//	function expandNode(node){
+//		var tree1 = Ext.getCmp('dataTreeManager');
+//		var path = node.getPath('id');
+//		tree1.getStore().load({node: tree1.getRootNode(),
+//									callback: function () {
+//										tree1.expandPath(path, 'id');
+//									}
+//		})
+//	};
 	function expandNode(node){
 		var tree1 = Ext.getCmp('dataTreeManager');
 		var path = node.getPath('id');

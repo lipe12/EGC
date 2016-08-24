@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.sound.sampled.Clip;
 
-import jdk.nashorn.internal.runtime.FindProperty;
+//import jdk.nashorn.internal.runtime.FindProperty;
 
 import org.apache.struts2.ServletActionContext;
 import org.jdom2.Document;
@@ -44,20 +44,20 @@ import com.sun.jmx.snmp.tasks.TaskServer;
  * --------->for the node that not the start node, we first inspect whether this task in the precious record, if then inspect its father nodes whether in tmpTask
  * ---------> if the father nodes all in, find the children of this node. give its output data to corresponding children input, and remove this node form doc_process
  * */
-import com.sun.xml.internal.ws.api.message.saaj.SAAJFactory;
+//import com.sun.xml.internal.ws.api.message.saaj.SAAJFactory;
 
 /**
  * @version 1.1
- * 如果第一次运行模型，则保存该模型preciousmodel+时间.xml，如果不是第一次运行模型，则对比
- * 如果输入数据的范围不一致，则裁剪，并记录裁剪后的数据名称xml: cliptask+时间.xml；
- * ------------------xml格式为-------
+ * 濡傛灉绗竴娆¤繍琛屾ā鍨嬶紝鍒欎繚瀛樿妯″瀷preciousmodel+鏃堕棿.xml锛屽鏋滀笉鏄涓�杩愯妯″瀷锛屽垯瀵规瘮
+ * 濡傛灉杈撳叆鏁版嵁鐨勮寖鍥翠笉涓�嚧锛屽垯瑁佸壀锛屽苟璁板綍瑁佸壀鍚庣殑鏁版嵁鍚嶇Оxml: cliptask+鏃堕棿.xml锛�
+ * ------------------xml鏍煎紡涓�------
  * <datas>
  *    <data>
  *       <dataValue>
  *       <clipdatavalue>
  * -------------------end------------
- * 如果用户再一次运行模型，在对比preciousmodel+时间.xml(距离自己时间最近)时，如果用户输入数据完全一致，则按version 1.0 继续进行
- * 如果用户输入数据不完全一致，则对比输入数据范围是否一致，不一致，裁剪，后面不在进行模型对比
+ * 濡傛灉鐢ㄦ埛鍐嶄竴娆¤繍琛屾ā鍨嬶紝鍦ㄥ姣攑reciousmodel+鏃堕棿.xml(璺濈鑷繁鏃堕棿鏈�繎)鏃讹紝濡傛灉鐢ㄦ埛杈撳叆鏁版嵁瀹屽叏涓�嚧锛屽垯鎸塿ersion 1.0 缁х画杩涜
+ * 濡傛灉鐢ㄦ埛杈撳叆鏁版嵁涓嶅畬鍏ㄤ竴鑷达紝鍒欏姣旇緭鍏ユ暟鎹寖鍥存槸鍚︿竴鑷达紝涓嶄竴鑷达紝瑁佸壀锛屽悗闈笉鍦ㄨ繘琛屾ā鍨嬪姣�
  * */
 public class MatchModel extends ActionSupport{
 	int tag = 0;
@@ -82,13 +82,13 @@ public class MatchModel extends ActionSupport{
 	    
 	    File file = new File(path);
 	    SAXBuilder sb = new SAXBuilder();
-	    List<String> inputEnvList = findInputsData(doc); //找到用户的输入数据
+	    List<String> inputEnvList = findInputsData(doc); //鎵惧埌鐢ㄦ埛鐨勮緭鍏ユ暟鎹�
     	
-	    //========================== 如果之前没有preciousmodel.xml，则检查输入变量是否一致，返回裁剪后的数据，并生成clip.xml====
+	    //========================== 濡傛灉涔嬪墠娌℃湁preciousmodel.xml锛屽垯妫�煡杈撳叆鍙橀噺鏄惁涓�嚧锛岃繑鍥炶鍓悗鐨勬暟鎹紝骞剁敓鎴恈lip.xml====
 	    if (!file.exists()) {
-	    	writeXML(path, doc);  //写入preciousmodel.xml
-	    	List<String> outputEnvList = checkInuputEnvExtent(inputEnvList); // 获取裁剪后的输出数据
-	    	writeClipXML(inputEnvList, outputEnvList, ClipPath);             //写入clip.xml文件
+	    	writeXML(path, doc);  //鍐欏叆preciousmodel.xml
+	    	List<String> outputEnvList = checkInuputEnvExtent(inputEnvList); // 鑾峰彇瑁佸壀鍚庣殑杈撳嚭鏁版嵁
+	    	writeClipXML(inputEnvList, outputEnvList, ClipPath);             //鍐欏叆clip.xml鏂囦欢
 	    	Document clipdoc = modifiyInputData(doc, outputEnvList);
 	    	
 			return clipdoc;
@@ -197,8 +197,8 @@ public class MatchModel extends ActionSupport{
 	    		  
 			}
 	    	 else {
-	    		 List<String> outputEnvList = checkInuputEnvExtent(inputEnvList); // 获取裁剪后的输出数据
-	 	    	writeClipXML(inputEnvList, outputEnvList, ClipPath);             //写入clip.xml文件
+	    		 List<String> outputEnvList = checkInuputEnvExtent(inputEnvList); // 鑾峰彇瑁佸壀鍚庣殑杈撳嚭鏁版嵁
+	 	    	writeClipXML(inputEnvList, outputEnvList, ClipPath);             //鍐欏叆clip.xml鏂囦欢
 	 	    	Document clipdoc = modifiyInputData(doc, outputEnvList);
 	 			return clipdoc;
 				
@@ -512,7 +512,7 @@ public List<String> getPreciousTask(String taskname, Document doc) {
 /**
  * list the user input data node
  * @param doc {Document}
- * @return dataValues {List<String>} 返回用户输入的环境变量相对路径
+ * @return dataValues {List<String>} 杩斿洖鐢ㄦ埛杈撳叆鐨勭幆澧冨彉閲忕浉瀵硅矾寰�
  * */
 	public List<String> findInputsData(Document doc){
 		List<String> dataValues = new ArrayList<String>();
@@ -560,14 +560,14 @@ public List<String> getPreciousTask(String taskname, Document doc) {
 	 * @param dataValues {List<String>}
 	 * */
 	public List<String> checkInuputEnvExtent(List<String> dataValues) {
-		//=============通过第一个输入变量相对路径，获取uploader和数据集名称=======
+		//=============閫氳繃绗竴涓緭鍏ュ彉閲忕浉瀵硅矾寰勶紝鑾峰彇uploader鍜屾暟鎹泦鍚嶇О=======
 		String[] splitDataValue = dataValues.get(0).split("/");
 		String uploader = splitDataValue[0];
 		String dataSet = splitDataValue[1];
 		//================================end===========================
 		List<String> outdatas = new ArrayList<String>();
-		String outPutPaths = ""; //输出字符串拼接路径
-		String inPutPaths = ""; //输入字符串拼接路径
+		String outPutPaths = ""; //杈撳嚭瀛楃涓叉嫾鎺ヨ矾寰�
+		String inPutPaths = ""; //杈撳叆瀛楃涓叉嫾鎺ヨ矾寰�
 		String ouputkml = "";
 		List<String> top = new ArrayList<String>();
 		List<String> down = new ArrayList<String>();
@@ -584,12 +584,12 @@ public List<String> getPreciousTask(String taskname, Document doc) {
 	    try {
 	    	Document filesdoc = sb.build("file:" + dataFilePath);
 	    	for (int i = 0; i < dataValues.size(); i++) {
-	    		//利用“.”将原来路径切割，在倒数第二部分加上时间，形成切割后的新的名字
-	    		String[] splitDataValues = dataValues.get(i).split("\\."); //切割
+	    		//鍒╃敤鈥�鈥濆皢鍘熸潵璺緞鍒囧壊锛屽湪鍊掓暟绗簩閮ㄥ垎鍔犱笂鏃堕棿锛屽舰鎴愬垏鍓插悗鐨勬柊鐨勫悕瀛�
+	    		String[] splitDataValues = dataValues.get(i).split("\\."); //鍒囧壊
 	    		int len = splitDataValues.length;
-	    		splitDataValues[len - 2] = splitDataValues[len - 2] + nowTime;  //在名字后面添加时间
+	    		splitDataValues[len - 2] = splitDataValues[len - 2] + nowTime;  //鍦ㄥ悕瀛楀悗闈㈡坊鍔犳椂闂�
 	    		String outPutDataValue = splitDataValues[0];
-	    		for (int j = 1; j < splitDataValues.length; j++) {    // 拼接形成路径字符串
+	    		for (int j = 1; j < splitDataValues.length; j++) {    // 鎷兼帴褰㈡垚璺緞瀛楃涓�
 					outPutDataValue = outPutDataValue + "." +splitDataValues[j];
 					
 				}
@@ -630,7 +630,7 @@ public List<String> getPreciousTask(String taskname, Document doc) {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	    // 比较输入env环境变量栅格范围的四个值是否一致，如果有一个不一致，说明范围你不一致，调用裁剪exe，进行裁剪
+	    // 姣旇緝杈撳叆env鐜鍙橀噺鏍呮牸鑼冨洿鐨勫洓涓�鏄惁涓�嚧锛屽鏋滄湁涓�釜涓嶄竴鑷达紝璇存槑鑼冨洿浣犱笉涓�嚧锛岃皟鐢ㄨ鍓猠xe锛岃繘琛岃鍓�
 	    if (top.size() > 1 || down.size() > 1 ||left.size() > 1 || right.size() > 1) {
 	    	String outTmp = Constant.DataFilePath + File.separator + uploader + File.separator + "tmp.tif";
 	    	ouputkml = request.getSession().getServletContext().getRealPath("") + File.separator +"kml" + File.separator + uploader + File.separator + dataSet + ".kml";
@@ -658,14 +658,14 @@ public List<String> getPreciousTask(String taskname, Document doc) {
 		
 	}
 	/**
-	 * 修改指点节点内容
-	 * 主要是修改input env 路径值
+	 * 淇敼鎸囩偣鑺傜偣鍐呭
+	 * 涓昏鏄慨鏀筰nput env 璺緞鍊�
 	 * */
 	public Document modifiyInputData(Document doc,List<String> outPutDatas) {
 		List<String> inputDatas = findInputsData(doc);
 		//List<String> outPutDatas = checkInuputEnvExtent(inputDatas);
 		boolean tag = false;
-		// 判断inputDatas与outPutDatas是否相同，如果不同后续需要修改doc输入env的值
+		// 鍒ゆ柇inputDatas涓巓utPutDatas鏄惁鐩稿悓锛屽鏋滀笉鍚屽悗缁渶瑕佷慨鏀筪oc杈撳叆env鐨勫�
 		for (int i = 0; i < inputDatas.size(); i++) {
 			if (!inputDatas.get(i).equals(outPutDatas.get(i))) {
 				tag = true;
@@ -692,12 +692,12 @@ public List<String> getPreciousTask(String taskname, Document doc) {
 				e.printStackTrace();
 			}
 		}
-		//TODO:检查doc是否修改成功
+		//TODO:妫�煡doc鏄惁淇敼鎴愬姛
 		return doc;
 		
 	}
 	/**
-	 * 检查用户输入的数据是否一致
+	 * 妫�煡鐢ㄦ埛杈撳叆鐨勬暟鎹槸鍚︿竴鑷�
 	 * call checkInuputEnvExtent1
 	 * */
     public boolean checkInuputEnv(List<String> newInputData, String preciouseClipPath) {
@@ -732,7 +732,7 @@ public List<String> getPreciousTask(String taskname, Document doc) {
 	}
     
     /**
-     * 写入新的doc，覆盖原来文件
+     * 鍐欏叆鏂扮殑doc锛岃鐩栧師鏉ユ枃浠�
      * */
     public void writeXML(String path, Document filesdoc) {
     	try {
@@ -751,7 +751,7 @@ public List<String> getPreciousTask(String taskname, Document doc) {
     	
 	}
     /**
-     * 写入clipxml
+     * 鍐欏叆clipxml
      * */
     public void writeClipXML(List<String>inputEnv, List<String>outPutEnv, String path) {
     	Element root = new Element("datas");
@@ -781,7 +781,7 @@ public List<String> getPreciousTask(String taskname, Document doc) {
 	}
     
     /**
-     * 读取中间结果值
+     * 璇诲彇涓棿缁撴灉鍊�
      * */
     public List<String> readIntermediateResult(String path, Document doc) {
     	List<String> midleResult = new ArrayList<String>();
@@ -814,10 +814,10 @@ public List<String> getPreciousTask(String taskname, Document doc) {
 		return midleResult;
 	}
     /**
-     * 此函数是判断范围是否一致，不进行裁剪
+     * 姝ゅ嚱鏁版槸鍒ゆ柇鑼冨洿鏄惁涓�嚧锛屼笉杩涜瑁佸壀
      * */
     public boolean checkInuputEnvExtent1(List<String> dataValues) {
-		//=============通过第一个输入变量相对路径，获取uploader和数据集名称=======
+		//=============閫氳繃绗竴涓緭鍏ュ彉閲忕浉瀵硅矾寰勶紝鑾峰彇uploader鍜屾暟鎹泦鍚嶇О=======
 		String[] splitDataValue = dataValues.get(0).split("/");
 		String uploader = splitDataValue[0];
 		String dataSet = splitDataValue[1];
@@ -866,7 +866,7 @@ public List<String> getPreciousTask(String taskname, Document doc) {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	    // 比较输入env环境变量栅格范围的四个值是否一致，如果有一个不一致，说明范围你不一致，调用裁剪exe，进行裁剪
+	    // 姣旇緝杈撳叆env鐜鍙橀噺鏍呮牸鑼冨洿鐨勫洓涓�鏄惁涓�嚧锛屽鏋滄湁涓�釜涓嶄竴鑷达紝璇存槑鑼冨洿浣犱笉涓�嚧锛岃皟鐢ㄨ鍓猠xe锛岃繘琛岃鍓�
 	    if (top.size() > 1 || down.size() > 1 ||left.size() > 1 || right.size() > 1) {
 	    	tag = false;
 		}
@@ -874,7 +874,7 @@ public List<String> getPreciousTask(String taskname, Document doc) {
 	}
     
     /**
-     * 比较新doc和上次doc task参数是否一致
+     * 姣旇緝鏂癲oc鍜屼笂娆oc task鍙傛暟鏄惁涓�嚧
      * */
 	public boolean compareParams(Element task, Document doc) {
 		boolean tag = false;
@@ -923,7 +923,7 @@ public List<String> getPreciousTask(String taskname, Document doc) {
 	}
 	
 	/**
-	 * 删除指定节点
+	 * 鍒犻櫎鎸囧畾鑺傜偣
 	 * */
 	
 	public Document removeNode(String taskName, Document doc) {
@@ -943,7 +943,7 @@ public List<String> getPreciousTask(String taskname, Document doc) {
 		return doc;
 	}
 	/**
-	 * 更改new input doc 输入变量
+	 * 鏇存敼new input doc 杈撳叆鍙橀噺
 	 * */
 	public Document modifyDocInputEnv(String clipXmlPath, Document doc) {
 		

@@ -516,21 +516,23 @@ var graphManager = function(canvas){
 			    			var tmpLayer = layers[i].split("/");
 			    			var temp = //'<a href= "'+ resultfile_path + layers[i] + '.tif' +'" target= "_self ">'
 							            '<a href= "'+ resultfile_path + layers[i] + '.csv' +'" target= "_self ">'
-			    				        + tmpLayer[1] +'</a><br/>';      
+			    				        + tmpLayer[1] +'</a><br/>';
+			    		    temp = tmp.replace("result_egc/","");
 			    			files_for_download_html = files_for_download_html + temp;
+			    			
 			    		}
-						files_for_download_html	= files_for_download_html.replace("result_egc/","");				
+						//files_for_download_html	= files_for_download_html.replace("result_egc/","");				
 			    		files_for_download.innerHTML = files_for_download_html;
-			    		var validate_rmse = document.getElementById('validate_rmse');
-			    		validate_rmse.style.visibility = 'hidden';
-			    		var map_for_show = document.getElementById('map_for_show');
-			    		map_for_show.style.visibility = 'hidden';
-			    		var select_show_map = document.getElementById('select_show_map');
-			    		select_show_map.style.visibility = 'hidden';
-	    		    	var title_map_legend = document.getElementById('title_map_legend');
-	    		    	title_map_legend.style.visibility = 'hidden';
-	    		    	var legend_container = document.getElementById('legend_container');
-	    		    	legend_container.style.visibility = 'hidden';
+//			    		var validate_rmse = document.getElementById('validate_rmse');
+//			    		validate_rmse.style.visibility = 'hidden';
+//			    		var map_for_show = document.getElementById('map_for_show');
+//			    		map_for_show.style.visibility = 'hidden';
+//			    		var select_show_map = document.getElementById('select_show_map');
+//			    		select_show_map.style.visibility = 'hidden';
+//	    		    	var title_map_legend = document.getElementById('title_map_legend');
+//	    		    	title_map_legend.style.visibility = 'hidden';
+//	    		    	var legend_container = document.getElementById('legend_container');
+//	    		    	legend_container.style.visibility = 'hidden';
 	    		    	
 	    		    }else{
 		    		    	for(var i=0;i< mapfiles.length ; i++){   
@@ -563,10 +565,11 @@ var graphManager = function(canvas){
 		    			var tmpLayer = layers[i].split("/");
 		    			var temp = //'<a href= "'+ resultfile_path + layers[i] + '.tif' +'" target= "_self ">'
 						            '<a href= "'+ resultfile_path + layers[i] + '.tif' +'" target= "_self ">'
-		    				        + tmpLayer[1] +'</a><br/>';      
+		    				        + tmpLayer[1] +'</a><br/>';
+		    			//temp = temp.replace("result_egc/","");
 		    			files_for_download_html = files_for_download_html + temp;
 		    		}
-					files_for_download_html	= files_for_download_html.replace("result_egc/","");				
+					//files_for_download_html	= files_for_download_html.replace("result_egc/","");				
 		    		files_for_download.innerHTML = files_for_download_html;
 	    		    }
 		

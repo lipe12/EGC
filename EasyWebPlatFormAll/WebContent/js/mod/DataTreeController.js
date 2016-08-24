@@ -2,7 +2,7 @@
  * [DataTreeController]
  * @param {[type]} me ['this']
  */
-var DTC_datasetName, DTC_uploader, DTC_dataName;
+var DTC_datasetName, DTC_uploader, DTC_dataName, DTC_format;
 var DataTreeController = function()
 {
     var displayKML = function()
@@ -133,7 +133,8 @@ var DataTreeController = function()
     var locationAction = new Ext.create('Ext.Action',
     {
         text: 'show location',
-        handler: displayKML,
+        //handler: displayKML,
+        handler:showEnvData,
         iconCls: 'Mapgo'
     });
     //tree contextmenu
@@ -145,4 +146,4 @@ var DataTreeController = function()
     return {
         contextmenu: contextmenu
     }
-}(DTC_datasetName,DTC_uploader, DTC_dataName);
+}(DTC_datasetName,DTC_uploader, DTC_dataName, DTC_format);
