@@ -165,7 +165,7 @@ public class DataManageAction extends BaseAction
 									datafile.put(Constants.TEXT, nameString);
 									datafile.put(Constants.LEAF, true);
 									datafile.put(Constants.UPLOADER, userString);
-									datafile.put(Constants.CHECKED, false);
+									//datafile.put(Constants.CHECKED, false);
 									String typeString = typeElement.getValue();
 									datafile.put(Constants.TYPE, typeString);
 									String formatString = formatElement.getValue();
@@ -264,7 +264,7 @@ public class DataManageAction extends BaseAction
 										datafile.put(Constants.TEXT, nameString);
 										datafile.put(Constants.LEAF, true);
 										datafile.put(Constants.UPLOADER, _username);
-										datafile.put(Constants.CHECKED, false);
+										//datafile.put(Constants.CHECKED, false);
 										String typeString = dataFileElement.getChild("type").getValue();
 										datafile.put(Constants.TYPE, typeString);
 										String formatString = dataFileElement.getChild("format").getValue();
@@ -334,7 +334,7 @@ public class DataManageAction extends BaseAction
 							dataJsonObject.put(Constants.TEXT, dataName);
 							dataJsonObject.put(Constants.LEAF, true);
 							dataJsonObject.put(Constants.UPLOADER, upLoader);
-							dataJsonObject.put(Constants.CHECKED, false);
+							//dataJsonObject.put(Constants.CHECKED, false);
 							String typeString = userData.getChild("type").getValue();
 							dataJsonObject.put(Constants.TYPE, typeString);
 							String formatString = userData.getChild("format").getValue();

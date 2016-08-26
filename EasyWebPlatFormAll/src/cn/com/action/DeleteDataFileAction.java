@@ -61,7 +61,8 @@ public class DeleteDataFileAction extends ActionSupport{
 		     for(Element file : files){
 		    	 
 		    	 String file_name = file.getChild("fileName").getText();
-		    	 
+		    	 file_name = file_name.substring(file_name.lastIndexOf("/") + 1);
+		    	 file_name = file_name.substring(0, file_name.lastIndexOf("."));
 		    	 if(file_name.equals(fileName)){
 		    		 deleteFileName = file_name;
 		    		 format_tag = file.getChild("format").getText();

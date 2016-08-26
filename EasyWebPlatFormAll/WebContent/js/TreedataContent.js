@@ -118,6 +118,54 @@ var treePanel = new Ext.tree.TreePanel(
                     } );
                 }
                 return flag;
+            },
+        checkchange:function(node, checked, eOpts){
+            if(node.data.leaf){
+            	DTC_datasetName = Ext.getCmp("dataTree").getSelectionModel().selected.items[0].parentNode.data.text;
+                DTC_dataName = node.data.text;
+                DTC_uploader = node.data.uploader;
+                DTC_format  = node.data.format;
+            	if(checked == true){
+            		showEnvData();
+            	}
+            	else if(checked == false){
+            		removeLayer();
+            	}
             }
+            else{
+            	if(checked == true){
+            		var childrenNum = node.childNodes.length;
+                	DTC_datasetName = node.data.text;
+                	for(var i = 0; i < childrenNum; i++){
+                		var child = node.childNodes[i];
+                		if(!child.data.checked){
+                			child.set("checked", true);
+                    		DTC_dataName = child.data.text;
+                            DTC_uploader = child.data.uploader;
+                            DTC_format  = child.data.format;
+                    		showEnvData();
+                		}
+                		
+                	}
+            	}else if(checked == false){
+            		var childrenNum = node.childNodes.length;
+                	DTC_datasetName = node.data.text;
+                	for(var i = 0; i < childrenNum; i++){
+                		var child = node.childNodes[i];
+                		if(child.data.checked){
+                			child.set("checked", false);
+                    		DTC_dataName = child.data.text;
+                            DTC_uploader = child.data.uploader;
+                            DTC_format  = child.data.format;
+                            removeLayer();
+                		}
+                		
+                	}
+            	}
+            	
+            }
+            
+        	
+        }
     }
 });

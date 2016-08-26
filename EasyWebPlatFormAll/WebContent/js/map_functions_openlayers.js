@@ -1277,28 +1277,7 @@ function showEnvData(){
 	    	 };
 	    	 ajax.send(null);
  	}
- 	Ext.Ajax.request({
- 		url: 'findkmlextent1.action',
- 		params: { datasetname: DTC_datasetName, upLoader: DTC_uploader },
- 		success: function( response, config ){
- 			var json = Ext.JSON.decode( response.responseText );
- 			var tag = json.tag;
- 			if (tag == true){
- 				var north = json.north;
-                var south = json.south;
-                var west = json.west;
-                var east = json.east;
-                var lon = (parseFloat(west) + parseFloat(east)) / 2;
-                var lat = (parseFloat(north) + parseFloat(south)) / 2;
-                var centerLonLat = new OpenLayers.LonLat(lon, lat);
-                var proj_900913 = map.getProjectionObject();
-                Proj4js.defs["EPSG:4326"] = "+proj=longlat +datum=WGS84 +no_defs";
-            	var proj_4326 =  new OpenLayers.Projection("EPSG:4326");
-                var centerPosition=centerLonLat.transform( proj_4326,proj_900913);
-                map.panTo(centerPosition);
- 			}
- 		}
- 	});
+ 	;
 // 	var xmlUrl = "findkmlextent1.action?datasetname=" + DTC_datasetName + "&upLoader=" + DTC_uploader;
 //	    var ajax = new Ajax();
 //	    ajax.open("GET", xmlUrl, true);
@@ -1325,3 +1304,52 @@ function showEnvData(){
 //	    	 }
 //	    };
 }
+
+	function removeLayer(){
+		var userName = DTC_uploader;
+	 	var dataSetName = DTC_datasetName;
+	 	var dataName = DTC_dataName;
+	 	var dataFormat = DTC_format;
+	 	
+	 	if (dataFormat == "TIF"){
+	 		var layerName = dataSetName + dataName;
+	 		var layers = map.getLayersByName(layerName);
+	 		map.removeLayer(layers[0]);
+	 	}
+	 	else if(dataFormat == "CSV"){
+	 		var layerName = userName + "/" + dataSetName + "/" + dataName + ".csv";
+	 		var layers = map.getLayersByName(layerName);
+	 		layers[0].removeAllFeatures();
+	 		map.removeLayer(layers[0]);
+	 	}
+	 	
+	};
+	
+	function locationlayer(){
+//		var userName = DTC_uploader;
+//	 	var dataSetName = DTC_datasetName;
+//	 	var dataName = DTC_dataName;
+//	 	var dataFormat = DTC_format;
+		Ext.Ajax.request({
+	 		url: 'findkmlextent1.action',
+	 		params: { datasetname: DTC_datasetName, upLoader: DTC_uploader },
+	 		success: function( response, config ){
+	 			var json = Ext.JSON.decode( response.responseText );
+	 			var tag = json.tag;
+	 			if (tag == true){
+	 				var north = json.north;
+	                var south = json.south;
+	                var west = json.west;
+	                var east = json.east;
+	                var lon = (parseFloat(west) + parseFloat(east)) / 2;
+	                var lat = (parseFloat(north) + parseFloat(south)) / 2;
+	                var centerLonLat = new OpenLayers.LonLat(lon, lat);
+	                var proj_900913 = map.getProjectionObject();
+	                Proj4js.defs["EPSG:4326"] = "+proj=longlat +datum=WGS84 +no_defs";
+	            	var proj_4326 =  new OpenLayers.Projection("EPSG:4326");
+	                var centerPosition=centerLonLat.transform( proj_4326,proj_900913);
+	                map.panTo(centerPosition);
+	 			};
+	 		}
+	 	});
+	};

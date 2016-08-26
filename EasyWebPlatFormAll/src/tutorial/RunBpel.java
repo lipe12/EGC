@@ -249,15 +249,15 @@ public class RunBpel extends ActionSupport{
  	        InputSource source = new InputSource(read);
  	       
  	        SAXBuilder sb = new SAXBuilder();
- 	        //Document doc = sb.build(source);  the jjc code
- 	        Document doc_orignal = sb.build(source);
- 	        MatchModel MM = new MatchModel();
- 	        Document doc = MM.matchPreciousModel(doc_orignal);// call the MatchModel to conversion the document
- 	        //Document doc = sb.build(source);
+ 	        Document doc = sb.build(source);  //the jjc code
+// 	        Document doc_orignal = sb.build(source);
+// 	        MatchModel MM = new MatchModel();
+// 	        Document doc = MM.matchPreciousModel(doc_orignal);// call the MatchModel to conversion the document
+// 	        //Document doc = sb.build(source);
  	        String path = request.getSession().getServletContext().getRealPath("")+ File.separator +"WEB-INF" + File.separator +"xml";
- 		    String user = (String)request.getSession().getAttribute("username");
- 		    String preciousModelPath = path + File.separator + "users_informations" + File.separator + user + File.separator + "preciousmodel.xml";
- 	        midleResult = MM.readIntermediateResult(preciousModelPath, doc_orignal);
+// 		    String user = (String)request.getSession().getAttribute("username");
+// 		    String preciousModelPath = path + File.separator + "users_informations" + File.separator + user + File.separator + "preciousmodel.xml";
+// 	        midleResult = MM.readIntermediateResult(preciousModelPath, doc_orignal);
 	        //============================================end=================================================================
 	        
 	        //==========================read tasks.xml, get document taskdoc=================================================
