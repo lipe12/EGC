@@ -132,7 +132,7 @@ var DataManagePanel = function() {
 					Ext.MessageBox.alert( 'message', 'Not allowed to delete group and shared data!' );
 					return;
 				}
-				if ( type == "dataset" ) {
+				if ( type == "DataSet" ) {
 					if ( itemId.indexOf( "Personal Data" ) >= 0 ) {
 						delDataSetFn( text, item.data.uploader );
 						treeGrid.expandPath( "/data/Personal Data/" );
@@ -142,14 +142,14 @@ var DataManagePanel = function() {
 					} else if ( itemId.indexOf( "Shared Data" ) >= 0 ) {
 						rmDataSetFromSharedFn( text );
 					}
-				} else if ( type == "group" ) {
+				} else if ( type == "Group" ) {
 					Ext.MessageBox.alert( 'message', 'Not allowed to delete group!' );
 					return;
 					//delGroupFn(item.data.text);
-				} else if ( type == "data category" ) {
+				} else if ( type == "Data Category" ) {
 					Ext.MessageBox.alert( 'message', 'Can not delete data category!' );
 					return;
-				} else if ( type == "project" ) {
+				} else if ( type == "Project" ) {
 					delProjectFn( text );
 				} else //datafile
 				{
@@ -158,7 +158,7 @@ var DataManagePanel = function() {
 					else if ( itemId.indexOf( "Projects" ) >= 0 ) {
 						var ptype = '';
 						var mapItem = treeGrid.getSelectionModel().selected.map[ itemId ];
-						while ( ptype != 'project' ) {
+						while ( ptype != 'Project' ) {
 							ptype = mapItem.parentNode.data.type;
 							mapItem = mapItem.parentNode;
 							// console.log(ptype);
@@ -325,7 +325,7 @@ var DataManagePanel = function() {
 					df_uploaders = []; //datafile uploaders
 				for ( var i = 0; i < checkedItems.length; i++ ) {
 					var item = checkedItems[ i ];
-					if ( item.data.type === "dataset" ) {
+					if ( item.data.type === "DataSet" ) {
 						datasets.push( item.data.text );
 						ds_uploaders.push( item.data.uploader );
 					} else {
