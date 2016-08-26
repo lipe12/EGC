@@ -34,7 +34,7 @@ public class JudgeShareUser extends ActionSupport{
 	    try {
 			Document doc = sb.build("file:" + path);
 			String username = (String)request.getSession().getAttribute("username");
-			XPath sharedPath = XPath.newInstance("dataSets/dataSet[upLoader='" + username + "']");
+			XPath sharedPath = XPath.newInstance("datasets/dataset[upLoader='" + username + "']");
    		 	List<Element> sharedDataSets = (List<Element>)sharedPath.selectNodes(doc);
    		 	if (sharedDataSets.size() == 0) {
 				tag = false;

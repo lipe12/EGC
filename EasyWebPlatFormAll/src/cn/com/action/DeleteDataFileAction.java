@@ -13,8 +13,9 @@ import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
 
-import com.opensymphony.xwork2.ActionSupport;
 import tutorial.Constant;
+
+import com.opensymphony.xwork2.ActionSupport;
 
 public class DeleteDataFileAction extends ActionSupport{
 
@@ -61,10 +62,14 @@ public class DeleteDataFileAction extends ActionSupport{
 		     for(Element file : files){
 		    	 
 		    	 String file_name = file.getChild("fileName").getText();
-		    	 
+				// get true filename
+				file_name = file_name.substring(file_name.lastIndexOf("/") + 1);
+				// remove ext
+				file_name = file_name.substring(0, file_name.lastIndexOf("."));
 		    	 if(file_name.equals(fileName)){
 		    		 deleteFileName = file_name;
 		    		 format_tag = file.getChild("format").getText();
+					System.out.println("format_tag: " + format_tag);
 		    		 root.removeContent(file);
 		    		 break;
 		    	 }

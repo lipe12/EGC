@@ -2,6 +2,7 @@ package cn.com.action;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ListIterator;
@@ -10,6 +11,7 @@ import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.struts2.ServletActionContext;
 import org.jdom2.Document;
 import org.jdom2.Element;
@@ -33,6 +35,9 @@ public class CreateDatasetAction extends BaseAction
 	private String[] datafiles;
 	private String datasetname;
 	private String projectName;
+	private String[] ds_uploaders;
+
+	private String[] df_uploaders;
 
 	private String north;
 	private String south;
@@ -44,6 +49,39 @@ public class CreateDatasetAction extends BaseAction
 	private boolean flag;
 
 	// start getter setter
+
+	/**
+	 * @return the ds_uploaders
+	 */
+	public String[] getDs_uploaders()
+	{
+		return ds_uploaders;
+	}
+
+	/**
+	 * @param ds_uploaders the ds_uploaders to set
+	 */
+	public void setDs_uploaders(String[] ds_uploaders)
+	{
+		this.ds_uploaders = ds_uploaders;
+	}
+
+	/**
+	 * @return the df_uploaders
+	 */
+	public String[] getDf_uploaders()
+	{
+		return df_uploaders;
+	}
+
+	/**
+	 * @param df_uploaders the df_uploaders to set
+	 */
+	public void setDf_uploaders(String[] df_uploaders)
+	{
+		this.df_uploaders = df_uploaders;
+	}
+
 	/**
 	 * @return the datasets
 	 */
@@ -302,50 +340,67 @@ public class CreateDatasetAction extends BaseAction
 	public void addProjectData() throws Exception
 	{
 		username = getUsername();
-		username = getUsername();
 		HttpServletRequest request = ServletActionContext.getRequest();
 		File file = XMLUtil.getWebappXmlFile(request, Constants.PROJECTS_DOT_XML);
-		XPath userPath = XPath.newInstance("projects/project/creater");
+		XPath projPath = XPath.newInstance("projects/project[creater='" + username + "']");
 
 		SAXBuilder sb = new SAXBuilder();
 		Document projsdoc = null;
 		Element proj = null;
+		List<String> exists = new ArrayList<String>();
 		try
 		{
 			projsdoc = sb.build(file);
 			Element root = projsdoc.getRootElement();
-			List<Element> createrEls = (List<Element>) userPath.selectNodes(projsdoc);
-			ListIterator<Element> createrElItr = createrEls.listIterator();
-			while (createrElItr.hasNext())
+			List<Element> projEls = (List<Element>) projPath.selectNodes(projsdoc);
+			ListIterator<Element> projElsItr = projEls.listIterator();
+			// get project
+			while (projElsItr.hasNext())
 			{
-				Element createrEl = createrElItr.next();
-				Element projEl = createrEl.getParentElement();
-				if (createrEl.getValue().equals(username) && projEl.getChild("name").getValue().equals(projectName))
+				Element projEl = projElsItr.next();
+				if (projEl.getChild("name").getValue().equals(projectName))
 				{
 					proj = projEl;
 					break;
 				}
 			}
+			// add dataset to project
 			if (datasets != null && datasets.length > 0)
 			{
 				Element datasetsEl = proj.getChild("datasets");
 				if (datasetsEl == null)
 				{
 					proj.addContent(new Element("datasets"));
+					datasetsEl = proj.getChild("datasets");// get added datasets
 				}
-				datasetsEl = proj.getChild("datasets");
-				for (String dataset : datasets)
+				for (int i = 0; i < datasets.length; i++)
 				{
+					String dataset = datasets[i];
+					System.out.println(ds_uploaders.length);
+					String uploader = ds_uploaders[i];
 					System.out.println(dataset);
+					System.out.println("uploader:" + uploader);
+					XPath datasetPath = XPath.newInstance("projects/project/datasets/dataset[datasetname='" + dataset + "']");
+					List<Element> dsl = (List<Element>) datasetPath.selectNodes(projsdoc);
+					if (dsl.size() > 0)
+					{
+						exists.add(dataset);// duplicate dataset
+						continue;
+					}
+					// new dataset
 					Element datasetEl = new Element("dataset");
-					datasetEl.setText(dataset);
-					if (datasetsEl.getChildren("dataset").size() == 0)
-						datasetsEl.addContent(datasetEl);
-					else if (!datasetsEl.getChildren("dataset").contains(datasetEl))
-						datasetsEl.addContent(datasetEl);
+					datasetsEl.addContent(datasetEl);
+					// datasetname
+					Element datasetnameEl = new Element("datasetname");
+					datasetnameEl.setText(dataset);
+					datasetEl.addContent(datasetnameEl);
+					// uploader
+					Element uploaderEl = new Element("uploader");
+					uploaderEl.setText(uploader);
+					datasetEl.addContent(uploaderEl);
 				}
 			}
-
+			// add datafile to project
 			if (datafiles != null && datafiles.length > 0)
 			{
 				Element filesEl = proj.getChild("files");
@@ -353,22 +408,39 @@ public class CreateDatasetAction extends BaseAction
 				{
 					filesEl = new Element("files");
 					proj.addContent(filesEl);
+					filesEl = proj.getChild("files");
 				}
-				filesEl = proj.getChild("files");
-				for (String datafile : datafiles)
+
+				for (int i = 0; i < datafiles.length; i++)
 				{
+					String datafile = datafiles[i];
+					String uploader = df_uploaders[i];
 					System.out.println(datafile);
-					Element dataEl = new Element("file");
-					dataEl.setText(datafile);
-					if (filesEl.getChildren("file").size() == 0)
-						filesEl.addContent(dataEl);
-					else if (!filesEl.getChildren("file").contains(dataEl))
-						filesEl.addContent(dataEl);
+
+					XPath datafilePath = XPath.newInstance("projects/project/files/file[filename='" + datafile + "']");
+					List<Element> dfl = (List<Element>) datafilePath.selectNodes(projsdoc);
+					if (dfl.size() > 0)
+					{
+						exists.add(datafile);// duplicate datafile
+						continue;
+					}
+					Element fileEl = new Element("file");
+					filesEl.addContent(fileEl);
+					Element filenameEl = new Element("filename");
+					filenameEl.setText(datafile);
+					fileEl.addContent(filenameEl);
+					// uploader
+					Element uploaderEl = new Element("uploader");
+					uploaderEl.setText(uploader);
+					fileEl.addContent(uploaderEl);
 				}
 			}
 			XMLUtil.saveXML(projsdoc, new File(file.getAbsolutePath()));
 			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("msg", SUCCESS);
+			if (exists.size() > 0)
+				map.put("msg", "data " + StringUtils.join(exists, ",") + " already exists!");
+			else
+				map.put("msg", SUCCESS);
 			writeJson(com.alibaba.fastjson.JSON.toJSONString(map));
 		}
 		catch (Exception e)
