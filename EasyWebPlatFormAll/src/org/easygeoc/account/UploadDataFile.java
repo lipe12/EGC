@@ -32,7 +32,7 @@ import cn.com.bean.DataSet;
 import com.googlecode.jsonplugin.annotations.JSON;
 import com.opensymphony.xwork2.ActionSupport;
 
-import tutorial.CreateMapFile;
+import tutorial.CreateUploadDataMapFile;;
 
 /**
  * @version 1.1
@@ -118,7 +118,7 @@ public class UploadDataFile extends ActionSupport{
 		this.filePostfix = this.filePostfix.toUpperCase();
 		this.format = this.filePostfix;
 		this.type = Formant_Type(this.filePostfix);
-		this.readDataSet();// get top down left and right
+		//this.readDataSet();// get top down left and right
 
 		
 	    String path = Constant.DataFilePath + File.separator + username;
@@ -158,6 +158,7 @@ public class UploadDataFile extends ActionSupport{
 				e.printStackTrace();
 			}
 			readTxtExtent(tmpTxtPath);
+			WriteDataSet();
 			this.writeMetaData();
 			//========================new function ==========================
 			   //判断在MapFilePath文件夹中是否存在username文件夹，如果不存在创建文件夹
@@ -173,7 +174,7 @@ public class UploadDataFile extends ActionSupport{
 				mapSetFolder.mkdir();
 			}
 			   //在dataSetName文件夹中创建raster的mapfi文件
-			CreateMapFile createFileMap = new CreateMapFile();
+			CreateUploadDataMapFile createFileMap = new CreateUploadDataMapFile();
 			String soapFileAddress = username + File.separator + dataSetName + File.separator  + dataName + "." + this.filePostfix;
 			createFileMap.create_mapfile(soapFileAddress);
 			//=============================end================================
@@ -333,6 +334,68 @@ public class UploadDataFile extends ActionSupport{
 		
 	}
 	
+	private void WriteDataSet(){
+			
+			SAXBuilder sb = new SAXBuilder();
+		    
+			HttpServletRequest request = ServletActionContext.getRequest();
+			String path = request.getSession().getServletContext().getRealPath("")
+					+ File.separator +"WEB-INF" + File.separator +"xml";
+			String username = (String)request.getSession().getAttribute("username");    
+			path = path + File.separator + "users_informations" + File.separator + username;
+		    path = path + File.separator + "dataSets.xml";
+			
+			try{               
+		    	 Document filesdoc = null;
+		         filesdoc = sb.build("file:" + File.separator + path);	              
+			     XPath xpath = XPath.newInstance("dataSets/dataSet[datasetname='" + dataSetName + "']");
+			     Element dataSet = (Element)xpath.selectSingleNode(filesdoc);
+	
+				 Element _north = dataSet.getChild("north");
+				 String dataSettop = _north.getText();
+				 if (dataSettop.equals("")) {
+					 _north.setText(this.top);
+				}else if (Double.parseDouble(this.top) < Double.parseDouble(dataSettop)) {
+					_north.setText(this.top);
+				}
+				 Element _south = dataSet.getChild("south");
+				 String dataSetdown = _south.getText();
+				 if (dataSetdown.equals("")) {
+					 _south.setText(this.down);
+				}else if (Double.parseDouble(this.down) < Double.parseDouble(dataSetdown)) {
+					_south.setText(this.down);
+				}
+				 
+		    	 Element _west = dataSet.getChild("west");
+		    	 String dataSetWest = _west.getText();
+		    	 if (dataSetWest.equals("")) {
+		    		 _west.setText(this.left);
+				}else if (Double.parseDouble(this.left) < Double.parseDouble(dataSetWest)) {
+					_west.setText(this.left);
+				}
+		    	 
+		    	 Element _east = dataSet.getChild("east");
+		    	 String dataSeteast = _east.getText(); 
+		    	 if (dataSeteast.equals("")) {
+		    		 _east.setText(this.right);
+				}else if (Double.parseDouble(this.right) < Double.parseDouble(dataSeteast)) {
+					_east.setText(this.right);
+				}
+		    	 Format format = Format.getCompactFormat();   
+	  	        format.setEncoding("UTF-8");  
+	  	        format.setIndent("  ");     
+	  	        XMLOutputter xmlout = new XMLOutputter(format); 
+	  	        File _file = null;
+	  	        _file = new File(path);  
+	  	        FileWriter filewriter = new FileWriter(_file);
+		        xmlout.output(filesdoc, filewriter);
+		        filewriter.close(); 
+		    }catch(Exception e){
+		    	e.printStackTrace();
+		    }
+			
+		}
+	
 	private  void copy(File src, File dst){
         try{
            InputStream in = null ;
@@ -413,9 +476,9 @@ public class UploadDataFile extends ActionSupport{
 			}
 			String extent = extents.get(0);
 			String[] splitExtent = extent.split(" ");
-			this.down = splitExtent[0];
-			this.right = splitExtent[0];
-			this.top = splitExtent[0];
+			this.down = splitExtent[3];
+			this.right = splitExtent[2];
+			this.top = splitExtent[1];
 			this.left = splitExtent[0];
 		} catch (Exception e) {
 			e.printStackTrace();

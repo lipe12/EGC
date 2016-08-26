@@ -176,6 +176,11 @@ var DataManagePanel = function() {
 		 * @param  {[type]} dataSetName [description]
 		 * @return {[type]}             [description]
 		 */
+	/**
+	 * 移除共享数据集，但不删除对应数据文件
+	 * @param  {[type]} dataSetName [description]
+	 * @return {[type]}             [description]
+	 */
 	var rmDataSetFromSharedFn = function( dataSetName ) {
 			var paramsObj = {
 				dataSetName: dataSetName
@@ -419,7 +424,7 @@ var DataManagePanel = function() {
 
 	var treeGrid = Ext.create( 'Ext.tree.Panel', {
 		itemId: "tree",
-		id: 'dataTreeManager',
+		id:"dataTreeManager",
 		width: 600,
 		height: 500,
 		tbar: tb,
@@ -439,6 +444,7 @@ var DataManagePanel = function() {
 					Ext.Ajax.request( {
 						async: false,
 						url: 'judgeshareduser.action',
+						async:false,
 						success: function( response, config ) {
 							var json = Ext.JSON.decode( response.responseText );
 							//Ext.MessageBox.alert( "result", json.tag );
@@ -741,14 +747,14 @@ var DataManagePanel = function() {
 				var seman = semantic_combo.getValue();
 				if ( seman == "Sample Data" ) {
 					Ext.getCmp( namespace + '_datafile_csv' ).setDisabled( false );
-					Ext.getCmp( namespace + '_x_fields' ).setDisabled( false );
-					Ext.getCmp( namespace + '_y_fields' ).setDisabled( false );
+					Ext.getCmp( namespace + '_x_field' ).setDisabled( false );
+					Ext.getCmp( namespace + '_y_field' ).setDisabled( false );
 
 					Ext.getCmp( namespace + '_datafile' ).setDisabled( true );
 				} else {
 					Ext.getCmp( namespace + '_datafile_csv' ).setDisabled( true );
-					Ext.getCmp( namespace + '_x_fields' ).setDisabled( true );
-					Ext.getCmp( namespace + '_y_fields' ).setDisabled( true );
+					Ext.getCmp( namespace + '_x_field' ).setDisabled( true );
+					Ext.getCmp( namespace + '_y_field' ).setDisabled( true );
 					Ext.getCmp( namespace + '_datafile' ).setDisabled( false );
 				}
 			}
@@ -1034,7 +1040,11 @@ var DataManagePanel = function() {
 			}
 		} )
 	};
+<<<<<<< .mine
 	//TODO: 删除节点后展开，还得和侯志伟商量下
+=======
+//TODO: 删除节点后展开，还得和侯志伟商量下
+>>>>>>> .theirs
 	return {
 		data_panel: dataPanel,
 		html5readFile: html5readFile

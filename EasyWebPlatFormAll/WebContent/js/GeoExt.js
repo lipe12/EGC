@@ -74,7 +74,7 @@ GeoExt.createSampleDataWin = function(data,graphManager){
             queryMode: 'local', 
             //allowBlank:false,
 			editable:false,
-            typeAhead: true
+            typeAhead: false
         });
     }else{            
     	SoilPropertyCombo = Ext.getCmp('SelectSoilProperty');
@@ -126,7 +126,7 @@ GeoExt.createSampleDataWin = function(data,graphManager){
             queryMode: 'local',
             //allowBlank:false,
 			editable:false,   
-            typeAhead: true,
+            typeAhead: false,
             listeners:{
     		   select:function(combo,record,index){   
     	          try{  

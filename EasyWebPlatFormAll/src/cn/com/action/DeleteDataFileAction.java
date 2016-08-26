@@ -69,7 +69,6 @@ public class DeleteDataFileAction extends ActionSupport{
 		    	 if(file_name.equals(fileName)){
 		    		 deleteFileName = file_name;
 		    		 format_tag = file.getChild("format").getText();
-					System.out.println("format_tag: " + format_tag);
 		    		 root.removeContent(file);
 		    		 break;
 		    	 }

@@ -21,7 +21,7 @@ import org.jdom2.xpath.XPath;
 
 import util.Constants;
 import util.XMLUtil;
-
+import util.XMLUtil;
 import com.googlecode.jsonplugin.annotations.JSON;
 
 /** 
@@ -160,15 +160,15 @@ public class CreateDatasetAction extends BaseAction
 		// / begin
 		String integer_random = this.createFixLenthString(6);
 		String dot_random = this.createFixLenthString(6);
-		Integer int_north = new Integer(integer_random) + 1000;
-		Integer int_south = new Integer(integer_random) - 1000;
-		Integer int_west = new Integer(integer_random) - 1500;
-		Integer int_east = new Integer(integer_random) + 1500;
+//		Integer int_north = new Integer(integer_random) + 1000;
+//		Integer int_south = new Integer(integer_random) - 1000;
+//		Integer int_west = new Integer(integer_random) - 1500;
+//		Integer int_east = new Integer(integer_random) + 1500;
 
-		north = int_north.toString() + "." + dot_random;
-		south = int_south.toString() + "." + dot_random;
-		west = int_west.toString() + "." + dot_random;
-		east = int_east.toString() + "." + dot_random;
+		north = "";
+		south = "";
+		west = "";
+		east = "";
 		createDataSet();
 		// / end
 		try

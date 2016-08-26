@@ -516,25 +516,28 @@ var graphManager = function(canvas){
 			    			var tmpLayer = layers[i].split("/");
 			    			var temp = //'<a href= "'+ resultfile_path + layers[i] + '.tif' +'" target= "_self ">'
 							            '<a href= "'+ resultfile_path + layers[i] + '.csv' +'" target= "_self ">'
-			    				        + tmpLayer[1] +'</a><br/>';      
+			    				        + tmpLayer[1] +'</a><br/>';
+			    		    temp = temp.replace("result_egc/","");
 			    			files_for_download_html = files_for_download_html + temp;
+			    			
 			    		}
-						files_for_download_html	= files_for_download_html.replace("result_egc/","");				
+						//files_for_download_html	= files_for_download_html.replace("result_egc/","");				
 			    		files_for_download.innerHTML = files_for_download_html;
-			    		var validate_rmse = document.getElementById('validate_rmse');
-			    		validate_rmse.style.visibility = 'hidden';
-			    		var map_for_show = document.getElementById('map_for_show');
-			    		map_for_show.style.visibility = 'hidden';
-			    		var select_show_map = document.getElementById('select_show_map');
-			    		select_show_map.style.visibility = 'hidden';
-	    		    	var title_map_legend = document.getElementById('title_map_legend');
-	    		    	title_map_legend.style.visibility = 'hidden';
-	    		    	var legend_container = document.getElementById('legend_container');
-	    		    	legend_container.style.visibility = 'hidden';
+//			    		var validate_rmse = document.getElementById('validate_rmse');
+//			    		validate_rmse.style.visibility = 'hidden';
+//			    		var map_for_show = document.getElementById('map_for_show');
+//			    		map_for_show.style.visibility = 'hidden';
+//			    		var select_show_map = document.getElementById('select_show_map');
+//			    		select_show_map.style.visibility = 'hidden';
+//	    		    	var title_map_legend = document.getElementById('title_map_legend');
+//	    		    	title_map_legend.style.visibility = 'hidden';
+//	    		    	var legend_container = document.getElementById('legend_container');
+//	    		    	legend_container.style.visibility = 'hidden';
 	    		    	
 	    		    }else{
-		    		    	for(var i=0;i< mapfiles.length ; i++){   
-			    			var wms_result = new WMS_Result(mapfiles[i],layers[i],srs,semantics[i],maxs[i],mins[i]);
+		    		    	for(var i=0;i< mapfiles.length ; i++){
+		    		        var tmpLayer = layers[i].split("/");
+			    			var wms_result = new WMS_Result(mapfiles[i],layers[i],srs,tmpLayer[1],maxs[i],mins[i]);
 		    			    wms_results.push(wms_result);
 	    			    
 		    			}//end of for
@@ -543,7 +546,8 @@ var graphManager = function(canvas){
 		    		var select_show_map_html = '<select  STYLE="width: 110px"  onclick="clickSelectValue(this);" onchange="getSelectValue(this);">';
 		    		
 					for(var i =0 ;i< semantics.length; i++){
-		    			select_show_map_html = select_show_map_html + '<option value = "' + i + '">' + semantics[i] + '</option>'; 
+						var tmpLayer = layers[i].split("/");
+		    			select_show_map_html = select_show_map_html + '<option value = "' + i + '">' + tmpLayer[1] + '</option>'; 
 		    			
 		    		}
 					currentLayerName = semantics[0];       
@@ -563,10 +567,12 @@ var graphManager = function(canvas){
 		    			var tmpLayer = layers[i].split("/");
 		    			var temp = //'<a href= "'+ resultfile_path + layers[i] + '.tif' +'" target= "_self ">'
 						            '<a href= "'+ resultfile_path + layers[i] + '.tif' +'" target= "_self ">'
-		    				        + tmpLayer[1] +'</a><br/>';      
+		    				        + tmpLayer[1] +'</a><br/>';
+		    			//select_show_map_html = select_show_map_html + '<option value = "' + i + '">' + tmpLayer[1] + '</option>'; 
+		    			//temp = temp.replace("result_egc/","");
 		    			files_for_download_html = files_for_download_html + temp;
 		    		}
-					files_for_download_html	= files_for_download_html.replace("result_egc/","");				
+					//files_for_download_html	= files_for_download_html.replace("result_egc/","");				
 		    		files_for_download.innerHTML = files_for_download_html;
 	    		    }
 		
@@ -1391,7 +1397,7 @@ var DataMenuItem = function(graphManager,canvas,x,y,graph,text){
 					break;
 				}
 			}
-			if(currentTask.taskName == 'Sample Based Mapping'){
+			if(currentTask.taskName == 'Sample Based Mapping'||currentTask.taskName == 'Sampling based on Uncertainty'|| currentTask.taskName =='sampling based on purposive'){
 				       
 			  var algorithm = currentTask.selectedAlgorithm;
 			  var inputDatas = algorithm.inputDatas;
@@ -1627,8 +1633,8 @@ var DataMenu = function(graphManager,canvas,e,graph,text){
 			    this.list.push(item1);
 			}else if(this.graph.interMediateResult == true)
 			{
-				var item1 = new DataMenuItem(this.graphManager,this.canvas,x,y,this.graph,"download");
-				this.list.push(item1);
+				//var item1 = new DataMenuItem(this.graphManager,this.canvas,x,y,this.graph,"download");
+				//this.list.push(item1);
 			}else{
 				var item1 = new  DataMenuItem(this.graphManager,this.canvas,x,y,this.graph,"Automate");
 			    this.list.push(item1);
