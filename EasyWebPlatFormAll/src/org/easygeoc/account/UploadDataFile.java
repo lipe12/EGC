@@ -27,12 +27,10 @@ import org.jdom2.output.XMLOutputter;
 import org.jdom2.xpath.XPath;
 
 import tutorial.Constant;
-import cn.com.bean.DataSet;
+import tutorial.CreateUploadDataMapFile;
 
 import com.googlecode.jsonplugin.annotations.JSON;
 import com.opensymphony.xwork2.ActionSupport;
-
-import tutorial.CreateUploadDataMapFile;;
 
 /**
  * @version 1.1
@@ -91,53 +89,50 @@ public class UploadDataFile extends ActionSupport{
 	private  final int BUFFER_SIZE = 1024 ;
    
 	public String uploadData(){
-		
-	    
+
 		this.flag = false;
-		
+
 		if(this.datafile == null){
-			
+
 			System.out.println("tif is null");
 		}
 		if(this.datafile_csvStr.equals("")){          
-			
+
 			System.out.println("csv is null");
 		}
-		
-                 
+
         HttpServletRequest request = ServletActionContext.getRequest();
-	    
+
 	    String username = (String)request.getSession().getAttribute("username");
-		
+
 		//this.fileName = username + File.separator + dataSetName + 
 		//		File.separator + dataName + "." + this.filePostfix;
-		
+
 	   this.fileName = username + "/" + dataSetName + 
 			           "/" + dataName + "." + this.filePostfix;
-	    
+
 		this.filePostfix = this.filePostfix.toUpperCase();
 		this.format = this.filePostfix;
 		this.type = Formant_Type(this.filePostfix);
 		//this.readDataSet();// get top down left and right
 
-		
 	    String path = Constant.DataFilePath + File.separator + username;
 	    File folder =new File(path);    
-	     
+
 	    if(!folder.exists()&& !folder.isDirectory()){       
 	    	folder.mkdir();    
 	    }
-	    
+
 	    path = path + File.separator + dataSetName;//username/dataSetName
-		
+
 	    folder =new File(path);    
-	     
+
 	    if(!folder.exists()&& !folder.isDirectory()){       
 	    	folder.mkdir();    
 	    }
-	               
+
       if(this.datafile != null){
-	    	
+
 	    	String filePath = path + File.separator  + dataName + "." + this.filePostfix;
 	  	    File file = new File(filePath);
 	    	
@@ -180,32 +175,30 @@ public class UploadDataFile extends ActionSupport{
 			//=============================end================================
 			filePath = path + File.separator  + dataName + ".prj";
 	  	    file = new File(filePath);
-	    	                                        
+
 	    	this.copy(datafile_prj,file);    
-			
-	                 
+
 	    	System.out.println("filePath:" + filePath);
-	    	
+
 	    }else{
 	    	
 	    	String filePath = path + File.separator  + dataName + "." + this.filePostfix;
-	  	    
-	    	
+
 	    	try {
-	    		
+
 				this.writeTxt(filePath, datafile_csvStr);
-				
+
 			} catch (IOException e) {
-				
+
 				e.printStackTrace();
 			}
 	    	File file = new File(filePath);
 			this.fileSize = FileSize(file.length());
-			
+
 			this.writeMetaData();
-			
+
 			System.out.println("filePath:" + filePath);
-			
+
 	    }
 		                                 
 	    this.flag = true;            
@@ -222,6 +215,7 @@ public class UploadDataFile extends ActionSupport{
         out.close(); 
 	}
 	
+	@Override
 	public String execute(){         
 	   
 		this.flag = false;
