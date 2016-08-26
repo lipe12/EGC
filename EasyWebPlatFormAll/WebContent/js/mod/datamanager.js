@@ -1029,7 +1029,6 @@ var DataManagePanel = function() {
 		]
 	} );
 
-
 	function expandNode( node ) {
 		var tree = Ext.getCmp( 'dataTreeManager' );
 		var path = node.getPath( 'id' );
@@ -1040,11 +1039,8 @@ var DataManagePanel = function() {
 			}
 		} )
 	};
-<<<<<<< .mine
 	//TODO: 删除节点后展开，还得和侯志伟商量下
-=======
 //TODO: 删除节点后展开，还得和侯志伟商量下
->>>>>>> .theirs
 	return {
 		data_panel: dataPanel,
 		html5readFile: html5readFile
