@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projects>
-	<project>
-		<name>projtest</name>
-		<creater>jjc1022@126.com</creater>
-		<datasets>
-			<dataset>xuangchengshi</dataset>
-			<dataset>feizhou2</dataset>
-		</datasets>
-	</project>
+  <project>
+    <name>myproj</name>
+    <creater>jjc1022@126.com</creater>
+    <datasets>
+      <dataset>
+        <datasetname>Anhui</datasetname>
+        <uploader>zcy19880520@163.com</uploader>
+      </dataset>
+      <dataset>
+        <datasetname>feizhou</datasetname>
+        <uploader>jjc1022@126.com</uploader>
+      </dataset>
+    </datasets>
+  </project>
 </projects>

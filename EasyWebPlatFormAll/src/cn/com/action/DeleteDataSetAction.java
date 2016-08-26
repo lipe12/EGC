@@ -252,7 +252,7 @@ public class DeleteDataSetAction extends BaseAction
 			List<Element> datasetList = datasets.getChildren("dataset");
 			for (Element dataset : datasetList)
 			{
-				if (dataset.getText().equals(dataSetName))
+				if (dataset.getChildText("datasetname").equals(dataSetName))
 				{
 					datasets.removeContent(dataset);
 					break;
@@ -289,7 +289,7 @@ public class DeleteDataSetAction extends BaseAction
 			List<Element> fileList = filesElement.getChildren("file");
 			for (Element fileEl : fileList)
 			{
-				if (fileEl.getText().equals(fileName))
+				if (fileEl.getChildText("filename").equals(fileName))
 				{
 					filesElement.removeContent(fileEl);
 					break;

@@ -135,7 +135,8 @@ var DataTreeController = function()
         text: 'show location',
         //handler: displayKML,
         handler:locationlayer,
-        iconCls: 'Mapgo'
+        iconCls: 'Mapgo',
+        tooltip:'Show the location of selected data on map'
     });
     //tree contextmenu
     var contextmenu = new Ext.menu.Menu(

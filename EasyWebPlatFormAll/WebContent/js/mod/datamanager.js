@@ -72,7 +72,10 @@ var DataManagePanel = function() {
 								treeStore.reload();
 								treeGrid.expandPath( "/data/Personal Data/" );
 								var json = Ext.JSON.decode( response.responseText );
-								Ext.MessageBox.alert( "result", json.msg );
+								if ( json.msg )
+									Ext.MessageBox.alert( "result", json.msg );
+								else
+									Ext.MessageBox.alert( "result", "Success" );
 							},
 							failure: function() {
 								Ext.MessageBox.alert( "result", "Create dataset folder failed." );
@@ -112,62 +115,67 @@ var DataManagePanel = function() {
 		}
 		//delete
 	var tbDeleteFn = function() {
-		//var checkedItems = treeGrid.getChecked();
-		var selectedItems = treeGrid.getSelectionModel().selected.items;
-		if ( selectedItems.length == 0 ) {
-			Ext.MessageBox.alert( 'message', 'You must select a treenode first!' );
-		} else {
-			var item = selectedItems[ 0 ];
-			var type = item.data.type;
-			var text = item.data.text;
-			var uploader = item.data.uploader;
-			var itemId = getSelectedItemId(); //
-			var pid = getSelectedItemPId( itemId );
-			// different delete actions
-			// can not delete group and shared datasets
-			if ( itemId.indexOf( "Group Data" ) >= 0 ) {
-				Ext.MessageBox.alert( 'message', 'Not allowed to delete group and shared data!' );
-				return;
-			}
-			if ( type == "dataset" ) {
-				if ( itemId.indexOf( "Personal Data" ) >= 0 ) {
-					delDataSetFn( text, item.data.uploader );
-					treeGrid.expandPath( "/data/Personal Data/" );
-				} else if ( itemId.indexOf( "Projects" ) >= 0 ) {
-					var ptext = treeGrid.getSelectionModel().selected.map[ itemId ].parentNode.data.text;
-					rmDataSetFromProjFn( ptext, text );
-				} else if ( itemId.indexOf( "Shared Data" ) >= 0 ) {
-					rmDataSetFromSharedFn( text );
+			//var checkedItems = treeGrid.getChecked();
+			var selectedItems = treeGrid.getSelectionModel().selected.items;
+			if ( selectedItems.length == 0 ) {
+				Ext.MessageBox.alert( 'message', 'You must select a treenode first!' );
+			} else {
+				var item = selectedItems[ 0 ];
+				var type = item.data.type;
+				var text = item.data.text;
+				var uploader = item.data.uploader;
+				var itemId = getSelectedItemId(); //
+				var pid = getSelectedItemPId( itemId );
+				// different delete actions
+				// can not delete group and shared datasets
+				if ( itemId.indexOf( "Group Data" ) >= 0 ) {
+					Ext.MessageBox.alert( 'message', 'Not allowed to delete group and shared data!' );
+					return;
 				}
-			} else if ( type == "group" ) {
-				Ext.MessageBox.alert( 'message', 'Not allowed to delete group!' );
-				return;
-				//delGroupFn(item.data.text);
-			} else if ( type == "data category" ) {
-				Ext.MessageBox.alert( 'message', 'Can not delete data category!' );
-				return;
-			} else if ( type == "project" ) {
-				delProjectFn( text );
-			} else //datafile
-			{
-				if ( itemId.indexOf( "Personal Data" ) >= 0 )
-					delDataFileFn( text );
-				else if ( itemId.indexOf( "Projects" ) >= 0 ) {
-					var ptype='';
-					var mapItem=treeGrid.getSelectionModel().selected.map[ itemId ];
-					while(ptype!='project'){
-						ptype=mapItem.parentNode.data.type;	
-						mapItem=mapItem.parentNode;
-						// console.log(ptype);
-						// console.log(mapItem.data.text);
+				if ( type == "DataSet" ) {
+					if ( itemId.indexOf( "Personal Data" ) >= 0 ) {
+						delDataSetFn( text, item.data.uploader );
+						treeGrid.expandPath( "/data/Personal Data/" );
+					} else if ( itemId.indexOf( "Projects" ) >= 0 ) {
+						var ptext = treeGrid.getSelectionModel().selected.map[ itemId ].parentNode.data.text;
+						rmDataSetFromProjFn( ptext, text );
+					} else if ( itemId.indexOf( "Shared Data" ) >= 0 ) {
+						rmDataSetFromSharedFn( text );
 					}
-					var ptext = mapItem.data.text;					
-					rmDataFileFromProjFn( ptext, text );
-				}
+				} else if ( type == "Group" ) {
+					Ext.MessageBox.alert( 'message', 'Not allowed to delete group!' );
+					return;
+					//delGroupFn(item.data.text);
+				} else if ( type == "Data Category" ) {
+					Ext.MessageBox.alert( 'message', 'Can not delete data category!' );
+					return;
+				} else if ( type == "Project" ) {
+					delProjectFn( text );
+				} else //datafile
+				{
+					if ( itemId.indexOf( "Personal Data" ) >= 0 )
+						delDataFileFn( text );
+					else if ( itemId.indexOf( "Projects" ) >= 0 ) {
+						var ptype = '';
+						var mapItem = treeGrid.getSelectionModel().selected.map[ itemId ];
+						while ( ptype != 'Project' ) {
+							ptype = mapItem.parentNode.data.type;
+							mapItem = mapItem.parentNode;
+							// console.log(ptype);
+							// console.log(mapItem.data.text);
+						}
+						var ptext = mapItem.data.text;
+						rmDataFileFromProjFn( ptext, text );
+					}
 
+				}
 			}
 		}
-	}
+		/**
+		 * 移除共享数据集，但不删除对应数据文件
+		 * @param  {[type]} dataSetName [description]
+		 * @return {[type]}             [description]
+		 */
 	/**
 	 * 移除共享数据集，但不删除对应数据文件
 	 * @param  {[type]} dataSetName [description]
@@ -199,13 +207,18 @@ var DataManagePanel = function() {
 		 * @return {[type]}          [description]
 		 */
 	var rmDataFileFromProjFn = function( projectName, fileName ) {
-		var paramsObj = {
-			projectName: projectName,
-			fileName: fileName
-		};
-		basicDeleteFn( "datafile", "rmDataFileFromProj.action", paramsObj );
-	}
-
+			var paramsObj = {
+				projectName: projectName,
+				fileName: fileName
+			};
+			basicDeleteFn( "datafile", "rmDataFileFromProj.action", paramsObj );
+		}
+		/**
+		 * delete dataset
+		 * @param  {[type]} dataSetName [description]
+		 * @param  {[type]} uploader    [description]
+		 * @return {[type]}             [description]
+		 */
 	var delDataSetFn = function( dataSetName, uploader ) {
 		var paramsObj = {
 			dataSetName: dataSetName,
@@ -230,13 +243,19 @@ var DataManagePanel = function() {
 	}
 
 	var delProjectFn = function( projectName ) {
-		var paramsObj = {
-			projectName: projectName
-		};
-		basicDeleteFn( "project", "deleteProject.action", paramsObj );
-		treeGrid.expandPath( "/data/Projects/" );
-	}
-
+			var paramsObj = {
+				projectName: projectName
+			};
+			basicDeleteFn( "project", "deleteProject.action", paramsObj );
+			treeGrid.expandPath( "/data/Projects/" );
+		}
+		/**
+		 * common delete function
+		 * @param  {[type]} delType   the dataset type to be deleted 
+		 * @param  {[type]} actionUrl [description]
+		 * @param  {[type]} paramsObj  parameters send to server
+		 * @return {[type]}           [description]
+		 */
 	var basicDeleteFn = function( delType, actionUrl, paramsObj ) {
 			Ext.MessageBox.show( {
 				title: 'Warnning',
@@ -250,7 +269,7 @@ var DataManagePanel = function() {
 							url: actionUrl,
 							success: function( response, config ) {
 								var json = Ext.JSON.decode( response.responseText );
-								if(json.msg)
+								if ( json.msg )
 									Ext.MessageBox.alert( "result", json.msg );
 								else
 									Ext.MessageBox.alert( "result", 'Success' );
@@ -301,18 +320,27 @@ var DataManagePanel = function() {
 				Ext.MessageBox.alert( "message", "Please select datasets first." );
 			} else {
 				var datasets = [],
-					datafiles = [];
+					datafiles = [],
+					ds_uploaders = [], //dataset uploaders
+					df_uploaders = []; //datafile uploaders
 				for ( var i = 0; i < checkedItems.length; i++ ) {
 					var item = checkedItems[ i ];
-					if ( item.data.type === "dataset" )
+					if ( item.data.type === "DataSet" ) {
 						datasets.push( item.data.text );
-					else
+						ds_uploaders.push( item.data.uploader );
+					} else {
 						datafiles.push( item.data.text );
+						df_uploaders.push( item.data.uploader );
+					}
 				}
 				Ext.Ajax.request( {
 					url: "addDataToProject.action",
 					success: function( response, config ) {
-						console.log( response.responseText );
+						var json = Ext.JSON.decode( response.responseText );
+						if ( json.msg )
+							Ext.MessageBox.alert( "result", json.msg );
+						else
+							Ext.MessageBox.alert( "result", response.responseText );
 						Ext.MessageBox.alert( "result", response.responseText );
 						treeStore.reload();
 					},
@@ -323,6 +351,8 @@ var DataManagePanel = function() {
 					params: {
 						datasets: datasets,
 						datafiles: datafiles,
+						ds_uploaders: ds_uploaders,
+						df_uploaders: df_uploaders,
 						projectName: getSelectedItemText()
 					}
 				} );
@@ -384,7 +414,7 @@ var DataManagePanel = function() {
 			'-', {
 				text: 'add into project',
 				iconCls: 'Applicationadd',
-				tooltip: 'check datasets and add to a selected project',
+				tooltip: 'check datasets first and then add to a selected project',
 				handler: function() {
 					tbAdd2ProjectFn();
 				}
@@ -409,17 +439,17 @@ var DataManagePanel = function() {
 				//gridmenu.showAt(e.getXY());
 			},
 			beforeitemexpand: function( item, eOpts ) {
-				var flag=true;
+				var flag = true;
 				if ( item.data.id == "Shared Data" ) {
 					Ext.Ajax.request( {
+						async: false,
 						url: 'judgeshareduser.action',
 						async:false,
 						success: function( response, config ) {
 							var json = Ext.JSON.decode( response.responseText );
-							
 							//Ext.MessageBox.alert( "result", json.tag );
-							if(!json.tag){
-								flag= false;
+							if ( !json.tag ) {
+								flag = false;
 								Ext.MessageBox.alert( "Message", "You have no access to use shared data before you shared any data." );
 							}
 						},
@@ -444,17 +474,17 @@ var DataManagePanel = function() {
 			dataIndex: "text",
 			flex: 1,
 			sortable: false
-		}, {
-			text: "uploader",
-			dataIndex: "uploader",
-			flex: 1,
-			sortable: true
-		}, {
+		},{
 			text: "type",
 			dataIndex: "type",
 			flex: 1,
 			sortable: true
 		}, {
+			text: "uploader",
+			dataIndex: "uploader",
+			flex: 1,
+			sortable: true
+		},  {
 			text: "semantic",
 			dataIndex: "semantic",
 			flex: 1,
@@ -542,7 +572,7 @@ var DataManagePanel = function() {
 					var tag = ajax.responseText.pJSON().tag;
 					if ( tag == 0 ) {
 						Ext.MessageBox.alert( "tip", "this data set had been shared" );
-						
+
 					} else if ( tag == 1 ) {
 						Ext.MessageBox.alert( "tip", "this data set is shared successfully" );
 						treeStore.reload();
@@ -901,7 +931,7 @@ var DataManagePanel = function() {
 			text: 'Save',
 			handler: function() {
 				var datasetName = getSelectedItemText();
-				var node =  Ext.getCmp("dataTreeManager").getSelectionModel().selected.items[0];
+				var node = Ext.getCmp( "dataTreeManager" ).getSelectionModel().selected.items[ 0 ];
 				var filePostfix = null;
 				var semantic = Ext.getCmp( namespace + '_semantic' ).getValue();
 				if ( semantic == "Sample Data" ) {
@@ -946,7 +976,7 @@ var DataManagePanel = function() {
 				//var dataset = Ext.getCmp(namespace + 'dataSetName').getValue();
 
 				var dataname = Ext.getCmp( namespace + '_dataName' ).getValue();
-				Ext.getCmp( namespace + '_dataSetName' ).setValue(datasetName);
+				Ext.getCmp( namespace + '_dataSetName' ).setValue( datasetName );
 				if ( postfix == "" || semantic == "" || dataname == "" ) {
 					Ext.MessageBox.alert( 'msg', "all the input can not be empty!" );
 					return;
@@ -968,7 +998,7 @@ var DataManagePanel = function() {
 						//Ext.getCmp( '_List_FileData' ).getStore().load();
 						Ext.getCmp( "uploadMark" ).getEl().hide();
 						//treeStore.reload();
-						expandNode(node);
+						expandNode( node );
 					},
 					failure: function( f, action ) {
 						Ext.MessageBox.alert( 'msg', "upload file fail!" );
@@ -998,26 +1028,18 @@ var DataManagePanel = function() {
 			FileUpload_Form
 		]
 	} );
-	
-	
-//	function expandNode(node){
-//		var tree1 = Ext.getCmp('dataTreeManager');
-//		var path = node.getPath('id');
-//		tree1.getStore().load({node: tree1.getRootNode(),
-//									callback: function () {
-//										tree1.expandPath(path, 'id');
-//									}
-//		})
-//	};
-	function expandNode(node){
-		var tree1 = Ext.getCmp('dataTreeManager');
-		var path = node.getPath('id');
-		tree1.getStore().load({node: tree1.getRootNode(),
-									callback: function () {
-										tree1.expandPath(path, 'id');
-									}
-		})
-	}
+
+	function expandNode( node ) {
+		var tree = Ext.getCmp( 'dataTreeManager' );
+		var path = node.getPath( 'id' );
+		tree.getStore().load( {
+			node: tree.getRootNode(),
+			callback: function() {
+				tree.expandPath( path, 'id' );
+			}
+		} )
+	};
+	//TODO: 删除节点后展开，还得和侯志伟商量下
 //TODO: 删除节点后展开，还得和侯志伟商量下
 	return {
 		data_panel: dataPanel,
