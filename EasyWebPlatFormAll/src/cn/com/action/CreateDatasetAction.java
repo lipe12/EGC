@@ -21,7 +21,7 @@ import org.jdom2.xpath.XPath;
 
 import util.Constants;
 import util.XMLUtil;
-import util.XMLUtil;
+
 import com.googlecode.jsonplugin.annotations.JSON;
 
 /** 
@@ -380,7 +380,7 @@ public class CreateDatasetAction extends BaseAction
 					String uploader = ds_uploaders[i];
 					System.out.println(dataset);
 					System.out.println("uploader:" + uploader);
-					XPath datasetPath = XPath.newInstance("projects/project/datasets/dataset[datasetname='" + dataset + "']");
+					XPath datasetPath = XPath.newInstance("projects/project[name='" + projectName + "']/datasets/dataset[datasetname='" + dataset + "']");
 					List<Element> dsl = (List<Element>) datasetPath.selectNodes(projsdoc);
 					if (dsl.size() > 0)
 					{
@@ -417,7 +417,7 @@ public class CreateDatasetAction extends BaseAction
 					String uploader = df_uploaders[i];
 					System.out.println(datafile);
 
-					XPath datafilePath = XPath.newInstance("projects/project/files/file[filename='" + datafile + "']");
+					XPath datafilePath = XPath.newInstance("projects/project[name='" + projectName + "']");
 					List<Element> dfl = (List<Element>) datafilePath.selectNodes(projsdoc);
 					if (dfl.size() > 0)
 					{

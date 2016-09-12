@@ -276,7 +276,7 @@ var DataManagePanel = function() {
 								treeStore.reload();
 							},
 							failure: function() {
-								Ext.MessageBox.alert( "result", "Create dataset folder failed." );
+								Ext.MessageBox.alert( "result", "Delete dataset failed." );
 							},
 							method: "post",
 							params: paramsObj

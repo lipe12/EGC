@@ -277,6 +277,7 @@ public class DataManageAction extends BaseAction
 								memberarray.add(setJsonObject);
 							}
 						}
+						setLeafValue(groupObj, memberarray);
 						childrenNode(groupObj, memberarray);
 						jsonArray.add(groupObj);
 					}
@@ -369,19 +370,12 @@ public class DataManageAction extends BaseAction
 					Document projsdoc = sb.build("File:" + projectPath);
 					filesdoc = s.build("file:" + dataPath);// username?
 					// get projects through creater
-					XPath projPath = XPath.newInstance("projects/project");
+					XPath projPath = XPath.newInstance("projects/project[creater='" + userString + "']");
 					List<Element> allprojs = (List<Element>) projPath.selectNodes(projsdoc);
-					List<Element> projs = new ArrayList<Element>();
-					for (Element proj : allprojs)
-					{
-						String creater = proj.getChild("creater").getValue();
-						if (userString.equals(creater))
-							projs.add(proj);
-					}
 					JSONArray jArray = new JSONArray();
 					// projects-(user:creater)-project-datasets-dataset-datafile
 					int y = 0;
-					for (Element proj : projs)
+					for (Element proj : allprojs)
 					{
 						String projName = proj.getChild("name").getValue();
 						JSONObject projObj = new JSONObject();
@@ -531,82 +525,79 @@ public class DataManageAction extends BaseAction
 	        Document projsdoc = sb.build("File:" + projectPath);
 	        filesdoc = s.build("file:" + dataPath); // username?
 	        // get projects through creater
-	        XPath projPath = XPath.newInstance("projects/project");
-	        List < Element > allprojs = (List < Element > ) projPath.selectNodes(projsdoc);
-	        List < Element > projs = new ArrayList < Element > ();
-	        for (Element proj: allprojs)
-	        {
-	            String creater = proj.getChild("creater").getValue();
-	            if (userString.equals(creater))
-	                projs.add(proj);
-	        }
+			XPath projPath = XPath.newInstance("projects/project[creater='" + userString + "']");
+			List<Element> allprojs = (List<Element>) projPath.selectNodes(projsdoc);
 	        JSONArray jArray = new JSONArray();
-	        // projects-(user:creater)-project-datasets-dataset-datafile
-	        //
-	        int y = 0;
-	        for (Element proj: projs)
-	        {
-	            String projName = proj.getChild("name").getValue();
-	            JSONObject projObj = new JSONObject();
-	            projObj.put(Constants.ID, idString + "-" + (y + 1));
-	            projObj.put(Constants.TEXT, projName);
-	            projObj.put(Constants.TYPE, "project");
-	            List < JSONObject > jsonObjects = new ArrayList < JSONObject > ();
-	            if (proj.getChild("datasets") == null && proj.getChild("files") == null)
-	            {
-	                projObj.put(Constants.LEAF, true);
-	            }
-	            if (proj.getChild("datasets") != null)
-	            {
-	                projObj.put(Constants.LEAF, false);
-	                List < Element > datasets = proj.getChild("datasets").getChildren("dataset");
-	                y++;
-	                for (int i = 0; i < datasets.size(); i++)
-	                {
-	                    Element dataset = datasets.get(i);
-	                    JSONObject obj = new JSONObject();
-	                    String datasetName = dataset.getValue();
-	                    obj.put(Constants.ID, idString + "-" + y + "-" + (i + 1));
-	                    obj.put(Constants.TEXT, datasetName);
-	                    obj.put(Constants.TYPE, "dataset");
-	                    obj.put(Constants.CHECKED, false);
-	                    obj.put(Constants.UPLOADER, userString);
-	                    XPath xPath2 = XPath.newInstance("files/file[datasetName='" + datasetName + "']");
-	                    List < Element > datafiles = (List < Element > ) xPath2.selectNodes(filesdoc);
-	                    setLeafValue(obj, datafiles);
-	                    List < JSONObject > datafileList = new ArrayList < JSONObject > ();
-	                    for (int k = 0; k < datafiles.size(); k++)
-	                    {
-	                        Element dataFileElement = datafiles.get(k);
-	                        String datasetNameString = dataFileElement.getChild("datasetName").getValue();
-	                        if (datasetNameString.equals(datasetName))
-	                        {
-	                            Element dataNameElement = dataFileElement.getChild("fileName");
-	                            String dataNameString = dataNameElement.getValue();
-	                            String[] splitDataPathStrings = dataNameString.split("/");
-	                            int len = splitDataPathStrings.length;
-	                            String dataName = splitDataPathStrings[len - 1];
-	                            String nameString = dataName.split("\\.")[0];
-	                            JSONObject datafile = new JSONObject();
-	                            datafile.put(Constants.ID, idString + "-" + y + "-" + (i + 1) + "-" + (k + 1));
-	                            datafile.put(Constants.TEXT, nameString);
-	                            datafile.put(Constants.LEAF, true);
-	                            datafile.put(Constants.CHECKED, false);
-	                            datafile.put(Constants.UPLOADER, userString);
-	                            String typeString = dataFileElement.getChild("type").getValue();
-	                            datafile.put(Constants.TYPE, typeString);
-	                            String formatString = dataFileElement.getChild("format").getValue();
-	                            datafile.put(Constants.FORMAT, formatString);
-	                            String semanticString = dataFileElement.getChild("semantic").getValue();
-	                            datafile.put(Constants.SEMANTIC, semanticString);
-	                            datafileList.add(datafile);
-	                        }
-	                    }
-	                    childrenNode(obj, datafileList);
-	                    jsonObjects.add(obj);
-	                }
-	                childrenNode(projObj, jsonObjects);
-	            }
+			// projects-(user:creater)-project-datasets-dataset-datafile
+			int y = 0;
+			for (Element proj : allprojs)
+			{
+				String projName = proj.getChild("name").getValue();
+				JSONObject projObj = new JSONObject();
+				projObj.put(Constants.ID, idString + "-" + (y + 1));
+				projObj.put(Constants.TEXT, projName);
+				projObj.put(Constants.TYPE, "Project");
+				List<JSONObject> jsonObjects = new ArrayList<JSONObject>();
+				if (proj.getChild("datasets") == null && proj.getChild("files") == null)
+				{
+					projObj.put(Constants.LEAF, true);
+				}
+				if (proj.getChild("datasets") != null && proj.getChild("datasets").getChildren("dataset") != null)
+				{
+					Element datasetsEl = proj.getChild("datasets");
+					List<Element> datasetEls = datasetsEl.getChildren("dataset");
+					setLeafValue(projObj, datasetEls);
+					// projObj.put(Constants.LEAF, false);
+					y++;
+					for (int i = 0; i < datasetEls.size(); i++)
+					{
+						Element dataset = datasetEls.get(i);
+						JSONObject obj = new JSONObject();
+						String datasetName = dataset.getChild("datasetname").getText();
+						obj.put(Constants.ID, idString + "-" + y + "-" + (i + 1));
+						obj.put(Constants.TEXT, datasetName);
+						obj.put(Constants.TYPE, "DataSet");
+						String uploader = dataset.getChild("uploader").getText();
+						obj.put(Constants.UPLOADER, uploader);
+						XPath datasetXPath = XPath.newInstance("files/file[datasetName='" + datasetName + "']");
+						String tempFielpath = FileUtil.getXMLDirPath(request) + "\\"
+								+ Constants.USERS_INFORMATIONS + "\\" + uploader + "\\" + uploader + Constants._DATAFILES_DOT_XML;
+						Document tempFielDoc = sb.build(new File(tempFielpath));
+						List<Element> datafiles = (List<Element>) datasetXPath.selectNodes(tempFielDoc);
+						setLeafValue(obj, datafiles);
+						List<JSONObject> datafileList = new ArrayList<JSONObject>();
+						for (int k = 0; k < datafiles.size(); k++)
+						{
+							Element dataFileElement = datafiles.get(k);
+							String datasetNameString = dataFileElement.getChild("datasetName").getValue();
+							if (datasetNameString.equals(datasetName))
+							{
+								Element fileNameElement = dataFileElement.getChild("fileName");
+								String fileNameString = fileNameElement.getValue();
+								String[] splitDataPathStrings = fileNameString.split("/");
+								int len = splitDataPathStrings.length;
+								String dataName = splitDataPathStrings[len - 1].split("\\.")[0];
+								String fileuploader = splitDataPathStrings[0];
+								JSONObject datafile = new JSONObject();
+								datafile.put(Constants.ID, idString + "-" + y + "-" + (i + 1) + "-" + (k + 1));
+								datafile.put(Constants.TEXT, dataName);
+								datafile.put(Constants.LEAF, true);
+								datafile.put(Constants.UPLOADER, fileuploader);
+								datafile.put(Constants.CHECKED, false);
+								String typeString = dataFileElement.getChild("type").getValue();
+								datafile.put(Constants.TYPE, typeString);
+								String formatString = dataFileElement.getChild("format").getValue();
+								datafile.put(Constants.FORMAT, formatString);
+								String semanticString = dataFileElement.getChild("semantic").getValue();
+								datafile.put(Constants.SEMANTIC, semanticString);
+								datafileList.add(datafile);
+							}
+						}
+						childrenNode(obj, datafileList);
+						jsonObjects.add(obj);
+					}
+					childrenNode(projObj, jsonObjects);
+				}
 	            if (proj.getChild("files") != null)
 	            {
 	                projObj.put(Constants.LEAF, false);
