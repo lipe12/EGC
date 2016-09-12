@@ -1,6 +1,7 @@
 package org.easygeoc.account;
 import java.io.File;
 import java.io.FileWriter;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -130,7 +131,7 @@ public class GroupOperation extends ActionSupport{
 	    	} else if(group.getChildText("groupcode").equals(groupCode)){
 	    		tag = "0";
 	    		boolean flag = false;
-	    		List<Element>members = (List<Element>)group.getChildren("member");
+	    		List<Element>members = group.getChildren("member");
 	    		for(Element member:members){
 	    			Element user = member.getChild("username");
 	    			if (user.getValue().equals(username)) {
