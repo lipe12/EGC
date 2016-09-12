@@ -1,19 +1,9 @@
 package org.easygeoc.account;
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 import org.jdom2.Document;
@@ -22,8 +12,6 @@ import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
 import org.jdom2.xpath.XPath;
-
-import user.OnlineUserBindingListener;
 
 import com.opensymphony.xwork2.ActionSupport;
 /**
@@ -36,6 +24,7 @@ import com.opensymphony.xwork2.ActionSupport;
  * @author lp
  * */
 public class GroupOperation extends ActionSupport{
+
 
 	private String tag;
 	
@@ -135,13 +124,14 @@ public class GroupOperation extends ActionSupport{
 	    	
 	    	XPath xpath = XPath.newInstance("groups/group[groupname=\""+ groupName +"\"]");
 		    Element group = (Element)xpath.selectSingleNode(filesdoc);
+			XPath userPath = XPath.newInstance("groups/group/member[username='" + username + "']");
 	    	if(group ==null){
 	    		tag = "1";
 	    		
 	    	} else if(group.getChildText("groupcode").equals(groupCode)){
 	    		tag = "0";
 	    		boolean flag = false;
-	    		List<Element>members = (List<Element>)group.getChildren("member");
+	    		List<Element>members = group.getChildren("member");
 	    		for(Element member:members){
 	    			Element user = member.getChild("username");
 	    			if (user.getValue().equals(username)) {
