@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files>
+  <file>
+    <fileName>gis@163.com/Personal Data/sample.csv</fileName>
+    <fileSize>2.49K</fileSize>
+    <type>Table</type>
+    <format>CSV</format>
+    <semantic>Sample Data</semantic>
+    <dataversion>new</dataversion>
+    <top />
+    <down />
+    <left />
+    <right />
+    <datasetName>Personal Data</datasetName>
+  </file>
+</files>

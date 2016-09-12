@@ -25,6 +25,15 @@ public class SampleFileAction extends ActionSupport{
 	private String left;
 	private String right;
 	private String dataSetName;
+	private String upLoader;
+	public String getUpLoader() {
+		return upLoader;
+	}
+
+	public void setUpLoader(String upLoader) {
+		this.upLoader = upLoader;
+	}
+
 	public String getDataSetName() {
 		return dataSetName;
 	}
@@ -40,7 +49,8 @@ public class SampleFileAction extends ActionSupport{
 	    String path = request.getSession().getServletContext().getRealPath("") + File.separator +"WEB-INF" + File.separator +"xml";  
 	    try{
 	    	 Document filesdoc = null;
-	    	 String username = (String)request.getSession().getAttribute("username");
+	    	 //String username = (String)request.getSession().getAttribute("username");
+	    	 String username = upLoader;
 	    	 if(username==null){
 	    		 filesdoc = sb.build("file:" + File.separator + path + File.separator + "dataFiles.xml"); 
 	    	 }else{        

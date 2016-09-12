@@ -501,10 +501,11 @@ var graphManager = function(canvas){
 		    		wms_results = [];
 	    		    if (projInfo != null && filePath !=null)
 	    		    {
-	    		    	checkSamples(filePath, projInfo);
+	    		    	checkSamples1(filePath, projInfo);
 	    		    	if(addSamples!=null){    
 							addSamples.setVisibility(true);
-					        map.setLayerIndex(addSamples,index+5);  
+							var layerNums = map.layers.length
+					        map.setLayerIndex(addSamples,layerNums+5);  
 						}
 						var result = Ext.getCmp('easttabs').child('#result_display');
 						result.tab.show();              
@@ -523,20 +524,20 @@ var graphManager = function(canvas){
 			    		}
 						//files_for_download_html	= files_for_download_html.replace("result_egc/","");				
 			    		files_for_download.innerHTML = files_for_download_html;
-//			    		var validate_rmse = document.getElementById('validate_rmse');
-//			    		validate_rmse.style.visibility = 'hidden';
-//			    		var map_for_show = document.getElementById('map_for_show');
-//			    		map_for_show.style.visibility = 'hidden';
-//			    		var select_show_map = document.getElementById('select_show_map');
-//			    		select_show_map.style.visibility = 'hidden';
-//	    		    	var title_map_legend = document.getElementById('title_map_legend');
-//	    		    	title_map_legend.style.visibility = 'hidden';
-//	    		    	var legend_container = document.getElementById('legend_container');
-//	    		    	legend_container.style.visibility = 'hidden';
+			    		var validate_rmse = document.getElementById('validate_rmse');
+			    		validate_rmse.style.visibility = 'hidden';
+			    		var map_for_show = document.getElementById('map_for_show');
+			    		map_for_show.style.visibility = 'hidden';
+			    		var select_show_map = document.getElementById('select_show_map');
+			    		select_show_map.style.visibility = 'hidden';
+	    		    	var title_map_legend = document.getElementById('title_map_legend');
+	    		    	title_map_legend.style.visibility = 'hidden';
+	    		    	var legend_container = document.getElementById('legend_container');
+	    		    	legend_container.style.visibility = 'hidden';
 	    		    	
 	    		    }else{
-		    		    	for(var i=0;i< mapfiles.length ; i++){
-		    		        var tmpLayer = layers[i].split("/");
+		    		    	for(var i=0;i< mapfiles.length ; i++){ 
+		    		    	var tmpLayer = layers[i].split("/");
 			    			var wms_result = new WMS_Result(mapfiles[i],layers[i],srs,tmpLayer[1],maxs[i],mins[i]);
 		    			    wms_results.push(wms_result);
 	    			    
@@ -568,8 +569,7 @@ var graphManager = function(canvas){
 		    			var temp = //'<a href= "'+ resultfile_path + layers[i] + '.tif' +'" target= "_self ">'
 						            '<a href= "'+ resultfile_path + layers[i] + '.tif' +'" target= "_self ">'
 		    				        + tmpLayer[1] +'</a><br/>';
-		    			//select_show_map_html = select_show_map_html + '<option value = "' + i + '">' + tmpLayer[1] + '</option>'; 
-		    			//temp = temp.replace("result_egc/","");
+		    			temp = temp.replace("result_egc/","");
 		    			files_for_download_html = files_for_download_html + temp;
 		    		}
 					//files_for_download_html	= files_for_download_html.replace("result_egc/","");				
@@ -1397,7 +1397,7 @@ var DataMenuItem = function(graphManager,canvas,x,y,graph,text){
 					break;
 				}
 			}
-			if(currentTask.taskName == 'Sample Based Mapping'||currentTask.taskName == 'Sampling based on Uncertainty'|| currentTask.taskName =='sampling based on purposive'){
+			if(currentTask.taskName == 'Sample Based Mapping'||currentTask.taskName == 'Sampling Based On Uncertainty'|| currentTask.taskName =='sampling based on purposive'){
 				       
 			  var algorithm = currentTask.selectedAlgorithm;
 			  var inputDatas = algorithm.inputDatas;

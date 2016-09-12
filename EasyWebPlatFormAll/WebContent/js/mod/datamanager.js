@@ -348,7 +348,8 @@ var DataManagePanel = function() {
 						var json = Ext.JSON.decode( response.responseText );
 						//console.log(json.msg);
 						if ( json.msg )
-							Ext.MessageBox.alert( "result", json.msg );
+							//Ext.MessageBox.alert( "result", json.msg );
+							Ext.MessageBox.alert( "result", "success");
 						else
 							Ext.MessageBox.alert( "result", response.responseText );
 						//Ext.MessageBox.alert( "result", response.responseText );

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files>
+  <file>
+    <fileName>lixinm88@163.com/anhui/dem2.tif</fileName>
+    <fileSize>3.10M</fileSize>
+    <type>Raster</type>
+    <format>TIF</format>
+    <semantic>DEM</semantic>
+    <dataversion>new</dataversion>
+    <top>34.6427</top>
+    <down>29.3664</down>
+    <left>114.824</left>
+    <right>119.608</right>
+    <datasetName>anhui</datasetName>
+  </file>
+  <file>
+    <fileName>lixinm88@163.com/anhui/dem3.tif</fileName>
+    <fileSize>3.10M</fileSize>
+    <type>Raster</type>
+    <format>TIF</format>
+    <semantic>DEM</semantic>
+    <dataversion>new</dataversion>
+    <top>34.6427</top>
+    <down>29.3664</down>
+    <left>114.824</left>
+    <right>119.608</right>
+    <datasetName>anhui</datasetName>
+  </file>
+</files>

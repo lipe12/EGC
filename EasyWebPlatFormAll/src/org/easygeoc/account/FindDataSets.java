@@ -32,7 +32,14 @@ public class FindDataSets extends ActionSupport{
    private String lon;
    private String lat;
    private List<String> dataSets = new ArrayList<String>();
-   public String getLon() {
+   private List<String> uploaders = new ArrayList<String>();
+   public List<String> getUploaders() {
+	return uploaders;
+}
+public void setUploaders(List<String> uploaders) {
+	this.uploaders = uploaders;
+}
+public String getLon() {
 	    return lon;
 	}
 	public void setLon(String lon) {
@@ -57,37 +64,60 @@ public class FindDataSets extends ActionSupport{
 	public String execute() {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		String username = (String)request.getSession().getAttribute("username");
-		String path = request.getSession().getServletContext().getRealPath("") + File.separator + "WEB-INF"
-				+ File.separator + "xml" + File.separator + "users_informations";
-		path = path + File.separator + username;
-		String projectDataSetPath = path + File.separator + "dataSets.xml";
-		SAXBuilder sb = new SAXBuilder();
-		Document filesdoc = null;
-		try {
-			filesdoc = sb.build("file:" + projectDataSetPath);
-			XPath xPath = XPath.newInstance("dataSets/dataSet");
-			List<Element> files = (List<Element>)xPath.selectNodes(filesdoc);
-			for(Element file: files)
-			{
-				Element dataSetName = file.getChild("datasetname");
-				String setName = dataSetName.getValue();
-				Element top = file.getChild("north");
-				double topValue = Double.parseDouble(top.getValue());
-				Element down = file.getChild("south");
-				double downValue = Double.parseDouble(down.getValue());
-				Element left = file.getChild("west");
-				double leftValue = Double.parseDouble(left.getValue());
-				Element right = file.getChild("east");
-				double rightValue = Double.parseDouble(right.getValue());
-				double lonValue = Double.parseDouble(lon);
-				double latValue = Double.parseDouble(lat);
-				if (lonValue > leftValue & lonValue < rightValue & latValue > downValue & latValue < topValue) {
-					dataSets.add(setName);
+		String projectPath = request.getSession().getServletContext().getRealPath("") + File.separator + "WEB-INF"
+				+ File.separator + "xml" + File.separator + "projects.xml";
+		try{
+			SAXBuilder sb_projectPath = new SAXBuilder();
+			Document projectdoc = null;
+			projectdoc = sb_projectPath.build("file:" + projectPath);
+			XPath proPath = XPath.newInstance("projects/project[creater=\""+ username +"\"]");
+			List<Element> projects = (List<Element>)proPath.selectNodes(projectdoc);
+			for(Element project : projects){
+				Element projectDataSets = project.getChild("datasets");
+				List<Element> datasets = (List<Element>)projectDataSets.getChildren("dataset");
+				for(Element dataset : datasets){
+					String uploader = dataset.getChild("uploader").getValue();
+					String datasetname = dataset.getChild("datasetname").getValue();
+					String path = request.getSession().getServletContext().getRealPath("") + File.separator + "WEB-INF"
+							+ File.separator + "xml" + File.separator + "users_informations";
+					path = path + File.separator + uploader;
+					String projectDataSetPath = path + File.separator + "dataSets.xml";
+					SAXBuilder sb = new SAXBuilder();
+					Document filesdoc = null;
+					try {
+						filesdoc = sb.build("file:" + projectDataSetPath);
+						XPath xPath = XPath.newInstance("dataSets/dataSet[datasetname=\""+ datasetname +"\"]");
+						List<Element> files = (List<Element>)xPath.selectNodes(filesdoc);
+						for(Element file: files)
+						{
+							Element dataSetName = file.getChild("datasetname");
+							String setName = dataSetName.getValue();
+							Element top = file.getChild("north");
+							double topValue = Double.parseDouble(top.getValue());
+							Element down = file.getChild("south");
+							double downValue = Double.parseDouble(down.getValue());
+							Element left = file.getChild("west");
+							double leftValue = Double.parseDouble(left.getValue());
+							Element right = file.getChild("east");
+							double rightValue = Double.parseDouble(right.getValue());
+							double lonValue = Double.parseDouble(lon);
+							double latValue = Double.parseDouble(lat);
+							if (lonValue > leftValue & lonValue < rightValue & latValue > downValue & latValue < topValue) {
+								dataSets.add(setName);
+								uploaders.add(uploader);
+								
+							}
+						}
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
 				}
 			}
-		} catch (Exception e) {
+		}catch (Exception e){
 			e.printStackTrace();
 		}
+		
+		
 		return SUCCESS;
 	}
 

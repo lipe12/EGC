@@ -43,7 +43,7 @@ var Group_Form = Ext.create('Ext.form.Panel', {
             id: 'group_Form_Name',
 			allowBlank:true  
         },{
-            fieldLabel: 'RequestCode',
+            fieldLabel: 'SecurityCode',
             xtype:'textfield',
             id: 'group_Form_RequestCode',
 			allowBlank:true  
@@ -70,7 +70,7 @@ var  group_Win= new Ext.Window( {
 	 buttonAlign : 'center',
 	 items : Group_Form,
 	 buttons: [{
-		text: 'Save',
+		text: 'OK',
 		handler : function(){       
 		   var groupname = Ext.getCmp('group_Form_Name').getValue();
 		   var groupcode = Ext.getCmp('group_Form_RequestCode').getValue();
@@ -92,6 +92,7 @@ var  group_Win= new Ext.Window( {
 						var tag=ajax.responseText.pJSON().tag;
 						if(tag == "0"){
 							Ext.MessageBox.alert('tip','create group successfully');
+							group_Win.hide();
 						}
 						 else if(tag == "1"){
 						 	Ext.MessageBox.alert('tip','the group is already exist');
@@ -111,14 +112,20 @@ var  group_Win= new Ext.Window( {
 					if(ajax.status==200){                
 						var tag=ajax.responseText.pJSON().tag;
 						if(tag == "0"){
+							
 							Ext.MessageBox.alert('tip','join group successfully');
+							group_Win.hide();
+							
 						}
 						else if(tag == "1"){
 							Ext.MessageBox.alert('tip','the input group is not exist');
 						}
 						else if(tag == "2"){
 							Ext.MessageBox.alert('tip','the input RequestCode is not right');
-						}          
+						}
+						else if(tag == "4"){
+							Ext.MessageBox.alert('tip','you have joined this group');
+						}
 					}
 				 }    
 			};
@@ -134,3 +141,7 @@ var  group_Win= new Ext.Window( {
 	 }]
 
 });
+
+	function messageCallback(){
+		group_Win.hide();
+	}

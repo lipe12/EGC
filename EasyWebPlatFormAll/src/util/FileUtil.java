@@ -22,13 +22,6 @@ public class FileUtil
 		return request.getSession().getServletContext().getRealPath("/");
 	}
 
-	/**
-	 * get xml folder path:WEB-INF\\xml
-	 * 
-	 * @param request
-	 * @return
-	 * @Houzw at 2016年8月26日下午5:00:38
-	 */
 	public static String getXMLDirPath(HttpServletRequest request)
 	{
 		return getAppPath(request) + "WEB-INF\\xml";
