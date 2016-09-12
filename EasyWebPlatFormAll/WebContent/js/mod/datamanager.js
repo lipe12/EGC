@@ -22,12 +22,18 @@ var DataManagePanel = function() {
 			url: 'treecontent.action'
 		}
 	} );
-	var getSelectedItemId = function() {
+	
+	var getSelectedItems=function(){
 		var items = treeGrid.getSelectionModel().selected.items;
 		if ( items.length == 0 ) {
 			Ext.MessageBox.alert( 'message', 'You must select a treenode first!' );
 			return;
 		}
+		return items;
+	};
+	
+	var getSelectedItemId = function() {
+		var items = getSelectedItems();
 		var item = items[ 0 ]; //single select
 		var itemId = item.data.id;
 		return itemId;
@@ -39,13 +45,14 @@ var DataManagePanel = function() {
 		*/
 	}
 	var getSelectedItemText = function() {
-			var items = treeGrid.getSelectionModel().selected.items;
-			if ( items.length == 0 ) {
-				Ext.MessageBox.alert( 'message', 'You must select a treenode first!' );
-				return;
-			}
+			var items = getSelectedItems();
 			var item = items[ 0 ]; //single select
 			return item.data.text;
+		}
+	var getSelectedItemType = function() {
+			var items = getSelectedItems();
+			var item = items[ 0 ]; //single select
+			return item.data.type;
 		}
 		/**
 		 * parent id
@@ -313,8 +320,10 @@ var DataManagePanel = function() {
 	var tbAdd2ProjectFn = function() {
 			var checkedItems = treeGrid.getChecked();
 			var itemId = getSelectedItemId();
+			var itemType=getSelectedItemType();
 			var pid = getSelectedItemPId( itemId );
-			if ( !/Projects/.test( pid ) ) {
+			if ( itemType!='Project' ) {
+			//if ( !/Projects/.test( pid ) ) {
 				Ext.MessageBox.alert( "message", "Please select a project." );
 			} else if ( checkedItems.length == 0 ) {
 				Ext.MessageBox.alert( "message", "Please select datasets first." );
@@ -337,11 +346,12 @@ var DataManagePanel = function() {
 					url: "addDataToProject.action",
 					success: function( response, config ) {
 						var json = Ext.JSON.decode( response.responseText );
+						//console.log(json.msg);
 						if ( json.msg )
 							Ext.MessageBox.alert( "result", json.msg );
 						else
 							Ext.MessageBox.alert( "result", response.responseText );
-						Ext.MessageBox.alert( "result", response.responseText );
+						//Ext.MessageBox.alert( "result", response.responseText );
 						treeStore.reload();
 					},
 					failure: function() {

@@ -417,7 +417,8 @@ public class CreateDatasetAction extends BaseAction
 					String uploader = df_uploaders[i];
 					System.out.println(datafile);
 
-					XPath datafilePath = XPath.newInstance("projects/project[name='" + projectName + "']");
+					XPath datafilePath = XPath.newInstance("projects/project[name='"
+							+ projectName + "']/files/file[filename='" + datafile + "']");
 					List<Element> dfl = (List<Element>) datafilePath.selectNodes(projsdoc);
 					if (dfl.size() > 0)
 					{
