@@ -76,7 +76,7 @@ var treePanel = new Ext.tree.TreePanel(
     {
         xtype: 'treecolumn',
         dataIndex: 'text',
-        text: 'Project Datasets',
+        text: 'datasets',
         flex: 1
     }],
     contextMenu: DataTreeController.contextmenu,

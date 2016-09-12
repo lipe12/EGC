@@ -1,15 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <groups>
-    <group>
-        <groupname>localgroup</groupname>
-        <groupcode>1</groupcode>
-        <member>
-            <username>jjc1022@126.com</username>
-            <membershipe>founder</membershipe>
-        </member>
-        <member>
-            <username>zcy19880520@163.com</username>
-            <membershipe>member</membershipe>
-        </member>
+   <group>
+    <groupname>localgroup</groupname>
+    <groupcode>1</groupcode>
+    <member>
+      <username>jjc1022@126.com</username>
+      <membershipe>founder</membershipe>
+    </member>
+    
+  </group>
+
+  <group>
+    <groupname>Moscow</groupname>
+    <groupcode>123456</groupcode>
+    <member>
+      <username>azhu@wisc.edu</username>
+      <membershipe>founder</membershipe>
+    </member>
+    <member>
+      <username>77@123.com</username>
+      <membershipe>member</membershipe>
+    </member>
+
+  </group>
+
+  <group>
+    <groupname>Test</groupname>
+    <groupcode>123</groupcode>
+    <member>
+      <username>ff@123.com</username>
+      <membershipe>founder</membershipe>
+    </member>
     </group>
 </groups>

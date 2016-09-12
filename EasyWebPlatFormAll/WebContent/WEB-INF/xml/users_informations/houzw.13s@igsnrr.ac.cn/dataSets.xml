@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSets>
+  <dataSet>
+    <datasetname>test</datasetname>
+    <north />
+    <south />
+    <west />
+    <east />
+    <kmlpath />
+  </dataSet>
+</dataSets>

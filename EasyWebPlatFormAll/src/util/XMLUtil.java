@@ -146,4 +146,17 @@ public class XMLUtil
 			e.printStackTrace();
 		}
 	}
+	public static void createDataSetXML(String xmlPath)
+	{
+		Element root = new Element("dataSets");
+		Document doc = new Document(root);
+		XMLUtil.saveXML(doc, new File(xmlPath));
+		/*
+		 * Format format = Format.getCompactFormat();
+		 * format.setEncoding("UTF-8"); format.setIndent("  "); XMLOutputter
+		 * XMLOut = new XMLOutputter(format); try { XMLOut.output(Doc, new
+		 * FileOutputStream(xmlPath)); } catch (FileNotFoundException e) {
+		 * e.printStackTrace(); } catch (IOException e) { e.printStackTrace(); }
+		 */
+	}
 }

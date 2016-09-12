@@ -199,32 +199,32 @@ public class RunBpel extends ActionSupport{
 			}
 			
 		}
-		for (int i = 0; i < midleResult.size(); i++) {
-			String dataname = midleResult.get(i);
-			String layername ="";
-			String mapfilename = "";
-			String semantic = "";
-			layername = dataname.replace(".tif", "");
-			mapfilename = dataname.replace(".tif", "");
-			
-			flag = createMapFile.create_mapfile(dataname);
-			layers.add(layername);                          
-            mapfiles.add(mapfilename);
-            maxs.add(createMapFile.max);
-			mins.add(createMapFile.min);
-			String regEx = "[a-zA-Z]+";  
-			Pattern pattern = Pattern.compile(regEx);   
-			Matcher matcher = pattern.matcher(dataname); 
-            if(matcher.find()){
-            	semantic = matcher.group();        	  
-            }
-            
-            semantics.add(semantic);
-			
-			if(flag == false){            
-				return flag;
-			}
-		}
+//		for (int i = 0; i < midleResult.size(); i++) {
+//			String dataname = midleResult.get(i);
+//			String layername ="";
+//			String mapfilename = "";
+//			String semantic = "";
+//			layername = dataname.replace(".tif", "");
+//			mapfilename = dataname.replace(".tif", "");
+//			
+//			flag = createMapFile.create_mapfile(dataname);
+//			layers.add(layername);                          
+//            mapfiles.add(mapfilename);
+//            maxs.add(createMapFile.max);
+//			mins.add(createMapFile.min);
+//			String regEx = "[a-zA-Z]+";  
+//			Pattern pattern = Pattern.compile(regEx);   
+//			Matcher matcher = pattern.matcher(dataname); 
+//            if(matcher.find()){
+//            	semantic = matcher.group();        	  
+//            }
+//            
+//            semantics.add(semantic);
+//			
+//			if(flag == false){            
+//				return flag;
+//			}
+//		}
 		return flag;
 	}
 	public String run(){   

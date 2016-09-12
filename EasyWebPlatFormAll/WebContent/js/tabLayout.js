@@ -282,20 +282,20 @@ Ext.onReady(function()
                 frame: true,
                 width: 250,
                 items: [
-                    {
-                        //title: 'Search',
-                        title: 'Guide',
-                        id: 'searchArea',
-                        xtype: 'form',
-                        autoScroll: true,
-                        frame: true,
-                        items: [
-                        {
-                            xtype: 'component',
-                            html: '<br/>' + '<br/><p style="line-height:20px;"><font  size="2" color="#336699" >You can accomplish geo-computation tasks (e.g. Digital Soil Mapping, Digital Terrain Analysis, Monkey Habitat Mapping, etc.) on EGC platform in <b>three steps</b>:</font></p>' + '<br/><br/><p style="line-height:20px;"><font  size="2" color="#336699" ><b>Step1</b>: Use the prepared the area of interest (AOI) or Define AOI on the ¡°Map¡± interface by pressing the <b>Ctrl</b> key and dragging a rectangle with the mouse;</font></p>' + '<br/><br/><p style="line-height:20px;"><font size="2" color="#336699" ><b>Step2</b>: <b>Left Click</b> on the defined AOI and choose the geo-computation task of interest;</font></p>' + '<br/><br/><p style="line-height:20px;"><font size="2"  color="#336699" ><b>Step3</b>: <b>Construct</b> the model on the "Model" interface (<b>automatically</b> opened). When you finish, run the model and get the results. You may switch between the "Map" interface and the "Model" interface to view the results and modify the model</font></p>',
-                            style: 'margin-bottom: 20px;'
-                        }]
-                    },
+//                    {
+//                        //title: 'Search',
+//                        title: 'Guide',
+//                        id: 'searchArea',
+//                        xtype: 'form',
+//                        autoScroll: true,
+//                        frame: true,
+//                        items: [
+//                        {
+//                            xtype: 'component',
+//                            html: '<br/>' + '<br/><p style="line-height:20px;"><font  size="2" color="#336699" >You can accomplish geo-computation tasks (e.g. Digital Soil Mapping, Digital Terrain Analysis, Monkey Habitat Mapping, etc.) on EGC platform in <b>three steps</b>:</font></p>' + '<br/><br/><p style="line-height:20px;"><font  size="2" color="#336699" ><b>Step1</b>: Use the prepared the area of interest (AOI) or Define AOI on the ¡°Map¡± interface by pressing the <b>Ctrl</b> key and dragging a rectangle with the mouse;</font></p>' + '<br/><br/><p style="line-height:20px;"><font size="2" color="#336699" ><b>Step2</b>: <b>Left Click</b> on the defined AOI and choose the geo-computation task of interest;</font></p>' + '<br/><br/><p style="line-height:20px;"><font size="2"  color="#336699" ><b>Step3</b>: <b>Construct</b> the model on the "Model" interface (<b>automatically</b> opened). When you finish, run the model and get the results. You may switch between the "Map" interface and the "Model" interface to view the results and modify the model</font></p>',
+//                            style: 'margin-bottom: 20px;'
+//                        }]
+//                    },
                     //FileDataGrid_User,
                     //grid,
                     treePanel,
@@ -595,7 +595,7 @@ Ext.onReady(function()
             },
             {
                 region: 'south',
-                html: '<font face="Times New Roman" size="3" color="#666666">Copyright &copy; 2013-2014 Institute of Geographic Sciences and Natural Resources Research, CAS. All rights reserved.</font>',
+                html: '<font face="Times New Roman" size="3" color="#666666">Copyright &copy; 2013-2016 Institute of Geographic Sciences and Natural Resources Research, CAS. All rights reserved.</font>',
                 height: 30
             },
             tabs //include "Earth" tab and "Model" tab 

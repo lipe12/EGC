@@ -276,7 +276,7 @@ var DataManagePanel = function() {
 								treeStore.reload();
 							},
 							failure: function() {
-								Ext.MessageBox.alert( "result", "Create dataset folder failed." );
+								Ext.MessageBox.alert( "result", "Delete dataset failed." );
 							},
 							method: "post",
 							params: paramsObj
@@ -338,10 +338,11 @@ var DataManagePanel = function() {
 					success: function( response, config ) {
 						var json = Ext.JSON.decode( response.responseText );
 						if ( json.msg )
-							Ext.MessageBox.alert( "result", json.msg );
+							//Ext.MessageBox.alert( "result", json.msg );
+							Ext.MessageBox.alert( "result", "success");
 						else
 							Ext.MessageBox.alert( "result", response.responseText );
-						Ext.MessageBox.alert( "result", response.responseText );
+						//Ext.MessageBox.alert( "result", response.responseText );
 						treeStore.reload();
 					},
 					failure: function() {

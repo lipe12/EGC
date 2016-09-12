@@ -97,7 +97,7 @@ GeoExt.createSampleDataWin = function(data,graphManager){
 //	maxLon = maxLon.toFixed(6);               
 	
 	if(KenyaStatus == false){        
-		SampleFileStore.load({params:{semantic:data.dataName,dataSetName:soilMappingDataSet}});  
+		SampleFileStore.load({params:{semantic:data.dataName,dataSetName:soilMappingDataSet,upLoader:dataUploader}});  
 		SoilPropertyStore.load();		
 	}else if(KenyaStatus == true){
 	    if(CheckSampleInRect()==true){
@@ -2107,8 +2107,8 @@ GeoExt.createSampleMappingParametersWin = function(paras){
         ]
     });
 	var states1= [
-	               {"name":"Gower","value":"Gower"},
 	               {"name":"Gaussian","value":"Gaussian"},
+	               {"name":"Gower","value":"Gower"},
 	               {"name":"Boolean","value":"Boolean"}
 	               
 	             ];
@@ -2338,7 +2338,7 @@ GeoExt.createSampleMappingParametersWin = function(paras){
         		        id:layerid,    
         		        displayField: 'name',
         		        valueField:'value',
-        		        value:'Gower',    
+        		        value:'Gaussian',    
         		        width: 200,         
         		        labelWidth: 100,            
         		        store: store1,    
@@ -2603,7 +2603,7 @@ GeoExt.createInputDataWindow = function(_data , _graphManager){
 	*/
         	
 	//FileDataStore.load({params:{semantic:_data.dataName,top:maxLat,down:minLat,left:minLon,right:maxLon }});     
-	FileDataStore.load({params:{semantic:_data.dataName,dataSetName:soilMappingDataSet}});
+	FileDataStore.load({params:{semantic:_data.dataName,dataSetName:soilMappingDataSet,upLoader:dataUploader}});
 	var _inputfun = function(){
 		var records = FileDataGrid.getSelectionModel().getSelection();
 		if(records.length >0){       
@@ -3588,7 +3588,7 @@ GeoExt.createPurposiveSamplingWin = function(paras){
     		decimalPrecision:3,
     		id:'EE',
     		step:0.001,
-    		value:0.005,
+    		value:0.01,
     		minValue:0.000,
     		maxValue:1.000,
     		width:400,
@@ -3606,7 +3606,7 @@ GeoExt.createPurposiveSamplingWin = function(paras){
     		decimalPrecision:0,
     		id:'IN',
     		step:1,
-    		value:100,
+    		value:20,
     		minValue:0,
     		maxValue:9999,
     		width:400,

@@ -32,6 +32,7 @@ import com.opensymphony.xwork2.ActionSupport;
  * tag = 1:the input group name do not exist when join the a group, while means the group is already exist when create a group
  * tag = 2:requestcode is wrong
  * tag = 3:group already
+ * tag = 4:has joined the group
  * @author lp
  * */
 public class GroupOperation extends ActionSupport{
@@ -139,23 +140,36 @@ public class GroupOperation extends ActionSupport{
 	    		
 	    	} else if(group.getChildText("groupcode").equals(groupCode)){
 	    		tag = "0";
-	    		Element member = new Element("member");
-	    		Element __username = new Element("username");
-		    	Element __membershipe = new Element("membershipe");
-		    	__membershipe.setText("member");
-		    	__username.setText(username);
-		    	member.addContent(__username);
-		    	member.addContent(__membershipe);
-		    	group.addContent(member);
-		    	Format format = Format.getCompactFormat();   
-	  	        format.setEncoding("UTF-8");  
-	  	        format.setIndent("  ");     
-	  	        XMLOutputter xmlout = new XMLOutputter(format); 
-	  	        File _file = null;
-	  	        _file = new File( path + File.separator + "groups.xml");  
-	  	        FileWriter filewriter = new FileWriter(_file);
-		        xmlout.output(filesdoc, filewriter);
-		        filewriter.close();
+	    		boolean flag = false;
+	    		List<Element>members = (List<Element>)group.getChildren("member");
+	    		for(Element member:members){
+	    			Element user = member.getChild("username");
+	    			if (user.getValue().equals(username)) {
+						flag = true;
+					}
+	    		}
+	    		if (flag) {
+					tag = "4";
+				}else {
+					Element member = new Element("member");
+		    		Element __username = new Element("username");
+			    	Element __membershipe = new Element("membershipe");
+			    	__membershipe.setText("member");
+			    	__username.setText(username);
+			    	member.addContent(__username);
+			    	member.addContent(__membershipe);
+			    	group.addContent(member);
+			    	Format format = Format.getCompactFormat();   
+		  	        format.setEncoding("UTF-8");  
+		  	        format.setIndent("  ");     
+		  	        XMLOutputter xmlout = new XMLOutputter(format); 
+		  	        File _file = null;
+		  	        _file = new File( path + File.separator + "groups.xml");  
+		  	        FileWriter filewriter = new FileWriter(_file);
+			        xmlout.output(filesdoc, filewriter);
+			        filewriter.close();
+				}
+	    		
 	    	}
 	    	else {
 				tag = "2";

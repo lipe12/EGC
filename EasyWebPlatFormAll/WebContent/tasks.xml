@@ -297,11 +297,11 @@
 				</Parameter>
 				<Parameter>
 					<ParaSematic>endError</ParaSematic>
-					<DefaultValue>0.005</DefaultValue>
+					<DefaultValue>0.05</DefaultValue>
 				</Parameter>
 				<Parameter>
 					<ParaSematic>iterationNum</ParaSematic>
-					<DefaultValue>100</DefaultValue>
+					<DefaultValue>10</DefaultValue>
 				</Parameter>
 				<Parameter>
 					<ParaSematic>Alpha_Cut</ParaSematic>

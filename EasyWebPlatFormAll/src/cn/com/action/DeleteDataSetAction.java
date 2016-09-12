@@ -34,7 +34,7 @@ public class DeleteDataSetAction extends BaseAction
 								// files folder
 								// whetherExist = 1, the dataset and foldr exist
 								// and delete sucessfully
-	String username;
+	private String username;
 
 	public int getWhetherExist()
 	{
@@ -246,16 +246,22 @@ public class DeleteDataSetAction extends BaseAction
 		{
 			projsdoc = sb.build(file);
 			XPath projPath = XPath.newInstance("projects/project[name='" + projectName + "']");
-			Element root = projsdoc.getRootElement();
-			Element projEl = (Element) projPath.selectSingleNode(projsdoc);
-			Element datasets = projEl.getChild("datasets");
-			List<Element> datasetList = datasets.getChildren("dataset");
-			for (Element dataset : datasetList)
+			// Element root = projsdoc.getRootElement();
+			List<Element> projEls = (List<Element>) projPath.selectNodes(projsdoc);
+			for (Element projEl : projEls)
 			{
-				if (dataset.getChildText("datasetname").equals(dataSetName))
+				if (getUsername().equals(projEl.getChildText("creater")))
 				{
-					datasets.removeContent(dataset);
-					break;
+					Element datasets = projEl.getChild("datasets");
+					List<Element> datasetList = datasets.getChildren("dataset");
+					for (Element dataset : datasetList)
+					{
+						if (dataset.getChildText("datasetname").equals(dataSetName))
+						{
+							datasets.removeContent(dataset);
+							break;
+						}
+					}
 				}
 			}
 			XMLUtil.saveXML(projsdoc, file);
