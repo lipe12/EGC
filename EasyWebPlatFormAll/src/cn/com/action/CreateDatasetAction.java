@@ -19,34 +19,53 @@ import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.xpath.XPath;
 
+import com.googlecode.jsonplugin.annotations.JSON;
+
 import util.Constants;
 import util.XMLUtil;
 
-import com.googlecode.jsonplugin.annotations.JSON;
-
-/** 
+/**
  * @author Houzw
- * @Description TODO   
- * @Createdate 2016年8月11日 下午12:03:36 
+ * @Description TODO
+ * @Createdate 2016年8月11日 下午12:03:36
  */
 public class CreateDatasetAction extends BaseAction
 {
-	private String[] datasets;
-	private String[] datafiles;
-	private String datasetname;
-	private String projectName;
-	private String[] ds_uploaders;
+	private String[]	datasets;
+	private String[]	datafiles;
+	private String		datasetname;
+	private String		projectName;
+	// dataset uploader
+	private String[]	ds_uploaders;
+	// data file uploader
+	private String[]	df_uploaders;
+	// data file's parent dataset
+	private String[]	df_dataset;
 
-	private String[] df_uploaders;
+	/**
+	 * @return the df_dataset
+	 */
+	public String[] getDf_dataset()
+	{
+		return df_dataset;
+	}
 
-	private String north;
-	private String south;
-	private String west;
-	private String east;
+	/**
+	 * @param df_dataset the df_dataset to set
+	 */
+	public void setDf_dataset(String[] df_dataset)
+	{
+		this.df_dataset = df_dataset;
+	}
+
+	private String	north;
+	private String	south;
+	private String	west;
+	private String	east;
 	// private String kmlPath;
-	private String dataSetPath;
-	private String username;
-	private boolean flag;
+	private String	dataSetPath;
+	private String	username;
+	private boolean	flag;
 
 	// start getter setter
 
@@ -113,6 +132,7 @@ public class CreateDatasetAction extends BaseAction
 	{
 		this.datafiles = datafiles;
 	}
+
 	/**
 	 * @return the projectName
 	 */
@@ -128,6 +148,7 @@ public class CreateDatasetAction extends BaseAction
 	{
 		this.projectName = projectName;
 	}
+
 	public void setFlag(boolean flag)
 	{
 		this.flag = flag;
@@ -160,10 +181,10 @@ public class CreateDatasetAction extends BaseAction
 		// / begin
 		String integer_random = this.createFixLenthString(6);
 		String dot_random = this.createFixLenthString(6);
-//		Integer int_north = new Integer(integer_random) + 1000;
-//		Integer int_south = new Integer(integer_random) - 1000;
-//		Integer int_west = new Integer(integer_random) - 1500;
-//		Integer int_east = new Integer(integer_random) + 1500;
+		// Integer int_north = new Integer(integer_random) + 1000;
+		// Integer int_south = new Integer(integer_random) - 1000;
+		// Integer int_west = new Integer(integer_random) - 1500;
+		// Integer int_east = new Integer(integer_random) + 1500;
 
 		north = "";
 		south = "";
@@ -191,8 +212,7 @@ public class CreateDatasetAction extends BaseAction
 				this.flag = false;
 				System.out.println("flag: " + flag);
 			}
-		}
-		catch (Exception e)
+		} catch (Exception e)
 		{
 			// TODO: handle exception
 		}
@@ -209,7 +229,7 @@ public class CreateDatasetAction extends BaseAction
 		try
 		{
 			filesdoc = sb.build("file:\\" + this.dataSetPath);
-			//filesdoc = sb.build("file:" + File.separator + this.dataSetPath);
+			// filesdoc = sb.build("file:" + File.separator + this.dataSetPath);
 			Element root = filesdoc.getRootElement();
 			Element _dataSet = new Element("dataSet");
 			// _dataSet.getParentElement();
@@ -243,16 +263,14 @@ public class CreateDatasetAction extends BaseAction
 			 * new FileWriter(dataFiles); xmlout.output(filesdoc, filewriter);
 			 * filewriter.close();
 			 */
-		}
-		catch (JDOMException e)
+		} catch (JDOMException e)
+		{
+			e.printStackTrace();
+		} catch (IOException e)
 		{
 			e.printStackTrace();
 		}
-		catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-		 
+
 	}
 
 	/**
@@ -271,19 +289,19 @@ public class CreateDatasetAction extends BaseAction
 		}
 	}
 
-//	private void createDataSetXML(String xmlPath)
-//	{
-//		Element root = new Element("dataSets");
-//		Document doc = new Document(root);
-//		XMLUtil.saveXML(doc, new File(xmlPath));
-//		/*
-//		 * Format format = Format.getCompactFormat();
-//		 * format.setEncoding("UTF-8"); format.setIndent("  "); XMLOutputter
-//		 * XMLOut = new XMLOutputter(format); try { XMLOut.output(Doc, new
-//		 * FileOutputStream(xmlPath)); } catch (FileNotFoundException e) {
-//		 * e.printStackTrace(); } catch (IOException e) { e.printStackTrace(); }
-//		 */
-//	}
+	// private void createDataSetXML(String xmlPath)
+	// {
+	// Element root = new Element("dataSets");
+	// Document doc = new Document(root);
+	// XMLUtil.saveXML(doc, new File(xmlPath));
+	// /*
+	// * Format format = Format.getCompactFormat();
+	// * format.setEncoding("UTF-8"); format.setIndent(" "); XMLOutputter
+	// * XMLOut = new XMLOutputter(format); try { XMLOut.output(Doc, new
+	// * FileOutputStream(xmlPath)); } catch (FileNotFoundException e) {
+	// * e.printStackTrace(); } catch (IOException e) { e.printStackTrace(); }
+	// */
+	// }
 
 	private String createFixLenthString(int strLength)
 	{
@@ -310,8 +328,7 @@ public class CreateDatasetAction extends BaseAction
 				rootElement.removeContent(el);
 				XMLUtil.saveXML(datasetsXml);
 			}
-		}
-		catch (JDOMException e)
+		} catch (JDOMException e)
 		{
 			e.printStackTrace();
 		}
@@ -331,13 +348,15 @@ public class CreateDatasetAction extends BaseAction
 	{
 
 	}
+
 	/**
 	 * 往project添加数据
 	 * 
 	 * @throws JDOMException
+	 * @throws IOException
 	 * @Houzw at 2016年8月18日下午3:31:42
 	 */
-	public void addProjectData() throws Exception
+	public void addProjectData() throws JDOMException, IOException
 	{
 		username = getUsername();
 		HttpServletRequest request = ServletActionContext.getRequest();
@@ -417,8 +436,7 @@ public class CreateDatasetAction extends BaseAction
 					String uploader = df_uploaders[i];
 					System.out.println(datafile);
 
-					XPath datafilePath = XPath.newInstance("projects/project[name='"
-							+ projectName + "']/files/file[filename='" + datafile + "']");
+					XPath datafilePath = XPath.newInstance("projects/project[name='" + projectName + "']/files/file[filename='" + datafile + "']");
 					List<Element> dfl = (List<Element>) datafilePath.selectNodes(projsdoc);
 					if (dfl.size() > 0)
 					{
@@ -434,6 +452,10 @@ public class CreateDatasetAction extends BaseAction
 					Element uploaderEl = new Element("uploader");
 					uploaderEl.setText(uploader);
 					fileEl.addContent(uploaderEl);
+					// parent dataset
+					Element pDatasetEl = new Element("parentDataset");
+					pDatasetEl.setText(df_dataset[i]);
+					fileEl.addContent(pDatasetEl);
 				}
 			}
 			XMLUtil.saveXML(projsdoc, new File(file.getAbsolutePath()));
@@ -443,8 +465,7 @@ public class CreateDatasetAction extends BaseAction
 			else
 				map.put("msg", SUCCESS);
 			writeJson(com.alibaba.fastjson.JSON.toJSONString(map));
-		}
-		catch (Exception e)
+		} catch (Exception e)
 		{
 			e.printStackTrace();
 			Map<String, Object> map = new HashMap<String, Object>();
@@ -456,7 +477,7 @@ public class CreateDatasetAction extends BaseAction
 
 	public void createProject()
 	{
-		username = getUsername();		
+		username = getUsername();
 		HttpServletRequest request = ServletActionContext.getRequest();
 		File file = XMLUtil.getWebappXmlFile(request, Constants.PROJECTS_DOT_XML);
 		SAXBuilder sb = new SAXBuilder();
@@ -477,8 +498,7 @@ public class CreateDatasetAction extends BaseAction
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("msg", SUCCESS);
 			writeJson(com.alibaba.fastjson.JSON.toJSONString(map));
-		}
-		catch (Exception e)
+		} catch (Exception e)
 		{
 			e.printStackTrace();
 		}
