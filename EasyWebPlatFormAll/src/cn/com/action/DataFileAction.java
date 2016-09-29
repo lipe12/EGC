@@ -6,9 +6,14 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;  
+
 import org.apache.struts2.ServletActionContext;
+
 import cn.com.bean.DataFile;
+
 import com.opensymphony.xwork2.ActionSupport;
+
+
 
 
 import org.jdom2.Document;
@@ -28,14 +33,24 @@ public class DataFileAction extends ActionSupport{
 	
 	private String semantic;
 	private String dataSetName;
-	private String upLoader;
-	public String getUpLoader() {
-		return upLoader;
+	private String lon;
+	public String getLon() {
+		return lon;
 	}
 
-	public void setUpLoader(String upLoader) {
-		this.upLoader = upLoader;
+	public void setLon(String lon) {
+		this.lon = lon;
 	}
+
+	public String getLat() {
+		return lat;
+	}
+
+	public void setLat(String lat) {
+		this.lat = lat;
+	}
+
+	private String lat;
 
 	public String getDataSetName() {
 		return dataSetName;
@@ -60,30 +75,76 @@ public class DataFileAction extends ActionSupport{
 	    HttpServletRequest request = ServletActionContext.getRequest();
 
 	    String path = request.getSession().getServletContext().getRealPath("")+ File.separator +"WEB-INF" + File.separator +"xml";
+	    String pathXmlFolder = request.getSession().getServletContext().getRealPath("")+ File.separator +"WEB-INF" + File.separator +"xml";
 	    try{
 	    	 Document filesdoc = null;
-	    	 //String username = (String)request.getSession().getAttribute("username");
-	    	 String username = upLoader;
+	    	 String username = (String)request.getSession().getAttribute("username");
 	    	 if(username==null){
 	    		 filesdoc = sb.build("file:" + File.separator + path + File.separator + "dataFiles.xml");	 
 	    	 }else{            
 	    		 path = path + File.separator + "users_informations" + File.separator + username;
-	    		 //TODO:等侯志伟把前台弄好，确定他建立了一个什么表来存储project数据，然后把_dataFiles.xml修改为该表。
-	    		 filesdoc = sb.build("file:" + File.separator + path + File.separator + username + "_dataFiles.xml"); 
+	    		 
+	    		 filesdoc = sb.build("file:" + File.separator + path + File.separator + username + "_projects.xml"); 
 	    	 }
-		     XPath xpath = XPath.newInstance("files/file");
-		     List<Element> files = (List<Element>)xpath.selectNodes(filesdoc);
+	    	 XPath projXPath = XPath.newInstance("projects/project");
+	    	 List<Element> projects = (List<Element>)projXPath.selectNodes(filesdoc);
+	    	 for(Element projectElement : projects){
+	    		 Element dataSetElement = projectElement.getChild("datasets");
+	    		 if (dataSetElement != null) {
+	    			 List<Element> dataSetsElements = dataSetElement.getChildren("dataset");
+	    			 if (dataSetsElements.size() > 0) {
+	    				 for(Element dataSet : dataSetsElements){
+			    			 String dataSetNameString = dataSet.getChild("datasetname").getValue();
+			    			 String uploaderNameString = dataSet.getChild("uploader").getValue();
+			    			 boolean isInDataSetExtent = judgeDataSets(dataSetNameString,uploaderNameString,pathXmlFolder);
+			    			 if (isInDataSetExtent) {
+			    				 readDataSets(dataSetNameString,uploaderNameString,pathXmlFolder);
+							}
+			    		 }
+					}
+		    		 
+				}
+	    		 
+	    		 Element dataFileElement = projectElement.getChild("files");
+	    		 if (dataFileElement != null) {
+					List<Element> dataFiles = dataFileElement.getChildren("file");
+					if (dataFiles.size() > 0) {
+						for(Element dataFile : dataFiles){
+							String uploader = dataFile.getChild("uploader").getValue();
+							String dataSetName = dataFile.getChild("parentDataset").getValue();
+							String filename = dataFile.getChild("filename").getValue();
+							boolean isInDataSetExtent = judgeDataSets(dataSetName,uploader,pathXmlFolder);
+							if (isInDataSetExtent) {
+								readDatafiles(filename,dataSetName,uploader,pathXmlFolder);
+							}
+						}
+					}
+				}
+	    	 }
 		     
+	    }catch(Exception e){
+	    	e.printStackTrace();
+	    }
+		return SUCCESS;
+	}
+	/**
+	 * 读取project里面dataset里面的图层信息
+	 * */
+	public void readDataSets(String dataSetName, String uploader,String path) {
+		String datafilePathString = path + File.separator + "users_informations" + File.separator + uploader + File.separator + uploader +  "_dataFiles.xml";
+		SAXBuilder sb = new SAXBuilder();
+		
+		try {
+			Document filedoc = sb.build("file:"+datafilePathString);
+			XPath xpath = XPath.newInstance("files/file");
+		     List<Element> files = (List<Element>)xpath.selectNodes(filedoc);
 		     for(Element file : files){
-		    	 
 		    	 Element _semantic = file.getChild("semantic");
 		    	 Element _top = file.getChild("top");
 		    	 Element _down = file.getChild("down");
 		    	 Element _left = file.getChild("left");
 		    	 Element _right = file.getChild("right");
 		    	 Element _datasetName = file.getChild("datasetName");
-//		    	 if(semantic.equals(_semantic.getText()) && top.equals(_top.getText())&& down.equals(_down.getText())
-//		    	    && left.equals(_left.getText()) && right.equals(_right.getText())){
 			     if(semantic.equals(_semantic.getText()) && dataSetName.equals(_datasetName.getText())){	 
 			    	 DataFile datafile = new DataFile();
 			    	 Element _fileName = file.getChild("fileName");
@@ -100,18 +161,93 @@ public class DataFileAction extends ActionSupport{
 			    	 datafile.setLeft(_left.getText());
 			    	 datafile.setRight(_right.getText());
 			    	 items.add(datafile);
-			    	
 		    	 }
 		    	 
 		     }
 		     
-		     total = items.size();
-	    }catch(Exception e){
-	    	e.printStackTrace();
-	    }
-		return SUCCESS;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
-	
+	/**
+	 * 当project为单独图层时，读取图层的信息
+	 * */
+	public void readDatafiles(String dataFileName,String dataSetName, String uploader,String path) {
+		String datafilePathString = path + File.separator + "users_informations" + File.separator + uploader + File.separator + uploader +  "_dataFiles.xml";
+		SAXBuilder sb = new SAXBuilder();
+		try {
+			Document filedoc = sb.build("file:"+datafilePathString);
+			XPath xpath = XPath.newInstance("files/file");
+		     List<Element> files = (List<Element>)xpath.selectNodes(filedoc);
+		     
+		     for(Element file : files){
+		    	 Element _filename = file.getChild("fileName");
+		    	 String[] tmpString = _filename.getValue().split("/");
+		    	 int len = tmpString.length;
+		    	 String _fileNameString = tmpString[len - 1];
+		    	 String[] nameStrings = _fileNameString.split("\\.");
+		    	 String nameString = nameStrings[0];
+		    	 Element _semantic = file.getChild("semantic");
+		    	 Element _top = file.getChild("top");
+		    	 Element _down = file.getChild("down");
+		    	 Element _left = file.getChild("left");
+		    	 Element _right = file.getChild("right");
+		    	 Element _datasetName = file.getChild("datasetName");
+		    	 
+			     if(semantic.equals(_semantic.getText()) && dataSetName.equals(_datasetName.getText()) && dataFileName.equals(nameString)){	 
+			    	 DataFile datafile = new DataFile();
+			    	 Element _fileName = file.getChild("fileName");
+			    	 datafile.setFileName(_fileName.getText());
+			    	 Element _fileSize = file.getChild("fileSize");
+			    	 datafile.setFileSize(_fileSize.getText());
+			    	 Element _type = file.getChild("type");
+			    	 datafile.setType(_type.getText());
+			    	 Element _format = file.getChild("format");
+			    	 datafile.setFormat(_format.getText());
+			    	 datafile.setSemantic(_semantic.getText());
+			    	 datafile.setTop(_top.getText());
+			    	 datafile.setDown(_down.getText());
+			    	 datafile.setLeft(_left.getText());
+			    	 datafile.setRight(_right.getText());
+			    	 items.add(datafile);
+		    	 }
+		    	 
+		     }
+		     
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	public boolean judgeDataSets(String dataSetName, String uploader,String path) {
+		String datafilePathString = path + File.separator + "users_informations" + File.separator + uploader + File.separator +  "dataSets.xml";
+		boolean tag = false;
+		SAXBuilder sb = new SAXBuilder();
+		
+		try {
+			Document doc = sb.build("file:" + datafilePathString);
+			XPath xpath = XPath.newInstance("dataSets/dataSet[datasetname=\""+ dataSetName +"\"]");
+		     Element dataSet = (Element)xpath.selectSingleNode(doc);
+		     String northString = dataSet.getChild("north").getValue();
+		     if (!dataSet.getChild("north").getValue().equals("")) {
+		    	 double north = Double.parseDouble(dataSet.getChild("north").getValue());
+			     double south = Double.parseDouble(dataSet.getChild("south").getValue());
+			     double west = Double.parseDouble(dataSet.getChild("west").getValue());
+			     double east = Double.parseDouble(dataSet.getChild("east").getValue());
+			     double lonValue = Double.parseDouble(lon);
+				 double latValue = Double.parseDouble(lat);
+				 if (lonValue > west & lonValue < east & latValue > south & latValue < north) {
+						tag = true;
+					}
+			}
+		     
+		     
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return tag;
+	}
 	public String getSemantic() {
 		return semantic;
 	}

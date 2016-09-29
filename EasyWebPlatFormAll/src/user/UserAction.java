@@ -194,6 +194,7 @@ public class UserAction extends ActionSupport{
 			        creatDir(folderPath);
 			        copy(path + File.separator + "dataFiles.xml",folderPath  + name +"_dataFiles.xml");
 			        copy(path + File.separator + "model.xml",folderPath  + name +"_model.xml");
+			        copy(path + File.separator + "projects.xml",folderPath  + name +"_projects.xml");
 			        //File file = XMLUtil.getUsersXmlFile(request, Constants.DATASETS_DOT_XML);
 			        String dataSetPath = folderPath  +"dataSets.xml";
 			        File file = new File(dataSetPath);

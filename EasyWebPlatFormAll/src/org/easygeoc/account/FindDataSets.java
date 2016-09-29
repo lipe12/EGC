@@ -26,19 +26,26 @@ import com.sun.net.httpserver.Authenticator.Success;
 
 /**
  * @author lp
+ * 该java类已经废弃，不再使用
  * this class is used when network front end(前端) recipe right click
  * the back end should return the datasets which their extend contains the mouse location*/
 public class FindDataSets extends ActionSupport{
    private String lon;
    private String lat;
-   private List<String> dataSets = new ArrayList<String>();
-   private List<String> uploaders = new ArrayList<String>();
-   public List<String> getUploaders() {
-	return uploaders;
+   
+   private List<String> projectRecords = new ArrayList<String>();
+
+
+public List<String> getProjectRecords() {
+	return projectRecords;
 }
-public void setUploaders(List<String> uploaders) {
-	this.uploaders = uploaders;
+public void setProjectRecords(List<String> projectRecords) {
+	this.projectRecords = projectRecords;
 }
+
+
+private List<String> uploaders = new ArrayList<String>();
+
 public String getLon() {
 	    return lon;
 	}
@@ -51,21 +58,22 @@ public String getLon() {
 	public void setLat(String lat) {
 		this.lat = lat;
 	}
-	public List<String> getDataSets() {
-		return dataSets;
-	}
-	public void setDataSets(List<String> dataSets) {
-		this.dataSets = dataSets;
-	}
+	
 	
 	/**
 	 * read the projectSets.xml, find the dataset that include mouse location
 	 * */
 	public String execute() {
+		List<Double> topValues;
+		List<Double> downValues;
+		List<Double> leftValues;
+		List<Double> rightValues;
 		HttpServletRequest request = ServletActionContext.getRequest();
 		String username = (String)request.getSession().getAttribute("username");
-		String projectPath = request.getSession().getServletContext().getRealPath("") + File.separator + "WEB-INF"
-				+ File.separator + "xml" + File.separator + "projects.xml";
+//		String projectPath = request.getSession().getServletContext().getRealPath("") + File.separator + "WEB-INF"
+//				+ File.separator + "xml" + File.separator + "projects.xml";
+		String projectPath = request.getSession().getServletContext().getRealPath("") + File.separator + "WEB-INF" +
+				File.separator + "xml" + File.separator + "users_informations" + File.separator + username + File.separator + username +"_projects.xml";
 		try{
 			SAXBuilder sb_projectPath = new SAXBuilder();
 			Document projectdoc = null;
@@ -73,6 +81,8 @@ public String getLon() {
 			XPath proPath = XPath.newInstance("projects/project[creater=\""+ username +"\"]");
 			List<Element> projects = (List<Element>)proPath.selectNodes(projectdoc);
 			for(Element project : projects){
+				List<String> dataSets = new ArrayList<String>();
+				String projNameString = project.getChild("name").getValue();
 				Element projectDataSets = project.getChild("datasets");
 				List<Element> datasets = (List<Element>)projectDataSets.getChildren("dataset");
 				for(Element dataset : datasets){
@@ -94,6 +104,7 @@ public String getLon() {
 							String setName = dataSetName.getValue();
 							Element top = file.getChild("north");
 							double topValue = Double.parseDouble(top.getValue());
+							
 							Element down = file.getChild("south");
 							double downValue = Double.parseDouble(down.getValue());
 							Element left = file.getChild("west");
@@ -104,13 +115,56 @@ public String getLon() {
 							double latValue = Double.parseDouble(lat);
 							if (lonValue > leftValue & lonValue < rightValue & latValue > downValue & latValue < topValue) {
 								dataSets.add(setName);
-								uploaders.add(uploader);
+//								uploaders.add(uploader);
 								
 							}
 						}
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
+				}
+				Element projectFiles = project.getChild("files");
+				List<Element> fileElements = projectFiles.getChildren("file");
+				for(Element fileElement : fileElements){
+					String fileNameElement = fileElement.getChild("filename").getValue();
+					String fileDatasetElement = fileElement.getChild("datasetname").getValue();
+					String fileUploaderElement = fileElement.getChild("uploader").getValue();
+					String path = request.getSession().getServletContext().getRealPath("") + File.separator + "WEB-INF"
+							+ File.separator + "xml" + File.separator + "users_informations";
+					path = path + File.separator + fileUploaderElement;
+					String projectDataSetPath = path + File.separator + "dataSets.xml";
+					SAXBuilder sb = new SAXBuilder();
+					Document filesdoc = null;
+					try {
+						filesdoc = sb.build("file:" + projectDataSetPath);
+						XPath xPath = XPath.newInstance("dataSets/dataSet[datasetname=\""+ fileDatasetElement +"\"]");
+						List<Element> files = (List<Element>)xPath.selectNodes(filesdoc);
+						for(Element file: files)
+						{
+							Element dataSetName = file.getChild("datasetname");
+							String setName = dataSetName.getValue();
+							Element top = file.getChild("north");
+							double topValue = Double.parseDouble(top.getValue());
+							Element down = file.getChild("south");
+							double downValue = Double.parseDouble(down.getValue());
+							Element left = file.getChild("west");
+							double leftValue = Double.parseDouble(left.getValue());
+							Element right = file.getChild("east");
+							double rightValue = Double.parseDouble(right.getValue());
+							double lonValue = Double.parseDouble(lon);
+							double latValue = Double.parseDouble(lat);
+							if (lonValue > leftValue & lonValue < rightValue & latValue > downValue & latValue < topValue) {
+								dataSets.add(fileDatasetElement);
+//								uploaders.add(fileUploaderElement);
+								
+							}
+						}
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+				if (dataSets.size() > 0) {
+					projectRecords.add(projNameString);
 				}
 			}
 		}catch (Exception e){

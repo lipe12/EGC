@@ -1,15 +1,17 @@
-var website_url = "159.226.110.183";
+var website_url = "localhost";
 //var website_url = "192.168.6.56";
 OpenLayers.ProxyHost ="http://" + website_url + ":8080/EasyWebPlatForm/cgi-bin/proxy.cgi?url=";
     
-var wfs_url = "http://192.168.6.56:8090/cgi-bin/mapserv.exe";
-var wms_url = "http://159.226.110.183:8090/cgi-bin/mapserv.exe";
-var mapfile_path = 'D:/ms4w/apps/tutorial/htdocs/';
-var resultfile_path = 'http://159.226.110.183/egcDataFiles/';                
+var wfs_url = "http://localhost:8090/cgi-bin/mapserv.exe";
+var wms_url = "http://localhost:8090/cgi-bin/mapserv.exe";
+var mapfile_path = 'D:/soft/ms4w/apps/tutorial/htdocs/';
+var resultfile_path = 'http://localhost/egcDataFiles/';                
 var map;
 var soilMappingDataSet; //负责记录用户点击的project（dataset）
 var dataUploader;
 var envRaster = [];    //环境变量图层数组
+var positionLon;
+var positionLat;
 var selectControl;
 var selectedFeature;   
 var latlng1_temp;
@@ -461,10 +463,11 @@ function initMap() {
 	var apiKey = "AmSNBECNoG2887KQ6gs5IRDmL0F0x4sBH5kKfTDee4DaEBQPieE8QbIuyy2x-pg_";
     var gs = new OpenLayers.Layer.Bing({     
         key: apiKey,
-        type: "Aerial"
+        //type: "Aerial"
+        type:"AerialWithLabels"
     });
     //图层切换控制
-    map.addControl(new OpenLayers.Control.LayerSwitcher({'ascending':false}));             
+    //map.addControl(new OpenLayers.Control.LayerSwitcher({'ascending':false}));             
     map.addLayers([gs]);
     
 	/*
@@ -525,20 +528,22 @@ function initMap() {
                 	var proj_4326 =  new OpenLayers.Projection("EPSG:4326");
     				var mousePosition=location.transform(proj_900913, proj_4326);
     				var lon = mousePosition.lon;
+    				positionLon = lon;
     				var lat = mousePosition.lat;
+    				positionLat = lat;
                     //alert(map.getLonLatFromPixel(evt.xy));
-                    Ext.Ajax.request({
-                    	url:"finddataset.action",
-                    	params:{lon:lon, lat:lat},
-                    	method:'POST',
-                    	success: function (response, options) {
-                    		//TODO: here i just implement click in one study area,and the name in project xml should be just one
-                    		var dataSet = Ext.decode(response.responseText).dataSets[0];
-                    		var uploader = Ext.decode(response.responseText).uploaders[0];
-                    		dataUploader = uploader;
-                    		soilMappingDataSet = dataSet;
-                    	}
-                    });
+//                    Ext.Ajax.request({
+//                    	url:"finddataset.action",
+//                    	params:{lon:lon, lat:lat},
+//                    	method:'POST',
+//                    	success: function (response, options) {
+//                    		//TODO: here i just implement click in one study area,and the name in project xml should be just one
+//                    		var dataSet = Ext.decode(response.responseText).projectRecords[0];
+//                    		//var uploader = Ext.decode(response.responseText).uploaders[0];
+//                    		//dataUploader = uploader;
+//                    		soilMappingDataSet = dataSet;
+//                    	}
+//                    });
                 	AddPop2(locationTransfrom);
                 },
                 onclick:function(evt){

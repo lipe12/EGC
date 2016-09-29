@@ -96,8 +96,10 @@ GeoExt.createSampleDataWin = function(data,graphManager){
 //	minLon = minLon.toFixed(6);        
 //	maxLon = maxLon.toFixed(6);               
 	
-	if(KenyaStatus == false){        
-		SampleFileStore.load({params:{semantic:data.dataName,dataSetName:soilMappingDataSet,upLoader:dataUploader}});  
+	if(KenyaStatus == false){  
+		
+		//SampleFileStore.load({params:{semantic:data.dataName,dataSetName:soilMappingDataSet,upLoader:dataUploader}});  
+		SampleFileStore.load({params:{semantic:data.dataName,lon:positionLon, lat:positionLat}});
 		SoilPropertyStore.load();		
 	}else if(KenyaStatus == true){
 	    if(CheckSampleInRect()==true){
@@ -2603,7 +2605,8 @@ GeoExt.createInputDataWindow = function(_data , _graphManager){
 	*/
         	
 	//FileDataStore.load({params:{semantic:_data.dataName,top:maxLat,down:minLat,left:minLon,right:maxLon }});     
-	FileDataStore.load({params:{semantic:_data.dataName,dataSetName:soilMappingDataSet,upLoader:dataUploader}});
+	//FileDataStore.load({params:{semantic:_data.dataName,dataSetName:soilMappingDataSet}});
+	FileDataStore.load({params:{semantic:_data.dataName,lon:positionLon, lat:positionLat}});
 	var _inputfun = function(){
 		var records = FileDataGrid.getSelectionModel().getSelection();
 		if(records.length >0){       

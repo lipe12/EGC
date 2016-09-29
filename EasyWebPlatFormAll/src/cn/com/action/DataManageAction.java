@@ -94,7 +94,7 @@ public class DataManageAction extends BaseAction
 		// shares.xml
 		String sharePath = path + File.separator + Constants.SHARES_DOT_XML;
 		// projects.xml
-		String projectPath = path + File.separator + Constants.PROJECTS_DOT_XML;
+		String projectPath = path + File.separator + Constants.USERS_INFORMATIONS + File.separator + userString + File.separator + userString + "_" +Constants.PROJECTS_DOT_XML;
 
 		List<String> parantNodes = new ArrayList<String>();
 		parantNodes.add(Constants.PROJECTS);
@@ -496,7 +496,7 @@ public class DataManageAction extends BaseAction
 	    // _dataFiles.xml
 	    String dataPath = path + File.separator + Constants.USERS_INFORMATIONS + File.separator + userString + File.separator + userString + Constants._DATAFILES_DOT_XML;
 	    // projects.xml
-	    String projectPath = path + File.separator + Constants.PROJECTS_DOT_XML;
+	    String projectPath = path + File.separator + Constants.USERS_INFORMATIONS + File.separator + userString + File.separator + userString + "_"+Constants.PROJECTS_DOT_XML;
 
 	    List < String > parantNodes = new ArrayList < String > ();
 	    parantNodes.add(Constants.PROJECTS);

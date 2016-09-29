@@ -68,7 +68,8 @@ public class XMLUtil
 	 */
 	public static File getWebappXmlFile(HttpServletRequest request, String filename)
 	{
-		String path = FileUtil.getAppPath(request) + "\\WEB-INF\\xml\\" + filename;
+		String username = (String)request.getSession().getAttribute("username");
+		String path = FileUtil.getAppPath(request) + "\\WEB-INF\\xml\\users_informations\\" + username + "\\" + username + "_" + filename;
 		File file = new File(path);
 		return file;
 	}
